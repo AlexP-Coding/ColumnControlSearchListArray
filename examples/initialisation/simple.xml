@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="1">
+
+<css lib="datatables columncontrol" />
+<js lib="jquery datatables columncontrol">
+<![CDATA[
+$('#example').DataTable({
+	columnControl: {
+		content: ['searchBtn']
+	}
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+new DataTable('#example', {
+	columnControl: {
+		content: ['searchBtn']
+	}
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Basic initialisation</title>
+
+<info><![CDATA[
+
+
+]]></info>
+
+</dt-example>
