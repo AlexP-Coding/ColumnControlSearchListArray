@@ -32,22 +32,24 @@ css_frameworks columnControl $OUT_DIR/css
 # JS - compile and then copy into place
 $DT_SRC/node_modules/typescript/bin/tsc
 
-rsync -r js/*.js $OUT_DIR/js
-
 ## Remove the import - our wrapper does it for UMD as well as ESM
-sed -i "s#import DataTable from '../../../types/types';##" $OUT_DIR/js/dataTables.columnControl.js
-
-js_frameworks columnControl $OUT_DIR/js "jquery datatables.net-FW datatables.net-columncontrol"
+sed -i "s#import DataTable from '../../../types/types';##" js/dataTables.columnControl.js
+sed -i "s#import DataTable from '../../../types/types';##" js/ColumnControl.js
+sed -i "s#import DataTable from '../../../../types/types';##" js/content/index.js
 
 HEADER="$(head -n 3 js/dataTables.columnControl.ts)"
-OUT=$OUT_DIR $DT_SRC/node_modules/rollup/dist/bin/rollup \
+$DT_SRC/node_modules/rollup/dist/bin/rollup \
     --banner "$HEADER" \
     --config rollup.config.mjs
 
+rsync -r js/dataTables.columnControl.js $OUT_DIR/js
+rsync -r js/integrations/columnControl.*.js $OUT_DIR/js
+
+js_frameworks columnControl $OUT_DIR/js "jquery datatables.net-FW datatables.net-columncontrol"
 js_wrap $OUT_DIR/js/dataTables.columnControl.js "jquery datatables.net"
 
-rm js/*.d.ts
-rm js/dataTables.columnControl.js js/ColumnControl.js
+rm js/*.d.ts js/content/*.d.ts
+rm js/content/*.js js/dataTables.columnControl.js js/ColumnControl.js
 
 
 # Copy Types

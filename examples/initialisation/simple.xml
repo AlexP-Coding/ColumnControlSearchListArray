@@ -6,7 +6,7 @@
 <![CDATA[
 $('#example').DataTable({
 	columnControl: {
-		content: ['searchBtn']
+		content: ['orderAscBtn', 'orderDescBtn']
 	}
 });
 ]]>
@@ -16,7 +16,7 @@ $('#example').DataTable({
 <![CDATA[
 new DataTable('#example', {
 	columnControl: {
-		content: ['searchBtn']
+		content: ['orderAscBtn', 'orderDescBtn']
 	}
 });
 ]]>

@@ -1,9 +1,9 @@
 
 export default [
 	{
-		input: process.env.OUT + '/js/dataTables.columnControl.js',
+		input: 'js/dataTables.columnControl.js',
 		output: {
-			file: process.env.OUT + '/js/dataTables.columnControl.js',
+			file: 'js/dataTables.columnControl.js',
 			format: 'es'
 		},
 		plugins: []
