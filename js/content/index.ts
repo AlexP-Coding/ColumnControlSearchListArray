@@ -1,13 +1,13 @@
 import DataTable from '../../../../types/types';
 
-import orderAscBtn from './orderAscBtn';
-import orderDescBtn from './orderDescBtn';
+import orderAsc from './orderAsc';
+import orderDesc from './orderDesc';
 
 const ccContent = DataTable.ext.ccContent as any;
 
 Object.assign(ccContent, {
-	'orderAscBtn': orderAscBtn,
-	'orderDescBtn': orderDescBtn
+	'orderAsc': orderAsc,
+	'orderDesc': orderDesc
 });
 
 export default ccContent;

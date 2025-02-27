@@ -1,1 +1,57 @@
 
+:root {
+	--dtcc-button_background: transparent;
+	--dtcc-button_border: none;
+	--dtcc-button_border-radius: 3px;
+	--dtcc-button_opacity: 0.4;
+	--dtcc-button_padding: 3px;
+
+	--dtcc-button_hover-border: none;
+	--dtcc-button_hover-background: rgba(0, 0, 0, 0.1);
+	--dtcc-button_hover-opacity: 0.9;
+
+	--dtcc-button-icon_color: black;
+	--dtcc-button-icon_size: 16px;
+}
+
+:root.dark {
+	--dtcc-button_hover-background: rgba(255, 255, 255, 0.1);
+
+	--dtcc-button-icon_color: white;
+}
+
+table.dataTable span.dtcc {
+	white-space: nowrap;
+
+	button.dtcc-button {
+		background: var(--dtcc-button_background);
+		border: var(--dtcc-button_border);
+		border-radius: var(--dtcc-button_border-radius);
+		margin-top: calc(var(--dtcc-button_padding) * -1);    // want padding around the top/bottom
+		margin-bottom: calc(var(--dtcc-button_padding) * -1); // of the buttons, but not extra height
+		padding: var(--dtcc-button_padding);
+		opacity: var(--dtcc-button_opacity);
+		cursor: pointer;
+
+		&:hover {
+			border: var(--dtcc-button_hover-border);
+			background: var(--dtcc-button_hover-background);
+			opacity: var(--dtcc-button_hover-opacity);
+		}
+	}
+
+	span.dtcc-button-icon {
+		display: inline-block;
+		vertical-align: middle;
+		color: var(--dtcc-button-icon_color);
+
+		svg {
+			height: var(--dtcc-button-icon_size);
+			width: var(--dtcc-button-icon_size);
+		}
+	}
+
+	span.dtcc-button-text {
+		display: none;
+	}
+}

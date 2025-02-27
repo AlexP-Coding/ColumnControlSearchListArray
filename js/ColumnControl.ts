@@ -1,6 +1,7 @@
 import DataTable, {Api, ColumnSelector} from '../../../types/types';
 import content from './content/index';
 import {IContent} from './content/content';
+import icons from './icons';
 
 export interface IDefaults {
 	target: 0;
@@ -15,7 +16,7 @@ export interface IContents {
 
 export interface IDom {
 	target: HTMLElement;
-	wrapper: HTMLDivElement;
+	wrapper: HTMLSpanElement;
 }
 
 interface ISettings {
@@ -54,8 +55,8 @@ export default class ColumnControl {
 		Object.assign(this._c, ColumnControl.defaults, opts);
 
 		console.log('CC', columnIdx, opts);
-		this._dom.wrapper = document.createElement('div');
-		this._dom.wrapper.classList.add('dtcc-container');
+		this._dom.wrapper = document.createElement('span');
+		this._dom.wrapper.classList.add('dtcc');
 
 		this._dom.target = this._target();
 		this._dom.target.appendChild(this._dom.wrapper);
@@ -77,12 +78,20 @@ export default class ColumnControl {
 	private _target() {
 		// Header row index
 		if (typeof this._c.target === 'number') {
-			return this._dt.column(this._s.columnIdx).header(this._c.target);
+			return this._dt
+				.column(this._s.columnIdx)
+				.header(this._c.target)
+				.querySelector<HTMLElement>('div.dt-column-header');
 		}
 
 		// No match, default to the standard column header
-		return this._dt.column(this._s.columnIdx).header();
+		return this._dt
+			.column(this._s.columnIdx)
+			.header()
+			.querySelector<HTMLElement>('div.dt-column-header');
 	}
+
+	static content: IContents = content;
 
 	static defaults: IDefaults = {
 		target: 0,
@@ -90,7 +99,7 @@ export default class ColumnControl {
 		content: []
 	};
 
-	static version = '0.0.1-dev';
+	static icons = icons;
 
-	static content: IContents = content;
+	static version = '0.0.1-dev';
 }
