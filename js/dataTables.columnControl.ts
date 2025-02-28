@@ -42,7 +42,7 @@ $(document).on('preInit.dt', function (e, settings) {
 	let tableInit: IConfig = settings.oInit.columnControl;
 	let defaultInit: IConfig = (DataTable.defaults as any).columnControl;
 
-	api.columns().every(function () {
+	api.columns().every(function (i) {
 		let columnInit: IConfig = (this.init() as any).columnControl;
 		let init: false | IConfig = false;
 

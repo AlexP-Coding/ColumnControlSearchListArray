@@ -25,6 +25,12 @@ export default {
 			}
 		);
 
+		dt.on('order', (e, s, order) => {
+			let found = order.some(o => o.col === this.idx() && o.dir === 'desc');
+
+			btn.classList.toggle('dtcc-button_active', found);
+		});
+
 		return btn;
 	}
 } as IContent<IOrderDesc>;

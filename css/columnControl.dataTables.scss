@@ -40,6 +40,10 @@ table.dataTable span.dtcc {
 		}
 	}
 
+	button.dtcc-button_active {
+		opacity: 1;
+	}
+
 	span.dtcc-button-icon {
 		display: inline-block;
 		vertical-align: middle;

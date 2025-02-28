@@ -54,7 +54,6 @@ export default class ColumnControl {
 
 		Object.assign(this._c, ColumnControl.defaults, opts);
 
-		console.log('CC', columnIdx, opts);
 		this._dom.wrapper = document.createElement('span');
 		this._dom.wrapper.classList.add('dtcc');
 
@@ -62,8 +61,6 @@ export default class ColumnControl {
 		this._dom.target.appendChild(this._dom.wrapper);
 
 		this._c.content.forEach((content) => {
-			console.log('content', content);
-
 			let el = ColumnControl.content[content].init.call(this, {});
 
 			this._dom.wrapper.appendChild(el);
