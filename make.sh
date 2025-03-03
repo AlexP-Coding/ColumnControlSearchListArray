@@ -42,8 +42,8 @@ $DT_SRC/node_modules/rollup/dist/bin/rollup \
     --banner "$HEADER" \
     --config rollup.config.mjs
 
-rsync -r js/dataTables.columnControl.js $OUT_DIR/js
-rsync -r js/integrations/columnControl.*.js $OUT_DIR/js
+rsync -r js/dataTables.columnControl.js $OUT_DIR/js/
+rsync -r js/integrations/columnControl.*.js $OUT_DIR/js/
 
 js_frameworks columnControl $OUT_DIR/js "jquery datatables.net-FW datatables.net-columncontrol"
 js_wrap $OUT_DIR/js/dataTables.columnControl.js "jquery datatables.net"
