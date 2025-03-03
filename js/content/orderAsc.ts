@@ -7,12 +7,18 @@ interface IOrderAsc extends IContentConfig {
 }
 
 export default {
-	init(buttonConfig) {
+	defaults: {
+		className: 'orderAsc',
+		icon: 'orderAsc',
+		text: 'Sort Ascending'
+	},
+
+	init(config) {
 		let dt = this.dt();
 		let btn = button(
-			dt.i18n('columnControl.content.orderAsc', buttonConfig.text || 'Sort Ascending'),
-			buttonConfig.icon || 'orderAsc',
-			buttonConfig.className || 'orderAsc',
+			dt.i18n('columnControl.content.orderAsc', config.text),
+			config.icon,
+			config.className,
 			() => {
 				this.dt()
 					.order([
@@ -26,7 +32,7 @@ export default {
 		);
 
 		dt.on('order', (e, s, order) => {
-			let found = order.some(o => o.col === this.idx() && o.dir === 'asc');
+			let found = order.some((o) => o.col === this.idx() && o.dir === 'asc');
 
 			btn.classList.toggle('dtcc-button_active', found);
 		});

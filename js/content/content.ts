@@ -4,8 +4,8 @@ import icons from '../icons';
 export interface IContentConfig {}
 
 export interface IContent<T = {}> {
+	defaults: T;
 	init: (this: ColumnControl, buttonConfig: T) => HTMLElement | HTMLButtonElement;
-	action: (this: ColumnControl, buttonConfig: T) => HTMLElement | HTMLButtonElement;
 }
 
 export function button(
