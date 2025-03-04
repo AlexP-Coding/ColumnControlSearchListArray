@@ -12,7 +12,7 @@ export function button(
 	text: string,
 	icon: string,
 	klass: string,
-	cb: () => void
+	cb: (e: Event) => void
 ): HTMLButtonElement {
 	let button = createElement<HTMLButtonElement>(
 		'button',
@@ -28,7 +28,7 @@ export function button(
 		e.stopPropagation();
 		e.preventDefault();
 
-		cb();
+		cb(e);
 	});
 
 	return button;

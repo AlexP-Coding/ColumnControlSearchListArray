@@ -73,12 +73,12 @@ export default class ColumnControl {
 		if (typeof content === 'string') {
 			type = content;
 			plugin = ColumnControl.content[type];
-			config = Object.assign({}, plugin.defaults);
+			config = Object.assign({}, plugin?.defaults);
 		}
 		else if (content.extend) {
 			type = content.extend;
 			plugin = ColumnControl.content[type];
-			config = Object.assign({}, plugin.defaults, content);
+			config = Object.assign({}, plugin?.defaults, content);
 		}
 
 		if (!plugin) {
@@ -113,7 +113,6 @@ export default class ColumnControl {
 
 		this._c.content.forEach((content) => {
 			let {plugin, config} = this.resolve(content);
-
 			let el = plugin.init.call(this, config);
 
 			this._dom.wrapper.appendChild(el);

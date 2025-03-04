@@ -49,7 +49,7 @@ js_frameworks columnControl $OUT_DIR/js "jquery datatables.net-FW datatables.net
 js_wrap $OUT_DIR/js/dataTables.columnControl.js "jquery datatables.net"
 
 rm js/*.d.ts js/content/*.d.ts
-rm js/content/*.js js/dataTables.columnControl.js js/ColumnControl.js
+rm js/icons.js js/content/*.js js/dataTables.columnControl.js js/ColumnControl.js
 
 
 # Copy Types
