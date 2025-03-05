@@ -15,17 +15,63 @@ interface ICollection extends IContentConfig {
 	text: string;
 }
 
+/**
+ * Position the dropdown relative to the button that activated it, with possible corrections
+ * to make sure it is visible on the page.
+ *
+ * @param dropdown Dropdown element
+ * @param dt Container DataTable
+ * @param btn Button the dropdown emanates from
+ */
+function positionDropdown(dropdown: HTMLDropdown, dt: Api, btn: HTMLButtonElement) {
+	let dtContainer = dt.table().container();
+	let header = btn.closest('div.dt-column-header');
+	let headerStyle = getComputedStyle(header);
+	let dropdownWidth = dropdown.offsetWidth;
+	let position = relativePosition(dtContainer, btn);
+	let left, top;
+
+	top = position.top + btn.offsetHeight;
+
+	if (headerStyle.flexDirection === 'row-reverse') {
+		// Icon is on the left of the header - align the left hand sides
+		left = position.left;
+	}
+	else {
+		// Icon is on the right of the header - align the right hand sides
+		left = position.left - dropdownWidth + btn.offsetWidth;
+	}
+
+	// Corrections - don't extend past the DataTable to the left and right
+	let containerOffsetLeft = dtContainer.offsetLeft;
+	let containerWidth = dtContainer.offsetWidth;
+
+	if (left + dropdownWidth > containerWidth) {
+		left -= left + dropdownWidth - containerWidth;
+	}
+
+	if (left < containerOffsetLeft) {
+		left = containerOffsetLeft;
+	}
+
+	dropdown.style.top = top + 'px';
+	dropdown.style.left = left + 'px';
+}
+
+/**
+ * Display the dropdown in the document
+ *
+ * @param dropdown Dropdown element
+ * @param dt Container DataTable
+ * @param btn Button the dropdown emanates from
+ * @returns Function to call when the dropdown should be removed from the document
+ */
 function attachDropdown(dropdown: HTMLDropdown, dt: Api, btn: Button) {
 	let dtContainer = dt.table().container();
-	let position = relativePosition(dtContainer, btn.element());
 
-	dtContainer.append(dropdown);
 	dropdown._shown = true;
-
-	// TODO figure out positioning so no overflows, etc
-
-	dropdown.style.top = position.top + btn.element().offsetHeight + 'px';
-	dropdown.style.left = position.left + 'px';
+	dtContainer.append(dropdown);
+	positionDropdown(dropdown, dt, btn.element());
 
 	// Note that this could be called when the dropdown has already been removed from the document
 	// via another dropdown being shown. This will clean up the event on the next body click.
