@@ -2,6 +2,7 @@ import DataTable, {Api, ColumnSelector} from '../../../types/types';
 import content from './content/index';
 import {IContent} from './content/content';
 import icons from './icons';
+import Button from './Button';
 
 export interface IDefaults {
 	target: 0;
@@ -139,6 +140,8 @@ export default class ColumnControl {
 			.header()
 			.querySelector<HTMLElement>('div.dt-column-header');
 	}
+
+	static Button: Button;
 
 	/** Content plugins */
 	static content: IContents = content;

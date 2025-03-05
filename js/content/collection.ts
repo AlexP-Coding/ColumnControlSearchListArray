@@ -1,5 +1,7 @@
 import DataTable, {Api, ColumnSelector} from '../../../../types/types';
-import {button, createElement, IContent, IContentConfig} from './content';
+import Button from '../Button';
+import {createElement} from '../functions';
+import {IContent, IContentConfig} from './content';
 
 interface HTMLDropdown extends HTMLDivElement {
 	_shown: boolean;
@@ -13,14 +15,16 @@ interface ICollection extends IContentConfig {
 	text: string;
 }
 
-function attachDropdown(dropdown: HTMLDropdown, dt: Api, btn: HTMLButtonElement) {
+function attachDropdown(dropdown: HTMLDropdown, dt: Api, btn: Button) {
 	let dtContainer = dt.table().container();
-	let position = relativePosition(dtContainer, btn);
+	let position = relativePosition(dtContainer, btn.element());
 
 	dtContainer.append(dropdown);
 	dropdown._shown = true;
 
-	dropdown.style.top = position.top + btn.offsetHeight + 'px';
+	// TODO figure out positioning so no overflows, etc
+
+	dropdown.style.top = position.top + btn.element().offsetHeight + 'px';
 	dropdown.style.left = position.left + 'px';
 
 	// Note that this could be called when the dropdown has already been removed from the document
@@ -100,11 +104,11 @@ export default {
 			liner.appendChild(el);
 		}
 		
-		let btn = button(
-			dt.i18n('columnControl.content.collection', config.text),
-			config.icon,
-			config.className,
-			(e) => {
+		let btn = new Button()
+			.text(dt.i18n('columnControl.content.collection', config.text))
+			.icon(config.icon)
+			.className(config.className)
+			.handler(() => {
 				if (dropdown._shown) {
 					dropdown._close();
 				}
@@ -116,9 +120,8 @@ export default {
 
 					attachDropdown(dropdown, dt, btn);
 				}
-			}
-		);
+			});
 
-		return btn;
+		return btn.element();
 	}
 } as IContent<ICollection>;

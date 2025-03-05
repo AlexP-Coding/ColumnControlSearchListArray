@@ -1,4 +1,6 @@
-import {button, IContent, IContentConfig} from './content';
+
+import Button from '../Button';
+import {IContent, IContentConfig} from './content';
 
 interface IOrderAsc extends IContentConfig {
 	className: string;
@@ -15,11 +17,11 @@ export default {
 
 	init(config) {
 		let dt = this.dt();
-		let btn = button(
-			dt.i18n('columnControl.content.orderAsc', config.text),
-			config.icon,
-			config.className,
-			() => {
+		let btn = new Button()
+			.text(dt.i18n('columnControl.content.orderAsc', config.text))
+			.icon(config.icon)
+			.className(config.className)
+			.handler(() => {
 				this.dt()
 					.order([
 						{
@@ -28,15 +30,14 @@ export default {
 						}
 					])
 					.draw();
-			}
-		);
+			});
 
 		dt.on('order', (e, s, order) => {
 			let found = order.some((o) => o.col === this.idx() && o.dir === 'asc');
 
-			btn.classList.toggle('dtcc-button_active', found);
+			btn.active(found)
 		});
 
-		return btn;
+		return btn.element();
 	}
 } as IContent<IOrderAsc>;
