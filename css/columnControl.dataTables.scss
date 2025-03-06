@@ -13,6 +13,9 @@
 	--dtcc-button-icon_color: black;
 	--dtcc-button-icon_size: 16px;
 
+	--dtcc-spacer_border: 1px solid rgba(0, 0, 0, 0.2);
+	--dtcc-spacer_margin: 0.5em;
+
 	--dtcc-dropdown_background: white;
 	--dtcc-dropdown_border: 1px solid rgba(0, 0, 0, 0.2);
 	--dtcc-dropdown_border-radius: 5px;
@@ -34,6 +37,8 @@
 
 	--dtcc-button-icon_color: white;
 
+	--dtcc-spacer_border: 1px solid rgba(255, 255, 255, 0.15);
+
 	--dtcc-dropdown_background: rgb(33, 37, 41);
 	--dtcc-dropdown_border: 1px solid rgba(255, 255, 255, 0.15);
 	--dtcc-dropdown_box-shadow: 3px 4px 10px 1px rgba(0, 0, 0, 0.8);
@@ -43,6 +48,7 @@
 }
 
 table.dataTable span.dtcc {
+	font-weight: normal;
 	white-space: nowrap;
 
 	button.dtcc-button {
@@ -79,6 +85,22 @@ table.dataTable span.dtcc {
 
 	span.dtcc-button-text {
 		display: none;
+	}
+
+	div.dtcc-spacer {
+		border-left: var(--dtcc-spacer_border);
+		cursor: initial;
+		display: inline-block;
+		margin: 0 var(--dtcc-spacer_margin);
+		padding-left: 0.5em;
+		vertical-align: middle;
+		white-space: nowrap;
+
+		&:empty {
+			height: 1em;
+			padding-left: 0;
+			width: 1px;
+		}
 	}
 }
 
@@ -123,5 +145,12 @@ div.dtcc-dropdown {
 			text-overflow: ellipsis;
 			white-space: nowrap;
 		}
+	}
+
+	div.dtcc-spacer {
+		border-left: none;
+		border-bottom: var(--dtcc-spacer_border);
+		padding: 0;
+		margin: var(--dtcc-spacer_margin) 0;
 	}
 }
