@@ -13,6 +13,9 @@ interface ICollection extends IContentConfig {
 	content: IContentConfig[];
 	icon: string;
 	text: string;
+
+	/** @ignore */
+	_topLevel: Button;
 }
 
 /**
@@ -142,13 +145,6 @@ export default {
 
 		// A liner element allows more styling options, so the contents go inside this
 		let liner = dropdown.childNodes[0];
-
-		for (let i = 0; i < config.content.length; i++) {
-			let content = this.resolve(config.content[i]);
-			let el = content.plugin.init.call(this, content.config);
-
-			liner.appendChild(el);
-		}
 		
 		let btn = new Button()
 			.text(dt.i18n('columnControl.content.collection', config.text))
@@ -164,9 +160,25 @@ export default {
 						el._close();
 					});
 
-					attachDropdown(dropdown, dt, btn);
+					attachDropdown(dropdown, dt, config._topLevel || btn);
 				}
 			});
+
+		// Add the content for the dropdown
+		for (let i = 0; i < config.content.length; i++) {
+			let content = this.resolve(config.content[i]);
+
+			// For nested collections we need to keep a reference to the top level so the sub-levels
+			// can be positioned relative to that top level.
+			if (content.type === 'collection') {
+				content.config._topLevel = config._topLevel || btn;
+			}
+
+			let el = content.plugin.init.call(this, content.config);
+
+			liner.appendChild(el);
+		}
+
 
 		return btn.element();
 	}

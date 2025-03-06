@@ -72,11 +72,21 @@ export default class ColumnControl {
 		let type: string = null;
 
 		if (typeof content === 'string') {
+			// Simple content - uses default options
 			type = content;
 			plugin = ColumnControl.content[type];
 			config = Object.assign({}, plugin?.defaults);
 		}
+		else if (Array.isArray(content)) {
+			// An array is a shorthand for a collection / dropdown with its default options
+			type = 'collection';
+			plugin = ColumnControl.content[type];
+			config = Object.assign({}, plugin?.defaults, {
+				content: content
+			});
+		}
 		else if (content.extend) {
+			// Content with custom options
 			type = content.extend;
 			plugin = ColumnControl.content[type];
 			config = Object.assign({}, plugin?.defaults, content);
