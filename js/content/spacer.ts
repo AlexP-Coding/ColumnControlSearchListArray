@@ -1,4 +1,3 @@
-import Button from '../Button';
 import {createElement} from '../functions';
 import {IContent, IContentConfig} from './content';
 
@@ -25,4 +24,3 @@ export default {
 		return spacer;
 	}
 } as IContent<ISpacer>;
-
