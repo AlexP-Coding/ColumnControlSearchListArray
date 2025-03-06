@@ -1,6 +1,8 @@
 import {createElement} from './functions';
 import icons from './icons';
 
+type Icons = keyof typeof icons;
+
 interface IDom {
 	button: HTMLButtonElement;
 	icon: HTMLSpanElement;
@@ -24,8 +26,19 @@ export default class Button {
 	 * @param active The active state
 	 * @returns Button instance
 	 */
-	public active(active: boolean) {
-		this._dom.button.classList.toggle('dtcc-button_active', active);
+	public active(active: boolean | Icons) {
+		if (active === false) {
+			this._dom.state.innerHTML = '';
+			this._dom.button.classList.remove('dtcc-button_active');
+		}
+		else if (active === true) {
+			this._dom.state.innerHTML = icons.tick;
+			this._dom.button.classList.add('dtcc-button_active');
+		}
+		else {
+			this._dom.state.innerHTML = icons.chevronRight;
+			this._dom.button.classList.remove('dtcc-button_active');
+		}
 
 		return this;
 	}

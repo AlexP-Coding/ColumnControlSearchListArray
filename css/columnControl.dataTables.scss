@@ -75,6 +75,10 @@ table.dataTable span.dtcc {
 			background: var(--dtcc-button_hover-background);
 			opacity: var(--dtcc-button_hover-opacity);
 		}
+
+		> span.dtcc-button-state {
+			display: none;
+		}
 	}
 
 	button.dtcc-button_active {
@@ -142,10 +146,21 @@ div.dtcc-dropdown {
 			background: var(--dtcc-dropdown-button_hover-background);
 		}
 
+		> span.dtcc-button-state {
+			display: block;
+			height: var(--dtcc-button-icon_size);
+			padding: 0 0 0 0.5em;
+			width: var(--dtcc-button-icon_size);
+
+			&:empty {
+				display: none;
+			}
+		}
+
 		span.dtcc-button-icon {
 			height: var(--dtcc-button-icon_size);
+			padding: 0 0.5em 0 0;
 			width: var(--dtcc-button-icon_size);
-			padding: 0 0.5em;
 		}
 
 		span.dtcc-button-text {

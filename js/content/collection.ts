@@ -1,6 +1,7 @@
 import DataTable, {Api, ColumnSelector} from '../../../../types/types';
 import Button from '../Button';
 import {createElement} from '../functions';
+import icons from '../icons';
 import {IContent, IContentConfig} from './content';
 
 interface HTMLDropdown extends HTMLDivElement {
@@ -145,7 +146,7 @@ export default {
 
 		// A liner element allows more styling options, so the contents go inside this
 		let liner = dropdown.childNodes[0];
-		
+
 		let btn = new Button()
 			.text(dt.i18n('columnControl.content.collection', config.text))
 			.icon(config.icon)
@@ -156,7 +157,7 @@ export default {
 				}
 				else {
 					// Close any other dropdowns that are already shown
-					document.querySelectorAll<HTMLDropdown>('div.dtcc-dropdown').forEach(el => {
+					document.querySelectorAll<HTMLDropdown>('div.dtcc-dropdown').forEach((el) => {
 						el._close();
 					});
 
@@ -179,6 +180,10 @@ export default {
 			liner.appendChild(el);
 		}
 
+		// For nested collections, add an extra icon element to show that it will dropdown further
+		if (config._topLevel) {
+			btn.active('chevronRight');
+		}
 
 		return btn.element();
 	}
