@@ -14,11 +14,7 @@ $('#example').DataTable({
 			[
 				'orderAsc',
 				'orderDesc',
-				{
-					extend: 'collection',
-					text: 'More...',
-					content: ['title', 'orderAsc']
-				}
+				['title', 'orderAsc']
 			]
 		]
 	}
@@ -38,11 +34,7 @@ new DataTable('#example', {
 			[
 				'orderAsc',
 				'orderDesc',
-				{
-					extend: 'collection',
-					text: 'More...',
-					content: ['title', 'orderAsc']
-				}
+				['title', 'orderAsc']
 			]
 		]
 	}

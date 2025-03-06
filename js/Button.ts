@@ -71,7 +71,7 @@ export default class Button {
 	 * @returns Button instance
 	 */
 	public enable(enable: boolean) {
-		this._dom.button.classList.toggle('dtcc-button_enabled', enable);
+		this._dom.button.classList.toggle('dtcc-button_disabled', !enable);
 		this._s.enabled = enable;
 
 		return this;
@@ -135,5 +135,8 @@ export default class Button {
 		this._dom.button.append(this._dom.icon);
 		this._dom.button.append(this._dom.text);
 		this._dom.button.append(this._dom.state);
+
+		// Default state is enabled
+		this.enable(true);
 	}
 }

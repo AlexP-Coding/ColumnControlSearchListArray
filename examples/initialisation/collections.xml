@@ -10,15 +10,7 @@ $('#example').DataTable({
 		handler: false
 	},
 	columnControl: {
-		content: [
-			{
-				extend: 'collection',
-				content: [
-					'orderAsc',
-					'orderDesc'
-				]
-			}
-		]
+		content: [['orderAsc', 'orderDesc', 'orderRemove']]
 	}
 });
 ]]>
@@ -32,7 +24,7 @@ new DataTable('#example', {
 		handler: false
 	},
 	columnControl: {
-		content: [['orderAsc', 'orderDesc']]
+		content: [['orderAsc', 'orderDesc', 'orderRemove']]
 	}
 });
 ]]>

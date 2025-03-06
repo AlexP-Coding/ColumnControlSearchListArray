@@ -5,6 +5,7 @@
 	--dtcc-button_border-radius: 3px;
 	--dtcc-button_opacity: 0.4;
 	--dtcc-button_padding: 3px;
+	--dtcc-button_disabled_opacity: 0.6;
 
 	--dtcc-button_hover-border: none;
 	--dtcc-button_hover-background: rgba(0, 0, 0, 0.1);
@@ -76,6 +77,11 @@ table.dataTable span.dtcc {
 			opacity: var(--dtcc-button_hover-opacity);
 		}
 
+		&.dtcc-button_disabled {
+			cursor: initial;
+			opacity: var(--dtcc-button_disabled_opacity);
+		}
+
 		> span.dtcc-button-state {
 			display: none;
 		}
@@ -144,6 +150,11 @@ div.dtcc-dropdown {
 
 		&:hover {
 			background: var(--dtcc-dropdown-button_hover-background);
+		}
+
+		&.dtcc-button_disabled {
+			cursor: initial;
+			opacity: var(--dtcc-button_disabled_opacity);
 		}
 
 		> span.dtcc-button-state {

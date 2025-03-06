@@ -20,12 +20,7 @@ new DataTable('#example', {
 		handler: false
 	},
 	columnControl: {
-		content: [
-			{
-				extend: 'orderAsc'
-			},
-			'orderDesc'
-		]
+		content: ['orderAsc', 'orderDesc']
 	}
 });
 ]]>

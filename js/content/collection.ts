@@ -129,7 +129,7 @@ export default {
 		className: 'collection',
 		content: [],
 		icon: 'menu',
-		text: ''
+		text: 'More...'
 	},
 
 	init(config) {
