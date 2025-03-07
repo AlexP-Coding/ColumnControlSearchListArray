@@ -164,7 +164,7 @@ export default {
 			.icon(config.icon)
 			.className(config.className)
 			.handler(() => {
-				closeOthers();
+				close();
 
 				if (dropdown._shown) {
 					dropdown._close();
