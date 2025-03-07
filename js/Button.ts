@@ -1,5 +1,6 @@
 import {createElement} from './functions';
 import icons from './icons';
+import {close as closeCollections} from './content/collection';
 
 type Icons = keyof typeof icons;
 
@@ -109,6 +110,10 @@ export default class Button {
 	 */
 	public handler(fn: (e: Event) => void) {
 		this._dom.button.addEventListener('click', (e) => {
+			// Close any dropdowns which are already open
+			closeCollections(e);
+
+			// Stop bubbling to the DataTables default header, which  might still be enabled
 			e.stopPropagation();
 			e.preventDefault();
 

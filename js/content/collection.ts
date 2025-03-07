@@ -1,7 +1,6 @@
 import DataTable, {Api, ColumnSelector} from '../../../../types/types';
 import Button from '../Button';
 import {createElement} from '../functions';
-import icons from '../icons';
 import {IContent, IContentConfig} from './content';
 
 interface HTMLDropdown extends HTMLDivElement {
@@ -17,6 +16,19 @@ interface ICollection extends IContentConfig {
 
 	/** @ignore */
 	_topLevel: Button;
+}
+
+/**
+ * Close all or only other dropdowns
+ *
+ * @param e Event or null to close all others
+ */
+export function close(e: Event | null = null) {
+	document.querySelectorAll<HTMLDropdown>('div.dtcc-dropdown').forEach((el) => {
+		if (e === null || !el.contains(e.target as Node)) {
+			el._close();
+		}
+	});
 }
 
 /**
@@ -152,15 +164,12 @@ export default {
 			.icon(config.icon)
 			.className(config.className)
 			.handler(() => {
+				closeOthers();
+
 				if (dropdown._shown) {
 					dropdown._close();
 				}
 				else {
-					// Close any other dropdowns that are already shown
-					document.querySelectorAll<HTMLDropdown>('div.dtcc-dropdown').forEach((el) => {
-						el._close();
-					});
-
 					attachDropdown(dropdown, dt, config._topLevel || btn);
 				}
 			});
