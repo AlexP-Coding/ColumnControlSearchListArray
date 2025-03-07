@@ -1,27 +1,5 @@
-/*! ColumnControl 0.0.1-dev
- * © SpryMedia Ltd - datatables.net/license
- */
-
-/**
- * @summary     ColumnControl
- * @description Provide control buttons and search for column in DataTables
- * @version     0.0.1-dev
- * @author      SpryMedia Ltd
- * @contact     datatables.net
- * @copyright   SpryMedia Ltd.
- *
- * This source file is free software, available under the following license:
- *   MIT license - http://datatables.net/license/mit
- *
- * This source file is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the license files for details.
- *
- * For details please refer to: http://www.datatables.net
- */
 
 import DataTable from '../../../types/types';
-
 import ColumnControl, {IConfig} from './ColumnControl';
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

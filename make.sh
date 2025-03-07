@@ -37,7 +37,14 @@ sed -i "s#import DataTable from '../../../types/types';##" js/dataTables.columnC
 sed -i "s#import DataTable from '../../../types/types';##" js/ColumnControl.js
 sed -i "s#import DataTable from '../../../../types/types';##" js/content/index.js
 
-HEADER="$(head -n 3 js/dataTables.columnControl.ts)"
+HEADER="/*! ColumnControl
+ * Copyright (c) SpryMedia Ltd - datatables.net/license
+ *
+ * SVG icons: ISC License
+ * Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2022 as part of Feather (MIT).
+ * All other copyright (c) for Lucide are held by Lucide Contributors 2022.
+ */
+"
 $DT_SRC/node_modules/rollup/dist/bin/rollup \
     --banner "$HEADER" \
     --config rollup.config.mjs
