@@ -40,13 +40,14 @@ new DataTable('#example', {
 	},
 	columnControl: [
 		{
-			target: 0,
+			target: 3,
 			content: ['order']
 		},
 		{
 			target: 1,
 			content: ['orderAsc', 'orderDesc']
-		}
+		},
+		['order']
 	]
 });
 ]]>
