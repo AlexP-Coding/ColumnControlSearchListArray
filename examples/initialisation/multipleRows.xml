@@ -8,6 +8,9 @@
 $('#example thead tr').clone().appendTo('#example thead');
 $('#example thead tr:eq(1) th').empty();
 
+$('#example thead tr').eq(0).clone().appendTo('#example thead');
+$('#example thead tr:eq(2) th').empty();
+
 $('#example').DataTable({
 	ordering: {
 		indicators: false,
@@ -33,21 +36,27 @@ $('#example').DataTable({
 $('#example thead tr').clone().appendTo('#example thead');
 $('#example thead tr:eq(1) th').empty();
 
+$('#example thead tr').eq(0).clone().appendTo('#example thead');
+$('#example thead tr:eq(2) th').empty();
+
 new DataTable('#example', {
 	ordering: {
 		indicators: false,
 		handler: false
 	},
 	columnControl: [
-		{
-			target: 3,
-			content: ['order']
-		},
+		['order'],
+		// [{
+		// 	extend: 'orderAsc'
+		// }],
 		{
 			target: 1,
-			content: ['orderAsc', 'orderDesc']
+			content: [['title', 'order']]
 		},
-		['order']
+		{
+			target: 2,
+			content: ['orderAsc', 'orderDesc']
+		}
 	]
 });
 ]]>

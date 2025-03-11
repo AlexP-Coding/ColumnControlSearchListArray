@@ -1,7 +1,7 @@
 import {createElement} from '../functions';
-import {IContent, IContentConfig} from './content';
+import {IContentPlugin, IContentConfig} from './content';
 
-interface ISpacer extends IContentConfig {
+export interface ISpacer extends IContentConfig {
 	className: string;
 	text: string;
 }
@@ -23,4 +23,4 @@ export default {
 
 		return spacer;
 	}
-} as IContent<ISpacer>;
+} as IContentPlugin<ISpacer>;

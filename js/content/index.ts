@@ -1,17 +1,29 @@
 import DataTable from '../../../../types/types';
 
-import collection from './collection';
-import order from './order';
-import orderAddAsc from './orderAddAsc';
-import orderAddDesc from './orderAddDesc';
-import orderAsc from './orderAsc';
-import orderClear from './orderClear';
-import orderDesc from './orderDesc';
-import orderRemove from './orderRemove';
-import spacer from './spacer';
-import title from './title';
+import collection, {ICollection} from './collection';
+import order, {IOrder} from './order';
+import orderAddAsc, {IOrderAddAsc} from './orderAddAsc';
+import orderAddDesc, {IOrderAddDesc} from './orderAddDesc';
+import orderAsc, {IOrderAsc} from './orderAsc';
+import orderClear, {IOrderClear} from './orderClear';
+import orderDesc, {IOrderDesc} from './orderDesc';
+import orderRemove, {IOrderRemove} from './orderRemove';
+import spacer, {ISpacer} from './spacer';
+import title, {ITitle} from './title';
 
 const ccContent = DataTable.ext.ccContent as any;
+
+export type IContentConfig =
+	| ICollection
+	| IOrder
+	| IOrderAddAsc
+	| IOrderAddDesc
+	| IOrderAsc
+	| IOrderClear
+	| IOrderDesc
+	| IOrderRemove
+	| ISpacer
+	| ITitle;
 
 Object.assign(ccContent, {
 	collection,

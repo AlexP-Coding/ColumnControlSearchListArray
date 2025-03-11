@@ -1,7 +1,7 @@
 import {createElement} from '../functions';
-import {IContent, IContentConfig} from './content';
+import {IContentPlugin, IContentConfig} from './content';
 
-interface ITitle extends IContentConfig {
+export interface ITitle extends IContentConfig {
 	className: string;
 	text: string | null;
 }
@@ -23,4 +23,4 @@ export default {
 
 		return el;
 	}
-} as IContent<ITitle>;
+} as IContentPlugin<ITitle>;

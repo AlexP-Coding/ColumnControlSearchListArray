@@ -1,8 +1,8 @@
 
 import Button from '../Button';
-import {IContent, IContentConfig} from './content';
+import {IContentPlugin, IContentConfig} from './content';
 
-interface IOrderAddAsc extends IContentConfig {
+export interface IOrderAddAsc extends IContentConfig {
 	className: string;
 	icon: string;
 	text: string;
@@ -37,4 +37,4 @@ export default {
 
 		return btn.element();
 	}
-} as IContent<IOrderAddAsc>;
+} as IContentPlugin<IOrderAddAsc>;

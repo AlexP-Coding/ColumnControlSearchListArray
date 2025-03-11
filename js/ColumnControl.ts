@@ -1,18 +1,18 @@
 import DataTable, {Api, ColumnSelector} from '../../../types/types';
-import content from './content/index';
-import {IContent} from './content/content';
+import content, {IContentConfig} from './content/index';
+import {IContentPlugin} from './content/content';
 import icons from './icons';
 import Button from './Button';
 
 export interface IDefaults {
 	target: 0;
-	content: [];
+	content: Array<IContentConfig | keyof typeof content>;
 }
 
 export interface IConfig extends Partial<IDefaults> {}
 
 export interface IContents {
-	[name: string]: IContent;
+	[name: string]: IContentPlugin;
 }
 
 export interface IDom {
@@ -67,7 +67,7 @@ export default class ColumnControl {
 	 * @returns Resolved plugin information
 	 */
 	public resolve(content: string | any) {
-		let plugin: IContent = null;
+		let plugin: IContentPlugin = null;
 		let config: any = null;
 		let type: string = null;
 

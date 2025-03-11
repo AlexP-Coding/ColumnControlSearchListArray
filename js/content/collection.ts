@@ -1,14 +1,14 @@
 import DataTable, {Api, ColumnSelector} from '../../../../types/types';
 import Button from '../Button';
 import {createElement} from '../functions';
-import {IContent, IContentConfig} from './content';
+import {IContentPlugin, IContentConfig} from './content';
 
 interface HTMLDropdown extends HTMLDivElement {
 	_shown: boolean;
 	_close: () => void;
 }
 
-interface ICollection extends IContentConfig {
+export interface ICollection extends IContentConfig {
 	className: string;
 	content: IContentConfig[];
 	icon: string;
@@ -196,4 +196,4 @@ export default {
 
 		return btn.element();
 	}
-} as IContent<ICollection>;
+} as IContentPlugin<ICollection>;
