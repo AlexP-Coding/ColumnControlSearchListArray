@@ -91,6 +91,10 @@ table.dataTable span.dtcc {
 		opacity: 1;
 	}
 
+	input {
+		width: 100%;
+	}
+
 	span.dtcc-button-icon {
 		color: var(--dtcc-button-icon_color);
 		display: inline-block;

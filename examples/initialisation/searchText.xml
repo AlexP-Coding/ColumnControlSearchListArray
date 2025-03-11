@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="1" table-class="display nowrap">
+
+<css lib="datatables columncontrol" />
+<js lib="jquery datatables columncontrol">
+<![CDATA[
+
+$('#example thead tr').clone().appendTo('#example thead');
+$('#example thead tr:eq(1) th').empty();
+
+new DataTable('#example', {
+	ordering: {
+		indicators: false,
+		handler: false
+	},
+	columnControl: [
+		{
+			target: 0,
+			content: ['order']
+		},
+		{
+			target: 1,
+			content: ['searchText']
+		}
+	]
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+
+$('#example thead tr').clone().appendTo('#example thead');
+$('#example thead tr:eq(1) th').empty();
+
+new DataTable('#example', {
+	ordering: {
+		indicators: false,
+		handler: false
+	},
+	columnControl: [
+		{
+			target: 0,
+			content: ['order']
+		},
+		{
+			target: 1,
+			content: ['searchText']
+		}
+	]
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Search text</title>
+
+<info><![CDATA[
+
+
+]]></info>
+
+</dt-example>
