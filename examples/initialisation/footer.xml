@@ -4,37 +4,53 @@
 <css lib="datatables columncontrol" />
 <js lib="jquery datatables columncontrol">
 <![CDATA[
-
 $('#example').DataTable({
 	ordering: {
 		indicators: false,
 		handler: false
 	},
-	columnControl: {
-		target: 1,
-		content: ['orderAsc', 'orderDesc']
-	}
+	columnControl: [
+		{
+			content: ['order']
+		},
+		{
+			target: 'tfoot',
+			content: ['orderAsc', 'orderDesc']
+		},
+		{
+			target: 'tfoot:1',
+			content: ['searchText']
+		}
+	]
 });
 ]]>
 </js>
 
 <js-vanilla>
 <![CDATA[
-
 new DataTable('#example', {
 	ordering: {
 		indicators: false,
 		handler: false
 	},
-	columnControl: {
-		target: 1,
-		content: ['orderAsc', 'orderDesc']
-	}
+	columnControl: [
+		{
+			content: ['order']
+		},
+		{
+			target: 'tfoot',
+			content: ['orderAsc', 'orderDesc']
+		},
+		{
+			target: 'tfoot:1',
+			content: ['searchText']
+		}
+	]
 });
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Second row</title>
+<title lib="ColumnControl">Footer</title>
 
 <info><![CDATA[
 

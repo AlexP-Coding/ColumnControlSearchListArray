@@ -30,8 +30,12 @@ new DataTable('#example', {
 <js-vanilla>
 <![CDATA[
 
-$('#example thead tr').clone().appendTo('#example thead');
-$('#example thead tr:eq(1) th').empty();
+// $('#example thead tr').clone().appendTo('#example thead');
+// $('#example thead tr:eq(1) th').empty();
+// 
+// DataTable.ColumnControl.newHeaderRow();
+// DataTable.ColumnControl.newFooterRow();
+
 
 new DataTable('#example', {
 	ordering: {
@@ -44,7 +48,7 @@ new DataTable('#example', {
 			content: ['order']
 		},
 		{
-			target: 1,
+			target: 1, // create if doesn't exist?
 			content: ['searchText']
 		}
 	]

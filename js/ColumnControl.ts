@@ -5,7 +5,7 @@ import icons from './icons';
 import Button from './Button';
 
 export interface IDefaults {
-	target: 0;
+	target: number | string;
 	content: Array<IContentConfig | keyof typeof content>;
 }
 
@@ -136,19 +136,30 @@ export default class ColumnControl {
 	 * Resolve the configured target into a DOM element
 	 */
 	private _target() {
+		let target = this._c.target;
+		let column = this._dt.column(this._s.columnIdx);
+		let node: HTMLElement;
+		let className = 'header';
+
 		// Header row index
-		if (typeof this._c.target === 'number') {
-			return this._dt
-				.column(this._s.columnIdx)
-				.header(this._c.target)
-				.querySelector<HTMLElement>('div.dt-column-header');
+		if (typeof target === 'number') {
+			node = column.header(target);
+		}
+		else {
+			let parts = target.split(':');
+			let isHeader = parts[0] === 'tfoot' ? false : true;
+			let row = parts[1] ? parseInt(parts[1]) : 0;
+
+			if (isHeader) {
+				node = column.header(row);
+			}
+			else {
+				node = column.footer(row);
+				className = 'footer';
+			}
 		}
 
-		// No match, default to the standard column header
-		return this._dt
-			.column(this._s.columnIdx)
-			.header()
-			.querySelector<HTMLElement>('div.dt-column-header');
+		return node.querySelector<HTMLElement>('div.dt-column-' + className);
 	}
 
 	static Button: Button;

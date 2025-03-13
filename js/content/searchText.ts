@@ -21,6 +21,12 @@ export default {
 			dt.column(this.idx()).search(input.value).draw();
 		});
 
+		// TODO initial value population
+		// TODO state save / load support
+		// TODO text above
+		// TODO placeholder support
+		// TODO title attribute support
+
 		return input;
 	}
 } as IContentPlugin<ISearchText>;

@@ -1,5 +1,6 @@
-import DataTable from '../../../types/types';
+import DataTable, {Api} from '../../../types/types';
 import ColumnControl, {IConfig} from './ColumnControl';
+import { createElement } from './functions';
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables API integration
@@ -7,13 +8,43 @@ import ColumnControl, {IConfig} from './ColumnControl';
 (DataTable as any).ColumnControl = ColumnControl;
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Initialisation
+ * DataTables listeners for initialisation
  */
-$(document).on('preInit.dt', function (e, settings) {
+
+// Create header / footer rows that don't exist, but have been referenced in the ColumnControl
+// targets. This needs to be done _before_ the header / footer structure is detected.
+$(document).on('i18n.dt', function (e, settings) {
 	if (e.namespace !== 'dt') {
 		return;
 	}
 
+	let api = new DataTable.Api(settings);
+	let tableInit: IConfig = settings.oInit.columnControl;
+	let defaultInit = ColumnControl.defaults;
+	let baseTargets = [];
+	let ackTargets = {};
+
+	identifyTargets(baseTargets, tableInit);
+	identifyTargets(baseTargets, defaultInit);
+
+	api.columns().every(function (i) {
+		let columnInit: IConfig = (this.init() as any).columnControl;
+		
+		identifyTargets(baseTargets.slice(), columnInit);
+	});
+
+	for (let i = 0; i < baseTargets.length; i++) {
+		assetTarget(ackTargets, baseTargets[i], api);
+	}
+});
+
+// Initialisation of ColumnControl instances - has to be done _after_ the header / footer structure
+// is detected by DataTables.
+$(document).on('preInit.dt', function (e, settings) {
+	if (e.namespace !== 'dt') {
+		return;
+	}
+	
 	let api = new DataTable.Api(settings);
 	let tableInit: IConfig = settings.oInit.columnControl;
 	let defaultInit = ColumnControl.defaults;
@@ -51,39 +82,65 @@ $(document).on('preInit.dt', function (e, settings) {
 	});
 });
 
-/**
- * Check if an item is a configuration object or not
- *
- * @param item Item to check
- * @returns true if it is a config object
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Initialisation support - this is more involved than normal as targets might
+ * need to be created, and also options needs to be resolved into a standard
+ * ColumnControl configuration object, from the various forms allowed in the
+ * DataTables configuration.
  */
-function isIConfig(item: any) {
-	return typeof item === 'object' && (item.targets !== undefined || item.content !== undefined)
-		? true
-		: false;
-}
 
 /**
- * Determine if an array contains only content items or not
+ * Given a ColumnControl target, make sure that it exists. If not, create it.
  *
- * @param arr Array to check
- * @returns true if is content only, false if not (i.e. is an array with configuration objects).
+ * @param ackTargets Cache for list of targets that have already been found or created
+ * @param target Current target
+ * @param dt DataTable API
+ * @returns Void
  */
-function isIContentArray(arr: any[]) {
-	let detectedConfig = false;
-
-	if (!Array.isArray(arr)) {
-		return false;
+function assetTarget(ackTargets, target: number | string, dt: Api) {
+	// Check if we already know about the target - if so, we know that it must already be in place
+	if (ackTargets[target]) {
+		return;
 	}
 
-	for (let i = 0; i < arr.length; i++) {
-		if (isIConfig(arr[i])) {
-			detectedConfig = true;
-			break;
+	let isHeader = true; // false for footer
+	let row = 0;
+
+	if (typeof target === 'number') {
+		row = target;
+	}
+	else {
+		let parts = target.split(':');
+
+		if (parts[0] === 'tfoot') {
+			isHeader = false;
+		}
+
+		if (parts[1]) {
+			row = parseInt(parts[1]);
 		}
 	}
 
-	return !detectedConfig;
+	// The header / footer have not yet had their structure read, so they aren't available via
+	// the API. As such we need to do our own DOM tweaking
+	let node = isHeader
+		? dt.table().header()
+		: dt.table().footer();
+	
+	// If the node doesn't exist yet, we need to create it
+	if (! node.querySelectorAll('tr')[row]) {
+		let columns = dt.columns().count();
+		let tr = createElement('tr');
+
+		for (let i=0 ; i<columns ; i++) {
+			tr.appendChild(createElement('td'));
+		}
+
+		node.appendChild(tr);
+	}
+
+	ackTargets[target] = true;
 }
 
 /**
@@ -191,4 +248,39 @@ function identifyTargets(targets: any[], input: IConfig | IConfig[]) {
 	}
 
 	return targets;
+}
+
+/**
+ * Check if an item is a configuration object or not
+ *
+ * @param item Item to check
+ * @returns true if it is a config object
+ */
+function isIConfig(item: any) {
+	return typeof item === 'object' && (item.targets !== undefined || item.content !== undefined)
+		? true
+		: false;
+}
+
+/**
+ * Determine if an array contains only content items or not
+ *
+ * @param arr Array to check
+ * @returns true if is content only, false if not (i.e. is an array with configuration objects).
+ */
+function isIContentArray(arr: any[]) {
+	let detectedConfig = false;
+
+	if (!Array.isArray(arr)) {
+		return false;
+	}
+
+	for (let i = 0; i < arr.length; i++) {
+		if (isIConfig(arr[i])) {
+			detectedConfig = true;
+			break;
+		}
+	}
+
+	return !detectedConfig;
 }
