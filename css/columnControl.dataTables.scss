@@ -125,6 +125,15 @@ table.dataTable span.dtcc {
 			width: 1px;
 		}
 	}
+
+	div.dtcc-searchText-text {
+		text-align: left;
+		margin-bottom: 0.25em;
+
+		&:empty {
+			display: none;
+		}
+	}
 }
 
 div.dtcc-dropdown {

@@ -1,32 +1,50 @@
-import Button from '../Button';
+import Container from '../Container';
 import { createElement } from '../functions';
 import {IContentPlugin, IContentConfig} from './content';
 
 export interface ISearchText extends IContentConfig {
 	className: string;
 	placeholder: string;
+	text: string;
+	title: string;
 }
 
 export default {
 	defaults: {
 		className: 'searchText',
-		placeholder: ''
+		placeholder: '',
+		text: '',
+		title: ''
 	},
 
 	init(config) {
 		let dt = this.dt();
 		let input = createElement<HTMLInputElement>('input', config.className);
+		let column = dt.column(this.idx());
+		let container = new Container()
+			.append(createElement('div', 'dtcc-searchText-text', config.text))
+			.append(input);
 
+		if (config.placeholder) {
+			input.placeholder = config.placeholder;
+		}
+
+		if (config.title) {
+			input.title = config.title;
+		}
+
+		// Initial value		
+		input.value = column.search();
+
+		// Listeners
 		input.addEventListener('keyup', (e) => {
-			dt.column(this.idx()).search(input.value).draw();
+			column.search(input.value).draw();
 		});
 
-		// TODO initial value population
-		// TODO state save / load support
-		// TODO text above
-		// TODO placeholder support
-		// TODO title attribute support
+		dt.on('stateLoaded', (e, s, state) => {
+			input.value = column.search();
+		});
 
-		return input;
+		return container.element();
 	}
 } as IContentPlugin<ISearchText>;

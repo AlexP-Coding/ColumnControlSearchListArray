@@ -10,8 +10,10 @@ $('#example').DataTable({
 		handler: false
 	},
 	columnControl: {
-		content: ['orderAsc', 'orderDesc']
-	}
+		target: 1,
+		content: ['searchText']
+	},
+	stateSave: true
 });
 ]]>
 </js>
@@ -24,13 +26,19 @@ new DataTable('#example', {
 		handler: false
 	},
 	columnControl: {
-		content: ['orderAsc', 'orderDesc']
-	}
+		target: 1,
+		content: [{
+			extend: 'searchText',
+			text: 'Search:',
+			placeholder: 'Search'
+		}]
+	},
+	stateSave: true
 });
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Basic initialisation</title>
+<title lib="ColumnControl">State saving</title>
 
 <info><![CDATA[
 
