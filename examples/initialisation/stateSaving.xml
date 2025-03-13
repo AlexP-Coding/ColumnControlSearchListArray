@@ -11,9 +11,14 @@ $('#example').DataTable({
 	},
 	columnControl: {
 		target: 1,
-		content: ['searchText']
+		content: [{
+			extend: 'searchText',
+			text: 'Search:',
+			placeholder: 'Search'
+		}]
 	},
-	stateSave: true
+	stateSave: true,
+	orderCellsTop: true
 });
 ]]>
 </js>
@@ -30,10 +35,11 @@ new DataTable('#example', {
 		content: [{
 			extend: 'searchText',
 			text: 'Search:',
-			placeholder: 'Search'
+			placeholder: 'Search *'
 		}]
 	},
-	stateSave: true
+	stateSave: true,
+	orderCellsTop: true
 });
 ]]>
 </js-vanilla>

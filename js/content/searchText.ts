@@ -26,11 +26,11 @@ export default {
 			.append(input);
 
 		if (config.placeholder) {
-			input.placeholder = config.placeholder;
+			input.placeholder = config.placeholder.replace('*', column.title());
 		}
 
 		if (config.title) {
-			input.title = config.title;
+			input.title = config.title.replace('*', column.title());
 		}
 
 		// Initial value		
