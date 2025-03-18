@@ -19,10 +19,17 @@ $(document).on('i18n.dt', function (e, settings) {
 	}
 
 	let api = new DataTable.Api(settings);
+	let thead =  api.table().header();
 	let tableInit: IConfig = settings.oInit.columnControl;
 	let defaultInit = ColumnControl.defaults;
 	let baseTargets = [];
 	let ackTargets = {};
+
+	// Determine if there is only one header row initially. If there is, we might append more
+	// after it. Mark the top row as the header row using `titleRow` in the DataTables configuration
+	if (thead.querySelectorAll('tr').length <= 1 && settings.titleRow === null) {
+		settings.titleRow = 0;
+	}
 
 	identifyTargets(baseTargets, tableInit);
 	identifyTargets(baseTargets, defaultInit);
