@@ -1,4 +1,4 @@
-import {createElement} from './functions';
+import {createElement} from './util';
 import icons from './icons';
 import {close as closeCollections} from './content/collection';
 

@@ -1,6 +1,6 @@
 import DataTable, {Api} from '../../../types/types';
 import ColumnControl, {IConfig} from './ColumnControl';
-import { createElement } from './functions';
+import { createElement } from './util';
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables API integration

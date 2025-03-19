@@ -1,6 +1,6 @@
 import DataTable, {Api, ColumnSelector} from '../../../../types/types';
 import Button from '../Button';
-import {createElement} from '../functions';
+import {createElement} from '../util';
 import {IContentPlugin, IContentConfig} from './content';
 
 interface HTMLDropdown extends HTMLDivElement {

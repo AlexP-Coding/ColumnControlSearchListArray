@@ -11,8 +11,10 @@ export function createElement<T = HTMLElement>(
 		classes = [classes];
 	}
 
-	classes.forEach((klass) => {
-		el.classList.add(klass);
+	classes.forEach((className) => {
+		if (className) {
+			el.classList.add(className);
+		}
 	});
 
 	if (text) {

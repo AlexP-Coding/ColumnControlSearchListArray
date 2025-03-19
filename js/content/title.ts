@@ -1,4 +1,4 @@
-import {createElement} from '../functions';
+import {createElement} from '../util';
 import {IContentPlugin, IContentConfig} from './content';
 
 export interface ITitle extends IContentConfig {

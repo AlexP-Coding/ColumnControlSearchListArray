@@ -1,17 +1,29 @@
-import {createElement} from './functions';
+import {createElement} from './util';
 
 interface IDom {
 	container: HTMLDivElement;
 }
 
-export default class Button {
+export default class Container {
 	private _dom: IDom;
 
 	/**
-	 * Set the active state of the button
+	 * Add a class name to the container
 	 *
-	 * @param active The active state
-	 * @returns Button instance
+	 * @param className Class name to add
+	 * @returns 
+	 */
+	public addClass(className: string) {
+		this._dom.container.classList.add(className);
+
+		return this;
+	}
+
+	/**
+	 * Append a node to the container
+	 *
+	 * @param node The element to append
+	 * @returns Container instance
 	 */
 	public append(node: HTMLElement) {
 		this._dom.container.appendChild(node);
@@ -28,12 +40,16 @@ export default class Button {
 		return this._dom.container;
 	}
 
+	public toggleClass() {
+		
+	}
+
 	/**
 	 * Create a container element, for consistent DOM structure and styling
 	 */
-	constructor() {
+	constructor(className: string = '') {
 		this._dom = {
-			container: createElement<HTMLDivElement>('div', 'dtcc-content')
+			container: createElement<HTMLDivElement>('div', ['dtcc-content', className])
 		};
 	}
 }

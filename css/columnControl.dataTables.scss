@@ -40,6 +40,16 @@
 	--dtcc-title_margin: 0;
 	--dtcc-title_padding: 0.5em 0;
 	--dtcc-title_text-align: center;
+
+	--dtcc-search-icon_color: black;
+	--dtcc-search-icon_hover-background: rgba(0, 0, 0, 0.1);
+	--dtcc-search-icon_opacity: 0.4;
+	--dtcc-search-icon_size: 16px;
+
+	--dtcc-searchText_border: 1px solid #aaa;
+	--dtcc-searchText_background: transparent;
+	--dtcc-searchText_border-radius: 3px;
+	--dtcc-searchText_padding: 5px;
 }
 
 :root.dark {
@@ -55,6 +65,31 @@
 
 	--dtcc-dropdown-button_color: white;
 	--dtcc-dropdown-button_hover-background: rgba(153, 153, 153, 0.1);
+
+	--dtcc-search-icon_color: white;
+	--dtcc-search-icon_hover-background: rgba(255, 255, 255, 0.1);
+
+	--dtcc-searchText_border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+// Alignment of the content - when empty for left aligned column the content should be on the right
+// but for right aligned columns the content should be on the left.
+table.dataTable {
+	div.dt-column-header {
+		span.dt-column-title:empty + span.dtcc {
+			flex-grow: 1;
+			margin-left: auto;
+		}
+	}
+
+	.dt-type-numeric,
+	.dt-type-date,
+	.dt-right {
+		div.dt-column-header span.dt-column-title:empty + span.dtcc {
+			margin-left: 0;
+			margin-right: auto;
+		}
+	}
 }
 
 table.dataTable span.dtcc {
@@ -127,12 +162,65 @@ table.dataTable span.dtcc {
 		}
 	}
 
-	div.dtcc-searchText-text {
-		text-align: left;
-		margin-bottom: 0.25em;
+	div.dtcc-search {
+		div.dtcc-search-title {
+			text-align: left;
+			margin-bottom: 0.25em;
+		}
 
 		&:empty {
 			display: none;
+		}
+
+		&.dtcc-search_active > div div.dtcc-search-icon {
+			svg {
+				opacity: 1;
+			}
+		}
+
+		> div {
+			position: relative;
+
+			div.dtcc-search-icon {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 30px;
+
+				svg {
+					color: var(--dtcc-search-icon_color);
+					height: var(--dtcc-search-icon_size);
+					opacity: var(--dtcc-search-icon_opacity);
+					width: var(--dtcc-search-icon_size);
+				}
+
+				&:hover {
+					background-color: var(--dtcc-search-icon_hover-background);
+				}
+			}
+
+			select {
+				position: absolute;
+				top: 0;
+				left: 0;
+				opacity: 0;
+				width: 30px;
+				cursor: pointer;
+				height: 100%;
+			}
+
+			input {
+				background-color: var(--dtcc-searchText_background);
+				border: var(--dtcc-searchText_border);
+				border-radius: var(--dtcc-searchText_border-radius);
+				color: inherit;
+				padding: var(--dtcc-searchText_padding);
+				padding-left: 26px;
+			}
 		}
 	}
 }

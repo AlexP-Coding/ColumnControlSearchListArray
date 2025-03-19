@@ -39,7 +39,7 @@ new DataTable('#example', {
 		}]
 	},
 	stateSave: true,
-	orderCellsTop: true
+	orderCellsTop: true // TODO titleRow?
 });
 ]]>
 </js-vanilla>
