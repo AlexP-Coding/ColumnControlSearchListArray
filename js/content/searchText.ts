@@ -1,6 +1,4 @@
-import Container from '../Container';
-import icons from '../icons';
-import {createElement} from '../util';
+import SearchInput from '../SearchInput';
 import {IContentPlugin, IContentConfig} from './content';
 
 export interface ISearchText extends IContentConfig {
@@ -19,106 +17,48 @@ export default {
 	init(config) {
 		let dt = this.dt();
 		let column = dt.column(this.idx());
-		let input = createElement<HTMLInputElement>('input');
-		let select = createElement<HTMLSelectElement>('select');
-		let icon = createElement<HTMLDivElement>('div', 'dtcc-search-icon');
-		let title = createElement<HTMLDivElement>('div', 'dtcc-search-title', config.text);
-		let inputs = createElement<HTMLDivElement>('div', [], '', [icon, select, input]);
-		let container = createElement<HTMLDivElement>(
-			'div',
-			['dtcc-content', 'dtcc-search', 'dtcc-searchText'],
-			null,
-			[title, inputs]
-		);
+		let searchInput = new SearchInput(dt, this.idx())
+			.placeholder(config.placeholder)
+			.title(config.title)
+			.text(config.text)
+			.options([
+				{label: 'Contains', value: 'contains'},
+				{label: 'Equals', value: 'equals'},
+				{label: 'Starts with', value: 'starts'}
+			])
+			.search((searchType, searchTerm) => {
+				searchTerm = searchTerm.toLowerCase();
 
-		select.add(new Option('Contains', 'contains'));
-		select.add(new Option('Equals', 'equals'));
-		select.add(new Option('Starts with', 'starts'));
+				// No change - don't do anything
+				if (column.search.fixed('dtcc') === '' && searchTerm === '') {
+					return;
+				}
 
-		if (config.placeholder) {
-			input.placeholder = config.placeholder.replace('*', column.title());
-		}
+				if (searchTerm === '') {
+					// Clear search
+					column.search.fixed('dtcc', '');
+				}
+				else if (searchType === 'equals') {
+					// Use a function for exact matching
+					column.search.fixed(
+						'dtcc',
+						(haystack) => haystack.toLowerCase() === searchTerm
+					);
+				}
+				else if (searchType === 'contains') {
+					// Use the built in smart search
+					column.search.fixed('dtcc', searchTerm);
+				}
+				else if (searchType === 'starts') {
+					// Use a function for startsWidth case insensitive search
+					column.search.fixed('dtcc', (haystack) =>
+						haystack.toLowerCase().startsWith(searchTerm)
+					);
+				}
 
-		if (config.title) {
-			input.title = config.title.replace('*', column.title());
-		}
+				column.draw();
+			});
 
-		// Initial value
-		input.value = column.search();
-		icon.innerHTML = icons['contains'];
-
-		// Listeners
-		input.addEventListener('keyup', () => {
-			runSearch(container, input, select, column);
-		});
-
-		select.addEventListener('change', () => {
-			icon.innerHTML = icons[select.value];
-			runSearch(container, input, select, column);
-		});
-
-		// State handling
-		dt.on('stateSaveParams', (e, s, data) => {
-			if (!data.columnControl) {
-				data.columnControl = {};
-			}
-
-			data.columnControl[this.idx()] = {
-				type: select.value,
-				value: input.value
-			};
-		});
-
-		dt.on('stateLoaded', (e, s, state) => {
-			stateLoad(state, this.idx(), input, select);
-		});
-
-		// Runs after initial state load, so we need to check if there has already been a state
-		// loaded
-		stateLoad(dt.state.loaded(), this.idx(), input, select);
-
-		return container;
+		return searchInput.element();
 	}
 } as IContentPlugin<ISearchText>;
-
-/** Perform a search */
-function runSearch(container, input, select, column) {
-	container.classList.toggle('dtcc-search_active', input.value !== '');
-
-	let searchType = select.value;
-	let searchTerm = input.value.toLowerCase();
-
-	// No change - don't do anything
-	if (column.search.fixed('dtcc') === '' && input.value === '') {
-		return;
-	}
-
-	if (input.value === '') {
-		column.search.fixed('dtcc', '');
-	}
-	else if (searchType === 'equals') {
-		column.search.fixed('dtcc', (haystack) => haystack.toLowerCase() === searchTerm);
-	}
-	else if (searchType === 'contains') {
-		column.search.fixed('dtcc', searchTerm);
-	}
-	else if (searchType === 'starts') {
-		column.search.fixed('dtcc', (haystack) => haystack.toLowerCase().startsWith(searchTerm));
-	}
-
-	column.draw();
-}
-
-/** Load a state */
-function stateLoad(state, idx, input, select) {
-	if (state && state.columnControl) {
-		let loaded = state.columnControl[idx];
-
-		if (loaded) {
-			select.value = loaded.type;
-			input.value = loaded.value;
-
-			select.dispatchEvent(new Event('change'));
-		}
-	}
-}
