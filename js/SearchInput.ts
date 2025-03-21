@@ -18,6 +18,8 @@ export default class SearchInput {
 	private _search: ISearch;
 	private _dt: Api;
 	private _idx: number;
+	private _lastValue: string;
+	private _lastType: string;
 
 	/**
 	 * Get the container element
@@ -137,7 +139,11 @@ export default class SearchInput {
 		dom.inputs.append(dom.icon, dom.select, dom.input);
 
 		// Listeners
-		dom.input.addEventListener('keyup', () => {
+		dom.input.addEventListener('change', () => {
+			this._runSearch();
+		});
+
+		dom.input.addEventListener('input', () => {
 			this._runSearch();
 		});
 
@@ -172,12 +178,16 @@ export default class SearchInput {
 	 */
 	private _runSearch() {
 		let dom = this._dom;
-		let idx = this._idx;
 
 		dom.container.classList.toggle('dtcc-search_active', dom.input.value !== '');
 
-		if (this._search) {
+		if (
+			this._search &&
+			(this._lastValue !== dom.input.value || this._lastType !== dom.select.value)
+		) {
 			this._search(dom.select.value, dom.input.value);
+			this._lastValue = dom.input.value;
+			this._lastType = dom.select.value;
 		}
 	}
 

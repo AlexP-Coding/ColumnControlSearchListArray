@@ -1,7 +1,9 @@
 import SearchInput from '../SearchInput';
 import {IContentPlugin, IContentConfig} from './content';
 
-export interface ISearchNumber extends IContentConfig {
+declare var DataTable: any;
+
+export interface ISearchDateTime extends IContentConfig {
 	placeholder: string;
 	text: string;
 	title: string;
@@ -28,57 +30,51 @@ export default {
 				{label: 'Not', value: 'notEqual'}
 			])
 			.search((searchType, searchTerm) => {
+				let search = dateToNum(searchTerm);
+
 				// No change - don't do anything
-				if (column.search.fixed('dtcc') === '' && searchTerm === '') {
+				if (column.search.fixed('dtcc') === '' && search === '') {
 					return;
 				}
 
-				if (searchTerm === '') {
+				if (search === '') {
 					// Clear search
 					column.search.fixed('dtcc', '');
 				}
 				else if (searchType === 'equals') {
 					// Use a function for matching - weak typing
-					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) == searchTerm);
+					column.search.fixed('dtcc', (haystack) => dateToNum(haystack) == search);
 				}
 				else if (searchType === 'greaterThan') {
-					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) > searchTerm);
+					column.search.fixed('dtcc', (haystack) => dateToNum(haystack) > search);
 				}
 				else if (searchType === 'lessThan') {
-					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) < searchTerm);
+					column.search.fixed('dtcc', (haystack) => dateToNum(haystack) < search);
 				}
 				else if (searchType === 'notEqual') {
 					// Use a function for not matching - weak typing
-					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) != searchTerm);
+					column.search.fixed('dtcc', (haystack) => dateToNum(haystack) != search);
 				}
 
 				column.draw();
 			});
 
-		searchInput.input().setAttribute('inputmode', 'numeric');
-		searchInput.input().setAttribute('pattern', '[0-9]*');
+		let DateTime = DataTable.use('datetime');
+
+		if (DateTime) {
+			new DateTime(searchInput.input(), {});
+		}
 
 		return searchInput.element();
 	}
-} as IContentPlugin<ISearchNumber>;
+} as IContentPlugin<ISearchDateTime>;
 
-var _re_html = /<([^>]*>)/g;
-var _re_formatted_numeric = /['\u00A0,$£€¥%\u2009\u202F\u20BD\u20a9\u20BArfkɃΞ]/gi;
-
-function stringToNum(d) {
-	if (d !== 0 && (!d || d === '-')) {
-		return -Infinity;
+function dateToNum(str: string) {
+	if (str === '') {
+		return '';
 	}
 
-	var type = typeof d;
+	let date = new Date(str);
 
-	if (type === 'number' || type === 'bigint') {
-		return d;
-	}
-
-	if (d.replace) {
-		d = d.replace(_re_html, '').replace(_re_formatted_numeric, '');
-	}
-
-	return d * 1;
+	return date.getTime();
 }
