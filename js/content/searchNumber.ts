@@ -24,7 +24,7 @@ export default {
 			.options([
 				{label: 'Equals', value: 'equals'},
 				{label: 'Greater than', value: 'greaterThan'},
-				{label: 'Less that', value: 'lessThan'},
+				{label: 'Less than', value: 'lessThan'},
 				{label: 'Not', value: 'notEqual'}
 			])
 			.search((searchType, searchTerm) => {
