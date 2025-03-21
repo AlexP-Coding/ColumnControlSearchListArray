@@ -57,33 +57,68 @@ export default {
 			runSearch(container, input, select, column);
 		});
 
-		dt.on('stateLoaded', (e, s, state) => {
-			input.value = column.search();
+		// State handling
+		dt.on('stateSaveParams', (e, s, data) => {
+			if (!data.columnControl) {
+				data.columnControl = {};
+			}
+
+			data.columnControl[this.idx()] = {
+				type: select.value,
+				value: input.value
+			};
 		});
+
+		dt.on('stateLoaded', (e, s, state) => {
+			stateLoad(state, this.idx(), input, select);
+		});
+
+		// Runs after initial state load, so we need to check if there has already been a state
+		// loaded
+		stateLoad(dt.state.loaded(), this.idx(), input, select);
 
 		return container;
 	}
 } as IContentPlugin<ISearchText>;
 
-
+/** Perform a search */
 function runSearch(container, input, select, column) {
 	container.classList.toggle('dtcc-search_active', input.value !== '');
 
 	let searchType = select.value;
-	let searchTerm = input.value;
+	let searchTerm = input.value.toLowerCase();
+
+	// No change - don't do anything
+	if (column.search.fixed('dtcc') === '' && input.value === '') {
+		return;
+	}
 
 	if (input.value === '') {
 		column.search.fixed('dtcc', '');
 	}
 	else if (searchType === 'equals') {
-		column.search.fixed('dtcc', (haystack) => haystack === searchTerm);
+		column.search.fixed('dtcc', (haystack) => haystack.toLowerCase() === searchTerm);
 	}
 	else if (searchType === 'contains') {
 		column.search.fixed('dtcc', searchTerm);
 	}
 	else if (searchType === 'starts') {
-		column.search.fixed('dtcc', (haystack) => haystack.startsWith(searchTerm));
+		column.search.fixed('dtcc', (haystack) => haystack.toLowerCase().startsWith(searchTerm));
 	}
 
 	column.draw();
+}
+
+/** Load a state */
+function stateLoad(state, idx, input, select) {
+	if (state && state.columnControl) {
+		let loaded = state.columnControl[idx];
+
+		if (loaded) {
+			select.value = loaded.type;
+			input.value = loaded.value;
+
+			select.dispatchEvent(new Event('change'));
+		}
+	}
 }

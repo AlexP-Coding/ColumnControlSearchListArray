@@ -5,9 +5,6 @@
 <js lib="jquery datatables columncontrol">
 <![CDATA[
 
-$('#example thead tr').clone().appendTo('#example thead');
-$('#example thead tr:eq(1) th').empty();
-
 new DataTable('#example', {
 	ordering: {
 		indicators: false,
@@ -30,25 +27,19 @@ new DataTable('#example', {
 <js-vanilla>
 <![CDATA[
 
-// $('#example thead tr').clone().appendTo('#example thead');
-// $('#example thead tr:eq(1) th').empty();
-// 
-// DataTable.ColumnControl.newHeaderRow();
-// DataTable.ColumnControl.newFooterRow();
-
-
 new DataTable('#example', {
 	ordering: {
 		indicators: false,
 		handler: false
 	},
+	stateSave: true,
 	columnControl: [
 		{
 			target: 0,
 			content: ['order']
 		},
 		{
-			target: 1, // create if doesn't exist?
+			target: 1,
 			content: ['searchText']
 		}
 	]
