@@ -8,6 +8,7 @@ import orderAsc, {IOrderAsc} from './orderAsc';
 import orderClear, {IOrderClear} from './orderClear';
 import orderDesc, {IOrderDesc} from './orderDesc';
 import orderRemove, {IOrderRemove} from './orderRemove';
+import searchNumber, {ISearchNumber} from './searchNumber';
 import searchText, {ISearchText} from './searchText';
 import spacer, {ISpacer} from './spacer';
 import title, {ITitle} from './title';
@@ -23,6 +24,7 @@ export type IContentConfig =
 	| IOrderClear
 	| IOrderDesc
 	| IOrderRemove
+	| ISearchNumber
 	| ISearchText
 	| ISpacer
 	| ITitle;
@@ -36,6 +38,7 @@ Object.assign(ccContent, {
 	orderClear,
 	orderDesc,
 	orderRemove,
+	searchNumber,
 	searchText,
 	spacer,
 	title

@@ -9,15 +9,22 @@ function wrap(paths) {
 const icons = {
 	chevronRight: wrap('<path d="m9 18 6-6-6-6"/>'),
 
+	// Custom icon, not part of Lucide
 	contains: wrap(
 		'<rect width="4" height="18" x="10" y="3" /><path d="m 18,8 h 3 v 9 h -3" /><path d="M 6,17 H 3 V 8 h 3" />'
 	),
 
 	equals: wrap('<line x1="5" x2="19" y1="9" y2="9"/><line x1="5" x2="19" y1="15" y2="15"/>'),
 
+	greaterThan: wrap('<path d="m9 18 6-6-6-6"/>'),
+
+	lessThan: wrap('<path d="m15 18-6-6 6-6"/>'),
+
 	menu: wrap(
 		'<line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>'
 	),
+
+	notEqual: wrap('<line x1="5" x2="19" y1="9" y2="9"/><line x1="5" x2="19" y1="15" y2="15"/><line x1="19" x2="5" y1="5" y2="19"/>'),
 
 	// Custom icon, not part of Lucide
 	orderAddAsc: wrap(

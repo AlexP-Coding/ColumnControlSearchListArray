@@ -29,6 +29,15 @@ export default class SearchInput {
 	}
 
 	/**
+	 * Get the HTML input element for this control
+	 *
+	 * @returns HTML Input element
+	 */
+	public input() {
+		return this._dom.input;
+	}
+
+	/**
 	 * Set the list of options for the dropdown
 	 *
 	 * @param opts List of options
@@ -132,7 +141,7 @@ export default class SearchInput {
 			this._runSearch();
 		});
 
-		dom.select.addEventListener('change', () => {
+		dom.select.addEventListener('input', () => {
 			dom.icon.innerHTML = icons[dom.select.value];
 			this._runSearch();
 		});
