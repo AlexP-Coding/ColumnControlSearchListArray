@@ -2,7 +2,7 @@
 <dt-example table-type="html" order="1" table-class="display nowrap">
 
 <css lib="datatables columncontrol datetime" />
-<js lib="jquery datatables columncontrol moment datetime">
+<js lib="jquery datatables columncontrol datetime">
 <![CDATA[
 
 new DataTable('#example', {
@@ -33,8 +33,7 @@ new DataTable('#example', {
 			columnControl: {
 				target: 1,
 				content: ['searchDateTime']
-			},
-			render: DataTable.render.date()
+			}
 		}
 	]
 });
@@ -72,15 +71,14 @@ new DataTable('#example', {
 			columnControl: {
 				target: 1,
 				content: ['searchDateTime']
-			},
-			render: DataTable.render.date()
+			}
 		}
 	]
 });
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Search formatted date data</title>
+<title lib="ColumnControl">ISO 8601 date handling</title>
 
 <info><![CDATA[
 

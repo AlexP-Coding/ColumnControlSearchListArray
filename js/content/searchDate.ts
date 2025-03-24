@@ -1,3 +1,4 @@
+import {Api} from '../../../../types/types';
 import SearchInput from '../SearchInput';
 import {IContentPlugin, IContentConfig} from './content';
 
@@ -17,64 +18,162 @@ export default {
 	},
 
 	init(config) {
+		let moment = DataTable.use('moment');
+		let luxon = DataTable.use('luxon');
 		let dt = this.dt();
 		let column = dt.column(this.idx());
+		let displayFormat = '';
+		let dateTime;
 		let searchInput = new SearchInput(dt, this.idx())
 			.placeholder(config.placeholder)
 			.title(config.title)
 			.text(config.text)
 			.options([
 				{label: 'Equals', value: 'equals'},
-				{label: 'Greater than', value: 'greaterThan'},
-				{label: 'Less than', value: 'lessThan'},
+				{label: 'After', value: 'greaterThan'},
+				{label: 'Before', value: 'lessThan'},
 				{label: 'Not', value: 'notEqual'}
 			])
 			.search((searchType, searchTerm) => {
-				let search = dateToNum(searchTerm);
+				let search = dateToNum(
+					dateTime ? dateTime.val() : searchTerm,
+					displayFormat,
+					moment,
+					luxon
+				);
+				console.log(search);
 
 				// No change - don't do anything
 				if (column.search.fixed('dtcc') === '' && search === '') {
 					return;
 				}
 
-				if (search === '') {
+				if (!search) {
 					// Clear search
 					column.search.fixed('dtcc', '');
 				}
 				else if (searchType === 'equals') {
 					// Use a function for matching - weak typing
-					column.search.fixed('dtcc', (haystack) => dateToNum(haystack) == search);
+					// Note that the haystack in the search function is the rendered date - it
+					// might need to be converted back to a date
+					column.search.fixed(
+						'dtcc',
+						(haystack) => dateToNum(haystack, displayFormat, moment, luxon) == search
+					);
 				}
 				else if (searchType === 'greaterThan') {
-					column.search.fixed('dtcc', (haystack) => dateToNum(haystack) > search);
+					column.search.fixed(
+						'dtcc',
+						(haystack) => dateToNum(haystack, displayFormat, moment, luxon) > search
+					);
 				}
 				else if (searchType === 'lessThan') {
-					column.search.fixed('dtcc', (haystack) => dateToNum(haystack) < search);
+					column.search.fixed(
+						'dtcc',
+						(haystack) => dateToNum(haystack, displayFormat, moment, luxon) < search
+					);
 				}
 				else if (searchType === 'notEqual') {
 					// Use a function for not matching - weak typing
-					column.search.fixed('dtcc', (haystack) => dateToNum(haystack) != search);
+					column.search.fixed(
+						'dtcc',
+						(haystack) => dateToNum(haystack, displayFormat, moment, luxon) != search
+					);
 				}
 
 				column.draw();
 			});
 
-		let DateTime = DataTable.use('datetime');
+		// Once data has been loaded we can run DateTime with the specified format
+		dt.ready(() => {
+			let DateTime = DataTable.use('datetime');
 
-		if (DateTime) {
-			new DateTime(searchInput.input(), {});
-		}
+			displayFormat = getFormat(dt, this.idx());
+
+			if (DateTime) {
+				dateTime = new DateTime(searchInput.input(), {
+					format: displayFormat
+				});
+			}
+		});
 
 		return searchInput.element();
 	}
 } as IContentPlugin<ISearchDateTime>;
 
-function dateToNum(str: string) {
-	if (str === '') {
-		return '';
+/**
+ * Determine the formatting string for the date time information in the colum
+ *
+ * @param dt DataTable instance
+ * @param column Column index
+ * @returns Date / time formatting string
+ */
+function getFormat(dt: Api, column: number) {
+	let type = dt.column(column).type();
+
+	if (!type) {
+		// Assume that it is ISO unless otherwise specified - that is all DataTables can do anyway
+		return 'YYYY-MM-DD';
+	}
+	else if (type === 'datetime') {
+		// If no format was specified in the DT type, then we need to use Moment / Luxon's default
+		// locale formatting.
+		let moment = DataTable.use('moment');
+		let luxon = DataTable.use('luxon');
+
+		if (moment) {
+			return moment().creationData().locale._longDateFormat.L;
+		}
+
+		if (luxon) {
+			// Luxon doesn't appear to provide a way to let us get the default locale formatting
+			// string, so we need to attempt to decode it.
+			return luxon.DateTime.fromISO('1999-08-07')
+				.toLocaleString()
+				.replace('07', 'dd')
+				.replace('7', 'd')
+				.replace('08', 'MM')
+				.replace('8', 'M')
+				.replace('1999', 'yyyy')
+				.replace('99', 'yy');
+		}
+	}
+	else if (type.includes('datetime-')) {
+		// Column was specified with a particular display format - we can extract that format from
+		// the type, as it is part of the type name.
+		return type.replace(/datetime-/g, '');
+	}
+	else if (type.includes('moment')) {
+		return type.replace(/moment-/g, '');
+	}
+	else if (type.includes('luxon')) {
+		return type.replace(/luxon-/g, '');
 	}
 
-	let date = new Date(str);
+	return 'YYYY-MM-DD';
+}
 
-	return date.getTime();
+/**
+ * Convert from a source date / time value (usually a string) to a timestamp for comparisons.
+ *
+ * @param input Input value
+ * @param srcFormat String format of the input
+ * @param moment Moment instance, if it is available
+ * @param luxon Luxon object, if it is available
+ * @returns Time stamp - milliseconds
+ */
+function dateToNum(input: Date | string, srcFormat: string, moment?: any, luxon?: any) {
+	if (input === '') {
+		return '';
+	}
+	else if (input instanceof Date) {
+		return input.getTime();
+	}
+	else if (srcFormat !== 'YYYY-MM-DD') {
+		return moment
+			? moment(input, srcFormat).unix() * 1000
+			: luxon.DateTime.fromFormat(input, srcFormat).toMillis();
+	}
+
+	return new Date(input).getTime();
 }
