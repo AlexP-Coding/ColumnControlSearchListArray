@@ -67,7 +67,7 @@ export default {
 					);
 				}
 				else if (searchType === 'starts') {
-					// Use a function for startsWidth case insensitive search
+					// Use a function for startsWith case insensitive search
 					column.search.fixed('dtcc', (haystack) =>
 						haystack.toLowerCase().startsWith(searchTerm)
 					);
