@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="1">
+
+<css lib="datatables columncontrol colreorder" />
+<js lib="jquery datatables columncontrol colreorder">
+<![CDATA[
+$('#example').DataTable({
+	columnControl: {
+		content: [['moveLeft', 'moveRight', 'search']]
+	}
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+new DataTable('#example', {
+	columnControl: {
+		content: [['moveLeft', 'moveRight', 'search']]
+	}
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Column reordering integration</title>
+
+<info><![CDATA[
+
+
+]]></info>
+
+</dt-example>

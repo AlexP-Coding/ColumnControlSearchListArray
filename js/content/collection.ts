@@ -194,6 +194,11 @@ export default {
 			btn.active('chevronRight');
 		}
 
+		// Reposition if needed
+		dt.on('columns-reordered', () => {
+			positionDropdown(dropdown, dt, btn.element());
+		});
+
 		return btn.element();
 	}
 } as IContentPlugin<ICollection>;

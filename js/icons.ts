@@ -37,6 +37,12 @@ const icons = {
 		'<line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>'
 	),
 
+	// arrow-left-from-line
+	moveLeft: wrap('<path d="m9 6-6 6 6 6"/><path d="M3 12h14"/><path d="M21 19V5"/>'),
+
+	// arrow-right-from-line
+	moveRight: wrap('<path d="M3 5v14"/><path d="M21 12H7"/><path d="m15 18 6-6-6-6"/>'),
+
 	// Custom
 	notContains: wrap('<path d="M15 4 9 20"/><path d="M3 8h18v9H3z"/>'),
 

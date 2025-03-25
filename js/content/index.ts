@@ -1,6 +1,8 @@
 import DataTable from '../../../../types/types';
 
 import collection, {ICollection} from './collection';
+import moveLeft, {IMoveLeft} from './moveLeft';
+import moveRight, {IMoveRight} from './moveRight';
 import order, {IOrder} from './order';
 import orderAddAsc, {IOrderAddAsc} from './orderAddAsc';
 import orderAddDesc, {IOrderAddDesc} from './orderAddDesc';
@@ -19,6 +21,8 @@ const ccContent = DataTable.ext.ccContent as any;
 
 export type IContentConfig =
 	| ICollection
+	| IMoveLeft
+	| IMoveRight
 	| IOrder
 	| IOrderAddAsc
 	| IOrderAddDesc
@@ -35,6 +39,8 @@ export type IContentConfig =
 
 Object.assign(ccContent, {
 	collection,
+	moveLeft,
+	moveRight,
 	order,
 	orderAddAsc,
 	orderAddDesc,

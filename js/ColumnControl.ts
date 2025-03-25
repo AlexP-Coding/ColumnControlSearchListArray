@@ -114,6 +114,8 @@ export default class ColumnControl {
 		this._dt = dt;
 		this._s.columnIdx = columnIdx;
 
+		let originalIdx = columnIdx;
+
 		Object.assign(this._c, ColumnControl.defaults, opts);
 
 		this._dom.wrapper = document.createElement('span');
@@ -121,6 +123,16 @@ export default class ColumnControl {
 
 		this._dom.target = this._target();
 		this._dom.target.appendChild(this._dom.wrapper);
+
+		// If column reordering can be done, we reassign the column index here, and before the
+		// plugins can add their own listeners.
+		dt.on('columns-reordered', (e, details) => {
+			let mapping = details.mapping;
+			let oldIdx = this._s.columnIdx;
+			let newIdx = mapping.indexOf(oldIdx);
+
+			this._s.columnIdx = newIdx;
+		});
 
 		this._c.content.forEach((content) => {
 			let {plugin, config} = this.resolve(content);
