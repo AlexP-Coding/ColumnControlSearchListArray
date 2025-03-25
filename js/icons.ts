@@ -1,3 +1,7 @@
+// The SVG for many of these icons are from Lucide ( https://lucide.dev ), which are available
+// under the ISC License. There are a number of custom icons as well. These are optimised through
+// https://optimize.svgomg.net/
+
 function wrap(paths) {
 	return (
 		'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
@@ -9,59 +13,71 @@ function wrap(paths) {
 const icons = {
 	chevronRight: wrap('<path d="m9 18 6-6-6-6"/>'),
 
-	// Custom icon, not part of Lucide
-	contains: wrap(
-		'<rect width="4" height="18" x="10" y="3" /><path d="m 18,8 h 3 v 9 h -3" /><path d="M 6,17 H 3 V 8 h 3" />'
-	),
+	// Custom icon
+	contains: wrap('<path d="M10 3h4v18h-4z"/><path d="M18 8h3v9h-3"/><path d="M6 17H3V8h3"/>'),
 
-	equals: wrap('<line x1="5" x2="19" y1="9" y2="9"/><line x1="5" x2="19" y1="15" y2="15"/>'),
+	empty: wrap('<circle cx="12" cy="12" r="10"/>'),
 
-	greaterThan: wrap('<path d="m9 18 6-6-6-6"/>'),
+	ends: wrap('<path d="M21 3h-4v18h4z"/><path d="M13 8H3v9h10"/>'),
 
-	lessThan: wrap('<path d="m15 18-6-6 6-6"/>'),
+	equal: wrap('<line x1="5" x2="19" y1="9" y2="9"/><line x1="5" x2="19" y1="15" y2="15"/>'),
+
+	greater: wrap('<path d="m9 18 6-6-6-6"/>'),
+
+	// Custom icon
+	greaterOrEqual: wrap('<path d="m9 16 6-6-6-6"/><path d="m9 21 6-6"/>'),
+
+	less: wrap('<path d="m15 18-6-6 6-6"/>'),
+
+	// Custom icon
+	lessOrEqual: wrap('<path d="m15 16-6-6 6-6"/><path d="m15 21-6-6"/>'),
 
 	menu: wrap(
 		'<line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>'
 	),
 
-	notEqual: wrap('<line x1="5" x2="19" y1="9" y2="9"/><line x1="5" x2="19" y1="15" y2="15"/><line x1="19" x2="5" y1="5" y2="19"/>'),
+	// Custom icon
+	notContains: wrap('<path d="M15 4 9 20"/><path d="M3 8h18v9H3z"/>'),
 
-	// Custom icon, not part of Lucide
+	notEmpty: wrap('<circle cx="12" cy="12" r="10"/><line x1="9" x2="15" y1="15" y2="9"/>'),
+
+	notEqual: wrap('<path d="M5 9h14"/><path d="M5 15h14"/><path d="M15 5 9 19"/>'),
+
+	// Custom icon
 	orderAddAsc: wrap(
-		'<path d="M 7,20 V 12" /><path d="M 11,16 H 3" /><path d="m 14,4 h 7" /><path d="M 11,8 H 21" /><path d="M 11,12 H 21" />'
+		'<path d="M7 20v-8"/><path d="M11 16H3"/><path d="M14 4h7"/><path d="M11 8h10"/><path d="M11 12h10"/>'
 	),
 
-	// Custom icon, not part of Lucide
+	// Custom icon
 	orderAddDesc: wrap(
-		'<path d="M 7,20 V 12" /><path d="M 11,16 H 3" /><path d="M 7,4 H 21" /><path d="M 11,8 H 21" /><path d="m 15,12 h 6" />'
+		'<path d="M7 20v-8"/><path d="M11 16H3"/><path d="M7 4h14"/><path d="M11 8h10"/><path d="M15 12h6"/>'
 	),
 
 	orderAsc: wrap(
 		'<path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M11 12h4"/><path d="M11 16h7"/><path d="M11 20h10"/>'
 	),
 
-	// Custom icon, not part of Lucide
+	// Custom icon
 	orderClear: wrap(
-		'<path d="m11 20-8-8" /><path d="M11 4h10" /><path d="M11 8h10" /><path d="M15 12h6" /><path d="m3 20 8-8" />'
+		'<path d="m11 20-8-8"/><path d="M11 4h10"/><path d="M11 8h10"/><path d="M15 12h6"/><path d="m3 20 8-8"/>'
 	),
 
 	orderDesc: wrap(
 		'<path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M11 4h10"/><path d="M11 8h7"/><path d="M11 12h4"/>'
 	),
 
-	// Custom icon, not part of Lucide
+	// Custom icon
 	orderRemove: wrap(
-		'<path d="M 11,16 H 3" /><path d="M 11,4 H 21" /><path d="M 11,8 H 21" /><path d="m 15,12 h 6" />'
+		'<path d="M11 16H3"/><path d="M11 4h10"/><path d="M11 8h10"/><path d="M15 12h6"/>'
 	),
 
-	// Custom icon, not part of Lucide
+	// Custom icon
 	orderNone: wrap(
-		'<path d="M 3,8 7,4 11,8"/><path d="M 11,16 7,20 3,16"/><path d="M 7,4 V 20"/><path d="m 15,8 h 6"/><path d="m 15,16 h 6"/><path d="m 13,12 h 8"/>'
+		'<path d="m3 8 4-4 4 4"/><path d="m11 16-4 4-4-4"/><path d="M7 4v16"/><path d="M15 8h6"/><path d="M15 16h6"/><path d="M13 12h8"/>'
 	),
 
-	starts: wrap(
-		'<rect width="4" height="18" x="3" y="3" /><path d="m 11,8 h 10 v 9 H 11"/>'
-	),
+	// Custom icon
+	starts: wrap('<path d="M3 3h4v18H3z"/><path d="M11 8h10v9H11"/>'),
 
 	tick: wrap('<path d="M20 6 9 17l-5-5"/>')
 };

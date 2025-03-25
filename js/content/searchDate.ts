@@ -29,10 +29,12 @@ export default {
 			.title(config.title)
 			.text(config.text)
 			.options([
-				{label: 'Equals', value: 'equals'},
-				{label: 'After', value: 'greaterThan'},
-				{label: 'Before', value: 'lessThan'},
-				{label: 'Not', value: 'notEqual'}
+				{label: 'Equals', value: 'equal'},
+				{label: 'Does not equal', value: 'notEqual'},
+				{label: 'After', value: 'greater'},
+				{label: 'Before', value: 'less'},
+				{label: 'Empty', value: 'empty'},
+				{label: 'Not empty', value: 'notEmpty'}
 			])
 			.search((searchType, searchTerm) => {
 				let search = dateToNum(
@@ -41,18 +43,22 @@ export default {
 					moment,
 					luxon
 				);
-				console.log(search);
 
-				// No change - don't do anything
-				if (column.search.fixed('dtcc') === '' && search === '') {
+				if (searchType === 'empty') {
+					column.search.fixed('dtcc', (haystack) => !haystack);
+				}
+				else if (searchType === 'notEmpty') {
+					column.search.fixed('dtcc', (haystack) => !!haystack);
+				}
+				else if (column.search.fixed('dtcc') === '' && search === '') {
+					// No change - don't do anything
 					return;
 				}
-
-				if (!search) {
+				else if (!search) {
 					// Clear search
 					column.search.fixed('dtcc', '');
 				}
-				else if (searchType === 'equals') {
+				else if (searchType === 'equal') {
 					// Use a function for matching - weak typing
 					// Note that the haystack in the search function is the rendered date - it
 					// might need to be converted back to a date
@@ -61,23 +67,22 @@ export default {
 						(haystack) => dateToNum(haystack, displayFormat, moment, luxon) == search
 					);
 				}
-				else if (searchType === 'greaterThan') {
+				else if (searchType === 'notEqual') {
+					column.search.fixed(
+						'dtcc',
+						(haystack) => dateToNum(haystack, displayFormat, moment, luxon) != search
+					);
+				}
+				else if (searchType === 'greater') {
 					column.search.fixed(
 						'dtcc',
 						(haystack) => dateToNum(haystack, displayFormat, moment, luxon) > search
 					);
 				}
-				else if (searchType === 'lessThan') {
+				else if (searchType === 'less') {
 					column.search.fixed(
 						'dtcc',
 						(haystack) => dateToNum(haystack, displayFormat, moment, luxon) < search
-					);
-				}
-				else if (searchType === 'notEqual') {
-					// Use a function for not matching - weak typing
-					column.search.fixed(
-						'dtcc',
-						(haystack) => dateToNum(haystack, displayFormat, moment, luxon) != search
 					);
 				}
 

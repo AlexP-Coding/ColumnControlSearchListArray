@@ -22,34 +22,48 @@ export default {
 			.title(config.title)
 			.text(config.text)
 			.options([
-				{label: 'Equals', value: 'equals'},
-				{label: 'Greater than', value: 'greaterThan'},
-				{label: 'Less than', value: 'lessThan'},
-				{label: 'Not', value: 'notEqual'}
+				{label: 'Equals', value: 'equal'},
+				{label: 'Does not equal', value: 'notEqual'},
+				{label: 'Greater than', value: 'greater'},
+				{label: 'Greater or equal', value: 'greaterOrEqual'},
+				{label: 'Less than', value: 'less'},
+				{label: 'Less or equal', value: 'lessOrEqual'},
+				{label: 'Empty', value: 'empty'},
+				{label: 'Not empty', value: 'notEmpty'}
 			])
 			.search((searchType, searchTerm) => {
-				// No change - don't do anything
-				if (column.search.fixed('dtcc') === '' && searchTerm === '') {
+				if (searchType === 'empty') {
+					column.search.fixed('dtcc', (haystack) => !haystack);
+				}
+				else if (searchType === 'notEmpty') {
+					column.search.fixed('dtcc', (haystack) => !!haystack);
+				}
+				else if (column.search.fixed('dtcc') === '' && searchTerm === '') {
+					// No change - don't do anything
 					return;
 				}
-
-				if (searchTerm === '') {
+				else if (searchTerm === '') {
 					// Clear search
 					column.search.fixed('dtcc', '');
 				}
-				else if (searchType === 'equals') {
+				else if (searchType === 'equal') {
 					// Use a function for matching - weak typing
 					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) == searchTerm);
 				}
-				else if (searchType === 'greaterThan') {
+				else if (searchType === 'notEqual') {
+					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) != searchTerm);
+				}
+				else if (searchType === 'greater') {
 					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) > searchTerm);
 				}
-				else if (searchType === 'lessThan') {
+				else if (searchType === 'greaterOrEqual') {
+					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) >= searchTerm);
+				}
+				else if (searchType === 'less') {
 					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) < searchTerm);
 				}
-				else if (searchType === 'notEqual') {
-					// Use a function for not matching - weak typing
-					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) != searchTerm);
+				else if (searchType === 'lessOrEqual') {
+					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) <= searchTerm);
 				}
 
 				column.draw();

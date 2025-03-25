@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" order="1" table-class="display nowrap">
+<dt-example table-type="html" order="2" table-class="display nowrap">
 
 <css lib="datatables columncontrol" />
 <js lib="jquery datatables columncontrol">
@@ -78,7 +78,7 @@ new DataTable('#example', {
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">ISO 8601 date handling</title>
+<title lib="ColumnControl">ISO 8601 (without date picker)</title>
 
 <info><![CDATA[
 

@@ -78,7 +78,7 @@ new DataTable('#example', {
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">ISO 8601 date handling</title>
+<title lib="ColumnControl">ISO 8601 (with date picker)</title>
 
 <info><![CDATA[
 
