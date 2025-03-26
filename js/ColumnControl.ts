@@ -127,11 +127,7 @@ export default class ColumnControl {
 		// If column reordering can be done, we reassign the column index here, and before the
 		// plugins can add their own listeners.
 		dt.on('columns-reordered', (e, details) => {
-			let mapping = details.mapping;
-			let oldIdx = this._s.columnIdx;
-			let newIdx = mapping.indexOf(oldIdx);
-
-			this._s.columnIdx = newIdx;
+			this._s.columnIdx = (dt as any).colReorder.transpose(originalIdx, 'fromOriginal');
 		});
 
 		this._c.content.forEach((content) => {

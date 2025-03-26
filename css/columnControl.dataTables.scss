@@ -239,6 +239,7 @@ div.dtcc-dropdown {
 	overflow: hidden;
 	padding: var(--dtcc-dropdown_padding);
 	position: absolute;
+	// transition: left 0.5s;
 	width: var(--dtcc-dropdown_width);
 	z-index: var(--dtcc-dropdown_z-index);
 
