@@ -16,7 +16,6 @@ export default {
 
 	init(config) {
 		let dt = this.dt();
-		let column = dt.column(this.idx());
 		let searchInput = new SearchInput(dt, this.idx())
 			.placeholder(config.placeholder)
 			.title(config.title)
@@ -32,6 +31,8 @@ export default {
 				{label: 'Not empty', value: 'notEmpty'}
 			])
 			.search((searchType, searchTerm) => {
+				let column = dt.column(this.idx());
+
 				if (searchType === 'empty') {
 					column.search.fixed('dtcc', (haystack) => !haystack);
 				}
@@ -69,6 +70,7 @@ export default {
 				column.draw();
 			});
 
+		// Set a numeric input type, per BBC's guidelines
 		searchInput.input().setAttribute('inputmode', 'numeric');
 		searchInput.input().setAttribute('pattern', '[0-9]*');
 

@@ -21,7 +21,6 @@ export default {
 		let moment = DataTable.use('moment');
 		let luxon = DataTable.use('luxon');
 		let dt = this.dt();
-		let column = dt.column(this.idx());
 		let displayFormat = '';
 		let dateTime;
 		let searchInput = new SearchInput(dt, this.idx())
@@ -37,6 +36,7 @@ export default {
 				{label: 'Not empty', value: 'notEmpty'}
 			])
 			.search((searchType, searchTerm) => {
+				let column = dt.column(this.idx());
 				let search = dateToNum(
 					dateTime ? dateTime.val() : searchTerm,
 					displayFormat,

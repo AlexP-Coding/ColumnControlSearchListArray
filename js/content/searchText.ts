@@ -16,7 +16,6 @@ export default {
 
 	init(config) {
 		let dt = this.dt();
-		let column = dt.column(this.idx());
 		let searchInput = new SearchInput(dt, this.idx())
 			.placeholder(config.placeholder)
 			.title(config.title)
@@ -32,6 +31,8 @@ export default {
 				{label: 'Not empty', value: 'notEmpty'}
 			])
 			.search((searchType, searchTerm) => {
+				let column = dt.column(this.idx());
+
 				searchTerm = searchTerm.toLowerCase();
 
 				if (searchType === 'empty') {

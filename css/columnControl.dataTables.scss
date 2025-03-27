@@ -48,9 +48,9 @@
 	--dtcc-search-icon_opacity: 0.4;
 	--dtcc-search-icon_size: 16px;
 
-	--dtcc-searchText_border: 1px solid #aaa;
+	--dtcc-search_border: 1px solid #aaa;
 	--dtcc-searchText_background: transparent;
-	--dtcc-searchText_border-radius: 3px;
+	--dtcc-search_border-radius: 3px;
 	--dtcc-searchText_padding: 5px;
 }
 
@@ -71,7 +71,7 @@
 	--dtcc-search-icon_color: white;
 	--dtcc-search-icon_hover-background: rgba(255, 255, 255, 0.1);
 
-	--dtcc-searchText_border: 1px solid rgba(255, 255, 255, 0.2);
+	--dtcc-search_border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 // Alignment of the content - when empty for left aligned column the content should be on the right
@@ -221,8 +221,8 @@ table.dataTable span.dtcc {
 
 			input {
 				background-color: var(--dtcc-searchText_background);
-				border: var(--dtcc-searchText_border);
-				border-radius: var(--dtcc-searchText_border-radius);
+				border: var(--dtcc-search_border);
+				border-radius: var(--dtcc-search_border-radius);
 				color: inherit;
 				padding: var(--dtcc-searchText_padding);
 				padding-left: 26px;
@@ -338,15 +338,15 @@ div.dtcc-dropdown {
 
 			select {
 				flex-grow: 1;
-				border: var(--dtcc-searchText_border);
-				border-radius: var(--dtcc-searchText_border-radius);
+				border: var(--dtcc-search_border);
+				border-radius: var(--dtcc-search_border-radius);
 				padding: var(--dtcc-searchText_padding);
 			}
 
 			input {
 				background-color: var(--dtcc-searchText_background);
-				border: var(--dtcc-searchText_border);
-				border-radius: var(--dtcc-searchText_border-radius);
+				border: var(--dtcc-search_border);
+				border-radius: var(--dtcc-search_border-radius);
 				color: inherit;
 				padding: var(--dtcc-searchText_padding);
 				width: 100%;

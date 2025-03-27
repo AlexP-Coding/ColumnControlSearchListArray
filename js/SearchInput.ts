@@ -134,6 +134,7 @@ export default class SearchInput {
 		};
 
 		let dom = this._dom;
+		let originalIdx = idx;
 
 		dom.container.append(dom.title, dom.inputs);
 		dom.inputs.append(dom.icon, dom.select, dom.input);
@@ -166,6 +167,11 @@ export default class SearchInput {
 
 		dt.on('stateLoaded', (e, s, state) => {
 			this._stateLoad(state);
+		});
+
+		// Same as for ColumnControl - reassign a column index if needed.
+		dt.on('columns-reordered', (e, details) => {
+			this._idx = (dt as any).colReorder.transpose(originalIdx, 'fromOriginal');
 		});
 
 		// Runs after initial state load, so we need to check if there has already been a state
