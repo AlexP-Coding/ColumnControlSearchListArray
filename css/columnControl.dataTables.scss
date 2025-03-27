@@ -178,7 +178,7 @@ table.dataTable span.dtcc {
 			display: none;
 		}
 
-		&.dtcc-search_active > div div.dtcc-search-icon {
+		&.dtcc-search_active > div div.dtcc-search-type-icon {
 			svg {
 				opacity: 1;
 			}
@@ -187,7 +187,7 @@ table.dataTable span.dtcc {
 		> div {
 			position: relative;
 
-			div.dtcc-search-icon {
+			div.dtcc-search-type-icon {
 				display: flex;
 				justify-content: center;
 				align-items: center;
@@ -217,6 +217,10 @@ table.dataTable span.dtcc {
 				width: 30px;
 				cursor: pointer;
 				height: 100%;
+			}
+
+			div.dtcc-search-icon {
+				display: none;
 			}
 
 			input {
@@ -324,7 +328,9 @@ div.dtcc-dropdown {
 			display: flex;
 			flex-wrap: wrap;
 
-			div.dtcc-search-icon {
+			// The two icons
+			div {
+				flex: 0 0 var(--dtcc-button-icon_size);
 				height: var(--dtcc-button-icon_size);
 				padding: 0 0.5em 0 0;
 				width: var(--dtcc-button-icon_size);
@@ -336,20 +342,18 @@ div.dtcc-dropdown {
 				}
 			}
 
-			select {
-				flex-grow: 1;
+			select, input {
+				flex: 1 1 calc(100% - 24px);
+				min-width: 0;
+				width: 100%;
+				box-sizing: border-box;
 				border: var(--dtcc-search_border);
 				border-radius: var(--dtcc-search_border-radius);
 				padding: var(--dtcc-searchText_padding);
 			}
 
-			input {
-				background-color: var(--dtcc-searchText_background);
-				border: var(--dtcc-search_border);
-				border-radius: var(--dtcc-search_border-radius);
-				color: inherit;
-				padding: var(--dtcc-searchText_padding);
-				width: 100%;
+			// Second row
+			input, div.dtcc-search-icon {
 				margin-top: 0.5em;
 			}
 		}

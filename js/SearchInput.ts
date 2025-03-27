@@ -5,10 +5,11 @@ import {Api} from '../../../types/types';
 interface IDom {
 	container: HTMLDivElement;
 	input: HTMLInputElement;
-	select: HTMLSelectElement;
-	icon: HTMLDivElement;
-	title: HTMLDivElement;
 	inputs: HTMLDivElement;
+	searchIcon: HTMLDivElement;
+	select: HTMLSelectElement;
+	title: HTMLDivElement;
+	typeIcon: HTMLDivElement;
 }
 
 type ISearch = (type: string, term: string) => void;
@@ -53,7 +54,7 @@ export default class SearchInput {
 		}
 
 		// Initial icon
-		this._dom.icon.innerHTML = icons[opts[0].value];
+		this._dom.typeIcon.innerHTML = icons[opts[0].value];
 
 		return this;
 	}
@@ -126,7 +127,8 @@ export default class SearchInput {
 				'dtcc-search',
 				'dtcc-searchText'
 			]),
-			icon: createElement<HTMLDivElement>('div', 'dtcc-search-icon'),
+			typeIcon: createElement<HTMLDivElement>('div', 'dtcc-search-type-icon'),
+			searchIcon: createElement<HTMLDivElement>('div', 'dtcc-search-icon', icons['search']),
 			input: createElement<HTMLInputElement>('input'),
 			inputs: createElement<HTMLDivElement>('div'),
 			select: createElement<HTMLSelectElement>('select'),
@@ -137,7 +139,7 @@ export default class SearchInput {
 		let originalIdx = idx;
 
 		dom.container.append(dom.title, dom.inputs);
-		dom.inputs.append(dom.icon, dom.select, dom.input);
+		dom.inputs.append(dom.typeIcon, dom.select, dom.searchIcon, dom.input);
 
 		// Listeners
 		dom.input.addEventListener('change', () => {
@@ -149,7 +151,7 @@ export default class SearchInput {
 		});
 
 		dom.select.addEventListener('input', () => {
-			dom.icon.innerHTML = icons[dom.select.value];
+			dom.typeIcon.innerHTML = icons[dom.select.value];
 			this._runSearch();
 		});
 

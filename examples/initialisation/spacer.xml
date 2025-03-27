@@ -12,11 +12,11 @@ $('#example').DataTable({
 	columnControl: {
 		content: [
 			'orderAsc',
-			'spacer',
 			'orderDesc',
+			'spacer',
 			{
 				extend: 'collection',
-				content: ['orderAsc', 'spacer', 'orderDesc']
+				content: ['orderAsc', 'orderDesc', 'spacer', 'search']
 			}
 		]
 	}
@@ -34,11 +34,11 @@ new DataTable('#example', {
 	columnControl: {
 		content: [
 			'orderAsc',
-			'spacer',
 			'orderDesc',
+			'spacer',
 			{
 				extend: 'collection',
-				content: ['orderAsc', 'spacer', 'orderDesc']
+				content: ['orderAsc', 'orderDesc', 'spacer', 'search']
 			}
 		]
 	}
