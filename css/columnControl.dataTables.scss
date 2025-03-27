@@ -27,7 +27,9 @@
 	--dtcc-dropdown-button_border: none;
 	--dtcc-dropdown-button_color: black;
 	--dtcc-dropdown-button_padding: 0.5em 1em;
-	--dtcc-dropdown-button_hover-background: rgba(153, 153, 153, 0.1);
+	--dtcc-dropdown-button_hover-background: rgba(5, 4, 4, 0.1);
+
+	--dtcc-dropdown-search_padding: 0.5em 1em;
 
 	--dtcc-spacer_border: 1px solid rgba(0, 0, 0, 0.2);
 	--dtcc-spacer_margin: 0.5em;
@@ -305,5 +307,51 @@ div.dtcc-dropdown {
 		margin: var(--dtcc-title_margin);
 		padding: var(--dtcc-title_padding);
 		text-align: var(--dtcc-title_text-align);
+	}
+
+	div.dtcc-search {
+		padding: var(--dtcc-dropdown-search_padding);
+
+		div.dtcc-search-title {
+			
+		}
+
+		> div {
+			align-items: center;
+			background: var(--dtcc-dropdown-button_background);
+			border: var(--dtcc-dropdown-button_border);
+			color: var(--dtcc-dropdown-button_color);
+			display: flex;
+			flex-wrap: wrap;
+
+			div.dtcc-search-icon {
+				height: var(--dtcc-button-icon_size);
+				padding: 0 0.5em 0 0;
+				width: var(--dtcc-button-icon_size);
+
+				svg {
+					color: var(--dtcc-search-icon_color);
+					height: var(--dtcc-search-icon_size);
+					width: var(--dtcc-search-icon_size);
+				}
+			}
+
+			select {
+				flex-grow: 1;
+				border: var(--dtcc-searchText_border);
+				border-radius: var(--dtcc-searchText_border-radius);
+				padding: var(--dtcc-searchText_padding);
+			}
+
+			input {
+				background-color: var(--dtcc-searchText_background);
+				border: var(--dtcc-searchText_border);
+				border-radius: var(--dtcc-searchText_border-radius);
+				color: inherit;
+				padding: var(--dtcc-searchText_padding);
+				width: 100%;
+				margin-top: 0.5em;
+			}
+		}
 	}
 }
