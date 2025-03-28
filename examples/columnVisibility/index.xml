@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example order="0">
+
+<title lib="ColumnControl">Column visibility</title>
+
+<js lib="jquery" />
+<info><![CDATA[
+
+A set of example that demonstrate ColumnControl's options for column visibility control.
+
+]]></info>
+
+</dt-example>

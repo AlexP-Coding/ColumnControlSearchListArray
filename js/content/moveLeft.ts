@@ -17,7 +17,7 @@ export default {
 	init(config) {
 		let dt = this.dt();
 		let btn = new Button()
-			.text(dt.i18n('columnControl.content.moveLeft', config.text))
+			.text(dt.i18n('columnControl.moveLeft', config.text))
 			.icon(config.icon)
 			.className(config.className)
 			.handler(() => {

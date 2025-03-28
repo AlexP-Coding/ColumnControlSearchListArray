@@ -1,7 +1,7 @@
 import CheckList from '../CheckList';
 import {IContentPlugin, IContentConfig} from './content';
 
-export interface IColumnVisibility extends IContentConfig {
+export interface IColVis extends IContentConfig {
 	className: string;
 	columns: string | number | Array<string | number>;
 	title: string;
@@ -9,22 +9,21 @@ export interface IColumnVisibility extends IContentConfig {
 
 export default {
 	defaults: {
-		className: 'columnVisibility',
+		className: 'colVis',
 		columns: '',
-		title: ''
+		title: 'Column visibility'
 	},
 
 	init(config) {
 		let dt = this.dt();
 		let columns = dt.columns(config.columns);
 		let checkList = new CheckList()
-			.title(config.title || '')
+			.title(dt.i18n('columnControl.colVis', config.title))
 			.handler((e, btn) => {
 				let idx = btn.value();
 				let col = dt.column(idx);
 
 				col.visible(!col.visible());
-				btn.active(col.visible());
 			});
 
 		columns.every(function () {
@@ -35,6 +34,14 @@ export default {
 			});
 		});
 
+		dt.on('column-visibility', (e, s, colIdx, state) => {
+			let btn = checkList.button(colIdx);
+
+			if (btn) {
+				btn.active(state);
+			}
+		});
+
 		return checkList.element();
 	}
-} as IContentPlugin<IColumnVisibility>;
+} as IContentPlugin<IColVis>;

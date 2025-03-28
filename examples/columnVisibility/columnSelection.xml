@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="1">
+
+<css lib="datatables columncontrol" />
+<js lib="jquery datatables columncontrol">
+<![CDATA[
+$('#example').DataTable({
+	columnControl: {
+		content: [
+			[
+				'orderAsc',
+				'orderDesc',
+				'spacer',
+				{
+					extend: 'colVis',
+					columns: ':not(.always-visible)'
+				}
+			]
+		]
+	},
+	columnDefs: [
+		{
+			target: 0,
+			className: 'always-visible'
+		},
+		{
+			target: -1,
+			visible: false
+		}
+	]
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+new DataTable('#example', {
+	columnControl: {
+		content: [
+			[
+				'orderAsc',
+				'orderDesc',
+				'spacer',
+				{
+					extend: 'colVis',
+					columns: ':not(.always-visible)'
+				}
+			]
+		]
+	},
+	columnDefs: [
+		{
+			target: 0,
+			className: 'always-visible'
+		},
+		{
+			target: -1,
+			visible: false
+		}
+	]
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Selecting columns</title>
+
+<info><![CDATA[
+
+
+]]></info>
+
+</dt-example>

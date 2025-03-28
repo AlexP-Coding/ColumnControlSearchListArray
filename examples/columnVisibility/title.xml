@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="1">
+
+<css lib="datatables columncontrol" />
+<js lib="jquery datatables columncontrol">
+<![CDATA[
+$('#example').DataTable({
+	columnControl: {
+		content: [['orderAsc', 'orderDesc', 'spacer', 'colVis']]
+	},
+	language: {
+		columnControl: {
+			colVis: 'Change columns'
+		}
+	}
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+new DataTable('#example', {
+	columnControl: {
+		content: [['orderAsc', 'orderDesc', 'spacer', 'colVis']]
+	},
+	language: {
+		columnControl: {
+			colVis: 'Change columns'
+		}
+	}
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Custom title</title>
+
+<info><![CDATA[
+
+
+]]></info>
+
+</dt-example>

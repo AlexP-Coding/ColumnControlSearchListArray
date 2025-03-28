@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="1">
+
+<css lib="datatables columncontrol" />
+<js lib="jquery datatables columncontrol">
+<![CDATA[
+$('#example').DataTable({
+	columnControl: {
+		content: [
+			[
+				'orderAsc',
+				'orderDesc',
+				{
+					extend: 'collection',
+					icon: 'columns',
+					text: 'Column visibility',
+					content: ['colVis']
+				}
+			]
+		]
+	},
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+new DataTable('#example', {
+	columnControl: {
+		content: [
+			[
+				'orderAsc',
+				'orderDesc',
+				{
+					extend: 'collection',
+					icon: 'columns',
+					text: 'Column visibility',
+					content: ['colVis']
+				}
+			]
+		]
+	},
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Nested dropdown</title>
+
+<info><![CDATA[
+
+
+]]></info>
+
+</dt-example>

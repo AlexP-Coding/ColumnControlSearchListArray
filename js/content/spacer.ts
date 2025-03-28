@@ -18,7 +18,7 @@ export default {
 		let spacer = createElement(
 			'div',
 			config.className,
-			dt.i18n('columnControl.content.spacer', config.text)
+			dt.i18n('columnControl.spacer', config.text)
 		);
 
 		return spacer;

@@ -13,6 +13,9 @@ function wrap(paths) {
 const icons = {
 	chevronRight: wrap('<path d="m9 18 6-6-6-6"/>'),
 
+	// columns-3
+	columns: wrap('<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/>'),
+
 	// Custom
 	contains: wrap('<path d="M10 3h4v18h-4z"/><path d="M18 8h3v9h-3"/><path d="M6 17H3V8h3"/>'),
 

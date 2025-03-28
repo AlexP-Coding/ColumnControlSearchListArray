@@ -28,6 +28,12 @@ export default class CheckList {
 		handler: () => {}
 	};
 
+	/**
+	 * Add one or more buttons to the list
+	 *
+	 * @param options Configuration for the button(s) to add
+	 * @returns Self for chaining
+	 */
 	public add(options: IOption | IOption[]) {
 		if (! Array.isArray(options)) {
 			options = [options];
@@ -51,6 +57,29 @@ export default class CheckList {
 		return this;
 	}
 
+	/**
+	 * Find a button with a given value
+	 *
+	 * @param val Value to search for
+	 * @returns Found button
+	 */
+	public button(val: string | number) {
+		let buttons = this._s.buttons;
+
+		for (let i=0 ; i<buttons.length ; i++) {
+			if (buttons[i].value() === val) {
+				return buttons[i];
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Remove all buttons from the list
+	 *
+	 * @returns Self for chaining
+	 */
 	public clear() {
 		// TODO need to destroy the buttons
 		this._dom.buttons.replaceChildren();
@@ -92,7 +121,7 @@ export default class CheckList {
 	}
 
 	/**
-	 * 
+	 * Container for a list of buttons
 	 */
 	constructor() {
 		this._dom = {

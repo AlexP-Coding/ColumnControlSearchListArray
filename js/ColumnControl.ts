@@ -96,6 +96,13 @@ export default class ColumnControl {
 			throw new Error('Unknown ColumnControl content type: ' + type);
 		}
 
+		// If the plugin is a wrapper around another type - e.g. the colVisCollection
+		if (plugin.extend) {
+			let self = plugin.extend.call(this, config);
+
+			return this.resolve(self);
+		}
+
 		return {
 			config,
 			type,

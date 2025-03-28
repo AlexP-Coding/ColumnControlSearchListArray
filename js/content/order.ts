@@ -21,7 +21,7 @@ export default {
 	init(config) {
 		let dt = this.dt();
 		let btn = new Button()
-			.text(dt.i18n('columnControl.content.orderAsc', config.text))
+			.text(dt.i18n('columnControl.orderAsc', config.text))
 			.icon('orderAsc')
 			.className(config.className)
 			.handler(() => {

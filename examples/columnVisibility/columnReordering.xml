@@ -6,7 +6,7 @@
 <![CDATA[
 $('#example').DataTable({
 	columnControl: {
-		content: [['columnVisibility']]
+		content: [['colVis']]
 	}
 });
 ]]>
@@ -16,13 +16,13 @@ $('#example').DataTable({
 <![CDATA[
 new DataTable('#example', {
 	columnControl: {
-		content: [['columnVisibility']]
+		content: [['colVis']]
 	}
 });
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Column visibility</title>
+<title lib="ColumnControl">Integration with column reordering</title>
 
 <info><![CDATA[
 

@@ -160,7 +160,7 @@ export default {
 		let liner = dropdown.childNodes[0];
 
 		let btn = new Button()
-			.text(dt.i18n('columnControl.content.collection', config.text))
+			.text(dt.i18n('columnControl.collection', config.text))
 			.icon(config.icon)
 			.className(config.className)
 			.handler(() => {

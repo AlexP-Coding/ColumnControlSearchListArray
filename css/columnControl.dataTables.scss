@@ -358,4 +358,19 @@ div.dtcc-dropdown {
 			}
 		}
 	}
+
+	div.dtcc-list {
+		div.dtcc-list-title {
+			font-style: italic;
+			padding: var(--dtcc-dropdown-button_padding);
+
+			&:empty {
+				display: none;
+			}
+		}
+
+		span.dtcc-button-icon:empty {
+			display: none;
+		}
+	}
 }
