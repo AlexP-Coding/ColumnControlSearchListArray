@@ -7,17 +7,7 @@
 
 $('#example').DataTable({
 	ajax: '../../../../examples/ajax/data/objects.txt',
-	columnControl: {
-		target: 0,
-		content: [
-			'order',
-			{
-				extend: 'collection',
-				content: ['search'],
-				icon: 'search'
-			}
-		]
-	},
+	columnControl: ['order', 'searchCollection'],
 	columns: [
 		{ data: 'name' },
 		{ data: 'position' },
@@ -39,17 +29,7 @@ $('#example').DataTable({
 
 new DataTable('#example', {
 	ajax: '../../../../examples/ajax/data/objects.txt',
-	columnControl: {
-		target: 0,
-		content: [
-			'order',
-			{
-				extend: 'collection',
-				content: ['search'],
-				icon: 'search'
-			}
-		]
-	},
+	columnControl: ['order', 'searchCollection'],
 	columns: [
 		{ data: 'name' },
 		{ data: 'position' },

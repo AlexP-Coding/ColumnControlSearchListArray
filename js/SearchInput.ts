@@ -86,12 +86,12 @@ export default class SearchInput {
 	}
 
 	/**
-	 * Set the text that will be shown able the input element
+	 * Set the text that will be shown as the title for the control
 	 *
 	 * @param text Set the title text
 	 * @returns Self for chaining
 	 */
-	public text(text: string) {
+	public title(text: string) {
 		if (text) {
 			// .replace('*', column.title()); TODO
 			this._dom.title.innerHTML = text;
@@ -106,7 +106,7 @@ export default class SearchInput {
 	 * @param title Title attribute string
 	 * @returns Self for chaining
 	 */
-	public title(title: string) {
+	public titleAttr(title: string) {
 		if (title) {
 			// .replace('*', column.title()); TODO
 			this._dom.input.title = title;

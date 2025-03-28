@@ -78,7 +78,7 @@ new DataTable('#example', {
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Search numbers and date data</title>
+<title lib="ColumnControl">Manual type assignment</title>
 
 <info><![CDATA[
 

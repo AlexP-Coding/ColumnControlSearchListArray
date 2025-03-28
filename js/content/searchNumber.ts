@@ -3,15 +3,15 @@ import {IContentPlugin, IContentConfig} from './content';
 
 export interface ISearchNumber extends IContentConfig {
 	placeholder: string;
-	text: string;
 	title: string;
+	titleAttr: string;
 }
 
 export default {
 	defaults: {
 		placeholder: '',
-		text: '',
-		title: ''
+		title: '',
+		titleAttr: ''
 	},
 
 	init(config) {
@@ -19,7 +19,7 @@ export default {
 		let searchInput = new SearchInput(dt, this.idx())
 			.placeholder(config.placeholder)
 			.title(config.title)
-			.text(config.text)
+			.titleAttr(config.titleAttr)
 			.options([
 				{label: 'Equals', value: 'equal'},
 				{label: 'Does not equal', value: 'notEqual'},

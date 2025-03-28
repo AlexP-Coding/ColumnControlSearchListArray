@@ -8,7 +8,6 @@ export type ISearch = ISearchDateTime | ISearchNumber | ISearchText;
 export default {
 	defaults: {
 		placeholder: '',
-		text: '',
 		title: ''
 	},
 

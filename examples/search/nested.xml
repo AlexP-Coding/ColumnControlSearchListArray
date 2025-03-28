@@ -9,7 +9,7 @@ new DataTable('#example', {
 	ajax: '../../../../examples/ajax/data/objects.txt',
 	columnControl: {
 		target: 0,
-		content: [['orderAsc', 'orderDesc', 'search']]
+		content: [['orderAsc', 'orderDesc', 'searchCollection']]
 	},
     columns: [
         { data: 'name' },
@@ -34,7 +34,7 @@ new DataTable('#example', {
 	ajax: '../../../../examples/ajax/data/objects.txt',
 	columnControl: {
 		target: 0,
-		content: [['orderAsc', 'orderDesc', 'search']]
+		content: [['orderAsc', 'orderDesc', 'searchCollection']]
 	},
     columns: [
         { data: 'name' },
@@ -52,7 +52,7 @@ new DataTable('#example', {
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Dropdown - with other content</title>
+<title lib="ColumnControl">Dropdown - nested</title>
 
 <info><![CDATA[
 
