@@ -3,7 +3,7 @@ import {IContentPlugin, IContentConfig} from './content';
 export interface IColVisCollection extends IContentConfig {
 	className: string;
 	columns: string | number | Array<string | number>;
-	title: string;
+	text: string;
 }
 
 export default {
@@ -30,4 +30,4 @@ export default {
 			]
 		};
 	}
-} as any;
+} as IContentPlugin<IColVisCollection>;
