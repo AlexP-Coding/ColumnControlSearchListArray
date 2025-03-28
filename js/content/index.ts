@@ -3,8 +3,9 @@ import DataTable from '../../../../types/types';
 import collection, {ICollection} from './collection';
 import colVis, {IColVis} from './colVis';
 import colVisCollection, {IColVisCollection} from './colVisCollection';
-import moveLeft, {IMoveLeft} from './moveLeft';
-import moveRight, {IMoveRight} from './moveRight';
+import reorder, {IReorder} from './reorder';
+import reorderLeft, {IReorderLeft} from './reorderLeft';
+import reorderRight, {IReorderRight} from './reorderRight';
 import order, {IOrder} from './order';
 import orderAddAsc, {IOrderAddAsc} from './orderAddAsc';
 import orderAddDesc, {IOrderAddDesc} from './orderAddDesc';
@@ -25,8 +26,9 @@ export type IContentConfig =
 	| ICollection
 	| IColVis
 	| IColVisCollection
-	| IMoveLeft
-	| IMoveRight
+	| IReorder
+	| IReorderLeft
+	| IReorderRight
 	| IOrder
 	| IOrderAddAsc
 	| IOrderAddDesc
@@ -45,8 +47,9 @@ Object.assign(ccContent, {
 	collection,
 	colVis,
 	colVisCollection,
-	moveLeft,
-	moveRight,
+	reorder,
+	reorderLeft,
+	reorderRight,
 	order,
 	orderAddAsc,
 	orderAddDesc,

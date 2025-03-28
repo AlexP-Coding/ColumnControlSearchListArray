@@ -6,7 +6,11 @@
 <![CDATA[
 $('#example').DataTable({
 	columnControl: {
-		content: [['moveLeft', 'moveRight', 'search']]
+		content: ['order', 'reorder', ['reorderLeft', 'reorderRight']]
+	},
+	ordering: {
+		indicators: false,
+		handler: false
 	}
 });
 ]]>
@@ -16,7 +20,11 @@ $('#example').DataTable({
 <![CDATA[
 new DataTable('#example', {
 	columnControl: {
-		content: [['moveLeft', 'moveRight', 'search']]
+		content: ['order', 'reorder', ['reorderLeft', 'reorderRight']]
+	},
+	ordering: {
+		indicators: false,
+		handler: false
 	}
 });
 ]]>

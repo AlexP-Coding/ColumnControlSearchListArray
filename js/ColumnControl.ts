@@ -1,8 +1,10 @@
-import DataTable, {Api, ColumnSelector} from '../../../types/types';
+import {Api} from '../../../types/types';
 import content, {IContentConfig} from './content/index';
 import {IContentPlugin} from './content/content';
 import icons from './icons';
 import Button from './Button';
+import CheckList from './CheckList';
+import SearchInput from './SearchInput';
 
 export interface IDefaults {
 	target: number | string;
@@ -177,7 +179,12 @@ export default class ColumnControl {
 		return node.querySelector<HTMLElement>('div.dt-column-' + className);
 	}
 
-	static Button: Button;
+	// Classes for common UI
+	static Button = Button;
+
+	static CheckList = CheckList;
+
+	static SearchInput = SearchInput;
 
 	/** Content plugins */
 	static content: IContents = content;
