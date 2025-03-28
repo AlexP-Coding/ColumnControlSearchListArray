@@ -13,12 +13,14 @@ interface IDom {
 
 interface ISettings {
 	enabled: boolean;
+	value: string | number;
 }
 
 export default class Button {
 	private _dom: IDom;
 	private _s: ISettings = {
-		enabled: true
+		enabled: true,
+		value: null
 	};
 
 	/**
@@ -79,30 +81,6 @@ export default class Button {
 	}
 
 	/**
-	 * Set the icon to display in the button
-	 *
-	 * @param icon Icon name
-	 * @returns Button instance
-	 */
-	public icon(icon: string) {
-		this._dom.icon.innerHTML = icons[icon];
-
-		return this;
-	}
-
-	/**
-	 * Set the text to appear in the button
-	 *
-	 * @param text Text to appear in the button
-	 * @returns Button instance
-	 */
-	public text(text: string) {
-		this._dom.text.innerHTML = text;
-
-		return this;
-	}
-
-	/**
 	 * Set the event handler for when the button is activated
 	 *
 	 * @param fn Event handler
@@ -121,6 +99,50 @@ export default class Button {
 				fn(e);
 			}
 		});
+
+		return this;
+	}
+
+	/**
+	 * Set the icon to display in the button
+	 *
+	 * @param icon Icon name
+	 * @returns Button instance
+	 */
+	public icon(icon: string) {
+		this._dom.icon.innerHTML = icon ? icons[icon] : '';
+
+		return this;
+	}
+
+	/**
+	 * Set the text to appear in the button
+	 *
+	 * @param text Text to appear in the button
+	 * @returns Button instance
+	 */
+	public text(text: string) {
+		this._dom.text.innerHTML = text;
+
+		return this;
+	}
+
+	/**
+	 * Get the value for this button (if one is set)
+	 */
+	public value(): string | number;
+	/**
+	 * Set the value for the button
+	 *
+	 * @param val Value to set
+	 */
+	public value(val: string | number): Button;
+	public value(val?: string | number): any {
+		if (val === undefined) {
+			return this._s.value;
+		}
+
+		this._s.value = val;
 
 		return this;
 	}
