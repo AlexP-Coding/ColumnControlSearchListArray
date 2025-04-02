@@ -13,9 +13,6 @@ export interface ICollection extends IContentConfig {
 	content: IContentConfig[];
 	icon: string;
 	text: string;
-
-	/** @ignore */
-	_topLevel: Button;
 }
 
 /**
@@ -170,7 +167,7 @@ export default {
 					dropdown._close();
 				}
 				else {
-					attachDropdown(dropdown, dt, config._topLevel || btn);
+					attachDropdown(dropdown, dt, config._top || btn);
 				}
 			});
 
@@ -178,11 +175,9 @@ export default {
 		for (let i = 0; i < config.content.length; i++) {
 			let content = this.resolve(config.content[i]);
 
-			// For nested collections we need to keep a reference to the top level so the sub-levels
-			// can be positioned relative to that top level.
-			if (content.type === 'collection') {
-				content.config._topLevel = config._topLevel || btn;
-			}
+			// For nested items we need to keep a reference to the top level so the sub-levels
+			// can communicate back - e.g. active or positioned relative to that top level.
+			content.config._top = config._top || btn;
 
 			let el = content.plugin.init.call(this, content.config);
 
@@ -190,8 +185,8 @@ export default {
 		}
 
 		// For nested collections, add an extra icon element to show that it will dropdown further
-		if (config._topLevel) {
-			btn.active('chevronRight');
+		if (config._top) {
+			btn.extra('chevronRight');
 		}
 
 		// Reposition if needed

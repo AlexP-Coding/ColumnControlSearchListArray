@@ -1,6 +1,10 @@
 import ColumnControl from '../ColumnControl';
+import Button from '../Button';
 
-export interface IContentConfig {}
+export interface IContentConfig {
+	/** @ignore */
+	_top?: Button;
+}
 
 export interface IContentPlugin<T = {}> {
 	defaults: T;

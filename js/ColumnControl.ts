@@ -24,6 +24,7 @@ export interface IDom {
 
 interface ISettings {
 	columnIdx: number;
+	unique: number;
 }
 
 /**
@@ -40,7 +41,8 @@ export default class ColumnControl {
 	private _c: IConfig = {};
 
 	private _s: ISettings = {
-		columnIdx: null
+		columnIdx: null,
+		unique: null
 	};
 
 	/**
@@ -113,6 +115,15 @@ export default class ColumnControl {
 	}
 
 	/**
+	 * Get the unique id for the instance
+	 *
+	 * @returns Instant unique id
+	 */
+	public unique() {
+		return this._s.unique;
+	}
+
+	/**
 	 * Create a new ColumnControl instance to control a DataTables column.
 	 *
 	 * @param dt DataTables API instance
@@ -122,6 +133,7 @@ export default class ColumnControl {
 	constructor(dt: Api, columnIdx: number, opts: IConfig) {
 		this._dt = dt;
 		this._s.columnIdx = columnIdx;
+		this._s.unique = Math.random();
 
 		let originalIdx = columnIdx;
 

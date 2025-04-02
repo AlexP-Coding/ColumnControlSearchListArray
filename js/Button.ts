@@ -7,11 +7,14 @@ type Icons = keyof typeof icons;
 interface IDom {
 	button: HTMLButtonElement;
 	icon: HTMLSpanElement;
+	extra: HTMLSpanElement;
 	state: HTMLSpanElement;
 	text: HTMLSpanElement;
 }
 
 interface ISettings {
+	active: boolean;
+	activeList: {[key: number]: boolean};
 	enabled: boolean;
 	value: string | number;
 }
@@ -19,6 +22,8 @@ interface ISettings {
 export default class Button {
 	private _dom: IDom;
 	private _s: ISettings = {
+		active: false,
+		activeList: [],
 		enabled: true,
 		value: null
 	};
@@ -29,19 +34,31 @@ export default class Button {
 	 * @param active The active state
 	 * @returns Button instance
 	 */
-	public active(active: boolean | Icons) {
-		if (active === false) {
-			this._dom.state.innerHTML = '';
-			this._dom.button.classList.remove('dtcc-button_active');
-		}
-		else if (active === true) {
-			this._dom.state.innerHTML = icons.tick;
-			this._dom.button.classList.add('dtcc-button_active');
-		}
-		else {
-			this._dom.state.innerHTML = icons.chevronRight;
-			this._dom.button.classList.remove('dtcc-button_active');
-		}
+	public active(active: boolean) {
+		this._s.active = active;
+		this._checkActive();
+
+		return this;
+	}
+
+	/**
+	 * A button can be marked as active by any of its sub-buttons (i.e. if it is a collection)
+	 * and each one needs to be able to enable this button without effecting the active state
+	 * trigged by any other sub-buttons. This method provides a way to do that.
+	 *
+	 * @param unique Unique id for the activate state
+	 * @param active If it is active
+	 * @returns Button instance
+	 */
+	public activeList(unique: number, active: boolean) {
+		this._s.activeList[unique] = active;
+		this._checkActive();
+
+		return this;
+	}
+
+	public extra(icon: Icons | '') {
+		this._dom.extra.innerHTML = icon ? icons[icon] : '';
 
 		return this;
 	}
@@ -154,6 +171,7 @@ export default class Button {
 	constructor() {
 		this._dom = {
 			button: createElement<HTMLButtonElement>('button', 'dtcc-button'),
+			extra: createElement<HTMLSpanElement>('span', 'dtcc-button-extra'),
 			icon: createElement<HTMLSpanElement>('span', 'dtcc-button-icon'),
 			state: createElement<HTMLSpanElement>('span', 'dtcc-button-state'),
 			text: createElement<HTMLSpanElement>('span', 'dtcc-button-text')
@@ -162,8 +180,27 @@ export default class Button {
 		this._dom.button.append(this._dom.icon);
 		this._dom.button.append(this._dom.text);
 		this._dom.button.append(this._dom.state);
+		this._dom.button.append(this._dom.extra);
 
 		// Default state is enabled
 		this.enable(true);
+	}
+
+	/**
+	 * Check if anything is making this button active
+	 *
+	 * @returns Self for chaining
+	 */
+	private _checkActive() {
+		if (this._s.active === true || Object.values(this._s.activeList).includes(true)) {
+			this._dom.state.innerHTML = icons.tick;
+			this._dom.button.classList.add('dtcc-button_active');
+		}
+		else {
+			this._dom.state.innerHTML = '';
+			this._dom.button.classList.remove('dtcc-button_active');
+		}
+
+		return this;
 	}
 }
