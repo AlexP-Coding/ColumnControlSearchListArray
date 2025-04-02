@@ -6,7 +6,7 @@
 <![CDATA[
 $('#example').DataTable({
 	columnControl: {
-		content: ['order', 'reorder', ['reorderLeft', 'reorderRight']]
+		content: ['order', 'reorder']
 	},
 	ordering: {
 		indicators: false,
@@ -20,7 +20,7 @@ $('#example').DataTable({
 <![CDATA[
 new DataTable('#example', {
 	columnControl: {
-		content: ['order', 'reorder', ['reorderLeft', 'reorderRight']]
+		content: ['order', 'reorder']
 	},
 	ordering: {
 		indicators: false,
@@ -30,7 +30,7 @@ new DataTable('#example', {
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Column reordering integration</title>
+<title lib="ColumnControl">Click and drag button</title>
 
 <info><![CDATA[
 
