@@ -17,6 +17,7 @@ export default {
 	init(config) {
 		let dt = this.dt();
 		let searchInput = new SearchInput(dt, this.idx())
+			.addClass('dtcc-searchNumber')
 			.placeholder(config.placeholder)
 			.title(config.title)
 			.titleAttr(config.titleAttr)

@@ -24,6 +24,7 @@ export default {
 		let displayFormat = '';
 		let dateTime;
 		let searchInput = new SearchInput(dt, this.idx())
+			.addClass('dtcc-searchDate')
 			.placeholder(config.placeholder)
 			.title(config.title)
 			.titleAttr(config.titleAttr)

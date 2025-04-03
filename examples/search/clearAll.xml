@@ -12,7 +12,7 @@ new DataTable('#example', {
 		handler: false
 	},
 	layout: {
-		topStart: [{buttons: ['ccSearchClear']}, 'pageLength']
+		topStart: ['pageLength', {buttons: ['ccSearchClear']}]
 	}
 });
 ]]>
@@ -28,7 +28,7 @@ new DataTable('#example', {
 		handler: false
 	},
 	layout: {
-		topStart: [{buttons: ['ccSearchClear']}, 'pageLength']
+		topStart: ['pageLength', {buttons: ['ccSearchClear']}]
 	}
 });
 ]]>

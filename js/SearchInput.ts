@@ -23,6 +23,18 @@ export default class SearchInput {
 	private _lastType: string;
 
 	/**
+	 * Add a class to the container
+	 *
+	 * @param name Class name to add
+	 * @returns Self for chaining
+	 */
+	public addClass(name: string) {
+		this._dom.container.classList.add(name);
+
+		return this;
+	}
+
+	/**
 	 * Get the container element
 	 *
 	 * @returns The container element
@@ -143,8 +155,7 @@ export default class SearchInput {
 		this._dom = {
 			container: createElement<HTMLDivElement>('div', [
 				'dtcc-content',
-				'dtcc-search',
-				'dtcc-searchText'
+				'dtcc-search'
 			]),
 			typeIcon: createElement<HTMLDivElement>('div', 'dtcc-search-type-icon'),
 			searchIcon: createElement<HTMLDivElement>('div', 'dtcc-search-icon', icons['search']),

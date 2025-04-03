@@ -91,10 +91,6 @@ table.dataTable {
 			margin-left: 0;
 			margin-right: auto;
 		}
-
-		div.dtcc-search input {
-			text-align: right;
-		}
 	}
 }
 
@@ -197,7 +193,6 @@ table.dataTable span.dtcc {
 				align-items: center;
 				position: absolute;
 				top: 0;
-				left: 0;
 				height: 100%;
 				width: 30px;
 
@@ -216,7 +211,6 @@ table.dataTable span.dtcc {
 			select {
 				position: absolute;
 				top: 0;
-				left: 0;
 				opacity: 0;
 				width: 30px;
 				cursor: pointer;
@@ -233,8 +227,37 @@ table.dataTable span.dtcc {
 				border-radius: var(--dtcc-search_border-radius);
 				color: inherit;
 				padding: var(--dtcc-searchText_padding);
-				padding-left: 26px;
 			}
+		}
+	}
+
+	div.dtcc-searchText > div {
+		div.dtcc-search-type-icon {
+			right: 0;
+		}
+
+		select {
+			right: 0;
+		}
+
+		input {
+			padding-right: 26px;
+		}
+	}
+
+	div.dtcc-searchNumber > div,
+	div.dtcc-searchDate > div {
+		div.dtcc-search-type-icon {
+			left: 0;
+		}
+
+		select {
+			left: 0;
+		}
+
+		input {
+			text-align: right;
+			padding-left: 26px;
 		}
 	}
 }
