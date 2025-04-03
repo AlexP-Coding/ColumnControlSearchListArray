@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="1" table-class="display nowrap">
+
+<css lib="datatables columncontrol buttons datetime" />
+<js lib="jquery datatables columncontrol buttons datetime">
+<![CDATA[
+
+new DataTable('#example', {
+	columnControl: ['order', ['orderAsc', 'orderDesc', 'spacer', 'search', 'searchClear']],
+	ordering: {
+		indicators: false,
+		handler: false
+	},
+	layout: {
+		topStart: [{buttons: ['ccSearchClear']}, 'pageLength']
+	}
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+
+new DataTable('#example', {
+	columnControl: ['order', ['orderAsc', 'orderDesc', 'spacer', 'search', 'searchClear']],
+	ordering: {
+		indicators: false,
+		handler: false
+	},
+	layout: {
+		topStart: [{buttons: ['ccSearchClear']}, 'pageLength']
+	}
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Clear all</title>
+
+<info><![CDATA[
+
+
+]]></info>
+
+</dt-example>

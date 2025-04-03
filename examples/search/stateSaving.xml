@@ -18,7 +18,7 @@ $('#example').DataTable({
 		}]
 	},
 	stateSave: true,
-	orderCellsTop: true
+	titleRow: 0
 });
 ]]>
 </js>
@@ -39,7 +39,7 @@ new DataTable('#example', {
 		}]
 	},
 	stateSave: true,
-	orderCellsTop: true // TODO titleRow?
+	titleRow: 0
 });
 ]]>
 </js-vanilla>

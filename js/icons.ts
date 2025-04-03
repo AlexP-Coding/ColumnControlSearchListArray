@@ -89,11 +89,16 @@ const icons = {
 		'<path d="m3 8 4-4 4 4"/><path d="m11 16-4 4-4-4"/><path d="M7 4v16"/><path d="M15 8h6"/><path d="M15 16h6"/><path d="M13 12h8"/>'
 	),
 
+	// search
 	search: wrap('<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>'),
+
+	// search-x
+	searchClear: wrap('<path d="m13.5 8.5-5 5"/><path d="m8.5 8.5 5 5"/><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>'),
 
 	// Custom
 	starts: wrap('<path d="M3 3h4v18H3z"/><path d="M11 8h10v9H11"/>'),
 
+	// tick
 	tick: wrap('<path d="M20 6 9 17l-5-5"/>')
 };
 

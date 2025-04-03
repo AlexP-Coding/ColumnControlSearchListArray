@@ -7,10 +7,7 @@
 
 new DataTable('#example', {
 	ajax: '../../../../examples/ajax/data/objects.txt',
-	columnControl: {
-		target: 0,
-		content: [['orderAsc', 'orderDesc', 'search']]
-	},
+	columnControl: [['orderAsc', 'orderDesc', 'spacer', 'search']],
     columns: [
         { data: 'name' },
         { data: 'position' },
@@ -32,10 +29,7 @@ new DataTable('#example', {
 
 new DataTable('#example', {
 	ajax: '../../../../examples/ajax/data/objects.txt',
-	columnControl: {
-		target: 0,
-		content: [['orderAsc', 'orderDesc', 'search']]
-	},
+	columnControl: [['orderAsc', 'orderDesc', 'spacer', 'search']],
     columns: [
         { data: 'name' },
         { data: 'position' },

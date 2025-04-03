@@ -1,6 +1,6 @@
 import DataTable, {Api} from '../../../types/types';
 import ColumnControl, {IConfig} from './ColumnControl';
-import { createElement } from './util';
+import {createElement} from './util';
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables API integration
@@ -19,7 +19,7 @@ $(document).on('i18n.dt', function (e, settings) {
 	}
 
 	let api = new DataTable.Api(settings);
-	let thead =  api.table().header();
+	let thead = api.table().header();
 	let tableInit: IConfig = settings.oInit.columnControl;
 	let defaultInit = ColumnControl.defaults;
 	let baseTargets = [];
@@ -36,7 +36,7 @@ $(document).on('i18n.dt', function (e, settings) {
 
 	api.columns().every(function (i) {
 		let columnInit: IConfig = (this.init() as any).columnControl;
-		
+
 		identifyTargets(baseTargets.slice(), columnInit);
 	});
 
@@ -51,7 +51,7 @@ $(document).on('preInit.dt', function (e, settings) {
 	if (e.namespace !== 'dt') {
 		return;
 	}
-	
+
 	let api = new DataTable.Api(settings);
 	let tableInit: IConfig = settings.oInit.columnControl;
 	let defaultInit = ColumnControl.defaults;
@@ -89,6 +89,36 @@ $(document).on('preInit.dt', function (e, settings) {
 	});
 });
 
+DataTable.Api.registerPlural('columns().ccSearchClear()', 'column().ccSearchClear()', function () {
+	let ctx = this;
+
+	return this.iterator('column', function (settings, idx) {
+		ctx.trigger('cc-search-clear', [idx]);
+	});
+});
+
+(DataTable.ext.buttons as any).ccSearchClear = {
+	text: 'Clear search',
+	init: function (dt, node, config) {
+		dt.on('draw', () => {
+			let enabled = false;
+
+			dt.columns().every(function() {
+				if (this.search.fixed('dtcc')) {
+					enabled = true;
+				}
+			});
+
+			this.enable(enabled);
+		});
+
+		this.enable(false);
+	},
+	action: function (e, dt, node, config) {
+		dt.search('');
+		dt.columns().ccSearchClear();
+	}
+};
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Initialisation support - this is more involved than normal as targets might
@@ -131,16 +161,14 @@ function assetTarget(ackTargets, target: number | string, dt: Api) {
 
 	// The header / footer have not yet had their structure read, so they aren't available via
 	// the API. As such we need to do our own DOM tweaking
-	let node = isHeader
-		? dt.table().header()
-		: dt.table().footer();
-	
+	let node = isHeader ? dt.table().header() : dt.table().footer();
+
 	// If the node doesn't exist yet, we need to create it
-	if (! node.querySelectorAll('tr')[row]) {
+	if (!node.querySelectorAll('tr')[row]) {
 		let columns = dt.columns().count();
 		let tr = createElement('tr');
 
-		for (let i=0 ; i<columns ; i++) {
+		for (let i = 0; i < columns; i++) {
 			tr.appendChild(createElement('td'));
 		}
 

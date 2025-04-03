@@ -14,6 +14,7 @@ import orderClear, {IOrderClear} from './orderClear';
 import orderDesc, {IOrderDesc} from './orderDesc';
 import orderRemove, {IOrderRemove} from './orderRemove';
 import search, {ISearch} from './search';
+import searchClear, {ISearchClear} from './searchClear';
 import searchDropdown, {ISearchDropdown} from './searchDropdown';
 import searchDateTime, {ISearchDateTime} from './searchDate';
 import searchNumber, {ISearchNumber} from './searchNumber';
@@ -38,6 +39,7 @@ export type IContentConfig =
 	| IOrderDesc
 	| IOrderRemove
 	| ISearch
+	| ISearchClear
 	| ISearchDropdown
 	| ISearchDateTime
 	| ISearchNumber
@@ -60,6 +62,7 @@ Object.assign(ccContent, {
 	orderDesc,
 	orderRemove,
 	search,
+	searchClear,
 	searchDropdown,
 	searchDateTime,
 	searchNumber,

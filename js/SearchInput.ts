@@ -86,6 +86,25 @@ export default class SearchInput {
 	}
 
 	/**
+	 * Set a value for the search input
+	 *
+	 * @param logic Logic type
+	 * @param val Value
+	 * @returns Self for chaining
+	 */
+	public set(logic: string, val: string) {
+		let dom = this._dom;
+
+		dom.input.value = val;
+		dom.select.value = logic;
+		dom.typeIcon.innerHTML = icons[dom.select.value];
+
+		this._runSearch();
+
+		return this;
+	}
+
+	/**
 	 * Set the text that will be shown as the title for the control
 	 *
 	 * @param text Set the title text
@@ -174,6 +193,13 @@ export default class SearchInput {
 		// Same as for ColumnControl - reassign a column index if needed.
 		dt.on('columns-reordered', (e, details) => {
 			this._idx = (dt as any).colReorder.transpose(originalIdx, 'fromOriginal');
+		});
+
+		// Column control search clearing (column().ccSearchClear() method)
+		dt.on('cc-search-clear', (e, colIdx) => {
+			if (colIdx === this._idx) {
+				this.set(this._dom.select.children[0].getAttribute('value'), '');
+			}
 		});
 
 		// Runs after initial state load, so we need to check if there has already been a state
