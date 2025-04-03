@@ -1,6 +1,6 @@
 import {createElement} from './util';
 import icons from './icons';
-import {close as closeCollections} from './content/collection';
+import {close as closeDropdowns} from './content/dropdown';
 
 type Icons = keyof typeof icons;
 
@@ -42,7 +42,7 @@ export default class Button {
 	}
 
 	/**
-	 * A button can be marked as active by any of its sub-buttons (i.e. if it is a collection)
+	 * A button can be marked as active by any of its sub-buttons (i.e. if it is a dropdown)
 	 * and each one needs to be able to enable this button without effecting the active state
 	 * trigged by any other sub-buttons. This method provides a way to do that.
 	 *
@@ -106,7 +106,7 @@ export default class Button {
 	public handler(fn: (e: Event) => void) {
 		this._dom.button.addEventListener('click', (e) => {
 			// Close any dropdowns which are already open
-			closeCollections(e);
+			closeDropdowns(e);
 
 			// Stop bubbling to the DataTables default header, which  might still be enabled
 			e.stopPropagation();

@@ -1,13 +1,13 @@
 import {IContentPlugin, IContentConfig} from './content';
 
-export interface ISearchCollection extends IContentConfig {
+export interface ISearchDropdown extends IContentConfig {
 	className: string;
 	text: string;
 }
 
 export default {
 	defaults: {
-		className: 'searchCollection',
+		className: 'searchDropdown',
 		text: 'Search'
 	},
 
@@ -15,9 +15,9 @@ export default {
 		let dt = this.dt();
 
 		return {
-			extend: 'collection',
+			extend: 'dropdown',
 			icon: 'search',
-			text: dt.i18n('columnControl.searchCollection', config.text),
+			text: dt.i18n('columnControl.searchDropdown', config.text),
 			content: [
 				Object.assign(
 					{
@@ -28,4 +28,4 @@ export default {
 			]
 		};
 	}
-} as IContentPlugin<ISearchCollection>;
+} as IContentPlugin<ISearchDropdown>;

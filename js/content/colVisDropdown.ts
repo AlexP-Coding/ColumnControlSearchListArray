@@ -1,6 +1,6 @@
 import {IContentPlugin, IContentConfig} from './content';
 
-export interface IColVisCollection extends IContentConfig {
+export interface IColVisDropdown extends IContentConfig {
 	className: string;
 	columns: string | number | Array<string | number>;
 	text: string;
@@ -8,7 +8,7 @@ export interface IColVisCollection extends IContentConfig {
 
 export default {
 	defaults: {
-		className: 'colVisCollection',
+		className: 'colVisDropdown',
 		columns: '',
 		text: 'Column visibility'
 	},
@@ -17,9 +17,9 @@ export default {
 		let dt = this.dt();
 
 		return {
-			extend: 'collection',
+			extend: 'dropdown',
 			icon: 'columns',
-			text: dt.i18n('columnControl.colVisCollection', config.text),
+			text: dt.i18n('columnControl.colVisDropdown', config.text),
 			content: [
 				Object.assign(
 					{
@@ -30,4 +30,4 @@ export default {
 			]
 		};
 	}
-} as IContentPlugin<IColVisCollection>;
+} as IContentPlugin<IColVisDropdown>;

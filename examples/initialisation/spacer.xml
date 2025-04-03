@@ -14,10 +14,7 @@ $('#example').DataTable({
 			'orderAsc',
 			'orderDesc',
 			'spacer',
-			{
-				extend: 'collection',
-				content: ['orderAsc', 'orderDesc', 'spacer', 'search']
-			}
+			['orderAsc', 'orderDesc', 'spacer', 'search']
 		]
 	}
 });
@@ -36,10 +33,7 @@ new DataTable('#example', {
 			'orderAsc',
 			'orderDesc',
 			'spacer',
-			{
-				extend: 'collection',
-				content: ['orderAsc', 'orderDesc', 'spacer', 'search']
-			}
+			['orderAsc', 'orderDesc', 'spacer', 'search']
 		]
 	}
 });

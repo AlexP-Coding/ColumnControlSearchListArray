@@ -126,6 +126,10 @@ table.dataTable span.dtcc {
 		> span.dtcc-button-state {
 			display: none;
 		}
+
+		> span.dtcc-button-extra {
+			display: none;
+		}
 	}
 
 	button.dtcc-button_active {
@@ -279,6 +283,10 @@ div.dtcc-dropdown {
 			&:empty {
 				display: none;
 			}
+		}
+
+		> span.dtcc-button-extra:empty {
+			display: none;
 		}
 
 		span.dtcc-button-icon {

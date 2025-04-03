@@ -9,18 +9,7 @@ $('#example').DataTable({
 		indicators: false,
 		handler: false
 	},
-	columnControl: {
-		content: [
-			{
-				extend: 'collection',
-				content: [
-					'title',
-					'orderAsc',
-					'orderDesc'
-				]
-			}
-		]
-	}
+	columnControl: [['title', 'orderAsc', 'orderDesc']]
 });
 ]]>
 </js>
@@ -32,23 +21,12 @@ new DataTable('#example', {
 		indicators: false,
 		handler: false
 	},
-	columnControl: {
-		content: [
-			{
-				extend: 'collection',
-				content: [
-					'title',
-					'orderAsc',
-					'orderDesc'
-				]
-			}
-		]
-	}
+	columnControl: [['title', 'orderAsc', 'orderDesc']]
 });
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Collection titles</title>
+<title lib="ColumnControl">Dropdown titles</title>
 
 <info><![CDATA[
 

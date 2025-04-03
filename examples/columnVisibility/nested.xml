@@ -11,7 +11,7 @@ $('#example').DataTable({
 				'orderAsc',
 				'orderDesc',
 				{
-					extend: 'collection',
+					extend: 'dropdown',
 					icon: 'columns',
 					text: 'Column visibility',
 					content: ['colVis']
@@ -36,7 +36,7 @@ new DataTable('#example', {
 				'orderAsc',
 				'orderDesc',
 				{
-					extend: 'collection',
+					extend: 'dropdown',
 					icon: 'columns',
 					text: 'Column visibility',
 					content: ['colVis']

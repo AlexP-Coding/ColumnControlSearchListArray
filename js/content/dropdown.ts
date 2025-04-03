@@ -8,7 +8,7 @@ interface HTMLDropdown extends HTMLDivElement {
 	_close: () => void;
 }
 
-export interface ICollection extends IContentConfig {
+export interface IDropdown extends IContentConfig {
 	className: string;
 	content: IContentConfig[];
 	icon: string;
@@ -135,7 +135,7 @@ function relativePosition(parent: HTMLElement, origin: HTMLElement) {
 
 export default {
 	defaults: {
-		className: 'collection',
+		className: 'dropdown',
 		content: [],
 		icon: 'menu',
 		text: 'More...'
@@ -157,7 +157,7 @@ export default {
 		let liner = dropdown.childNodes[0];
 
 		let btn = new Button()
-			.text(dt.i18n('columnControl.collection', config.text))
+			.text(dt.i18n('columnControl.dropdown', config.text))
 			.icon(config.icon)
 			.className(config.className)
 			.handler(() => {
@@ -184,7 +184,7 @@ export default {
 			liner.appendChild(el);
 		}
 
-		// For nested collections, add an extra icon element to show that it will dropdown further
+		// For nested dropdowns, add an extra icon element to show that it will dropdown further
 		if (config._top) {
 			btn.extra('chevronRight');
 		}
@@ -196,4 +196,4 @@ export default {
 
 		return btn.element();
 	}
-} as IContentPlugin<ICollection>;
+} as IContentPlugin<IDropdown>;

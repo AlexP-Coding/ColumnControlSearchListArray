@@ -6,7 +6,7 @@
 <![CDATA[
 $('#example').DataTable({
 	columnControl: {
-		content: ['order', 'reorder', 'colVisCollection']
+		content: ['order', 'reorder', 'colVisDropdown']
 	},
 	ordering: {
 		indicators: false,
@@ -20,7 +20,7 @@ $('#example').DataTable({
 <![CDATA[
 new DataTable('#example', {
 	columnControl: {
-		content: ['order', 'reorder', 'colVisCollection']
+		content: ['order', 'reorder', 'colVisDropdown']
 	},
 	ordering: {
 		indicators: false,

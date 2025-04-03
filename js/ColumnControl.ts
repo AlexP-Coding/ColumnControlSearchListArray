@@ -82,8 +82,8 @@ export default class ColumnControl {
 			config = Object.assign({}, plugin?.defaults);
 		}
 		else if (Array.isArray(content)) {
-			// An array is a shorthand for a collection / dropdown with its default options
-			type = 'collection';
+			// An array is a shorthand for a dropdown with its default options
+			type = 'dropdown';
 			plugin = ColumnControl.content[type];
 			config = Object.assign({}, plugin?.defaults, {
 				content: content
@@ -100,7 +100,7 @@ export default class ColumnControl {
 			throw new Error('Unknown ColumnControl content type: ' + type);
 		}
 
-		// If the plugin is a wrapper around another type - e.g. the colVisCollection
+		// If the plugin is a wrapper around another type - e.g. the colVisDropdown
 		if (plugin.extend) {
 			let self = plugin.extend.call(this, config);
 

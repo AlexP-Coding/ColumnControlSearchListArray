@@ -1,8 +1,8 @@
 import DataTable from '../../../../types/types';
 
-import collection, {ICollection} from './collection';
 import colVis, {IColVis} from './colVis';
-import colVisCollection, {IColVisCollection} from './colVisCollection';
+import colVisDropDown, {IColVisDropDown} from './colVisDropDown';
+import dropdown, {IDropDown} from './dropdown';
 import reorder, {IReorder} from './reorder';
 import reorderLeft, {IReorderLeft} from './reorderLeft';
 import reorderRight, {IReorderRight} from './reorderRight';
@@ -14,7 +14,7 @@ import orderClear, {IOrderClear} from './orderClear';
 import orderDesc, {IOrderDesc} from './orderDesc';
 import orderRemove, {IOrderRemove} from './orderRemove';
 import search, {ISearch} from './search';
-import searchCollection, {ISearchCollection} from './searchCollection';
+import searchDropDown, {ISearchDropDown} from './searchDropDown';
 import searchDateTime, {ISearchDateTime} from './searchDate';
 import searchNumber, {ISearchNumber} from './searchNumber';
 import searchText, {ISearchText} from './searchText';
@@ -24,9 +24,9 @@ import title, {ITitle} from './title';
 const ccContent = DataTable.ext.ccContent as any;
 
 export type IContentConfig =
-	| ICollection
+	| IDropDown
 	| IColVis
-	| IColVisCollection
+	| IColVisDropDown
 	| IReorder
 	| IReorderLeft
 	| IReorderRight
@@ -38,7 +38,7 @@ export type IContentConfig =
 	| IOrderDesc
 	| IOrderRemove
 	| ISearch
-	| ISearchCollection
+	| ISearchDropDown
 	| ISearchDateTime
 	| ISearchNumber
 	| ISearchText
@@ -46,9 +46,9 @@ export type IContentConfig =
 	| ITitle;
 
 Object.assign(ccContent, {
-	collection,
 	colVis,
-	colVisCollection,
+	colVisDropDown,
+	dropdown,
 	reorder,
 	reorderLeft,
 	reorderRight,
@@ -60,7 +60,7 @@ Object.assign(ccContent, {
 	orderDesc,
 	orderRemove,
 	search,
-	searchCollection,
+	searchDropDown,
 	searchDateTime,
 	searchNumber,
 	searchText,

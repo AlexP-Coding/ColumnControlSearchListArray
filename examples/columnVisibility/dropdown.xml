@@ -5,7 +5,7 @@
 <js lib="jquery datatables columncontrol">
 <![CDATA[
 $('#example').DataTable({
-	columnControl: ['colVisCollection']
+	columnControl: ['colVisDropdown']
 });
 ]]>
 </js>
@@ -13,7 +13,7 @@ $('#example').DataTable({
 <js-vanilla>
 <![CDATA[
 new DataTable('#example', {
-	columnControl: ['colVisCollection']
+	columnControl: ['colVisDropdown']
 });
 ]]>
 </js-vanilla>
