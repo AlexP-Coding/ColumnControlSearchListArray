@@ -58,12 +58,12 @@ const icons = {
 
 	// Custom
 	orderAddAsc: wrap(
-		'<path d="M7 20v-8"/><path d="M11 16H3"/><path d="M14 4h7"/><path d="M11 8h10"/><path d="M11 12h10"/>'
+		'<path d="M17 21v-8"/><path d="M3 4h6"/><path d="M3 8h9"/><path d="M3 12h10"/><path d="M13 17h8"/>'
 	),
 
 	// Custom
 	orderAddDesc: wrap(
-		'<path d="M7 20v-8"/><path d="M11 16H3"/><path d="M7 4h14"/><path d="M11 8h10"/><path d="M15 12h6"/>'
+		'<path d="M17 21v-8"/><path d="M3 4h12"/><path d="M3 8h9"/><path d="M3 12h6"/><path d="M13 17h8"/>'
 	),
 
 	orderAsc: wrap(
@@ -72,7 +72,7 @@ const icons = {
 
 	// Custom
 	orderClear: wrap(
-		'<path d="m11 20-8-8"/><path d="M11 4h10"/><path d="M11 8h10"/><path d="M15 12h6"/><path d="m3 20 8-8"/>'
+		'<path d="m21 21-8-8"/><path d="M3 4h12"/><path d="M3 8h9"/><path d="M3 12h6"/><path d="m13 21 8-8"/>'
 	),
 
 	orderDesc: wrap(
@@ -81,7 +81,7 @@ const icons = {
 
 	// Custom
 	orderRemove: wrap(
-		'<path d="M11 16H3"/><path d="M11 4h10"/><path d="M11 8h10"/><path d="M15 12h6"/>'
+		'<path d="M3 4h12"/><path d="M3 8h9"/><path d="M3 12h6"/><path d="M13 17h8"/>'
 	),
 
 	// Custom
