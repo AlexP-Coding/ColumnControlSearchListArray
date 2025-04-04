@@ -2,6 +2,7 @@ import SearchInput from '../SearchInput';
 import {IContentPlugin, IContentConfig} from './content';
 
 export interface ISearchNumber extends IContentConfig {
+	clear: boolean;
 	placeholder: string;
 	title: string;
 	titleAttr: string;
@@ -9,6 +10,7 @@ export interface ISearchNumber extends IContentConfig {
 
 export default {
 	defaults: {
+		clear: true,
 		placeholder: '',
 		title: '',
 		titleAttr: ''
@@ -18,6 +20,7 @@ export default {
 		let dt = this.dt();
 		let searchInput = new SearchInput(dt, this.idx())
 			.addClass('dtcc-searchNumber')
+			.clearable(config.clear)
 			.placeholder(config.placeholder)
 			.title(config.title)
 			.titleAttr(config.titleAttr)

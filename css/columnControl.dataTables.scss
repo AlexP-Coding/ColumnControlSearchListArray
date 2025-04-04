@@ -178,9 +178,17 @@ table.dataTable span.dtcc {
 			display: none;
 		}
 
-		&.dtcc-search_active > div div.dtcc-search-type-icon {
-			svg {
-				opacity: 1;
+		&.dtcc-search_active {
+			> div div.dtcc-search-type-icon {
+				svg {
+					opacity: 1;
+				}
+			}
+		}
+
+		&:not(.dtcc-search_active) {
+			span.dtcc-search-clear {
+				display: none;
 			}
 		}
 
@@ -217,6 +225,17 @@ table.dataTable span.dtcc {
 				height: 100%;
 			}
 
+			span.dtcc-search-clear {
+				cursor: pointer;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: absolute;
+				top: 0;
+				height: 100%;
+				width: 14px;
+			}
+
 			div.dtcc-search-icon {
 				display: none;
 			}
@@ -239,9 +258,13 @@ table.dataTable span.dtcc {
 		select {
 			right: 0;
 		}
+		
+		span.dtcc-search-clear {
+			right: 28px;
+		}
 
 		input {
-			padding-right: 26px;
+			padding-right: 46px;
 		}
 	}
 
@@ -254,10 +277,14 @@ table.dataTable span.dtcc {
 		select {
 			left: 0;
 		}
+		
+		span.dtcc-search-clear {
+			left: 28px;
+		}
 
 		input {
 			text-align: right;
-			padding-left: 26px;
+			padding-left: 46px;
 		}
 	}
 }
@@ -347,10 +374,6 @@ div.dtcc-dropdown {
 	div.dtcc-search {
 		padding: var(--dtcc-dropdown-search_padding);
 
-		div.dtcc-search-title {
-			
-		}
-
 		> div {
 			align-items: center;
 			background: var(--dtcc-dropdown-button_background);
@@ -358,8 +381,9 @@ div.dtcc-dropdown {
 			color: var(--dtcc-dropdown-button_color);
 			display: flex;
 			flex-wrap: wrap;
+			position: relative;
 
-			// The two icons
+			// The icons
 			div {
 				flex: 0 0 var(--dtcc-button-icon_size);
 				height: var(--dtcc-button-icon_size);
@@ -386,6 +410,24 @@ div.dtcc-dropdown {
 			// Second row
 			input, div.dtcc-search-icon {
 				margin-top: 0.5em;
+			}
+
+			input {
+				padding-right: 24px;
+			}
+
+			span.dtcc-search-clear {
+				bottom: 2px;
+				cursor: pointer;
+				position: absolute;
+				right: 8px;
+				width: 14px;
+			}
+		}
+
+		&:not(.dtcc-search_active) {
+			span.dtcc-search-clear {
+				display: none;
 			}
 		}
 	}

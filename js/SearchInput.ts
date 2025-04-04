@@ -3,6 +3,7 @@ import icons from './icons';
 import {Api} from '../../../types/types';
 
 interface IDom {
+	clear: HTMLSpanElement;
 	container: HTMLDivElement;
 	input: HTMLInputElement;
 	inputs: HTMLDivElement;
@@ -30,6 +31,33 @@ export default class SearchInput {
 	 */
 	public addClass(name: string) {
 		this._dom.container.classList.add(name);
+
+		return this;
+	}
+
+	/**
+	 * Clear any applied search
+	 *
+	 * @returns Self for chaining
+	 */
+	public clear() {
+		this.set(this._dom.select.children[0].getAttribute('value'), '');
+
+		return this;
+	}
+
+	/**
+	 * Set the clear icon feature can be used or not
+	 *
+	 * @param set Flag
+	 * @returns Self for chaining
+	 */
+	public clearable(set: boolean) {
+		// Note there is no add here as it is added by default and never used after setup, so
+		// no need.
+		if (! set) {
+			this._dom.clear.remove();
+		}
 
 		return this;
 	}
@@ -153,6 +181,7 @@ export default class SearchInput {
 		this._dt = dt;
 		this._idx = idx;
 		this._dom = {
+			clear: createElement<HTMLSpanElement>('span', 'dtcc-search-clear', icons['x']),
 			container: createElement<HTMLDivElement>('div', [
 				'dtcc-content',
 				'dtcc-search'
@@ -169,7 +198,7 @@ export default class SearchInput {
 		let originalIdx = idx;
 
 		dom.container.append(dom.title, dom.inputs);
-		dom.inputs.append(dom.typeIcon, dom.select, dom.searchIcon, dom.input);
+		dom.inputs.append(dom.typeIcon, dom.select, dom.searchIcon, dom.clear, dom.input);
 
 		// Listeners
 		dom.input.addEventListener('change', () => {
@@ -183,6 +212,10 @@ export default class SearchInput {
 		dom.select.addEventListener('input', () => {
 			dom.typeIcon.innerHTML = icons[dom.select.value];
 			this._runSearch();
+		});
+
+		dom.clear.addEventListener('click', () => {
+			this.clear();
 		});
 
 		// State handling
@@ -209,7 +242,7 @@ export default class SearchInput {
 		// Column control search clearing (column().ccSearchClear() method)
 		dt.on('cc-search-clear', (e, colIdx) => {
 			if (colIdx === this._idx) {
-				this.set(this._dom.select.children[0].getAttribute('value'), '');
+				this.clear();
 			}
 		});
 

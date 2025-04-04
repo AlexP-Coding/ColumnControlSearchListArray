@@ -99,7 +99,10 @@ const icons = {
 	starts: wrap('<path d="M3 3h4v18H3z"/><path d="M11 8h10v9H11"/>'),
 
 	// tick
-	tick: wrap('<path d="M20 6 9 17l-5-5"/>')
+	tick: wrap('<path d="M20 6 9 17l-5-5"/>'),
+
+	// x
+	x: wrap('<path d="M18 6 6 18"/><path d="m6 6 12 12"/>')
 };
 
 export default icons;

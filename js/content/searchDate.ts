@@ -5,6 +5,7 @@ import {IContentPlugin, IContentConfig} from './content';
 declare var DataTable: any;
 
 export interface ISearchDateTime extends IContentConfig {
+	clear: boolean;
 	placeholder: string;
 	title: string;
 	titleAttr: string;
@@ -12,6 +13,7 @@ export interface ISearchDateTime extends IContentConfig {
 
 export default {
 	defaults: {
+		clear: true,
 		placeholder: '',
 		title: '',
 		titleAttr: ''
@@ -25,6 +27,7 @@ export default {
 		let dateTime;
 		let searchInput = new SearchInput(dt, this.idx())
 			.addClass('dtcc-searchDate')
+			.clearable(config.clear)
 			.placeholder(config.placeholder)
 			.title(config.title)
 			.titleAttr(config.titleAttr)
