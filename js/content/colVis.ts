@@ -4,6 +4,8 @@ import {IContentPlugin, IContentConfig} from './content';
 export interface IColVis extends IContentConfig {
 	className: string;
 	columns: string | number | Array<string | number>;
+	search: boolean;
+	select: boolean;
 	title: string;
 }
 
@@ -11,12 +13,17 @@ export default {
 	defaults: {
 		className: 'colVis',
 		columns: '',
+		search: false,
+		select: false,
 		title: 'Column visibility'
 	},
 
 	init(config) {
 		let dt = this.dt();
-		let checkList = new CheckList()
+		let checkList = new CheckList(dt, {
+			search: config.search,
+			select: config.select
+		})
 			.title(dt.i18n('columnControl.colVis', config.title))
 			.handler((e, btn) => {
 				let idx = btn.value();

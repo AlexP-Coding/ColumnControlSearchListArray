@@ -1,10 +1,22 @@
 import {createElement} from './util';
 import Button from './Button';
+import {Api} from '../../../types/types';
+
+export interface IOptions {
+	search: boolean;
+	select: boolean;
+}
 
 interface IDom {
 	buttons: HTMLDivElement;
 	container: HTMLDivElement;
+	controls: HTMLDivElement;
 	title: HTMLDivElement;
+	search: HTMLInputElement;
+	selectAll: HTMLButtonElement;
+	selectAllCount: HTMLSpanElement;
+	selectNone: HTMLButtonElement;
+	selectNoneCount: HTMLSpanElement;
 }
 
 interface ISettings {
@@ -35,16 +47,17 @@ export default class CheckList {
 	 * @returns Self for chaining
 	 */
 	public add(options: IOption | IOption[]) {
-		if (! Array.isArray(options)) {
+		if (!Array.isArray(options)) {
 			options = [options];
 		}
 
-		for (let i=0 ; i<options.length ; i++) {
+		for (let i = 0; i < options.length; i++) {
 			let option = options[i];
 			let btn = new Button()
 				.active(option.active || false)
 				.handler((e) => {
 					this._s.handler(e, btn);
+					this._updateCount();	
 				})
 				.icon(option.icon || '')
 				.text(option.label)
@@ -53,6 +66,10 @@ export default class CheckList {
 			this._dom.buttons.appendChild(btn.element());
 			this._s.buttons.push(btn);
 		}
+
+		let count = this._s.buttons.length;
+
+		this._dom.selectAllCount.innerHTML = count ? '(' + count + ')' : '';
 
 		return this;
 	}
@@ -66,7 +83,7 @@ export default class CheckList {
 	public button(val: string | number) {
 		let buttons = this._s.buttons;
 
-		for (let i=0 ; i<buttons.length ; i++) {
+		for (let i = 0; i < buttons.length; i++) {
 			if (buttons[i].value() === val) {
 				return buttons[i];
 			}
@@ -121,17 +138,39 @@ export default class CheckList {
 		// Column control search clearing (column().ccSearchClear() method)
 		dt.on('cc-search-clear', (e, colIdx) => {
 			if (colIdx === idx) {
-				// Deselect all
-				for (let i=0 ; i<this._s.buttons.length ; i++) {
-					this._s.buttons[i].active(false);
-				}
-
-				// Trigger the handler
+				this.selectNone();
 				this._s.handler(e, null);
+				this._updateCount();
 
 				// TODO no draw!
 			}
 		});
+
+		return this;
+	}
+
+	/**
+	 * Select all buttons
+	 *
+	 * @returns Self for chaining
+	 */
+	public selectAll() {
+		for (let i = 0; i < this._s.buttons.length; i++) {
+			this._s.buttons[i].active(true);
+		}
+
+		return this;
+	}
+
+	/**
+	 * Deselect all buttons
+	 *
+	 * @returns Self for chaining
+	 */
+	public selectNone() {
+		for (let i = 0; i < this._s.buttons.length; i++) {
+			this._s.buttons[i].active(false);
+		}
 
 		return this;
 	}
@@ -157,7 +196,7 @@ export default class CheckList {
 		let result = [];
 		let buttons = this._s.buttons;
 
-		for (let i=0; i<buttons.length ; i++) {
+		for (let i = 0; i < buttons.length; i++) {
 			if (buttons[i].active()) {
 				result.push(buttons[i].value());
 			}
@@ -169,14 +208,60 @@ export default class CheckList {
 	/**
 	 * Container for a list of buttons
 	 */
-	constructor() {
+	constructor(dt: Api, opts: IOptions) {
 		this._dom = {
+			buttons: createElement<HTMLDivElement>('div', 'dtcc-list-buttons'),
 			container: createElement<HTMLDivElement>('div', 'dtcc-list'),
+			controls: createElement<HTMLDivElement>('div', 'dtcc-list-controls'),
 			title: createElement<HTMLDivElement>('div', 'dtcc-list-title'),
-			buttons: createElement<HTMLDivElement>('div', 'dtcc-list-buttons')
+			selectAll: createElement<HTMLButtonElement>(
+				'button',
+				'dtcc-list-selectAll',
+				dt.i18n('columnControl.selectAll', 'Select all')
+			),
+			selectAllCount: createElement<HTMLSpanElement>('span'),
+			selectNone: createElement<HTMLButtonElement>(
+				'button',
+				'dtcc-list-selectNone',
+				dt.i18n('columnControl.selectNone', 'Deselect')
+			),
+			selectNoneCount: createElement<HTMLSpanElement>('span'),
+			search: createElement<HTMLInputElement>('input', 'dtcc-list-search')
 		};
 
-		this._dom.container.append(this._dom.title);
-		this._dom.container.append(this._dom.buttons);
+		let dom = this._dom;
+
+		dom.container.append(dom.title);
+		dom.container.append(dom.controls);
+		dom.container.append(dom.buttons);
+
+		if (opts.select) {
+			dom.controls.append(dom.selectAll);
+			dom.controls.append(dom.selectNone);
+			dom.selectAll.append(dom.selectAllCount);
+			dom.selectNone.append(dom.selectNoneCount);
+		}
+
+		if (opts.search) {
+			dom.controls.append(dom.search);
+		}
+
+		dom.selectAll.addEventListener('click', (e) => {
+			this.selectAll();
+			this._s.handler(e, null);
+			this._updateCount();
+		});
+
+		dom.selectNone.addEventListener('click', (e) => {
+			this.selectNone();
+			this._s.handler(e, null);
+			this._updateCount();
+		});
+	}
+
+	private _updateCount() {
+		let count = this.values().length;
+
+		this._dom.selectNoneCount.innerHTML = count ? '(' + count + ')' : '';
 	}
 }

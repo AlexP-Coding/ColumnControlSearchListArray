@@ -1,4 +1,3 @@
-
 :root {
 	--dtcc-button_background: transparent;
 	--dtcc-button_border: none;
@@ -27,7 +26,7 @@
 	--dtcc-dropdown-button_border: none;
 	--dtcc-dropdown-button_color: black;
 	--dtcc-dropdown-button_padding: 0.5em 1em;
-	--dtcc-dropdown-button_hover-background: rgba(5, 4, 4, 0.1);
+	--dtcc-dropdown-button_hover-background: rgba(0, 0, 0, 0.05);
 
 	--dtcc-dropdown-search_padding: 0.5em 1em;
 
@@ -54,6 +53,7 @@
 	--dtcc-searchText_padding: 5px;
 
 	--dtcc-list-buttons_max-height: 300px;
+	--dtcc-searchList-buttons_background: rgba(0, 0, 0, 0.05);
 }
 
 :root.dark {
@@ -74,6 +74,8 @@
 	--dtcc-search-icon_hover-background: rgba(255, 255, 255, 0.1);
 
 	--dtcc-search_border: 1px solid rgba(255, 255, 255, 0.2);
+
+	--dtcc-searchList-buttons_background: rgba(255, 255, 255, 0.05);
 }
 
 // Alignment of the content - when empty for left aligned column the content should be on the right
@@ -104,8 +106,10 @@ table.dataTable span.dtcc {
 		background: var(--dtcc-button_background);
 		border: var(--dtcc-button_border);
 		border-radius: var(--dtcc-button_border-radius);
-		margin-top: calc(var(--dtcc-button_padding) * -1);    // want padding around the top/bottom
-		margin-bottom: calc(var(--dtcc-button_padding) * -1); // of the buttons, but not extra height
+		margin-top: calc(var(--dtcc-button_padding) * -1); // want padding around the top/bottom
+		margin-bottom: calc(
+			var(--dtcc-button_padding) * -1
+		); // of the buttons, but not extra height
 		padding: var(--dtcc-button_padding);
 		opacity: var(--dtcc-button_opacity);
 		cursor: pointer;
@@ -260,7 +264,7 @@ table.dataTable span.dtcc {
 		select {
 			right: 0;
 		}
-		
+
 		span.dtcc-search-clear {
 			right: 28px;
 		}
@@ -279,7 +283,7 @@ table.dataTable span.dtcc {
 		select {
 			left: 0;
 		}
-		
+
 		span.dtcc-search-clear {
 			left: 28px;
 		}
@@ -399,7 +403,8 @@ div.dtcc-dropdown {
 				}
 			}
 
-			select, input {
+			select,
+			input {
 				flex: 1 1 calc(100% - 24px);
 				min-width: 0;
 				width: 100%;
@@ -410,7 +415,8 @@ div.dtcc-dropdown {
 			}
 
 			// Second row
-			input, div.dtcc-search-icon {
+			input,
+			div.dtcc-search-icon {
 				margin-top: 0.5em;
 			}
 
@@ -444,7 +450,48 @@ div.dtcc-dropdown {
 			}
 		}
 
+		div.dtcc-list-controls {
+			display: grid;
+			gap: 0.5em;
+			padding: var(--dtcc-dropdown-button_padding);
+
+			&:empty {
+				display: none;
+			}
+
+			button.dtcc-list-selectAll,
+			button.dtcc-list-selectNone {
+				background-color: transparent;
+				border: none;
+				color: inherit;
+				cursor: pointer;
+				font-size: 80%;
+				padding: 0;
+				text-align: center;
+				width: 100%;
+
+				&:hover {
+					text-decoration: underline;
+				}
+
+				span {
+					display: inline-block;
+					padding-left: 0.25em;
+				}
+			}
+
+			input.dtcc-list-search {
+				border: var(--dtcc-search_border);
+				border-radius: var(--dtcc-search_border-radius);
+				box-sizing: border-box;
+				grid-column: 1 / 3;
+				padding: var(--dtcc-searchText_padding);
+				width: 100%;
+			}
+		}
+
 		div.dtcc-list-buttons {
+			background: var(--dtcc-searchList-buttons_background);
 			overflow: auto;
 			max-height: var(--dtcc-list-buttons_max-height);
 		}

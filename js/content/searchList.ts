@@ -5,6 +5,8 @@ export interface ISearchList extends IContentConfig {
 	className: string;
 	columns: string | number | Array<string | number>;
 	options: Array<{label: string, value: any}> | null;
+	search: boolean;
+	select: boolean;
 	title: string;
 }
 
@@ -13,12 +15,17 @@ export default {
 		className: 'searchList',
 		columns: '',
 		options: null,
+		search: true,
+		select: true,
 		title: ''
 	},
 
 	init(config) {
 		let dt = this.dt();
-		let checkList = new CheckList()
+		let checkList = new CheckList(dt, {
+			search: config.search,
+			select: config.select
+		})
 			.searchListener(dt, this.idx())
 			.title(dt.i18n('columnControl.searchList', config.title))
 			.handler((e, btn) => {
