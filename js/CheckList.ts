@@ -109,6 +109,34 @@ export default class CheckList {
 	}
 
 	/**
+	 * Indicate that this is a search control and should listen for corresponding events
+	 *
+	 * @param dt DataTable instance
+	 * @param idx Column index
+	 */
+	public searchListener(dt, idx: number) {
+		// TODO need to handle a column reorder event
+		// TODO should this be moved to the searchList content?
+
+		// Column control search clearing (column().ccSearchClear() method)
+		dt.on('cc-search-clear', (e, colIdx) => {
+			if (colIdx === idx) {
+				// Deselect all
+				for (let i=0 ; i<this._s.buttons.length ; i++) {
+					this._s.buttons[i].active(false);
+				}
+
+				// Trigger the handler
+				this._s.handler(e, null);
+
+				// TODO no draw!
+			}
+		});
+
+		return this;
+	}
+
+	/**
 	 * Set the list's title
 	 *
 	 * @param title Display title
@@ -118,6 +146,24 @@ export default class CheckList {
 		this._dom.title.innerHTML = title;
 
 		return this;
+	}
+
+	/**
+	 * Get the values that are currently selected in the list
+	 *
+	 * @returns Array of currently selected options in the list
+	 */
+	public values() {
+		let result = [];
+		let buttons = this._s.buttons;
+
+		for (let i=0; i<buttons.length ; i++) {
+			if (buttons[i].active()) {
+				result.push(buttons[i].value());
+			}
+		}
+
+		return result;
 	}
 
 	/**

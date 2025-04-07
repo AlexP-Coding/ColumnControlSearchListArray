@@ -29,12 +29,22 @@ export default class Button {
 	};
 
 	/**
+	 * Get the active state of the button
+	 */
+	public active(): boolean;
+
+	/**
 	 * Set the active state of the button
 	 *
 	 * @param active The active state
 	 * @returns Button instance
 	 */
-	public active(active: boolean) {
+	public active(active: boolean): this;
+	public active(active?: boolean): any {
+		if (active === undefined) {
+			return this._s.active;
+		}
+
 		this._s.active = active;
 		this._checkActive();
 

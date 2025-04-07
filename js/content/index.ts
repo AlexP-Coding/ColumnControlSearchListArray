@@ -17,6 +17,7 @@ import search, {ISearch} from './search';
 import searchClear, {ISearchClear} from './searchClear';
 import searchDropdown, {ISearchDropdown} from './searchDropdown';
 import searchDateTime, {ISearchDateTime} from './searchDate';
+import searchList, {ISearchList} from './searchList';
 import searchNumber, {ISearchNumber} from './searchNumber';
 import searchText, {ISearchText} from './searchText';
 import spacer, {ISpacer} from './spacer';
@@ -42,6 +43,7 @@ export type IContentConfig =
 	| ISearchClear
 	| ISearchDropdown
 	| ISearchDateTime
+	| ISearchList
 	| ISearchNumber
 	| ISearchText
 	| ISpacer
@@ -65,6 +67,7 @@ Object.assign(ccContent, {
 	searchClear,
 	searchDropdown,
 	searchDateTime,
+	searchList,
 	searchNumber,
 	searchText,
 	spacer,

@@ -52,6 +52,8 @@
 	--dtcc-searchText_background: transparent;
 	--dtcc-search_border-radius: 3px;
 	--dtcc-searchText_padding: 5px;
+
+	--dtcc-list-buttons_max-height: 300px;
 }
 
 :root.dark {
@@ -440,6 +442,11 @@ div.dtcc-dropdown {
 			&:empty {
 				display: none;
 			}
+		}
+
+		div.dtcc-list-buttons {
+			overflow: auto;
+			max-height: var(--dtcc-list-buttons_max-height);
 		}
 
 		span.dtcc-button-icon:empty {

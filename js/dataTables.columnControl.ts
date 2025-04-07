@@ -104,7 +104,7 @@ DataTable.Api.registerPlural('columns().ccSearchClear()', 'column().ccSearchClea
 			let enabled = false;
 
 			dt.columns().every(function() {
-				if (this.search.fixed('dtcc')) {
+				if (this.search.fixed('dtcc') || this.search.fixed('dtcc-list')) {
 					enabled = true;
 				}
 			});

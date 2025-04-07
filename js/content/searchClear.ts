@@ -27,7 +27,10 @@ export default {
 
 		dt.on('draw', () => {
 			// change enable state
-			btn.enable(!!dt.column(this.idx()).search.fixed('dtcc'));
+			let search = dt.column(this.idx()).search.fixed('dtcc');
+			let searchList = dt.column(this.idx()).search.fixed('dtcc-list');
+
+			btn.enable(!!(search || searchList));
 		});
 
 		return btn.element();
