@@ -16,6 +16,7 @@ interface ISettings {
 	active: boolean;
 	activeList: {[key: number]: boolean};
 	enabled: boolean;
+	label: string;
 	value: string | number;
 }
 
@@ -25,6 +26,7 @@ export default class Button {
 		active: false,
 		activeList: [],
 		enabled: true,
+		label: '',
 		value: null
 	};
 
@@ -143,13 +145,23 @@ export default class Button {
 	}
 
 	/**
+	 * Get the text for the button
+	 */
+	public text(): string;
+	/**
 	 * Set the text to appear in the button
 	 *
 	 * @param text Text to appear in the button
 	 * @returns Button instance
 	 */
-	public text(text: string) {
+	public text(text: string): this;
+	public text(text?: string): any {
+		if (text === undefined) {
+			return this._s.label;
+		}
+
 		this._dom.text.innerHTML = text;
+		this._s.label = text; // for fast retrieval
 
 		return this;
 	}

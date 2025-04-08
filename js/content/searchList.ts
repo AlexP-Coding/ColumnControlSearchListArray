@@ -1,10 +1,10 @@
 import CheckList from '../CheckList';
-import {IContentPlugin, IContentConfig} from './content';
+import { IContentPlugin, IContentConfig } from './content';
 
 export interface ISearchList extends IContentConfig {
 	className: string;
 	columns: string | number | Array<string | number>;
-	options: Array<{label: string, value: any}> | null;
+	options: Array<{ label: string; value: any }> | null;
 	search: boolean;
 	select: boolean;
 	title: string;
@@ -39,8 +39,7 @@ export default {
 				if (values.length === 0) {
 					// Nothing selected - clear the filter
 					col.search.fixed('dtcc-list', '');
-				}
-				else {
+				} else {
 					// Find all matching options from the list of values
 					col.search.fixed('dtcc-list', (val) => {
 						return values.includes(val);
@@ -56,40 +55,49 @@ export default {
 			});
 
 		let setOptions = (opts) => {
-			for (let i=0 ; i<opts.length ; i++) {
+			for (let i = 0; i < opts.length; i++) {
 				if (typeof opts[i] === 'object') {
-					checkList.add({
-						active: false,
-						label: opts[i].label,
-						value: opts[i].value
-					});
-				}
-				else {
-					checkList.add({
-						active: false,
-						label: opts[i],
-						value: opts[i]
-					});
+					checkList.add(
+						{
+							active: false,
+							label: opts[i].label,
+							value: opts[i].value
+						},
+						i === opts.length - 1
+					);
+				} else {
+					checkList.add(
+						{
+							active: false,
+							label: opts[i],
+							value: opts[i]
+						},
+						i === opts.length - 1
+					);
 				}
 			}
-		}
+		};
 
 		if (config.options) {
 			setOptions(config.options);
-		}
-		else {
+		} else {
 			dt.ready(() => {
 				// TODO was there options specified in the Ajax return?
 
 				// If not, get the unique values for the column - ordered
 				// TODO renderer support?
-				let options = dt.column(this.idx(), {order: this.idx()}).data().unique().toArray();
+				let options = dt
+					.column(this.idx(), { order: this.idx() })
+					.data()
+					.unique()
+					.toArray();
+
 				setOptions(options);
 			});
 		}
 
 		// TODO state saving support
-		
+
 		return checkList.element();
 	}
 } as IContentPlugin<ISearchList>;

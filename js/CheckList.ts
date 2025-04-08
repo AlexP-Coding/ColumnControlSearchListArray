@@ -22,6 +22,7 @@ interface IDom {
 interface ISettings {
 	buttons: Button[];
 	handler: IHandler;
+	search: string;
 }
 
 export type IHandler = (e: Event, btn: Button) => void;
@@ -37,7 +38,8 @@ export default class CheckList {
 	private _dom: IDom;
 	private _s: ISettings = {
 		buttons: [],
-		handler: () => {}
+		handler: () => {},
+		search: ''
 	};
 
 	/**
@@ -46,7 +48,7 @@ export default class CheckList {
 	 * @param options Configuration for the button(s) to add
 	 * @returns Self for chaining
 	 */
-	public add(options: IOption | IOption[]) {
+	public add(options: IOption | IOption[], update?: boolean) {
 		if (!Array.isArray(options)) {
 			options = [options];
 		}
@@ -63,13 +65,15 @@ export default class CheckList {
 				.text(option.label)
 				.value(option.value);
 
-			this._dom.buttons.appendChild(btn.element());
 			this._s.buttons.push(btn);
 		}
 
 		let count = this._s.buttons.length;
 
-		this._dom.selectAllCount.innerHTML = count ? '(' + count + ')' : '';
+		if (update === true || update === undefined) {
+			this._dom.selectAllCount.innerHTML = count ? '(' + count + ')' : '';
+			this._redraw();
+		}
 
 		return this;
 	}
@@ -141,6 +145,8 @@ export default class CheckList {
 				this.selectNone();
 				this._s.handler(e, null);
 				this._updateCount();
+
+				// TODO clear search?
 
 				// TODO no draw!
 			}
@@ -217,13 +223,13 @@ export default class CheckList {
 			selectAll: createElement<HTMLButtonElement>(
 				'button',
 				'dtcc-list-selectAll',
-				dt.i18n('columnControl.selectAll', 'Select all')
+				dt.i18n('columnControl.list.all', 'Select all')
 			),
 			selectAllCount: createElement<HTMLSpanElement>('span'),
 			selectNone: createElement<HTMLButtonElement>(
 				'button',
 				'dtcc-list-selectNone',
-				dt.i18n('columnControl.selectNone', 'Deselect')
+				dt.i18n('columnControl.list.none', 'Deselect')
 			),
 			selectNoneCount: createElement<HTMLSpanElement>('span'),
 			search: createElement<HTMLInputElement>('input', 'dtcc-list-search')
@@ -244,6 +250,15 @@ export default class CheckList {
 
 		if (opts.search) {
 			dom.controls.append(dom.search);
+			dom.search.setAttribute(
+				'placeholder',
+				dt.i18n('columnControl.list.search', 'Search...')
+			);
+
+			dom.search.addEventListener('input', () => {
+				this._s.search = dom.search.value;
+				this._redraw();
+			});
 		}
 
 		dom.selectAll.addEventListener('click', (e) => {
@@ -259,9 +274,31 @@ export default class CheckList {
 		});
 	}
 
+	/**
+	 * Update the deselect counter
+	 */
 	private _updateCount() {
 		let count = this.values().length;
 
 		this._dom.selectNoneCount.innerHTML = count ? '(' + count + ')' : '';
+	}
+
+	/**
+	 * Add the buttons to the page - taking into account filtering
+	 */
+	private _redraw() {
+		let buttons = this._s.buttons;
+		let el = this._dom.buttons;
+		let searchTerm = this._s.search.toLowerCase();
+
+		el.replaceChildren();
+
+		for (let i=0 ; i<buttons.length ; i++) {
+			let btn = buttons[i];
+
+			if (! searchTerm || btn.text().toLowerCase().includes(searchTerm)) {
+				el.appendChild(btn.element());
+			}
+		}
 	}
 }
