@@ -1,4 +1,3 @@
-
 export function createElement<T = HTMLElement>(
 	type: string,
 	classes: string[] | string = [],

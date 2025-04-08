@@ -1,6 +1,6 @@
-import {createElement} from './util';
+import { createElement } from './util';
 import icons from './icons';
-import {Api} from '../../../types/types';
+import { Api } from '../../../types/types';
 
 interface IDom {
 	clear: HTMLSpanElement;
@@ -55,7 +55,7 @@ export default class SearchInput {
 	public clearable(set: boolean) {
 		// Note there is no add here as it is added by default and never used after setup, so
 		// no need.
-		if (! set) {
+		if (!set) {
 			this._dom.clear.remove();
 		}
 
@@ -86,7 +86,7 @@ export default class SearchInput {
 	 * @param opts List of options
 	 * @returns Self for chaining
 	 */
-	public options(opts: Array<{label: string; value: string}>) {
+	public options(opts: Array<{ label: string; value: string }>) {
 		let select = this._dom.select;
 
 		for (let i = 0; i < opts.length; i++) {
@@ -182,10 +182,7 @@ export default class SearchInput {
 		this._idx = idx;
 		this._dom = {
 			clear: createElement<HTMLSpanElement>('span', 'dtcc-search-clear', icons['x']),
-			container: createElement<HTMLDivElement>('div', [
-				'dtcc-content',
-				'dtcc-search'
-			]),
+			container: createElement<HTMLDivElement>('div', ['dtcc-content', 'dtcc-search']),
 			typeIcon: createElement<HTMLDivElement>('div', 'dtcc-search-type-icon'),
 			searchIcon: createElement<HTMLDivElement>('div', 'dtcc-search-icon', icons['search']),
 			input: createElement<HTMLInputElement>('input'),

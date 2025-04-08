@@ -1,6 +1,6 @@
-import {createElement} from './util';
+import { createElement } from './util';
 import icons from './icons';
-import {close as closeDropdowns} from './content/dropdown';
+import { close as closeDropdowns } from './content/dropdown';
 
 type Icons = keyof typeof icons;
 
@@ -14,7 +14,7 @@ interface IDom {
 
 interface ISettings {
 	active: boolean;
-	activeList: {[key: number]: boolean};
+	activeList: { [key: number]: boolean };
 	enabled: boolean;
 	label: string;
 	value: string | number;
@@ -217,8 +217,7 @@ export default class Button {
 		if (this._s.active === true || Object.values(this._s.activeList).includes(true)) {
 			this._dom.state.innerHTML = icons.tick;
 			this._dom.button.classList.add('dtcc-button_active');
-		}
-		else {
+		} else {
 			this._dom.state.innerHTML = '';
 			this._dom.button.classList.remove('dtcc-button_active');
 		}

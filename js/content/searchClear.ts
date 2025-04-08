@@ -1,5 +1,5 @@
 import Button from '../Button';
-import {IContentPlugin, IContentConfig} from './content';
+import { IContentPlugin, IContentConfig } from './content';
 
 export interface ISearchClear extends IContentConfig {
 	className: string;

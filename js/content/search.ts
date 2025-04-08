@@ -1,7 +1,6 @@
-
-import searchDate, {ISearchDateTime} from './searchDate';
-import searchNumber, {ISearchNumber} from './searchNumber';
-import searchText, {ISearchText} from './searchText';
+import searchDate, { ISearchDateTime } from './searchDate';
+import searchNumber, { ISearchNumber } from './searchNumber';
+import searchText, { ISearchText } from './searchText';
 
 export type ISearch = ISearchDateTime | ISearchNumber | ISearchText;
 
@@ -23,11 +22,9 @@ export default {
 			// Check what the data type is and then execute the search type based on that
 			if (type === 'date' || type.startsWith('datetime')) {
 				el = searchDate.init.call(this, config);
-			}
-			else if (type.includes('num')) {
+			} else if (type.includes('num')) {
 				el = searchNumber.init.call(this, config);
-			}
-			else {
+			} else {
 				el = searchText.init.call(this, config);
 			}
 

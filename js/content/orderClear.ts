@@ -1,6 +1,5 @@
-
 import Button from '../Button';
-import {IContentPlugin, IContentConfig} from './content';
+import { IContentPlugin, IContentConfig } from './content';
 
 export interface IOrderClear extends IContentConfig {
 	className: string;
@@ -26,7 +25,7 @@ export default {
 			});
 
 		dt.on('order', (e, s, order) => {
-			btn.enable(order.length > 0)
+			btn.enable(order.length > 0);
 		});
 
 		if (dt.order().length === 0) {

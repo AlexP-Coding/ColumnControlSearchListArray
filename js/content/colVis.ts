@@ -1,5 +1,5 @@
 import CheckList from '../CheckList';
-import {IContentPlugin, IContentConfig} from './content';
+import { IContentPlugin, IContentConfig } from './content';
 
 export interface IColVis extends IContentConfig {
 	className: string;
@@ -42,8 +42,8 @@ export default {
 					value: this.index()
 				});
 			});
-		}
-	
+		};
+
 		rebuild();
 
 		dt.on('column-visibility', (e, s, colIdx, state) => {

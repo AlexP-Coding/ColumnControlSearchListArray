@@ -14,7 +14,9 @@ const icons = {
 	chevronRight: wrap('<path d="m9 18 6-6-6-6"/>'),
 
 	// columns-3
-	columns: wrap('<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/>'),
+	columns: wrap(
+		'<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/>'
+	),
 
 	// Custom
 	contains: wrap('<path d="M10 3h4v18h-4z"/><path d="M18 8h3v9h-3"/><path d="M6 17H3V8h3"/>'),
@@ -41,7 +43,9 @@ const icons = {
 	),
 
 	// move-horizontal
-	move: wrap('<line x1="12" x2="12" y1="3" y2="21"/><polyline points="8 8 4 12 8 16"/><polyline points="16 16 20 12 16 8"/>'),
+	move: wrap(
+		'<line x1="12" x2="12" y1="3" y2="21"/><polyline points="8 8 4 12 8 16"/><polyline points="16 16 20 12 16 8"/>'
+	),
 
 	// arrow-left-from-line
 	moveLeft: wrap('<path d="m9 6-6 6 6 6"/><path d="M3 12h14"/><path d="M21 19V5"/>'),
@@ -93,7 +97,9 @@ const icons = {
 	search: wrap('<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>'),
 
 	// search-x
-	searchClear: wrap('<path d="m13.5 8.5-5 5"/><path d="m8.5 8.5 5 5"/><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>'),
+	searchClear: wrap(
+		'<path d="m13.5 8.5-5 5"/><path d="m8.5 8.5 5 5"/><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>'
+	),
 
 	// Custom
 	starts: wrap('<path d="M3 3h4v18H3z"/><path d="M11 8h10v9H11"/>'),

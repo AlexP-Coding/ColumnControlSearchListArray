@@ -1,7 +1,7 @@
-import DataTable, {Api, ColumnSelector} from '../../../../types/types';
+import DataTable, { Api, ColumnSelector } from '../../../../types/types';
 import Button from '../Button';
-import {createElement} from '../util';
-import {IContentPlugin, IContentConfig} from './content';
+import { createElement } from '../util';
+import { IContentPlugin, IContentConfig } from './content';
 
 interface HTMLDropdown extends HTMLDivElement {
 	_shown: boolean;
@@ -49,8 +49,7 @@ function positionDropdown(dropdown: HTMLDropdown, dt: Api, btn: HTMLButtonElemen
 	if (headerStyle.flexDirection === 'row-reverse') {
 		// Icon is on the left of the header - align the left hand sides
 		left = position.left;
-	}
-	else {
+	} else {
 		// Icon is on the right of the header - align the right hand sides
 		left = position.left - dropdownWidth + btn.offsetWidth;
 	}
@@ -165,8 +164,7 @@ export default {
 
 				if (dropdown._shown) {
 					dropdown._close();
-				}
-				else {
+				} else {
 					attachDropdown(dropdown, dt, config._top || btn);
 				}
 			});

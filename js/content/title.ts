@@ -1,5 +1,5 @@
-import {createElement} from '../util';
-import {IContentPlugin, IContentConfig} from './content';
+import { createElement } from '../util';
+import { IContentPlugin, IContentConfig } from './content';
 
 export interface ITitle extends IContentConfig {
 	className: string;
@@ -15,11 +15,7 @@ export default {
 	init(config) {
 		let dt = this.dt();
 		let title = dt.column(this.idx()).title();
-		let el = createElement(
-			'div',
-			config.className,
-			config.text === null ? title : config.text
-		);
+		let el = createElement('div', config.className, config.text === null ? title : config.text);
 
 		return el;
 	}

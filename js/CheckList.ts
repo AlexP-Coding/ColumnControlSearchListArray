@@ -1,6 +1,6 @@
-import {createElement} from './util';
+import { createElement } from './util';
 import Button from './Button';
-import {Api} from '../../../types/types';
+import { Api } from '../../../types/types';
 
 export interface IOptions {
 	search: boolean;
@@ -59,7 +59,7 @@ export default class CheckList {
 				.active(option.active || false)
 				.handler((e) => {
 					this._s.handler(e, btn);
-					this._updateCount();	
+					this._updateCount();
 				})
 				.icon(option.icon || '')
 				.text(option.label)
@@ -293,10 +293,10 @@ export default class CheckList {
 
 		el.replaceChildren();
 
-		for (let i=0 ; i<buttons.length ; i++) {
+		for (let i = 0; i < buttons.length; i++) {
 			let btn = buttons[i];
 
-			if (! searchTerm || btn.text().toLowerCase().includes(searchTerm)) {
+			if (!searchTerm || btn.text().toLowerCase().includes(searchTerm)) {
 				el.appendChild(btn.element());
 			}
 		}

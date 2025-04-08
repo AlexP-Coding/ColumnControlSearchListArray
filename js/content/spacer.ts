@@ -1,5 +1,5 @@
-import {createElement} from '../util';
-import {IContentPlugin, IContentConfig} from './content';
+import { createElement } from '../util';
+import { IContentPlugin, IContentConfig } from './content';
 
 export interface ISpacer extends IContentConfig {
 	className: string;

@@ -1,5 +1,5 @@
 import SearchInput from '../SearchInput';
-import {IContentPlugin, IContentConfig} from './content';
+import { IContentPlugin, IContentConfig } from './content';
 
 export interface ISearchNumber extends IContentConfig {
 	clear: boolean;
@@ -25,49 +25,40 @@ export default {
 			.title(config.title)
 			.titleAttr(config.titleAttr)
 			.options([
-				{label: 'Equals', value: 'equal'},
-				{label: 'Does not equal', value: 'notEqual'},
-				{label: 'Greater than', value: 'greater'},
-				{label: 'Greater or equal', value: 'greaterOrEqual'},
-				{label: 'Less than', value: 'less'},
-				{label: 'Less or equal', value: 'lessOrEqual'},
-				{label: 'Empty', value: 'empty'},
-				{label: 'Not empty', value: 'notEmpty'}
+				{ label: 'Equals', value: 'equal' },
+				{ label: 'Does not equal', value: 'notEqual' },
+				{ label: 'Greater than', value: 'greater' },
+				{ label: 'Greater or equal', value: 'greaterOrEqual' },
+				{ label: 'Less than', value: 'less' },
+				{ label: 'Less or equal', value: 'lessOrEqual' },
+				{ label: 'Empty', value: 'empty' },
+				{ label: 'Not empty', value: 'notEmpty' }
 			])
 			.search((searchType, searchTerm) => {
 				let column = dt.column(this.idx());
 
 				if (searchType === 'empty') {
 					column.search.fixed('dtcc', (haystack) => !haystack);
-				}
-				else if (searchType === 'notEmpty') {
+				} else if (searchType === 'notEmpty') {
 					column.search.fixed('dtcc', (haystack) => !!haystack);
-				}
-				else if (column.search.fixed('dtcc') === '' && searchTerm === '') {
+				} else if (column.search.fixed('dtcc') === '' && searchTerm === '') {
 					// No change - don't do anything
 					return;
-				}
-				else if (searchTerm === '') {
+				} else if (searchTerm === '') {
 					// Clear search
 					column.search.fixed('dtcc', '');
-				}
-				else if (searchType === 'equal') {
+				} else if (searchType === 'equal') {
 					// Use a function for matching - weak typing
 					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) == searchTerm);
-				}
-				else if (searchType === 'notEqual') {
+				} else if (searchType === 'notEqual') {
 					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) != searchTerm);
-				}
-				else if (searchType === 'greater') {
+				} else if (searchType === 'greater') {
 					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) > searchTerm);
-				}
-				else if (searchType === 'greaterOrEqual') {
+				} else if (searchType === 'greaterOrEqual') {
 					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) >= searchTerm);
-				}
-				else if (searchType === 'less') {
+				} else if (searchType === 'less') {
 					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) < searchTerm);
-				}
-				else if (searchType === 'lessOrEqual') {
+				} else if (searchType === 'lessOrEqual') {
 					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) <= searchTerm);
 				}
 

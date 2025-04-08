@@ -92,8 +92,8 @@ table.dataTable {
 	.dt-type-date,
 	.dt-right {
 		div.dt-column-header span.dt-column-title:empty + span.dtcc {
-			margin-left: 0;
 			margin-right: auto;
+			margin-left: 0;
 		}
 	}
 }
@@ -103,26 +103,26 @@ table.dataTable span.dtcc {
 	white-space: nowrap;
 
 	button.dtcc-button {
-		background: var(--dtcc-button_background);
-		border: var(--dtcc-button_border);
-		border-radius: var(--dtcc-button_border-radius);
+		opacity: var(--dtcc-button_opacity);
+		cursor: pointer;
 		margin-top: calc(var(--dtcc-button_padding) * -1); // want padding around the top/bottom
 		margin-bottom: calc(
 			var(--dtcc-button_padding) * -1
 		); // of the buttons, but not extra height
+		border: var(--dtcc-button_border);
+		border-radius: var(--dtcc-button_border-radius);
+		background: var(--dtcc-button_background);
 		padding: var(--dtcc-button_padding);
-		opacity: var(--dtcc-button_opacity);
-		cursor: pointer;
 
 		&:hover {
+			opacity: var(--dtcc-button_hover-opacity);
 			border: var(--dtcc-button_hover-border);
 			background: var(--dtcc-button_hover-background);
-			opacity: var(--dtcc-button_hover-opacity);
 		}
 
 		&.dtcc-button_disabled {
-			cursor: initial;
 			opacity: var(--dtcc-button_disabled_opacity);
+			cursor: initial;
 		}
 
 		> span.dtcc-button-state {
@@ -139,18 +139,18 @@ table.dataTable span.dtcc {
 	}
 
 	input {
-		width: 100%;
 		box-sizing: border-box;
+		width: 100%;
 	}
 
 	span.dtcc-button-icon {
-		color: var(--dtcc-button-icon_color);
 		display: inline-block;
 		vertical-align: middle;
+		color: var(--dtcc-button-icon_color);
 
 		svg {
-			height: var(--dtcc-button-icon_size);
 			width: var(--dtcc-button-icon_size);
+			height: var(--dtcc-button-icon_size);
 		}
 	}
 
@@ -159,25 +159,25 @@ table.dataTable span.dtcc {
 	}
 
 	div.dtcc-spacer {
-		border-left: var(--dtcc-spacer_border);
-		cursor: initial;
 		display: inline-block;
-		margin: 0 var(--dtcc-spacer_margin);
-		padding-left: 0.5em;
 		vertical-align: middle;
+		cursor: initial;
+		margin: 0 var(--dtcc-spacer_margin);
+		border-left: var(--dtcc-spacer_border);
+		padding-left: 0.5em;
 		white-space: nowrap;
 
 		&:empty {
-			height: 1em;
 			padding-left: 0;
 			width: 1px;
+			height: 1em;
 		}
 	}
 
 	div.dtcc-search {
 		div.dtcc-search-title {
-			text-align: left;
 			margin-bottom: 0.25em;
+			text-align: left;
 		}
 
 		&:empty {
@@ -203,18 +203,18 @@ table.dataTable span.dtcc {
 
 			div.dtcc-search-type-icon {
 				display: flex;
-				justify-content: center;
-				align-items: center;
 				position: absolute;
 				top: 0;
-				height: 100%;
+				justify-content: center;
+				align-items: center;
 				width: 30px;
+				height: 100%;
 
 				svg {
-					color: var(--dtcc-search-icon_color);
-					height: var(--dtcc-search-icon_size);
 					opacity: var(--dtcc-search-icon_opacity);
 					width: var(--dtcc-search-icon_size);
+					height: var(--dtcc-search-icon_size);
+					color: var(--dtcc-search-icon_color);
 				}
 
 				&:hover {
@@ -226,20 +226,20 @@ table.dataTable span.dtcc {
 				position: absolute;
 				top: 0;
 				opacity: 0;
-				width: 30px;
 				cursor: pointer;
+				width: 30px;
 				height: 100%;
 			}
 
 			span.dtcc-search-clear {
-				cursor: pointer;
 				display: flex;
-				justify-content: center;
-				align-items: center;
 				position: absolute;
 				top: 0;
-				height: 100%;
+				justify-content: center;
+				align-items: center;
+				cursor: pointer;
 				width: 14px;
+				height: 100%;
 			}
 
 			div.dtcc-search-icon {
@@ -247,11 +247,11 @@ table.dataTable span.dtcc {
 			}
 
 			input {
-				background-color: var(--dtcc-searchText_background);
 				border: var(--dtcc-search_border);
 				border-radius: var(--dtcc-search_border-radius);
-				color: inherit;
+				background-color: var(--dtcc-searchText_background);
 				padding: var(--dtcc-searchText_padding);
+				color: inherit;
 			}
 		}
 	}
@@ -289,52 +289,52 @@ table.dataTable span.dtcc {
 		}
 
 		input {
-			text-align: right;
 			padding-left: 46px;
+			text-align: right;
 		}
 	}
 }
 
 div.dtcc-dropdown {
-	background: var(--dtcc-dropdown_background);
-	border: var(--dtcc-dropdown_border);
-	border-radius: var(--dtcc-dropdown_border-radius);
-	box-shadow: var(--dtcc-dropdown_box-shadow);
+	position: absolute;
+	z-index: var(--dtcc-dropdown_z-index);
 	box-sizing: border-box;
 	margin: var(--dtcc-dropdown_margin);
-	overflow: hidden;
+	box-shadow: var(--dtcc-dropdown_box-shadow);
+	border: var(--dtcc-dropdown_border);
+	border-radius: var(--dtcc-dropdown_border-radius);
+	background: var(--dtcc-dropdown_background);
 	padding: var(--dtcc-dropdown_padding);
-	position: absolute;
 	// transition: left 0.5s;
 	width: var(--dtcc-dropdown_width);
-	z-index: var(--dtcc-dropdown_z-index);
+	overflow: hidden;
 
 	button.dtcc-button {
-		align-items: center;
-		background: var(--dtcc-dropdown-button_background);
-		border: var(--dtcc-dropdown-button_border);
-		color: var(--dtcc-dropdown-button_color);
 		display: flex;
-		cursor: pointer;
-		padding: var(--dtcc-dropdown-button_padding);
 		position: relative;
-		text-align: left;
+		align-items: center;
+		cursor: pointer;
+		border: var(--dtcc-dropdown-button_border);
+		background: var(--dtcc-dropdown-button_background);
+		padding: var(--dtcc-dropdown-button_padding);
 		width: 100%;
+		color: var(--dtcc-dropdown-button_color);
+		text-align: left;
 
 		&:hover {
 			background: var(--dtcc-dropdown-button_hover-background);
 		}
 
 		&.dtcc-button_disabled {
-			cursor: initial;
 			opacity: var(--dtcc-button_disabled_opacity);
+			cursor: initial;
 		}
 
 		> span.dtcc-button-state {
 			display: block;
-			height: var(--dtcc-button-icon_size);
 			padding: 0 0 0 0.5em;
 			width: var(--dtcc-button-icon_size);
+			height: var(--dtcc-button-icon_size);
 
 			&:empty {
 				display: none;
@@ -346,9 +346,9 @@ div.dtcc-dropdown {
 		}
 
 		span.dtcc-button-icon {
-			height: var(--dtcc-button-icon_size);
 			padding: 0 0.5em 0 0;
 			width: var(--dtcc-button-icon_size);
+			height: var(--dtcc-button-icon_size);
 		}
 
 		span.dtcc-button-text {
@@ -360,19 +360,19 @@ div.dtcc-dropdown {
 	}
 
 	div.dtcc-spacer {
-		border-left: none;
-		border-bottom: var(--dtcc-spacer_border);
-		padding: 0;
 		margin: var(--dtcc-spacer_margin) 0;
+		border-bottom: var(--dtcc-spacer_border);
+		border-left: none;
+		padding: 0;
 	}
 
 	div.dtcc-title {
-		background: var(--dtcc-title_background);
-		border-left: var(--dtcc-title_border-left);
-		border-right: var(--dtcc-title_border-right);
-		border-top: var(--dtcc-title_border-top);
-		border-bottom: var(--dtcc-title_border-bottom);
 		margin: var(--dtcc-title_margin);
+		border-top: var(--dtcc-title_border-top);
+		border-right: var(--dtcc-title_border-right);
+		border-bottom: var(--dtcc-title_border-bottom);
+		border-left: var(--dtcc-title_border-left);
+		background: var(--dtcc-title_background);
 		padding: var(--dtcc-title_padding);
 		text-align: var(--dtcc-title_text-align);
 	}
@@ -381,37 +381,37 @@ div.dtcc-dropdown {
 		padding: var(--dtcc-dropdown-search_padding);
 
 		> div {
-			align-items: center;
-			background: var(--dtcc-dropdown-button_background);
-			border: var(--dtcc-dropdown-button_border);
-			color: var(--dtcc-dropdown-button_color);
 			display: flex;
-			flex-wrap: wrap;
 			position: relative;
+			flex-wrap: wrap;
+			align-items: center;
+			border: var(--dtcc-dropdown-button_border);
+			background: var(--dtcc-dropdown-button_background);
+			color: var(--dtcc-dropdown-button_color);
 
 			// The icons
 			div {
 				flex: 0 0 var(--dtcc-button-icon_size);
-				height: var(--dtcc-button-icon_size);
 				padding: 0 0.5em 0 0;
 				width: var(--dtcc-button-icon_size);
+				height: var(--dtcc-button-icon_size);
 
 				svg {
-					color: var(--dtcc-search-icon_color);
-					height: var(--dtcc-search-icon_size);
 					width: var(--dtcc-search-icon_size);
+					height: var(--dtcc-search-icon_size);
+					color: var(--dtcc-search-icon_color);
 				}
 			}
 
 			select,
 			input {
 				flex: 1 1 calc(100% - 24px);
-				min-width: 0;
-				width: 100%;
 				box-sizing: border-box;
 				border: var(--dtcc-search_border);
 				border-radius: var(--dtcc-search_border-radius);
 				padding: var(--dtcc-searchText_padding);
+				width: 100%;
+				min-width: 0;
 			}
 
 			// Second row
@@ -425,10 +425,10 @@ div.dtcc-dropdown {
 			}
 
 			span.dtcc-search-clear {
-				bottom: 2px;
-				cursor: pointer;
 				position: absolute;
 				right: 8px;
+				bottom: 2px;
+				cursor: pointer;
 				width: 14px;
 			}
 		}
@@ -442,8 +442,8 @@ div.dtcc-dropdown {
 
 	div.dtcc-list {
 		div.dtcc-list-title {
-			font-style: italic;
 			padding: var(--dtcc-dropdown-button_padding);
+			font-style: italic;
 
 			&:empty {
 				display: none;
@@ -461,14 +461,14 @@ div.dtcc-dropdown {
 
 			button.dtcc-list-selectAll,
 			button.dtcc-list-selectNone {
-				background-color: transparent;
-				border: none;
-				color: inherit;
 				cursor: pointer;
-				font-size: 80%;
+				border: none;
+				background-color: transparent;
 				padding: 0;
-				text-align: center;
 				width: 100%;
+				color: inherit;
+				font-size: 80%;
+				text-align: center;
 
 				&:hover {
 					text-decoration: underline;
@@ -481,10 +481,10 @@ div.dtcc-dropdown {
 			}
 
 			input.dtcc-list-search {
+				grid-column: 1 / 3;
+				box-sizing: border-box;
 				border: var(--dtcc-search_border);
 				border-radius: var(--dtcc-search_border-radius);
-				box-sizing: border-box;
-				grid-column: 1 / 3;
 				padding: var(--dtcc-searchText_padding);
 				width: 100%;
 			}
@@ -492,8 +492,8 @@ div.dtcc-dropdown {
 
 		div.dtcc-list-buttons {
 			background: var(--dtcc-searchList-buttons_background);
-			overflow: auto;
 			max-height: var(--dtcc-list-buttons_max-height);
+			overflow: auto;
 		}
 
 		span.dtcc-button-icon:empty {

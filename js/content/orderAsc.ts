@@ -1,6 +1,5 @@
-
 import Button from '../Button';
-import {IContentPlugin, IContentConfig} from './content';
+import { IContentPlugin, IContentConfig } from './content';
 
 export interface IOrderAsc extends IContentConfig {
 	className: string;
@@ -35,7 +34,7 @@ export default {
 		dt.on('order', (e, s, order) => {
 			let found = order.some((o) => o.col === this.idx() && o.dir === 'asc');
 
-			btn.active(found)
+			btn.active(found);
 		});
 
 		return btn.element();

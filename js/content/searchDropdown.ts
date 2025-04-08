@@ -1,4 +1,4 @@
-import {IContentPlugin, IContentConfig} from './content';
+import { IContentPlugin, IContentConfig } from './content';
 
 export interface ISearchDropdown extends IContentConfig {
 	className: string;

@@ -1,6 +1,5 @@
-
 import Button from '../Button';
-import {IContentPlugin, IContentConfig} from './content';
+import { IContentPlugin, IContentConfig } from './content';
 
 export interface IOrderAddAsc extends IContentConfig {
 	className: string;
@@ -32,7 +31,7 @@ export default {
 		dt.on('order', (e, s, order) => {
 			let found = order.some((o) => o.col === this.idx());
 
-			btn.enable(!found)
+			btn.enable(!found);
 		});
 
 		return btn.element();

@@ -1,6 +1,6 @@
-import {Api} from '../../../types/types';
-import content, {IContentConfig} from './content/index';
-import {IContentPlugin} from './content/content';
+import { Api } from '../../../types/types';
+import content, { IContentConfig } from './content/index';
+import { IContentPlugin } from './content/content';
 import icons from './icons';
 import Button from './Button';
 import CheckList from './CheckList';
@@ -80,16 +80,14 @@ export default class ColumnControl {
 			type = content;
 			plugin = ColumnControl.content[type];
 			config = Object.assign({}, plugin?.defaults);
-		}
-		else if (Array.isArray(content)) {
+		} else if (Array.isArray(content)) {
 			// An array is a shorthand for a dropdown with its default options
 			type = 'dropdown';
 			plugin = ColumnControl.content[type];
 			config = Object.assign({}, plugin?.defaults, {
 				content: content
 			});
-		}
-		else if (content.extend) {
+		} else if (content.extend) {
 			// Content with custom options
 			type = content.extend;
 			plugin = ColumnControl.content[type];
@@ -152,7 +150,7 @@ export default class ColumnControl {
 		});
 
 		this._c.content.forEach((content) => {
-			let {plugin, config} = this.resolve(content);
+			let { plugin, config } = this.resolve(content);
 			let el = plugin.init.call(this, config);
 
 			this._dom.wrapper.appendChild(el);
@@ -173,16 +171,14 @@ export default class ColumnControl {
 		// Header row index
 		if (typeof target === 'number') {
 			node = column.header(target);
-		}
-		else {
+		} else {
 			let parts = target.split(':');
 			let isHeader = parts[0] === 'tfoot' ? false : true;
 			let row = parts[1] ? parseInt(parts[1]) : 0;
 
 			if (isHeader) {
 				node = column.header(row);
-			}
-			else {
+			} else {
 				node = column.footer(row);
 				className = 'footer';
 			}

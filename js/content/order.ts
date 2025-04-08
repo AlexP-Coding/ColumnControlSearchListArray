@@ -1,5 +1,5 @@
 import Button from '../Button';
-import {IContentPlugin, IContentConfig} from './content';
+import { IContentPlugin, IContentConfig } from './content';
 
 export interface IOrder extends IContentConfig {
 	className: string;
@@ -31,8 +31,7 @@ export default {
 
 				if (!found) {
 					apply.push([this.idx(), 'asc']);
-				}
-				else if (found[1] === 'asc') {
+				} else if (found[1] === 'asc') {
 					apply.push([this.idx(), 'desc']);
 				}
 				// else - next stage is empty sort
@@ -45,11 +44,9 @@ export default {
 
 			if (!found) {
 				btn.active(false).icon(config.iconNone);
-			}
-			else if (found.dir === 'asc') {
+			} else if (found.dir === 'asc') {
 				btn.active(true).icon(config.iconAsc);
-			}
-			else if (found.dir === 'desc') {
+			} else if (found.dir === 'desc') {
 				btn.active(true).icon(config.iconDesc);
 			}
 		});

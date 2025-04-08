@@ -1,5 +1,5 @@
 import Button from '../Button';
-import {IContentPlugin, IContentConfig} from './content';
+import { IContentPlugin, IContentConfig } from './content';
 
 declare var DataTable: any;
 
@@ -39,7 +39,7 @@ export default {
 		});
 
 		// If ColReorder wasn't initialised on this DataTable, then we need to add it
-		if (! (dt.init() as any).colReorder) {
+		if (!(dt.init() as any).colReorder) {
 			new DataTable.ColReorder(dt, {});
 		}
 

@@ -1,6 +1,6 @@
-import DataTable, {Api} from '../../../types/types';
-import ColumnControl, {IConfig} from './ColumnControl';
-import {createElement} from './util';
+import DataTable, { Api } from '../../../types/types';
+import ColumnControl, { IConfig } from './ColumnControl';
+import { createElement } from './util';
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables API integration
@@ -103,7 +103,7 @@ DataTable.Api.registerPlural('columns().ccSearchClear()', 'column().ccSearchClea
 		dt.on('draw', () => {
 			let enabled = false;
 
-			dt.columns().every(function() {
+			dt.columns().every(function () {
 				if (this.search.fixed('dtcc') || this.search.fixed('dtcc-list')) {
 					enabled = true;
 				}
@@ -146,8 +146,7 @@ function assetTarget(ackTargets, target: number | string, dt: Api) {
 
 	if (typeof target === 'number') {
 		row = target;
-	}
-	else {
+	} else {
 		let parts = target.split(':');
 
 		if (parts[0] === 'tfoot') {
@@ -197,8 +196,7 @@ function getOptionsForTarget(target, input: any): IConfig | void {
 				content: input
 			};
 		}
-	}
-	else if (Array.isArray(input)) {
+	} else if (Array.isArray(input)) {
 		// Top level array, some items of which will be configuration objects (possibly not all)
 		for (let i = 0; i < input.length; i++) {
 			let item = input[i];
@@ -211,16 +209,14 @@ function getOptionsForTarget(target, input: any): IConfig | void {
 						content: item
 					};
 				}
-			}
-			else if (isIConfig(item)) {
+			} else if (isIConfig(item)) {
 				// A config object, e.g. the object from: `columnControl: [{content: []}]`
 				selfTarget = item.target !== undefined ? item.target : defaultTarget;
 
 				if (target === selfTarget) {
 					return item;
 				}
-			}
-			else {
+			} else {
 				// A content object
 				if (target === defaultTarget) {
 					return {
@@ -230,8 +226,7 @@ function getOptionsForTarget(target, input: any): IConfig | void {
 				}
 			}
 		}
-	}
-	else if (typeof input === 'object') {
+	} else if (typeof input === 'object') {
 		// An object can be either a config object, or an extending content object
 		if (isIConfig(input)) {
 			// Config object: columnControl: {content: []}
@@ -240,8 +235,7 @@ function getOptionsForTarget(target, input: any): IConfig | void {
 			if (target === selfTarget) {
 				return input;
 			}
-		}
-		else {
+		} else {
 			// content object: columnControl: [{extend: 'order'}]
 			if (target === defaultTarget) {
 				return {
@@ -276,8 +270,7 @@ function identifyTargets(targets: any[], input: IConfig | IConfig[]) {
 					: ColumnControl.defaults.target
 			);
 		});
-	}
-	else if (typeof input === 'object') {
+	} else if (typeof input === 'object') {
 		// Full options defined: { target: x, content: [] }
 		add(input.target !== undefined ? input.target : ColumnControl.defaults.target);
 	}
