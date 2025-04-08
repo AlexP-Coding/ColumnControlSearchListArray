@@ -41,12 +41,15 @@ export default {
 			])
 			.search((searchType, searchTerm) => {
 				let column = dt.column(this.idx());
-				let search = dateToNum(
-					dateTime ? dateTime.val() : searchTerm,
-					displayFormat,
-					moment,
-					luxon
-				);
+				let search =
+					searchTerm === ''
+						? ''
+						: dateToNum(
+								dateTime ? dateTime.val() : searchTerm,
+								displayFormat,
+								moment,
+								luxon
+							);
 
 				if (searchType === 'empty') {
 					column.search.fixed('dtcc', (haystack) => !haystack);

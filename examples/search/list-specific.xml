@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="1" table-class="display nowrap">
+
+<css lib="datatables columncontrol" />
+<js lib="jquery datatables columncontrol">
+<![CDATA[
+
+new DataTable('#example', {
+	ordering: {
+		indicators: false,
+		handler: false
+	},
+	columnControl: ['order', ['search']],
+	columnDefs: [{
+		targets: [1, 2],
+		columnControl: ['order', ['searchList']]
+	}]
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+
+new DataTable('#example', {
+	ordering: {
+		indicators: false,
+		handler: false
+	},
+	columnControl: ['order', ['search']],
+	columnDefs: [{
+		targets: [1, 2],
+		columnControl: ['order', ['searchList']]
+	}]
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Search list for specific columns</title>
+
+<info><![CDATA[
+
+
+]]></info>
+
+</dt-example>

@@ -1,6 +1,7 @@
 import { createElement } from './util';
 import Button from './Button';
 import { Api } from '../../../types/types';
+import ColumnControl from './ColumnControl';
 
 export interface IOptions {
 	search: boolean;
@@ -135,20 +136,18 @@ export default class CheckList {
 	 * @param dt DataTable instance
 	 * @param idx Column index
 	 */
-	public searchListener(dt, idx: number) {
-		// TODO need to handle a column reorder event
-		// TODO should this be moved to the searchList content?
-
+	public searchListener(dt, parent: ColumnControl) {
 		// Column control search clearing (column().ccSearchClear() method)
 		dt.on('cc-search-clear', (e, colIdx) => {
-			if (colIdx === idx) {
+			if (colIdx === parent.idx()) {
 				this.selectNone();
+
 				this._s.handler(e, null);
+				this._s.search = '';
+				this._dom.search.value = '';
+
+				this._redraw();
 				this._updateCount();
-
-				// TODO clear search?
-
-				// TODO no draw!
 			}
 		});
 

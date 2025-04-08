@@ -26,7 +26,7 @@ export default {
 			search: config.search,
 			select: config.select
 		})
-			.searchListener(dt, this.idx())
+			.searchListener(dt, this)
 			.title(dt.i18n('columnControl.searchList', config.title))
 			.handler((e, btn) => {
 				if (btn) {
@@ -84,13 +84,22 @@ export default {
 			dt.ready(() => {
 				// TODO was there options specified in the Ajax return?
 
-				// If not, get the unique values for the column - ordered
-				// TODO renderer support?
-				let options = dt
-					.column(this.idx(), { order: this.idx() })
-					.data()
-					.unique()
-					.toArray();
+				// If not, get the values for the column, taking into account orthogonal rendering
+				let found = {};
+				let options = [];
+
+				dt.cells('*', this.idx(), { order: this.idx() }).every(function () {
+					let filter = this.render('filter');
+
+					if (!found[filter]) {
+						found[filter] = true;
+
+						options.push({
+							label: this.render('display'),
+							value: filter
+						});
+					}
+				});
 
 				setOptions(options);
 			});
