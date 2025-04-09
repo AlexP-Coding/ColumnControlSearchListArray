@@ -19,6 +19,7 @@ export default {
 	init(config) {
 		let dt = this.dt();
 		let searchInput = new SearchInput(dt, this.idx())
+			.type('num')
 			.addClass('dtcc-searchNumber')
 			.clearable(config.clear)
 			.placeholder(config.placeholder)

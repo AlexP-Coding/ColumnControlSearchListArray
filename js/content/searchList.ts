@@ -37,13 +37,10 @@ function setOptions(checkList: CheckList, opts) {
 
 /** Load a saved state */
 function getState(columnIdx: number, state) {
-	if (
-		state &&
-		state.columnControl &&
-		state.columnControl[columnIdx] &&
-		state.columnControl[columnIdx].searchList
-	) {
-		return state.columnControl[columnIdx].searchList;
+	let loadedState = state?.columnControl?.[columnIdx]?.searchList;
+
+	if (loadedState) {
+		return loadedState;
 	}
 }
 

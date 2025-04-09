@@ -23,6 +23,7 @@ export default class SearchInput {
 	private _lastValue: string;
 	private _lastType: string;
 	private _loadingState: boolean;
+	private _type: string = 'text';
 
 	/**
 	 * Add a class to the container
@@ -179,6 +180,12 @@ export default class SearchInput {
 		return this;
 	}
 
+	public type(t: string) {
+		this._type = t;
+
+		return this;
+	}
+
 	/**
 	 * Create a container element, for consistent DOM structure and styling
 	 */
@@ -228,7 +235,8 @@ export default class SearchInput {
 			}
 
 			data.columnControl[idx].searchInput = {
-				type: dom.select.value,
+				logic: dom.select.value,
+				type: this._type,
 				value: dom.input.value
 			};
 		});
@@ -277,23 +285,20 @@ export default class SearchInput {
 	private _stateLoad(state) {
 		let dom = this._dom;
 		let idx = this._idx;
+		let loadedState = state?.columnControl?.[idx]?.searchInput;
 
-		if (state && state.columnControl) {
-			let loaded = state.columnControl[idx];
+		if (loadedState) {
+			// The search callback needs to know if we are loading an existing state or not
+			// so it can determine if it needs to draw the table. If it was a user input, then
+			// it redraws, if it was a state load, then there should be no redraw.
+			this._loadingState = true;
 
-			if (loaded) {
-				// The search callback needs to know if we are loading an existing state or not
-				// so it can determine if it needs to draw the table. If it was a user input, then
-				// it redraws, if it was a state load, then there should be no redraw.
-				this._loadingState = true;
+			dom.select.value = loadedState.logic;
+			dom.input.value = loadedState.value;
 
-				dom.select.value = loaded.type;
-				dom.input.value = loaded.value;
+			dom.select.dispatchEvent(new Event('input'));
 
-				dom.select.dispatchEvent(new Event('input'));
-
-				this._loadingState = false;
-			}
+			this._loadingState = false;
 		}
 	}
 }

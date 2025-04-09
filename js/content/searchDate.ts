@@ -26,6 +26,7 @@ export default {
 		let displayFormat = '';
 		let dateTime;
 		let searchInput = new SearchInput(dt, this.idx())
+			.type('date')
 			.addClass('dtcc-searchDate')
 			.clearable(config.clear)
 			.placeholder(config.placeholder)
@@ -175,7 +176,7 @@ function dateToNum(input: Date | string, srcFormat: string, moment?: any, luxon?
 		return '';
 	} else if (input instanceof Date) {
 		return input.getTime();
-	} else if (srcFormat !== 'YYYY-MM-DD') {
+	} else if (srcFormat !== 'YYYY-MM-DD' && (moment || luxon)) {
 		return moment
 			? moment(input, srcFormat).unix() * 1000
 			: luxon.DateTime.fromFormat(input, srcFormat).toMillis();

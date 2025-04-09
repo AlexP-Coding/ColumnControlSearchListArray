@@ -12,27 +12,37 @@ export default {
 
 	init(config) {
 		let dt = this.dt();
-		let column = dt.column(this.idx());
-		let placeholder = document.createElement('div');
+		let idx = this.idx();
+		let displayEl;
+		let loadedState = dt.state.loaded()?.columnControl?.[idx]?.searchInput;
 
-		dt.ready(() => {
-			let type = column.type();
-			let el;
-
-			// Check what the data type is and then execute the search type based on that
+		let initType = (type: string) => {
 			if (type === 'date' || type.startsWith('datetime')) {
-				el = searchDate.init.call(this, config);
+				return searchDate.init.call(this, config);
 			} else if (type.includes('num')) {
-				el = searchNumber.init.call(this, config);
+				return searchNumber.init.call(this, config);
 			} else {
-				el = searchText.init.call(this, config);
+				return searchText.init.call(this, config);
 			}
+		};
 
-			if (el) {
-				placeholder.replaceWith(el);
-			}
-		});
+		// If we know the type from the saved state, we can load it immediately. This is required
+		// to allow the state to be applied to the table and the first draw to have a filter
+		// applied (if it is needed).
+		if (loadedState) {
+			displayEl = initType(loadedState.type);
+		} else {
+			// Wait until we can get the data type for the column and the run the corresponding type
+			displayEl = document.createElement('div');
 
-		return placeholder;
+			dt.ready(() => {
+				let column = dt.column(idx);
+				let display = initType(column.type());
+
+				displayEl.replaceWith(display);
+			});
+		}
+
+		return displayEl;
 	}
 };
