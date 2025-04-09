@@ -100,24 +100,43 @@ export default {
 			setOptions(checkList, config.options);
 		} else {
 			dt.ready(() => {
-				// TODO was there options specified in the Ajax return?
-
-				// If not, get the values for the column, taking into account orthogonal rendering
-				let found = {};
+				// Was there options specified in the Ajax return?
+				let column = dt.column(this.idx());
+				let name = column.name();
+				let dataSrc = column.dataSrc();
+				let json = (dt.ajax.json() as any)?.columnControl;
 				let options = [];
 
-				dt.cells('*', this.idx(), { order: this.idx() }).every(function () {
-					let filter = this.render('filter');
+				if (json && json[name]) {
+					// Found options matching the column's name - top priority
+					options = json[name];
+				} else if (json && typeof dataSrc === 'string' && json[dataSrc]) {
+					// Found options matching the column's data source string
+					options = json[dataSrc];
+				}
+				else if (json && json[this.idx()]) {
+					// Found options matching the column's data index
+					options = json[this.idx()];
+				}
+				else {
+					// Either no ajax object (i.e. not an Ajax table), or no matching ajax options
+					// for this column - get the values for the column, taking into account
+					// orthogonal rendering
+					let found = {};
 
-					if (!found[filter]) {
-						found[filter] = true;
+					dt.cells('*', this.idx(), { order: this.idx() }).every(function () {
+						let filter = this.render('filter');
 
-						options.push({
-							label: this.render('display'),
-							value: filter
-						});
-					}
-				});
+						if (!found[filter]) {
+							found[filter] = true;
+
+							options.push({
+								label: this.render('display'),
+								value: filter
+							});
+						}
+					});
+				}
 
 				setOptions(checkList, options);
 
