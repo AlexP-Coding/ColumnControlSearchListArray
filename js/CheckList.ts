@@ -197,11 +197,29 @@ export default class CheckList {
 	 *
 	 * @returns Array of currently selected options in the list
 	 */
-	public values() {
+	public values();
+	/**
+	 * Set the activate state of the buttons
+	 *
+	 * @param values Array of values to set as active
+	 */
+	public values(values: Array<string | number>): this;
+	public values(values?: Array<string | number>): any {
+		let i;
 		let result = [];
 		let buttons = this._s.buttons;
 
-		for (let i = 0; i < buttons.length; i++) {
+		if (values !== undefined) {
+			for (i = 0; i < buttons.length; i++) {
+				if (values.includes(buttons[i].value())) {
+					buttons[i].active(true);
+				}
+			}
+
+			return this;
+		}
+
+		for (i = 0; i < buttons.length; i++) {
 			if (buttons[i].active()) {
 				result.push(buttons[i].value());
 			}

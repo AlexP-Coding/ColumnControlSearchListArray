@@ -13,7 +13,7 @@ interface IDom {
 	typeIcon: HTMLDivElement;
 }
 
-type ISearch = (type: string, term: string) => void;
+type ISearch = (type: string, term: string, loadingState: boolean) => void;
 
 export default class SearchInput {
 	private _dom: IDom;
@@ -22,6 +22,7 @@ export default class SearchInput {
 	private _idx: number;
 	private _lastValue: string;
 	private _lastType: string;
+	private _loadingState: boolean;
 
 	/**
 	 * Add a class to the container
@@ -114,13 +115,17 @@ export default class SearchInput {
 	}
 
 	/**
-	 * Set the function that will be run when a search operation is required
+	 * Set the function that will be run when a search operation is required. Note that this can
+	 * trigger the function to run if there is a saved state.
 	 *
 	 * @param fn Search callback
 	 * @returns Self for chaining
 	 */
 	public search(fn: ISearch) {
 		this._search = fn;
+
+		// If there is a saved state, load it now that set up is done.
+		this._stateLoad(this._dt.state.loaded());
 
 		return this;
 	}
@@ -198,10 +203,6 @@ export default class SearchInput {
 		dom.inputs.append(dom.typeIcon, dom.select, dom.searchIcon, dom.clear, dom.input);
 
 		// Listeners
-		dom.input.addEventListener('change', () => {
-			this._runSearch();
-		});
-
 		dom.input.addEventListener('input', () => {
 			this._runSearch();
 		});
@@ -215,13 +216,18 @@ export default class SearchInput {
 			this.clear();
 		});
 
-		// State handling
+		// State handling - all components that use this class have the same state saving structure
+		// so shared handling can be performed here.
 		dt.on('stateSaveParams', (e, s, data) => {
 			if (!data.columnControl) {
 				data.columnControl = {};
 			}
 
-			data.columnControl[idx] = {
+			if (!data.columnControl[idx]) {
+				data.columnControl[idx] = {};
+			}
+
+			data.columnControl[idx].searchInput = {
 				type: dom.select.value,
 				value: dom.input.value
 			};
@@ -243,10 +249,6 @@ export default class SearchInput {
 				// TODO don't want to trigger a draw here - it would have once for every column!
 			}
 		});
-
-		// Runs after initial state load, so we need to check if there has already been a state
-		// loaded
-		this._stateLoad(dt.state.loaded());
 	}
 
 	/**
@@ -261,7 +263,7 @@ export default class SearchInput {
 			this._search &&
 			(this._lastValue !== dom.input.value || this._lastType !== dom.select.value)
 		) {
-			this._search(dom.select.value, dom.input.value);
+			this._search(dom.select.value, dom.input.value, this._loadingState);
 			this._lastValue = dom.input.value;
 			this._lastType = dom.select.value;
 		}
@@ -280,10 +282,17 @@ export default class SearchInput {
 			let loaded = state.columnControl[idx];
 
 			if (loaded) {
+				// The search callback needs to know if we are loading an existing state or not
+				// so it can determine if it needs to draw the table. If it was a user input, then
+				// it redraws, if it was a state load, then there should be no redraw.
+				this._loadingState = true;
+
 				dom.select.value = loaded.type;
 				dom.input.value = loaded.value;
 
-				dom.select.dispatchEvent(new Event('change'));
+				dom.select.dispatchEvent(new Event('input'));
+
+				this._loadingState = false;
 			}
 		}
 	}

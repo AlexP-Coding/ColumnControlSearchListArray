@@ -34,7 +34,7 @@ export default {
 				{ label: 'Empty', value: 'empty' },
 				{ label: 'Not empty', value: 'notEmpty' }
 			])
-			.search((searchType, searchTerm) => {
+			.search((searchType, searchTerm, loadingState) => {
 				let column = dt.column(this.idx());
 
 				searchTerm = searchTerm.toLowerCase();
@@ -79,7 +79,9 @@ export default {
 					config._top.activeList(this.unique(), !!column.search.fixed('dtcc'));
 				}
 
-				column.draw();
+				if (!loadingState) {
+					column.draw();
+				}
 			});
 
 		return searchInput.element();
