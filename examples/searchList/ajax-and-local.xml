@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="ajax" order="1" table-class="display nowrap">
+
+<css lib="datatables columncontrol" />
+<js lib="jquery datatables columncontrol">
+<![CDATA[
+
+$('#example').DataTable({
+	ajax: "../data/options.json",
+	columnControl: ["order", ["searchList"]],
+	columns: [
+		{ data: "name" },
+		{ data: "position" },
+		{ data: "office" },
+		{ data: "extn" },
+		{ data: "start_date" },
+		{ data: "salary" }
+	],
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+
+new DataTable("#example", {
+	ajax: "../data/options.json",
+	columnControl: ["order", ["searchList"]],
+	columns: [
+		{ data: "name" },
+		{ data: "position" },
+		{ data: "office" },
+		{ data: "extn" },
+		{ data: "start_date" },
+		{ data: "salary" }
+	],
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Options via Ajax (and local)</title>
+
+<info><![CDATA[
+
+
+]]></info>
+
+</dt-example>
