@@ -2,6 +2,7 @@ import CheckList from '../CheckList';
 import { IContentPlugin, IContentConfig } from './content';
 
 export interface ISearchList extends IContentConfig {
+	ajaxOnly: boolean;
 	className: string;
 	columns: string | number | Array<string | number>;
 	options: Array<{ label: string; value: any }> | null;
@@ -46,6 +47,7 @@ function getState(columnIdx: number, state) {
 
 export default {
 	defaults: {
+		ajaxOnly: true,
 		className: 'searchList',
 		columns: '',
 		options: null,
@@ -113,12 +115,13 @@ export default {
 				} else if (json && typeof dataSrc === 'string' && json[dataSrc]) {
 					// Found options matching the column's data source string
 					options = json[dataSrc];
-				}
-				else if (json && json[this.idx()]) {
+				} else if (json && json[this.idx()]) {
 					// Found options matching the column's data index
 					options = json[this.idx()];
-				}
-				else {
+				} else if (json && config.ajaxOnly) {
+					// TODO
+					console.log('Ajax only options - need to hide button');
+				} else {
 					// Either no ajax object (i.e. not an Ajax table), or no matching ajax options
 					// for this column - get the values for the column, taking into account
 					// orthogonal rendering
@@ -147,6 +150,8 @@ export default {
 				}
 			});
 		}
+
+		// TODO xhr event listener for updates of options
 
 		// Unlike the SearchInput based search contents, CheckList does not handle state saving
 		// (since the mechanism for column visibility is different), so state saving is handled
