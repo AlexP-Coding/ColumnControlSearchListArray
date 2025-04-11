@@ -1,27 +1,39 @@
 import searchDate, { ISearchDateTime } from './searchDate';
+import searchList, { ISearchList, getJsonOptions } from './searchList';
 import searchNumber, { ISearchNumber } from './searchNumber';
 import searchText, { ISearchText } from './searchText';
+import { IContentPlugin } from './content';
 
-export type ISearch = ISearchDateTime | ISearchNumber | ISearchText;
+export interface ISearch extends ISearchDateTime, ISearchNumber, ISearchText, ISearchList {
+	allowSearchList: boolean;
+}
 
 export default {
 	defaults: {
-		placeholder: '',
-		title: ''
+		allowSearchList: false
 	},
 
 	init(config) {
 		let dt = this.dt();
 		let idx = this.idx();
 		let displayEl;
-		let loadedState = dt.state.loaded()?.columnControl?.[idx]?.searchInput;
+		let loadedState = (dt.state.loaded() as any)?.columnControl?.[idx]?.searchInput;
 
 		let initType = (type: string) => {
-			if (type === 'date' || type.startsWith('datetime')) {
+			let json = getJsonOptions(dt, idx);
+
+			// Attempt to match what type of search should be shown
+			if (config.allowSearchList && json) {
+				// We've got a list of JSON options, and are allowed to show the searchList
+				return searchList.init.call(this, config);
+			} else if (type === 'date' || type.startsWith('datetime')) {
+				// Date types
 				return searchDate.init.call(this, config);
 			} else if (type.includes('num')) {
+				// Number types
 				return searchNumber.init.call(this, config);
 			} else {
+				// Everything else
 				return searchText.init.call(this, config);
 			}
 		};
@@ -45,4 +57,4 @@ export default {
 
 		return displayEl;
 	}
-};
+} as IContentPlugin<ISearch>;

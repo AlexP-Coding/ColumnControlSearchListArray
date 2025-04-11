@@ -1,14 +1,24 @@
 import { IContentPlugin, IContentConfig } from './content';
+import { ISearch } from './search';
 
-export interface ISearchDropdown extends IContentConfig {
-	className: string;
+export interface ISearchDropdown extends ISearch {
 	text: string;
 }
 
 export default {
 	defaults: {
+		ajaxOnly: true,
+		allowSearchList: true,
 		className: 'searchDropdown',
-		text: 'Search'
+		clear: true,
+		columns: '',
+		options: null,
+		placeholder: '',
+		search: true,
+		select: true,
+		text: 'Search',
+		title: '',
+		titleAttr: ''
 	},
 
 	extend(config) {

@@ -45,6 +45,26 @@ function getState(columnIdx: number, state) {
 	}
 }
 
+export function getJsonOptions(dt, idx) {
+	let json = (dt.ajax.json() as any)?.columnControl;
+	let column = dt.column(idx);
+	let name = column.name();
+	let dataSrc = column.dataSrc();
+
+	if (json && json[name]) {
+		// Found options matching the column's name - top priority
+		return json[name];
+	} else if (json && typeof dataSrc === 'string' && json[dataSrc]) {
+		// Found options matching the column's data source string
+		return json[dataSrc];
+	} else if (json && json[idx]) {
+		// Found options matching the column's data index
+		return json[idx];
+	}
+
+	return null;
+}
+
 export default {
 	defaults: {
 		ajaxOnly: true,
@@ -79,9 +99,7 @@ export default {
 
 			// If in a dropdown, set the parent levels as active
 			if (config._parents) {
-				config._parents.forEach((btn) =>
-					btn.activeList(this.unique(), !!values.length)
-				);
+				config._parents.forEach((btn) => btn.activeList(this.unique(), !!values.length));
 			}
 		};
 
@@ -105,21 +123,12 @@ export default {
 		} else {
 			dt.ready(() => {
 				// Was there options specified in the Ajax return?
-				let column = dt.column(this.idx());
-				let name = column.name();
-				let dataSrc = column.dataSrc();
 				let json = (dt.ajax.json() as any)?.columnControl;
 				let options = [];
+				let jsonOptions = getJsonOptions(dt, this.idx());
 
-				if (json && json[name]) {
-					// Found options matching the column's name - top priority
-					options = json[name];
-				} else if (json && typeof dataSrc === 'string' && json[dataSrc]) {
-					// Found options matching the column's data source string
-					options = json[dataSrc];
-				} else if (json && json[this.idx()]) {
-					// Found options matching the column's data index
-					options = json[this.idx()];
+				if (jsonOptions) {
+					options = jsonOptions;
 				} else if (json && config.ajaxOnly) {
 					// Ajax only options - need to hide the search list
 					checkList.element().style.display = 'none';
