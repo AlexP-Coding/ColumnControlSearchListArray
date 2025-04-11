@@ -6,6 +6,7 @@ export interface IOrder extends IContentConfig {
 	iconAsc: string;
 	iconDesc: string;
 	iconNone: string;
+	statusOnly: boolean;
 	text: string;
 }
 
@@ -15,6 +16,7 @@ export default {
 		iconAsc: 'orderAsc',
 		iconDesc: 'orderDesc',
 		iconNone: 'orderNone',
+		statusOnly: false,
 		text: 'Toggle ordering'
 	},
 
@@ -23,8 +25,10 @@ export default {
 		let btn = new Button(dt)
 			.text(dt.i18n('columnControl.orderAsc', config.text))
 			.icon('orderAsc')
-			.className(config.className)
-			.handler(() => {
+			.className(config.className);
+
+		if (!config.statusOnly) {
+			btn.handler(() => {
 				let order = dt.order();
 				let found = order.find((o) => o[0] === this.idx());
 				let apply: any = [];
@@ -38,6 +42,7 @@ export default {
 
 				dt.order(apply).draw();
 			});
+		}
 
 		dt.on('order', (e, s, order) => {
 			let found = order.find((o) => o.col === this.idx());
