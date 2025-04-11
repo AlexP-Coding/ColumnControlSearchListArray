@@ -77,9 +77,11 @@ export default {
 				});
 			}
 
-			// If in a dropdown, set the top level as active
-			if (config._top) {
-				config._top.activeList(this.unique(), !!values.length);
+			// If in a dropdown, set the parent levels as active
+			if (config._parents) {
+				config._parents.forEach((btn) =>
+					btn.activeList(this.unique(), !!values.length)
+				);
 			}
 		};
 
@@ -119,8 +121,17 @@ export default {
 					// Found options matching the column's data index
 					options = json[this.idx()];
 				} else if (json && config.ajaxOnly) {
-					// TODO
-					console.log('Ajax only options - need to hide button');
+					// Ajax only options - need to hide the search list
+					checkList.element().style.display = 'none';
+
+					// Check if the parent buttons should be hidden as well (they will be if there
+					// is no visible content in them)
+					if (config._parents) {
+						config._parents.forEach((btn) => btn.checkDisplay());
+					}
+
+					// No point in doing any further processing here
+					return;
 				} else {
 					// Either no ajax object (i.e. not an Ajax table), or no matching ajax options
 					// for this column - get the values for the column, taking into account

@@ -153,19 +153,20 @@ export default {
 		};
 
 		// A liner element allows more styling options, so the contents go inside this
-		let liner = dropdown.childNodes[0];
+		let liner = dropdown.childNodes[0] as HTMLDivElement;
 
 		let btn = new Button()
 			.text(dt.i18n('columnControl.dropdown', config.text))
 			.icon(config.icon)
 			.className(config.className)
+			.dropdownDisplay(liner)
 			.handler(() => {
 				close();
 
 				if (dropdown._shown) {
 					dropdown._close();
 				} else {
-					attachDropdown(dropdown, dt, config._top || btn);
+					attachDropdown(dropdown, dt, config._parents ? config._parents[0] : btn);
 				}
 			});
 
@@ -175,7 +176,11 @@ export default {
 
 			// For nested items we need to keep a reference to the top level so the sub-levels
 			// can communicate back - e.g. active or positioned relative to that top level.
-			content.config._top = config._top || btn;
+			if (!content.config._parents) {
+				content.config._parents = [];
+			}
+
+			content.config._parents.push(btn);
 
 			let el = content.plugin.init.call(this, content.config);
 
@@ -183,7 +188,7 @@ export default {
 		}
 
 		// For nested dropdowns, add an extra icon element to show that it will dropdown further
-		if (config._top) {
+		if (config._parents && config._parents.length) {
 			btn.extra('chevronRight');
 		}
 

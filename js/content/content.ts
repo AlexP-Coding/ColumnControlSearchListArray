@@ -3,7 +3,7 @@ import Button from '../Button';
 
 export interface IContentConfig {
 	/** @ignore */
-	_top?: Button;
+	_parents?: Button[];
 }
 
 export interface IContentPlugin<T = {}> {

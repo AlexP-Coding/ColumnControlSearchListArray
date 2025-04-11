@@ -74,9 +74,11 @@ export default {
 					);
 				}
 
-				// If in a dropdown, set the top level as active
-				if (config._top) {
-					config._top.activeList(this.unique(), !!column.search.fixed('dtcc'));
+				// If in a dropdown, set the parent levels as active
+				if (config._parents) {
+					config._parents.forEach((btn) =>
+						btn.activeList(this.unique(), !!column.search.fixed('dtcc'))
+					);
 				}
 
 				if (!loadingState) {

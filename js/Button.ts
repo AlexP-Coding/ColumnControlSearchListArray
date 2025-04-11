@@ -6,6 +6,7 @@ type Icons = keyof typeof icons;
 
 interface IDom {
 	button: HTMLButtonElement;
+	dropdownDisplay: HTMLDivElement;
 	icon: HTMLSpanElement;
 	extra: HTMLSpanElement;
 	state: HTMLSpanElement;
@@ -69,8 +70,41 @@ export default class Button {
 		return this;
 	}
 
-	public extra(icon: Icons | '') {
-		this._dom.extra.innerHTML = icon ? icons[icon] : '';
+	/**
+	 * Scan over the dropdown element looking for any visible content. If there isn't any then
+	 * we hide this button.
+	 *
+	 * @returns Button instance
+	 */
+	public checkDisplay() {
+		let visible = 0;
+		let children = this._dom.dropdownDisplay.childNodes as any;
+
+		for (let i=0 ; i<children.length ; i++) {
+			// No need to getComputedStyle since if a button is hidden, it was done with JS writing
+			// to style.display, so we can check against that.
+			if (children[i].style.display !== 'none') {
+				visible++;
+			}
+		}
+
+		if (visible === 0) {
+			this._dom.button.style.display = 'none';
+		}
+
+		return this;
+	}
+
+	/**
+	 * Relevant for drop downs only. When a button in a dropdown is hidden, we might want to
+	 * hide the host button as well (if it has nothing else to show). For that we need to know
+	 * what the dropdown element is.
+	 *
+	 * @param el Element that can be used for telling us about drop down elements.
+	 * @returns Button instance
+	 */
+	public dropdownDisplay(el: HTMLDivElement) {
+		this._dom.dropdownDisplay = el;
 
 		return this;
 	}
@@ -105,6 +139,18 @@ export default class Button {
 	public enable(enable: boolean) {
 		this._dom.button.classList.toggle('dtcc-button_disabled', !enable);
 		this._s.enabled = enable;
+
+		return this;
+	}
+
+	/**
+	 * Set the extra information icon
+	 *
+	 * @param icon Icon name
+	 * @returns Button instance
+	 */
+	public extra(icon: Icons | '') {
+		this._dom.extra.innerHTML = icon ? icons[icon] : '';
 
 		return this;
 	}
@@ -193,6 +239,7 @@ export default class Button {
 	constructor() {
 		this._dom = {
 			button: createElement<HTMLButtonElement>('button', 'dtcc-button'),
+			dropdownDisplay: null,
 			extra: createElement<HTMLSpanElement>('span', 'dtcc-button-extra'),
 			icon: createElement<HTMLSpanElement>('span', 'dtcc-button-icon'),
 			state: createElement<HTMLSpanElement>('span', 'dtcc-button-state'),
