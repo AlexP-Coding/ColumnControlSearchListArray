@@ -18,7 +18,7 @@ export default {
 
 	init(config) {
 		let dt = this.dt();
-		let btn = new Button()
+		let btn = new Button(dt)
 			.text(dt.i18n('columnControl.reorder', config.text))
 			.icon(config.icon)
 			.className(config.className)

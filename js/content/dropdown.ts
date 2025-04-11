@@ -155,7 +155,7 @@ export default {
 		// A liner element allows more styling options, so the contents go inside this
 		let liner = dropdown.childNodes[0] as HTMLDivElement;
 
-		let btn = new Button()
+		let btn = new Button(dt)
 			.text(dt.i18n('columnControl.dropdown', config.text))
 			.icon(config.icon)
 			.className(config.className)

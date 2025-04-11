@@ -156,7 +156,9 @@ export default class ColumnControl {
 			this._dom.wrapper.appendChild(el);
 		});
 
-		dt.on('destroy', function () {});
+		dt.on('destroy', () => {
+			this._dom.wrapper.remove();
+		});
 	}
 
 	/**

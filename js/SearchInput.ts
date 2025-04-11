@@ -210,17 +210,27 @@ export default class SearchInput {
 		dom.inputs.append(dom.typeIcon, dom.select, dom.searchIcon, dom.clear, dom.input);
 
 		// Listeners
-		dom.input.addEventListener('input', () => {
+		let inputInput = () => {
 			this._runSearch();
-		});
+		};
 
-		dom.select.addEventListener('input', () => {
+		let selectInput = () => {
 			dom.typeIcon.innerHTML = icons[dom.select.value];
 			this._runSearch();
-		});
+		};
 
-		dom.clear.addEventListener('click', () => {
+		let clearClick = () => {
 			this.clear();
+		};
+
+		dom.input.addEventListener('input', inputInput);
+		dom.select.addEventListener('input', selectInput);
+		dom.clear.addEventListener('click', clearClick);
+
+		dt.on('destroy', () => {
+			dom.input.removeEventListener('input', inputInput);
+			dom.select.removeEventListener('input', selectInput);
+			dom.clear.removeEventListener('click', clearClick);
 		});
 
 		// State handling - all components that use this class have the same state saving structure

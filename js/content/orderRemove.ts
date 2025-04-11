@@ -16,7 +16,7 @@ export default {
 
 	init(config) {
 		let dt = this.dt();
-		let btn = new Button()
+		let btn = new Button(dt)
 			.text(dt.i18n('columnControl.orderRemove', config.text))
 			.icon(config.icon)
 			.className(config.className)

@@ -22,6 +22,7 @@ interface IDom {
 
 interface ISettings {
 	buttons: Button[];
+	dt: Api;
 	handler: IHandler;
 	search: string;
 }
@@ -39,6 +40,7 @@ export default class CheckList {
 	private _dom: IDom;
 	private _s: ISettings = {
 		buttons: [],
+		dt: null,
 		handler: () => {},
 		search: ''
 	};
@@ -56,7 +58,7 @@ export default class CheckList {
 
 		for (let i = 0; i < options.length; i++) {
 			let option = options[i];
-			let btn = new Button()
+			let btn = new Button(this._s.dt)
 				.active(option.active || false)
 				.handler((e) => {
 					this._s.handler(e, btn);
@@ -232,6 +234,7 @@ export default class CheckList {
 	 * Container for a list of buttons
 	 */
 	constructor(dt: Api, opts: IOptions) {
+		this._s.dt = dt;
 		this._dom = {
 			buttons: createElement<HTMLDivElement>('div', 'dtcc-list-buttons'),
 			container: createElement<HTMLDivElement>('div', 'dtcc-list'),
@@ -265,6 +268,24 @@ export default class CheckList {
 			dom.selectNone.append(dom.selectNoneCount);
 		}
 
+		// Events
+		let searchInput = () => {
+			this._s.search = dom.search.value;
+			this._redraw();
+		};
+
+		let selectAllClick = (e) => {
+			this.selectAll();
+			this._s.handler(e, null);
+			this._updateCount();
+		};
+
+		let selectNoneClick = (e) => {
+			this.selectNone();
+			this._s.handler(e, null);
+			this._updateCount();
+		};
+
 		if (opts.search) {
 			dom.controls.append(dom.search);
 			dom.search.setAttribute(
@@ -272,22 +293,16 @@ export default class CheckList {
 				dt.i18n('columnControl.list.search', 'Search...')
 			);
 
-			dom.search.addEventListener('input', () => {
-				this._s.search = dom.search.value;
-				this._redraw();
-			});
+			dom.search.addEventListener('input', searchInput);
 		}
 
-		dom.selectAll.addEventListener('click', (e) => {
-			this.selectAll();
-			this._s.handler(e, null);
-			this._updateCount();
-		});
+		dom.selectAll.addEventListener('click', selectAllClick);
+		dom.selectNone.addEventListener('click', selectNoneClick);
 
-		dom.selectNone.addEventListener('click', (e) => {
-			this.selectNone();
-			this._s.handler(e, null);
-			this._updateCount();
+		dt.on('destroy', () => {
+			dom.selectAll.removeEventListener('click', selectAllClick);
+			dom.selectNone.removeEventListener('click', selectNoneClick);
+			dom.search.removeEventListener('input', searchInput);
 		});
 	}
 

@@ -1,6 +1,7 @@
 import { createElement } from './util';
 import icons from './icons';
 import { close as closeDropdowns } from './content/dropdown';
+import { Api } from '../../../types/types';
 
 type Icons = keyof typeof icons;
 
@@ -16,6 +17,7 @@ interface IDom {
 interface ISettings {
 	active: boolean;
 	activeList: { [key: number]: boolean };
+	dt: Api;
 	enabled: boolean;
 	label: string;
 	value: string | number;
@@ -26,6 +28,7 @@ export default class Button {
 	private _s: ISettings = {
 		active: false,
 		activeList: [],
+		dt: null,
 		enabled: true,
 		label: '',
 		value: null
@@ -162,7 +165,7 @@ export default class Button {
 	 * @returns Button instance
 	 */
 	public handler(fn: (e: Event) => void) {
-		this._dom.button.addEventListener('click', (e) => {
+		let buttonClick = (e) => {
 			// Close any dropdowns which are already open
 			closeDropdowns(e);
 
@@ -173,6 +176,12 @@ export default class Button {
 			if (this._s.enabled) {
 				fn(e);
 			}
+		};
+
+		this._dom.button.addEventListener('click', buttonClick);
+
+		this._s.dt.on('destroy', () => {
+			this._dom.button.removeEventListener('click', buttonClick);
 		});
 
 		return this;
@@ -236,7 +245,8 @@ export default class Button {
 	 * Create a new button for use in ColumnControl contents. Buttons created by this class can be
 	 * used at the top level in the header or in a dropdown.
 	 */
-	constructor() {
+	constructor(dt: Api) {
+		this._s.dt = dt;
 		this._dom = {
 			button: createElement<HTMLButtonElement>('button', 'dtcc-button'),
 			dropdownDisplay: null,
