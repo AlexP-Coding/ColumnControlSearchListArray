@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" order="1">
+<dt-example table-type="html" order="10">
 
 <css lib="datatables columncontrol" />
 <js lib="jquery datatables columncontrol">
 <![CDATA[
 $('#example').DataTable({
+	columnControl: ['order', 'spacer', ['orderAsc', 'orderDesc', 'spacer', 'search']],
 	ordering: {
 		indicators: false,
 		handler: false
-	},
-	columnControl: {
-		content: [
-			'orderAsc',
-			'orderDesc',
-			'spacer',
-			['orderAsc', 'orderDesc', 'spacer', 'search']
-		]
 	}
 });
 ]]>
@@ -24,26 +17,24 @@ $('#example').DataTable({
 <js-vanilla>
 <![CDATA[
 new DataTable('#example', {
+	columnControl: ['order', 'spacer', ['orderAsc', 'orderDesc', 'spacer', 'search']],
 	ordering: {
 		indicators: false,
 		handler: false
-	},
-	columnControl: {
-		content: [
-			'orderAsc',
-			'orderDesc',
-			'spacer',
-			['orderAsc', 'orderDesc', 'spacer', 'search']
-		]
 	}
 });
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Spacer</title>
+<title lib="ColumnControl">Dropdowns: Spacers</title>
 
 <info><![CDATA[
 
+The [previous example](./nested.html) showed a common UI paradigm in operating system menus - nested dropdowns. Another common pattern is to use a separator to group similar items together, allowing the end user to quickly scan over the list, finding the group they want and then refining that to the option they want.
+
+ColumnControl has a built in `-content spacer` type for exactly this purpose. It can be used at the top level to provide a vertical bar between buttons, or in a dropdown to show a horizontal bar. Both are shown in this example.
+
+Next: [Dropdown titles](./titles.html).
 
 ]]></info>
 

@@ -10,7 +10,7 @@ $('#example').DataTable({
 		handler: false
 	},
 	columnControl: {
-		content: ['orderAsc', 'orderDesc']
+		content: ['order', ['orderAsc', 'orderDesc', 'orderAddAsc', 'orderAddDesc']]
 	}
 });
 ]]>
@@ -24,13 +24,13 @@ new DataTable('#example', {
 		handler: false
 	},
 	columnControl: {
-		content: ['orderAsc', 'orderDesc']
+		content: ['order', ['orderAsc', 'orderDesc', 'orderAddAsc', 'orderAddDesc']]
 	}
 });
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Basic initialisation</title>
+<title lib="ColumnControl">Direction buttons</title>
 
 <info><![CDATA[
 

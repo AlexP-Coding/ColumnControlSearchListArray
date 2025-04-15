@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="1">
+
+<css lib="datatables columncontrol" />
+<js lib="jquery datatables columncontrol">
+<![CDATA[
+$('#example').DataTable({
+	columnControl: ['searchDropdown']
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+new DataTable('#example', {
+	columnControl: ['searchDropdown']
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Single button</title>
+
+<info><![CDATA[
+
+[ColumnControl](https://datatables.net/extensions/columncontrol/) is an extension for [DataTables](https://datatables.net/) that let's you add buttons and other controls to a column in your tables. These controls are termed "content" in ColumnControl and can be used for ordering, search, and more.
+
+In this series of examples we'll explore how ColumnControl can be configured. Other examples will explore the content types in more details, but this set is all about understanding the basics of ColumnControl. Let's start with the most basic use case - a single button in the table header.
+
+You'll note in the example code that the `-init columnControl` parameter is provided in the DataTables initialisation object. It can be given as an array of content types - in this case the example uses `-content searchDropdown` to create a control in the table header that shows a dropdown with a search input for the column.
+
+Next: [Multiple content types](./multipleButtons.html).
+
+]]></info>
+
+</dt-example>

@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" order="1">
+<dt-example table-type="html" order="8">
 
 <css lib="datatables columncontrol" />
 <js lib="jquery datatables columncontrol">
 <![CDATA[
 $('#example').DataTable({
+	columnControl: ['order', ['orderAsc', 'orderDesc', 'orderRemove']],
 	ordering: {
 		indicators: false,
 		handler: false
-	},
-	columnControl: {
-		content: [['orderAsc', 'orderDesc', 'orderRemove']]
 	}
 });
 ]]>
@@ -19,12 +17,10 @@ $('#example').DataTable({
 <js-vanilla>
 <![CDATA[
 new DataTable('#example', {
+	columnControl: ['order', ['orderAsc', 'orderDesc', 'orderRemove']],
 	ordering: {
 		indicators: false,
 		handler: false
-	},
-	columnControl: {
-		content: [['orderAsc', 'orderDesc', 'orderRemove']]
 	}
 });
 ]]>
@@ -33,6 +29,14 @@ new DataTable('#example', {
 <title lib="ColumnControl">Dropdowns</title>
 
 <info><![CDATA[
+
+As mentioned in previous examples, with the array of options that ColumnControl gives you, it can be easy to overwhelm your UI with buttons and inputs. To address this ColumnControl makes it easy to define content in a dropdown.
+
+A dropdown is defined simply as an array inside the `-init columnControl` content array. In this example you can see that there are two top level buttons - the `-content order` button and a dropdown button. The dropdown button has extra ordering buttons in this case - other examples will make use of other content types (ColumnControl is all about giving you the ability to configure the UI that is most suitable for your use case)!
+
+A dropdown is actually a content type itself - `-content dropdown`. The array syntax is a shorthand to define a default dropdown with the content specified by the array. If you wish to customise the dropdown icon, you might wish to use `-content dropdown` directly.
+
+Next: [Nested dropdowns](./nested.html).
 
 
 ]]></info>

@@ -30,7 +30,7 @@ new DataTable('#example', {
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Basic initialisation</title>
+<title lib="ColumnControl">Direction buttons</title>
 
 <info><![CDATA[
 

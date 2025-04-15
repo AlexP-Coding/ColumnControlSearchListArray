@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" order="1">
+<dt-example table-type="html" order="11">
 
 <css lib="datatables columncontrol" />
 <js lib="jquery datatables columncontrol">
 <![CDATA[
 $('#example').DataTable({
-	ordering: {
-		indicators: false,
-		handler: false
-	},
 	columnControl: [['title', 'orderAsc', 'orderDesc']]
 });
 ]]>
@@ -17,19 +13,18 @@ $('#example').DataTable({
 <js-vanilla>
 <![CDATA[
 new DataTable('#example', {
-	ordering: {
-		indicators: false,
-		handler: false
-	},
 	columnControl: [['title', 'orderAsc', 'orderDesc']]
 });
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Dropdown titles</title>
+<title lib="ColumnControl">Dropdowns: Column titles</title>
 
 <info><![CDATA[
 
+This example, perhaps the simplest of the content types will commonly be used in a dropdown shows the `-content title` option. It shows the column title that the dropdown belongs to, allowing the end user to quality identify the association.
+
+This example brings the "Initialisation" set of examples for ColumnControl to an end. We've see how ColumnControl can be configured and content assigned for use. The examples in the other sections delve into the specifics of the content types that are built in to ColumnControl.
 
 ]]></info>
 

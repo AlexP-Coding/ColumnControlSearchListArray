@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" order="1">
+<dt-example table-type="html" order="4">
 
 <css lib="datatables columncontrol" />
 <js lib="jquery datatables columncontrol">
 <![CDATA[
 
 $('#example').DataTable({
-	ordering: {
-		indicators: false,
-		handler: false
-	},
 	columnControl: [
 		{
 			target: 0,
@@ -17,9 +13,13 @@ $('#example').DataTable({
 		},
 		{
 			target: 1,
-			content: ['orderAsc', 'orderDesc']
+			content: ['search']
 		}
-	]
+	],
+	ordering: {
+		indicators: false,
+		handler: false
+	}
 });
 ]]>
 </js>
@@ -28,24 +28,20 @@ $('#example').DataTable({
 <![CDATA[
 
 new DataTable('#example', {
+	columnControl: [
+		{
+			target: 0,
+			content: ['order']
+		},
+		{
+			target: 1,
+			content: ['search']
+		}
+	],
 	ordering: {
 		indicators: false,
 		handler: false
-	},
-	columnControl: [
-		['order'],
-		// [{
-		// 	extend: 'orderAsc'
-		// }],
-		{
-			target: 1,
-			content: [['title', 'order']]
-		},
-		{
-			target: 2,
-			content: ['orderAsc', 'orderDesc']
-		}
-	]
+	}
 });
 ]]>
 </js-vanilla>
@@ -53,6 +49,12 @@ new DataTable('#example', {
 <title lib="ColumnControl">Multiple rows</title>
 
 <info><![CDATA[
+
+The [previous example](./targets.html) shows the use of `-init columnControl` as an object to insert content into a specific row in the header. We've also [seen this option](./singleButton.html) being used as a shorthand to insert content to the default row. There is a third and final form `-init columnControl` can take which allows ColumnControl content types on multiple rows.
+
+This example shows `-init columnControl` with an array of ColumnControl configuration objects (i.e. objects with with `target` and `content` properties), each with its own target. In this case the first row in the header has the `-content order` button added, and the second has `-content search` inserted. You can have as many entries as you need in this array.
+
+Next: [Footer target](./footer.html).
 
 
 ]]></info>
