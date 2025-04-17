@@ -8,7 +8,7 @@
 	--dtcc-button_disabled_opacity: 0.6;
 
 	--dtcc-button_hover-border: none;
-	--dtcc-button_hover-background: rgba(0, 0, 0, 0.1);
+	--dtcc-button_hover-background: rgb(var(--bs-tertiary-bg-rgb));
 	--dtcc-button_hover-opacity: 0.9;
 
 	--dtcc-button-icon_color: var(--bs-body-color);
@@ -18,7 +18,7 @@
 	--dtcc-spacer_border: var(--bs-border-width) solid var(--bs-border-color);
 	--dtcc-spacer_margin: 0.5em;
 
-	--dtcc-title_background: rgba(255, 255, 255, 0.1);
+	--dtcc-title_background: rgb(var(--bs-tertiary-bg-rgb));
 	--dtcc-title_border-left: none;
 	--dtcc-title_border-right: none;
 	--dtcc-title_border-top: none;
@@ -28,7 +28,7 @@
 	--dtcc-title_text-align: center;
 
 	--dtcc-search-icon_color: var(--bs-body-color);
-	--dtcc-search-icon_hover-background: rgba(0, 0, 0, 0.1);
+	--dtcc-search-icon_hover-background: rgb(var(--bs-tertiary-bg-rgb));
 	--dtcc-search-icon_opacity: 0.4;
 	--dtcc-search-icon_size: 16px;
 
