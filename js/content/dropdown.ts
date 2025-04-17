@@ -15,6 +15,11 @@ export interface IDropdown extends IContentConfig {
 	text: string;
 }
 
+interface IClasses {
+	container: string | string[];
+	liner: string | string[];
+}
+
 /**
  * Close all or only other dropdowns
  *
@@ -132,7 +137,12 @@ function relativePosition(parent: HTMLElement, origin: HTMLElement) {
 	};
 }
 
-export default {
+const dropdownContent = {
+	classes: {
+		container: 'dtcc-dropdown',
+		liner: 'dtcc-dropdown-liner'
+	},
+
 	defaults: {
 		className: 'dropdown',
 		content: [],
@@ -142,8 +152,8 @@ export default {
 
 	init(config) {
 		let dt = this.dt();
-		let dropdown = createElement<HTMLDropdown>('div', 'dtcc-dropdown', '', [
-			createElement('div', 'dtcc-dropdown-liner')
+		let dropdown = createElement<HTMLDropdown>('div', dropdownContent.classes.container, '', [
+			createElement('div', dropdownContent.classes.liner)
 		]);
 
 		dropdown._shown = false;
@@ -199,4 +209,6 @@ export default {
 
 		return btn.element();
 	}
-} as IContentPlugin<IDropdown>;
+} as IContentPlugin<IDropdown, IClasses>;
+
+export default dropdownContent;

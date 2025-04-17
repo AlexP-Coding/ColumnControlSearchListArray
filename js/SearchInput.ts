@@ -16,6 +16,11 @@ interface IDom {
 type ISearch = (type: string, term: string, loadingState: boolean) => void;
 
 export default class SearchInput {
+	static classes = {
+		input: '',
+		select: ''
+	}
+
 	private _dom: IDom;
 	private _search: ISearch;
 	private _dt: Api;
@@ -197,9 +202,9 @@ export default class SearchInput {
 			container: createElement<HTMLDivElement>('div', ['dtcc-content', 'dtcc-search']),
 			typeIcon: createElement<HTMLDivElement>('div', 'dtcc-search-type-icon'),
 			searchIcon: createElement<HTMLDivElement>('div', 'dtcc-search-icon', icons['search']),
-			input: createElement<HTMLInputElement>('input'),
+			input: createElement<HTMLInputElement>('input', SearchInput.classes.input),
 			inputs: createElement<HTMLDivElement>('div'),
-			select: createElement<HTMLSelectElement>('select'),
+			select: createElement<HTMLSelectElement>('select', SearchInput.classes.select),
 			title: createElement<HTMLDivElement>('div', 'dtcc-search-title')
 		};
 

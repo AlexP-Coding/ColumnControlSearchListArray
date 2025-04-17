@@ -6,7 +6,8 @@ export interface IContentConfig {
 	_parents?: Button[];
 }
 
-export interface IContentPlugin<T = {}> {
+export interface IContentPlugin<T = {}, K = {}> {
+	classes?: K;
 	defaults: T;
 	init?: (this: ColumnControl, buttonConfig: T) => HTMLElement | HTMLButtonElement;
 	extend?: (this: ColumnControl, buttonConfig: T) => IContentConfig;

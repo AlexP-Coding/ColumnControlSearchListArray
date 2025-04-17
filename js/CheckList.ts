@@ -37,6 +37,10 @@ export interface IOption {
 }
 
 export default class CheckList {
+	static classes = {
+		input: 'dtcc-list-search'
+	}
+
 	private _dom: IDom;
 	private _s: ISettings = {
 		buttons: [],
@@ -252,7 +256,7 @@ export default class CheckList {
 				dt.i18n('columnControl.list.none', 'Deselect')
 			),
 			selectNoneCount: createElement<HTMLSpanElement>('span'),
-			search: createElement<HTMLInputElement>('input', 'dtcc-list-search')
+			search: createElement<HTMLInputElement>('input', CheckList.classes.input)
 		};
 
 		let dom = this._dom;

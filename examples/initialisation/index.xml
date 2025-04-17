@@ -6,7 +6,7 @@
 <js lib="jquery" />
 <info><![CDATA[
 
-The examples in this section demonstrate ColumnControl's initialisation and options.
+The examples in this section walks though how to initialise and configure ColumnControl.
 
 ]]></info>
 
