@@ -283,7 +283,7 @@ div.dtcc-dropdown {
 			svg {
 				width: var(--dtcc-button-icon_size);
 				height: var(--dtcc-button-icon_size);
-				vertical-align: initial;
+				vertical-align: var(--dtcc-dropdown-icon_vertical-align);
 			}
 		}
 
@@ -336,7 +336,7 @@ div.dtcc-dropdown {
 					width: var(--dtcc-search-icon_size);
 					height: var(--dtcc-search-icon_size);
 					color: var(--dtcc-search-icon_color);
-					vertical-align: initial;
+					vertical-align: var(--dtcc-dropdown-icon_vertical-align);
 				}
 			}
 
@@ -359,13 +359,13 @@ div.dtcc-dropdown {
 			}
 
 			input {
-				padding-right: 24px;
+				padding-right: var(--dtcc-search-input_padding-right);
 			}
 
 			span.dtcc-search-clear {
 				position: absolute;
-				right: 8px;
-				bottom: 2px;
+				right: var(--dtcc-search-clear_right);
+				bottom: var(--dtcc-search-clear_bottom);
 				width: 14px;
 				cursor: pointer;
 			}

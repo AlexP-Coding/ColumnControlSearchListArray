@@ -29,6 +29,7 @@
 	--dtcc-dropdown-button_padding: 0.5em 1em;
 	--dtcc-dropdown-button_hover-background: rgba(0, 0, 0, 0.05);
 
+	--dtcc-dropdown-icon_vertical-align: initial;
 	--dtcc-dropdown-search_padding: 0.5em 1em;
 
 	--dtcc-spacer_border: 1px solid rgba(0, 0, 0, 0.2);
@@ -47,6 +48,10 @@
 	--dtcc-search-icon_hover-background: rgba(0, 0, 0, 0.1);
 	--dtcc-search-icon_opacity: 0.4;
 	--dtcc-search-icon_size: 16px;
+
+	--dtcc-search-clear_right: 8px;
+	--dtcc-search-clear_bottom: 2px;
+	--dtcc-search-input_padding-right: 24px;
 
 	--dtcc-search_border: 1px solid #aaa;
 	--dtcc-search_background-color: transparent;

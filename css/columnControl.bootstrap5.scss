@@ -39,6 +39,10 @@
 	--dtcc-searchText_padding: .25rem .5rem;
 	--dtcc-searchText_flexCalc: 28px;
 
+	--dtcc-search-clear_right: 15px;
+	--dtcc-search-clear_bottom: 5px;
+	--dtcc-search-input_padding-right: 32px;
+
 	--dtcc-list-buttons_max-height: 300px;
 	--dtcc-searchList-buttons_background: rgb(var(--bs-tertiary-bg-rgb));
 
@@ -58,6 +62,7 @@
 		--dtcc-dropdown-button_padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
 		--dtcc-dropdown-button_hover-background: var(--bs-dropdown-link-hover-bg);
 
+		--dtcc-dropdown-icon_vertical-align: top;
 		--dtcc-dropdown-search_padding: 0.5em 1em;
 	}
 }

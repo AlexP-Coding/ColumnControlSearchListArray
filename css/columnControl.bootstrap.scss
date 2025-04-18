@@ -1,2 +1,70 @@
 
-@import 'columnControl.dataTables.scss';
+:root {
+	--dtcc-button_background: transparent;
+	--dtcc-button_border: none;
+	--dtcc-button_border-radius: 3px;
+	--dtcc-button_opacity: 0.4;
+	--dtcc-button_padding: 3px;
+	--dtcc-button_disabled_opacity: 0.6;
+
+	--dtcc-button_hover-border: none;
+	--dtcc-button_hover-background: #f7f7f9;
+	--dtcc-button_hover-opacity: 0.9;
+
+	--dtcc-button-icon_color: #212529;
+	--dtcc-button-icon_size: 16px;
+	--dtcc-button-icon_margin: 0.75em;
+
+	--dtcc-spacer_border: 1px solid rgba(0,0,0,.15);
+	--dtcc-spacer_margin: 0.5em;
+
+	--dtcc-title_background: #f7f7f9;
+	--dtcc-title_border-left: none;
+	--dtcc-title_border-right: none;
+	--dtcc-title_border-top: none;
+	--dtcc-title_border-bottom: ;
+	--dtcc-title_margin: 0;
+	--dtcc-title_padding: 0.5em 0;
+	--dtcc-title_text-align: center;
+
+	--dtcc-search-icon_color: #212529;
+	--dtcc-search-icon_hover-background: #f7f7f9;
+	--dtcc-search-icon_opacity: 0.4;
+	--dtcc-search-icon_size: 16px;
+
+	--dtcc-search_border: 1px solid #ccc;
+	--dtcc-search_background-color: #fff;
+	--dtcc-searchText_background: #fff;
+	--dtcc-search_border-radius: 4px;
+	--dtcc-searchText_padding: 6px 12px;
+	--dtcc-searchText_flexCalc: 28px;
+
+	--dtcc-search-clear_right: 4px;
+	--dtcc-search-clear_bottom: 4px;
+	--dtcc-search-input_padding-right: 18px;
+
+	--dtcc-list-buttons_max-height: 300px;
+	--dtcc-searchList-buttons_background: #f7f7f9;
+
+	.dropdown-menu {
+		--dtcc-dropdown_background: #fff;
+		--dtcc-dropdown_border: 1px solid rgba(0,0,0,.15);
+		--dtcc-dropdown_border-radius: 4px;
+		--dtcc-dropdown_box-shadow: 0 6px 12px rgba(0,0,0,.175);
+		--dtcc-dropdown_margin: 3px 0 0 0;
+		--dtcc-dropdown_padding: 5px 0;
+		--dtcc-dropdown_width: 250px;
+		--dtcc-dropdown_z-index: 1000;
+
+		--dtcc-dropdown-button_background: transparent;
+		--dtcc-dropdown-button_border: none;
+		--dtcc-dropdown-button_color: #333;
+		--dtcc-dropdown-button_padding: 3px 20px;
+		--dtcc-dropdown-button_hover-background: #f5f5f5;
+
+		--dtcc-dropdown-icon_vertical-align: top;
+		--dtcc-dropdown-search_padding: 6px 12px;
+	}
+}
+
+@import 'shared.scss';

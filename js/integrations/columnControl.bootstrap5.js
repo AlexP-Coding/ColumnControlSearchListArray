@@ -1,4 +1,4 @@
-/*! Bootstrap 5 styling wrapper for ColReorder
+/*! Bootstrap 5 styling wrapper for ColumnControl
  * © SpryMedia Ltd - datatables.net/license
  */
 
