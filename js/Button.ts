@@ -24,6 +24,10 @@ interface ISettings {
 }
 
 export default class Button {
+	static classes = {
+		container: 'dtcc-button'
+	};
+
 	private _dom: IDom;
 	private _s: ISettings = {
 		active: false,
@@ -248,7 +252,7 @@ export default class Button {
 	constructor(dt: Api) {
 		this._s.dt = dt;
 		this._dom = {
-			button: createElement<HTMLButtonElement>('button', 'dtcc-button'),
+			button: createElement<HTMLButtonElement>('button', Button.classes.container),
 			dropdownDisplay: null,
 			extra: createElement<HTMLSpanElement>('span', 'dtcc-button-extra'),
 			icon: createElement<HTMLSpanElement>('span', 'dtcc-button-icon'),

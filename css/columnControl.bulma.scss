@@ -1,2 +1,70 @@
 
-@import 'columnControl.dataTables.scss';
+:root {
+	--dtcc-button_background: transparent;
+	--dtcc-button_border: none;
+	--dtcc-button_border-radius: 3px;
+	--dtcc-button_opacity: 0.4;
+	--dtcc-button_padding: 3px;
+	--dtcc-button_disabled_opacity: 0.6;
+
+	--dtcc-button_hover-border: none;
+	--dtcc-button_hover-background: var(--bulma-background);
+	--dtcc-button_hover-opacity: 0.9;
+
+	--dtcc-button-icon_color: var(--bulma-body-color);
+	--dtcc-button-icon_size: 16px;
+	--dtcc-button-icon_margin: 0.75em;
+
+	--dtcc-spacer_border: var(--bulma-control-border-width) solid hsl(var(--bulma-scheme-h),var(--bulma-scheme-s),calc(var(--bulma-border-l) + 0%));
+	--dtcc-spacer_margin: 0.5em;
+
+	--dtcc-title_background: var(--bulma-background);
+	--dtcc-title_border-left: none;
+	--dtcc-title_border-right: none;
+	--dtcc-title_border-top: none;
+	--dtcc-title_border-bottom: ;
+	--dtcc-title_margin: 0;
+	--dtcc-title_padding: 0.5em 0;
+	--dtcc-title_text-align: center;
+
+	--dtcc-search-icon_color: var(--bulma-body-color);
+	--dtcc-search-icon_hover-background: var(--bulma-background);
+	--dtcc-search-icon_opacity: 0.4;
+	--dtcc-search-icon_size: 16px;
+
+	--dtcc-search_border: var(--bulma-control-border-width) solid hsl(var(--bulma-scheme-h),var(--bulma-scheme-s),calc(var(--bulma-border-l) + 0%));
+	--dtcc-search_background-color: hsl(var(--bulma-scheme-h),var(--bulma-scheme-s),calc(var(--bulma-scheme-main-l) + 0%));
+	--dtcc-search_border-radius:var(--bulma-radius);
+	--dtcc-searchText_background: hsl(var(--bulma-scheme-h),var(--bulma-scheme-s),calc(var(--bulma-scheme-main-l) + 0%));
+	--dtcc-searchText_padding: var(--bulma-control-padding-vertical) var(--bulma-control-padding-horizontal);
+	--dtcc-searchText_flexCalc: 28px;
+
+	--dtcc-search-clear_right: 15px;
+	--dtcc-search-clear_bottom: 5px;
+	--dtcc-search-input_padding-right: 32px;
+
+	--dtcc-list-buttons_max-height: 300px;
+	--dtcc-searchList-buttons_background: var(--bulma-background);
+
+	.dropdown {
+		--dtcc-dropdown_background: transparent;
+		--dtcc-dropdown_border: none;
+		--dtcc-dropdown_border-radius: 0;
+		--dtcc-dropdown_box-shadow: var(--bulma-dropdown-content-shadow);
+		--dtcc-dropdown_margin: var(--bulma-dropdown-content-offset) 0 0 0;
+		--dtcc-dropdown_padding: 0;
+		--dtcc-dropdown_width: 250px;
+		--dtcc-dropdown_z-index: var(--bulma-dropdown-content-z);
+
+		--dtcc-dropdown-button_background: hsl(var(--bulma-dropdown-item-h),var(--bulma-dropdown-item-s),calc(var(--bulma-dropdown-item-background-l) + var(--bulma-dropdown-item-background-l-delta)));
+		--dtcc-dropdown-button_border: none;
+		--dtcc-dropdown-button_color: hsl(var(--bulma-dropdown-item-h),var(--bulma-dropdown-item-s),var(--bulma-dropdown-item-color-l));
+		--dtcc-dropdown-button_padding: .375rem 1rem;
+		--dtcc-dropdown-button_hover-background: var(--bulma-background);
+
+		--dtcc-dropdown-icon_vertical-align: top;
+		--dtcc-dropdown-search_padding: 0.5em 1em;
+	}
+}
+
+@import 'shared.scss';
