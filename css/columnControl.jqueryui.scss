@@ -1,2 +1,89 @@
+:root {
+	--dtcc-button_background: transparent;
+	--dtcc-button_border: none;
+	--dtcc-button_border-radius: 3px;
+	--dtcc-button_opacity: 0.4;
+	--dtcc-button_padding: 3px;
+	--dtcc-button_disabled_opacity: 0.6;
 
-@import 'columnControl.dataTables.scss';
+	--dtcc-button_hover-border: none;
+	--dtcc-button_hover-background: rgba(0, 0, 0, 0.1);
+	--dtcc-button_hover-opacity: 0.9;
+
+	--dtcc-button-icon_color: black;
+	--dtcc-button-icon_size: 16px;
+	--dtcc-button-icon_margin: 0.5em;
+
+	--dtcc-dropdown_background: white;
+	--dtcc-dropdown_border: 1px solid rgba(0, 0, 0, 0.2);
+	--dtcc-dropdown_border-radius: 5px;
+	--dtcc-dropdown_box-shadow: 3px 4px 10px 1px rgba(0, 0, 0, 0.3);
+	--dtcc-dropdown_margin: 3px 0 0 0;
+	--dtcc-dropdown_padding: 0.75em 0;
+	--dtcc-dropdown_width: 200px;
+	--dtcc-dropdown_z-index: 2002;
+
+	--dtcc-dropdown-button_background: transparent;
+	--dtcc-dropdown-button_border: none;
+	--dtcc-dropdown-button_color: black;
+	--dtcc-dropdown-button_padding: 0.5em 1em;
+	--dtcc-dropdown-button_hover-background: rgba(0, 0, 0, 0.05);
+
+	--dtcc-dropdown-icon_vertical-align: initial;
+	--dtcc-dropdown-search_padding: 0.5em 1em;
+
+	--dtcc-spacer_border: 1px solid rgba(0, 0, 0, 0.2);
+	--dtcc-spacer_margin: 0.5em;
+
+	--dtcc-title_background: rgba(255, 255, 255, 0.1);
+	--dtcc-title_border-left: none;
+	--dtcc-title_border-right: none;
+	--dtcc-title_border-top: none;
+	--dtcc-title_border-bottom: ;
+	--dtcc-title_margin: 0;
+	--dtcc-title_padding: 0.5em 0;
+	--dtcc-title_text-align: center;
+
+	--dtcc-search-icon_color: black;
+	--dtcc-search-icon_hover-background: rgba(0, 0, 0, 0.1);
+	--dtcc-search-icon_opacity: 0.4;
+	--dtcc-search-icon_size: 16px;
+
+	--dtcc-search-clear_right: 8px;
+	--dtcc-search-clear_bottom: 2px;
+	--dtcc-search-input_padding-right: 24px;
+
+	--dtcc-search_border: 1px solid #aaa;
+	--dtcc-search_background-color: transparent;
+	--dtcc-searchText_background: transparent;
+	--dtcc-search_border-radius: 3px;
+	--dtcc-searchText_padding: 5px;
+	--dtcc-searchText_flexCalc: 24px;
+
+	--dtcc-list-buttons_max-height: 300px;
+	--dtcc-searchList-buttons_background: rgba(0, 0, 0, 0.05);
+}
+
+:root.dark {
+	--dtcc-button_hover-background: rgba(255, 255, 255, 0.1);
+
+	--dtcc-button-icon_color: white;
+
+	--dtcc-spacer_border: 1px solid rgba(255, 255, 255, 0.15);
+
+	--dtcc-dropdown_background: rgb(33, 37, 41);
+	--dtcc-dropdown_border: 1px solid rgba(255, 255, 255, 0.15);
+	--dtcc-dropdown_box-shadow: 3px 4px 10px 1px rgba(0, 0, 0, 0.8);
+
+	--dtcc-dropdown-button_color: white;
+	--dtcc-dropdown-button_hover-background: rgba(153, 153, 153, 0.1);
+
+	--dtcc-search-icon_color: white;
+	--dtcc-search-icon_hover-background: rgba(255, 255, 255, 0.1);
+
+	--dtcc-search_border: 1px solid rgba(255, 255, 255, 0.2);
+
+	--dtcc-searchList-buttons_background: rgba(255, 255, 255, 0.05);
+}
+
+@import 'shared.scss';
