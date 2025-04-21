@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" order="1">
+<dt-example table-type="html" order="3">
 
 <css lib="datatables columncontrol" />
 <js lib="jquery datatables columncontrol">
 <![CDATA[
 $('#example').DataTable({
-	columnControl: {
-		content: [
-			[
-				'orderAsc',
-				'orderDesc',
-				'spacer',
-				{
-					extend: 'colVis',
-					columns: ':not(.always-visible)'
-				}
-			]
+	columnControl: [
+		'order',
+		[
+			'orderAsc',
+			'orderDesc',
+			'spacer',
+			{
+				extend: 'colVis',
+				columns: ':not(.always-visible)'
+			}
 		]
-	},
+	],
 	columnDefs: [
 		{
 			target: 0,
@@ -27,7 +26,11 @@ $('#example').DataTable({
 			target: -1,
 			visible: false
 		}
-	]
+	],
+	ordering: {
+		indicators: false,
+		handler: false
+	}
 });
 ]]>
 </js>
@@ -35,19 +38,18 @@ $('#example').DataTable({
 <js-vanilla>
 <![CDATA[
 new DataTable('#example', {
-	columnControl: {
-		content: [
-			[
-				'orderAsc',
-				'orderDesc',
-				'spacer',
-				{
-					extend: 'colVis',
-					columns: ':not(.always-visible)'
-				}
-			]
+	columnControl: [
+		'order',
+		[
+			'orderAsc',
+			'orderDesc',
+			'spacer',
+			{
+				extend: 'colVis',
+				columns: ':not(.always-visible)'
+			}
 		]
-	},
+	],
 	columnDefs: [
 		{
 			target: 0,
@@ -57,14 +59,22 @@ new DataTable('#example', {
 			target: -1,
 			visible: false
 		}
-	]
+	],
+	ordering: {
+		indicators: false,
+		handler: false
+	}
 });
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Selecting columns</title>
+<title lib="ColumnControl">Specific columns</title>
 
 <info><![CDATA[
+
+This example [expands upon the previous one](./mixedContent.html) to show the `columns` option for `-content colVis` and demonstrate how you can select which columns the end user should be able to toggle the visibility of. You can give this option a DataTables `-type column-selector` to have it select only the columns you want to be controllable. In this case, if a column has a class of `always-visible`, it cannot be toggled.
+
+Furthermore, this example also shows how the initial visibility state of a column is reflected in the state of the buttons in `-content colVis`. In this case, the last column in the table is made to be hidden at start up through `-init columns.visible`. The button for that column is not active as a result, but can be toggled by the end user.
 
 
 ]]></info>

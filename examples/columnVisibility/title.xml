@@ -1,41 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" order="1">
+<dt-example table-type="html" order="5">
 
 <css lib="datatables columncontrol" />
 <js lib="jquery datatables columncontrol">
 <![CDATA[
 $('#example').DataTable({
-	columnControl: {
-		content: [['orderAsc', 'orderDesc', 'spacer', 'colVis']]
-	},
-	language: {
-		columnControl: {
-			colVis: 'Change columns'
-		}
+	columnControl: [
+		'order',
+		[
+			'orderAsc',
+			'orderDesc',
+			'spacer',
+			{extend: 'colVisDropdown', text: 'Select columns'}
+		]
+	],
+	ordering: {
+		indicators: false,
+		handler: false
 	}
 });
+
 ]]>
 </js>
 
 <js-vanilla>
 <![CDATA[
 new DataTable('#example', {
-	columnControl: {
-		content: [['orderAsc', 'orderDesc', 'spacer', 'colVis']]
-	},
-	language: {
-		columnControl: {
-			colVis: 'Change columns'
-		}
+	columnControl: [
+		'order',
+		[
+			'orderAsc',
+			'orderDesc',
+			'spacer',
+			{extend: 'colVisDropdown', text: 'Select columns'}
+		]
+	],
+	ordering: {
+		indicators: false,
+		handler: false
 	}
 });
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Custom title</title>
+<title lib="ColumnControl">Custom nested text</title>
 
 <info><![CDATA[
 
+Based on [the previous example](./nested.html) with a nested column visibility dropdown, this example shows how the text for the nested button (`-content colVisDropdown`) can be changed with the `text` option. The text can also be controlled with the `colVisDropdown` parameter of the `-init language.columnControl` object as well - this is particularly useful if you are loading a language file via Ajax since it allows a central location for the string, rather than having display strings scattered over the whole configuration object!
+
+The `text` option is common to all content types which display a button - e.g. `-content order`, `-content searchClear` and others.
 
 ]]></info>
 

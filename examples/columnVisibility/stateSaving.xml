@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" order="1">
+<dt-example table-type="html" order="6">
 
 <css lib="datatables columncontrol" />
 <js lib="jquery datatables columncontrol">
 <![CDATA[
 $('#example').DataTable({
-	columnControl: ['colVisDropdown'],
+	columnControl: ['order', 'colVisDropdown'],
+	ordering: {
+		indicators: false,
+		handler: false
+	},
 	stateSave: true
 });
 ]]>
@@ -14,7 +18,11 @@ $('#example').DataTable({
 <js-vanilla>
 <![CDATA[
 new DataTable('#example', {
-	columnControl: ['colVisDropdown'],
+	columnControl: ['order', 'colVisDropdown'],
+	ordering: {
+		indicators: false,
+		handler: false
+	},
 	stateSave: true
 });
 ]]>
@@ -24,6 +32,7 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
+This example is the same as the [simple column visibility dropdown](./dropdown.html), but in this case with DataTables state saving enabled (`-init stateSave`). With this option enabled, you can change the state of the table (ordering, search, column visibility, etc), and then refresh the page - the table will be redrawn in the same state that you configured it to be.
 
 ]]></info>
 

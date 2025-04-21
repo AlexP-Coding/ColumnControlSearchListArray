@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" order="1">
+<dt-example table-type="html" order="4">
 
 <css lib="datatables columncontrol" />
 <js lib="jquery datatables columncontrol">
 <![CDATA[
 $('#example').DataTable({
-	columnControl: {
-		content: [
-			[
-				'orderAsc',
-				'orderDesc',
-				{
-					extend: 'dropdown',
-					icon: 'columns',
-					text: 'Column visibility',
-					content: ['colVis']
-				}
-			]
+	columnControl: [
+		'order',
+		[
+			'orderAsc',
+			'orderDesc',
+			'spacer',
+			'colVisDropdown'
 		]
-	},
+	],
 	ordering: {
 		indicators: false,
 		handler: false
@@ -30,20 +25,15 @@ $('#example').DataTable({
 <js-vanilla>
 <![CDATA[
 new DataTable('#example', {
-	columnControl: {
-		content: [
-			[
-				'orderAsc',
-				'orderDesc',
-				{
-					extend: 'dropdown',
-					icon: 'columns',
-					text: 'Column visibility',
-					content: ['colVis']
-				}
-			]
+	columnControl:  [
+		'order',
+		[
+			'orderAsc',
+			'orderDesc',
+			'spacer',
+			'colVisDropdown'
 		]
-	},
+	],
 	ordering: {
 		indicators: false,
 		handler: false
@@ -57,6 +47,7 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
+Expanding upon [ColumnControl's flexibility for where content is shown](./mixedContent.html), this example demonstrates how `-content colVisDropdown` can be used inside another dropdown. This can be particularly useful if you think the column visibility control won't be used often, and you want to keep the top level of the dropdowns simple.
 
 ]]></info>
 
