@@ -5,9 +5,7 @@
 <js lib="jquery datatables columncontrol colreorder">
 <![CDATA[
 $('#example').DataTable({
-	columnControl: {
-		content: ['order', ['reorderLeft', 'reorderRight']]
-	},
+	columnControl: ['order', ['reorderLeft', 'reorderRight']],
 	ordering: {
 		indicators: false,
 		handler: false
@@ -19,9 +17,7 @@ $('#example').DataTable({
 <js-vanilla>
 <![CDATA[
 new DataTable('#example', {
-	columnControl: {
-		content: ['order', ['reorderLeft', 'reorderRight']]
-	},
+	columnControl: ['order', ['reorderLeft', 'reorderRight']],
 	ordering: {
 		indicators: false,
 		handler: false
@@ -34,6 +30,9 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
+In the [previous example](./dragButton.html) we saw `-content reorder` being used to allow mouse click and drag reordering of buttons. You might also wish to provide the end user with a simple button to change the column order - that can be done with `-content reorderLeft` and `-content reorderRight`.
+
+This example demonstrates that ability with the column reordering buttons in a dropdown.
 
 ]]></info>
 

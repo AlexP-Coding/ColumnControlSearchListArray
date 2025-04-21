@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" order="1">
+<dt-example table-type="html" order="4">
 
 <css lib="datatables columncontrol colreorder" />
 <js lib="jquery datatables columncontrol colreorder">
 <![CDATA[
 $('#example').DataTable({
-	columnControl: {
-		content: ['order', 'reorder', 'colVisDropdown']
-	},
+	columnControl: ['order', 'reorder', 'colVisDropdown'],
 	ordering: {
 		indicators: false,
 		handler: false
@@ -19,9 +17,7 @@ $('#example').DataTable({
 <js-vanilla>
 <![CDATA[
 new DataTable('#example', {
-	columnControl: {
-		content: ['order', 'reorder', 'colVisDropdown']
-	},
+	columnControl: ['order', 'reorder', 'colVisDropdown'],
 	ordering: {
 		indicators: false,
 		handler: false
@@ -34,6 +30,7 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
+This example shows ColumnControl's column visibility (`-content colVisDropdown`) and column reordering (`-content reorder`) together to demonstrate how they interact. In particular, note that once you have reordered the columns, the ordering of the column visibility list is updated to match the new order.
 
 ]]></info>
 

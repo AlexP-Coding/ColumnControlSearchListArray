@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" order="1">
+<dt-example table-type="html" order="4">
 
 <css lib="datatables columncontrol" />
 <js lib="jquery datatables columncontrol">
@@ -9,9 +9,7 @@ $('#example').DataTable({
 		indicators: false,
 		handler: false
 	},
-	columnControl: {
-		content: ['order', ['orderAsc', 'orderDesc', 'orderAddAsc', 'orderAddDesc']]
-	}
+	columnControl: ['order', ['orderAsc', 'orderDesc', 'orderAddAsc', 'orderAddDesc']]
 });
 ]]>
 </js>
@@ -23,17 +21,20 @@ new DataTable('#example', {
 		indicators: false,
 		handler: false
 	},
-	columnControl: {
-		content: ['order', ['orderAsc', 'orderDesc', 'orderAddAsc', 'orderAddDesc']]
-	}
+	columnControl: ['order', ['orderAsc', 'orderDesc', 'orderAddAsc', 'orderAddDesc']]
 });
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Direction buttons</title>
+<title lib="ColumnControl">Order direction buttons in dropdown</title>
 
 <info><![CDATA[
 
+As with any of the content types that ColumnControl offers, the ordering buttons can be placed inside a dropdown. This is done simply with an array inside the content array (which if [you recall from the initialisation examples](../initialisation/dropdown.html) is simply a shorthand for `-content dropdown`).
+
+This can be particularly useful when you want to offer the end user a lot of buttons to give fine grained control order the data ordering in the DataTable, but not clitter the interface.
+
+This example has the `-content order` content type at the top level as a button, then the more fine grained control buttons `-content orderAsc, `-content orderDesc`, `-content orderAddAsc` and `-content orderAddDesc` in a dropdown.
 
 ]]></info>
 

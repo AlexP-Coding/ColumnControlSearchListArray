@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" order="1">
+<dt-example table-type="html" order="5">
 
 <css lib="datatables columncontrol" />
 <js lib="jquery datatables columncontrol">
@@ -9,9 +9,10 @@ $('#example').DataTable({
 		indicators: false,
 		handler: false
 	},
-	columnControl: {
-		content: ['order', ['orderAsc', 'orderDesc', 'orderRemove', 'orderClear', 'orderAddAsc', 'orderAddDesc']]
-	}
+	columnControl: [
+		'order',
+		['orderAsc', 'orderDesc', 'orderRemove', 'orderClear', 'orderAddAsc', 'orderAddDesc']
+	]
 });
 ]]>
 </js>
@@ -23,9 +24,10 @@ new DataTable('#example', {
 		indicators: false,
 		handler: false
 	},
-	columnControl: {
-		content: ['order', ['orderAsc', 'orderDesc', 'orderRemove', 'orderClear', 'orderAddAsc', 'orderAddDesc']]
-	}
+	columnControl: [
+		'order',
+		['orderAsc', 'orderDesc', 'orderRemove', 'orderClear', 'orderAddAsc', 'orderAddDesc']
+	]
 });
 ]]>
 </js-vanilla>
@@ -34,6 +36,15 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
+As mentioned at the start of this series of examples, ColumnControl has a wide range of buttons that can be used to control data ordering in a DataTable. This example shows all of them!
+
+* `-content order` - Status and togglable action button
+* `-content orderAsc` - Status and trigger ordering ascending
+* `-content orderDesc` - Status and trigger ordering descending
+* `-content orderRemove` - Remove a column from the ordering list (can allow other columns to remain ordered, if multi-column ordering is active).
+* `-content orderClear` - Remove all data ordering from the table.
+* `-content orderAddAsc` - Add ascending order as a secondary order to the currently applied order (i.e. multi-column ordering).
+* `-content orderAddDesc` - Add descending order as a secondary order to the currently applied order (i.e. multi-column ordering).
 
 ]]></info>
 
