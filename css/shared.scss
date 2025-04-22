@@ -356,7 +356,7 @@ div.dtcc-dropdown {
 			// Second row
 			input,
 			div.dtcc-search-icon {
-				margin-top: 0.5em;
+				margin-top: var(--dtcc-search-input_margin-top);
 			}
 
 			input {

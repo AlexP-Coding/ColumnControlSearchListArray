@@ -1,2 +1,75 @@
 
-@import 'columnControl.dataTables.scss';
+:root {
+	--dtcc-button_background: transparent;
+	--dtcc-button_border: none;
+	--dtcc-button_border-radius: 3px;
+	--dtcc-button_opacity: 0.4;
+	--dtcc-button_padding: 3px;
+	--dtcc-button_disabled_opacity: 0.6;
+
+	--dtcc-button_hover-border: none;
+	--dtcc-button_hover-background: rgba(0,0,0,.03);
+	--dtcc-button_hover-opacity: 0.9;
+
+	--dtcc-button-icon_color: var(--bs-body-color);
+	--dtcc-button-icon_size: 16px;
+	--dtcc-button-icon_margin: 0.75em;
+
+	--dtcc-spacer_border: 1px solid rgba(34,36,38,.15);
+	--dtcc-spacer_margin: 0.5em;
+
+	--dtcc-title_background: rgba(0,0,0,.03);
+	--dtcc-title_border-left: none;
+	--dtcc-title_border-right: none;
+	--dtcc-title_border-top: none;
+	--dtcc-title_border-bottom: ;
+	--dtcc-title_margin: 0;
+	--dtcc-title_padding: 0.5em 0;
+	--dtcc-title_text-align: center;
+
+	--dtcc-search-icon_color: rgba(0, 0, 0, 0.8);
+	--dtcc-search-icon_hover-background: rgba(0,0,0,.03);
+	--dtcc-search-icon_opacity: 0.4;
+	--dtcc-search-icon_size: 16px;
+
+	--dtcc-search_border: 1px solid rgba(34,36,38,.15);
+	--dtcc-search_background-color: #fff;
+	--dtcc-searchText_background: #fff;
+	--dtcc-search_border-radius: .28571429rem;
+	--dtcc-searchText_padding: .67857143em 1em;
+	--dtcc-searchText_flexCalc: 28px;
+
+	--dtcc-search-clear_right: 15px;
+	--dtcc-search-clear_bottom: 5px;
+	--dtcc-search-input_margin-top: 0.5em;
+	--dtcc-search-input_padding-right: 32px;
+
+	--dtcc-list-buttons_max-height: 300px;
+	--dtcc-searchList-buttons_background: rgba(0,0,0,.03);
+
+	--dtcc-dropdown_background: #fff;
+	--dtcc-dropdown_border: 1px solid rgba(34,36,38,.15);
+	--dtcc-dropdown_border-radius: .28571429rem;
+	--dtcc-dropdown_box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.15);
+	--dtcc-dropdown_margin: 3px 0 0 0;
+	--dtcc-dropdown_padding: 0;
+	--dtcc-dropdown_width: 250px;
+	--dtcc-dropdown_z-index: 11;
+
+	--dtcc-dropdown-button_background: transparent;
+	--dtcc-dropdown-button_border: none;
+	--dtcc-dropdown-button_color: rgba(0,0,0,.87);
+	--dtcc-dropdown-button_padding: .78571429rem 1.14285714rem;
+	--dtcc-dropdown-button_hover-background: #f2f2f2;
+
+	--dtcc-dropdown-icon_vertical-align: top;
+	--dtcc-dropdown-search_padding: 0.5em 1em;
+}
+
+@import 'shared.scss';
+
+div.dtcc-dropdown div.dtcc-search > div input,
+div.dtcc-dropdown div.dtcc-search > div div.dtcc-search-icon {
+	position: initial !important;
+	margin-top: 0.5em !important;
+}

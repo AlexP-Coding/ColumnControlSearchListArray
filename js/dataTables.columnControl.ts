@@ -167,6 +167,8 @@ function assetTarget(ackTargets, target: number | string, dt: Api) {
 		let columns = dt.columns().count();
 		let tr = createElement('tr');
 
+		tr.setAttribute('data-dt-order', 'disable');
+
 		for (let i = 0; i < columns; i++) {
 			tr.appendChild(createElement('td'));
 		}

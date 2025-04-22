@@ -38,6 +38,7 @@ export interface IOption {
 
 export default class CheckList {
 	static classes = {
+		container: 'dtcc-list',
 		input: 'dtcc-list-search'
 	}
 
@@ -241,7 +242,7 @@ export default class CheckList {
 		this._s.dt = dt;
 		this._dom = {
 			buttons: createElement<HTMLDivElement>('div', 'dtcc-list-buttons'),
-			container: createElement<HTMLDivElement>('div', 'dtcc-list'),
+			container: createElement<HTMLDivElement>('div', CheckList.classes.container),
 			controls: createElement<HTMLDivElement>('div', 'dtcc-list-controls'),
 			title: createElement<HTMLDivElement>('div', 'dtcc-list-title'),
 			selectAll: createElement<HTMLButtonElement>(

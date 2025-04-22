@@ -17,6 +17,7 @@ type ISearch = (type: string, term: string, loadingState: boolean) => void;
 
 export default class SearchInput {
 	static classes = {
+		container: ['dtcc-content', 'dtcc-search'],
 		input: '',
 		select: ''
 	}
@@ -199,7 +200,7 @@ export default class SearchInput {
 		this._idx = idx;
 		this._dom = {
 			clear: createElement<HTMLSpanElement>('span', 'dtcc-search-clear', icons['x']),
-			container: createElement<HTMLDivElement>('div', ['dtcc-content', 'dtcc-search']),
+			container: createElement<HTMLDivElement>('div', SearchInput.classes.container),
 			typeIcon: createElement<HTMLDivElement>('div', 'dtcc-search-type-icon'),
 			searchIcon: createElement<HTMLDivElement>('div', 'dtcc-search-icon', icons['search']),
 			input: createElement<HTMLInputElement>('input', SearchInput.classes.input),
