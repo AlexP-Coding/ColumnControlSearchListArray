@@ -1,2 +1,73 @@
 
-@import 'columnControl.dataTables.scss';
+:root {
+	--dtcc-button_background: transparent;
+	--dtcc-button_border: none;
+	--dtcc-button_border-radius: 3px;
+	--dtcc-button_opacity: 0.4;
+	--dtcc-button_padding: 3px;
+	--dtcc-button_disabled_opacity: 0.6;
+
+	--dtcc-button_hover-border: none;
+	--dtcc-button_hover-background: rgb(249, 249, 249);
+	--dtcc-button_hover-opacity: 0.9;
+
+	--dtcc-button-icon_color: rgb(10, 10, 10);
+	--dtcc-button-icon_size: 16px;
+	--dtcc-button-icon_margin: 0.75em;
+
+	--dtcc-spacer_border: 1px solid #cacaca;
+	--dtcc-spacer_margin: 0.5em;
+
+	--dtcc-title_background: rgb(249, 249, 249);
+	--dtcc-title_border-left: none;
+	--dtcc-title_border-right: none;
+	--dtcc-title_border-top: none;
+	--dtcc-title_border-bottom: ;
+	--dtcc-title_margin: 0;
+	--dtcc-title_padding: 0.5em 0;
+	--dtcc-title_text-align: center;
+
+	--dtcc-search-icon_color: rgb(10, 10, 10);
+	--dtcc-search-icon_hover-background: rgb(249, 249, 249);
+	--dtcc-search-icon_opacity: 0.4;
+	--dtcc-search-icon_size: 16px;
+
+	--dtcc-search_border: 1px solid #cacaca;
+	--dtcc-search_background-color: #fff;
+	--dtcc-searchText_background: #fff;
+	--dtcc-search_border-radius: 0;
+	--dtcc-searchText_padding: .25rem .5rem;
+	--dtcc-searchText_flexCalc: 28px;
+
+	--dtcc-search-clear_right: 15px;
+	--dtcc-search-clear_bottom: 5px;
+	--dtcc-search-input_margin-top: 0.5em;
+	--dtcc-search-input_padding-right: 32px;
+
+	--dtcc-list-buttons_max-height: 300px;
+	--dtcc-searchList-buttons_background: rgb(249, 249, 249);
+
+	--dtcc-dropdown_background: #fefefe;
+	--dtcc-dropdown_border: 1px solid #cacaca;
+	--dtcc-dropdown_border-radius: 0;
+	--dtcc-dropdown_box-shadow: none;
+	--dtcc-dropdown_margin: 3px 0 0 0;
+	--dtcc-dropdown_padding: 0;
+	--dtcc-dropdown_width: 250px;
+	--dtcc-dropdown_z-index: 10;
+
+	--dtcc-dropdown-button_background: transparent;
+	--dtcc-dropdown-button_border: none;
+	--dtcc-dropdown-button_color: rgb(19.78, 104.06, 159.96);
+	--dtcc-dropdown-button_padding: .7rem 1rem;
+	--dtcc-dropdown-button_hover-background: transparent;
+
+	--dtcc-dropdown-icon_vertical-align: top;
+	--dtcc-dropdown-search_padding: 0.5em 1em;
+}
+
+@import 'shared.scss';
+
+div.dtcc-dropdown div.dtcc-search > div select {
+	padding-right: 1.5rem;
+}

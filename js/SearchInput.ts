@@ -212,6 +212,7 @@ export default class SearchInput {
 		let dom = this._dom;
 		let originalIdx = idx;
 
+		dom.input.setAttribute('type', 'text');
 		dom.container.append(dom.title, dom.inputs);
 		dom.inputs.append(dom.typeIcon, dom.select, dom.searchIcon, dom.clear, dom.input);
 

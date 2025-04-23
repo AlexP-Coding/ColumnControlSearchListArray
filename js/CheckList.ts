@@ -262,6 +262,7 @@ export default class CheckList {
 
 		let dom = this._dom;
 
+		dom.search.setAttribute('type', 'text');
 		dom.container.append(dom.title);
 		dom.container.append(dom.controls);
 		dom.container.append(dom.buttons);
