@@ -102,14 +102,18 @@ DataTable.Api.registerPlural('columns().ccSearchClear()', 'column().ccSearchClea
 	init: function (dt, node, config) {
 		dt.on('draw', () => {
 			let enabled = false;
+			let glob = !!dt.search();
 
-			dt.columns().every(function () {
-				if (this.search.fixed('dtcc') || this.search.fixed('dtcc-list')) {
-					enabled = true;
-				}
-			});
+			// No point in wasting clock cycles if we already know it will be enabled
+			if (!glob) {
+				dt.columns().every(function () {
+					if (this.search.fixed('dtcc') || this.search.fixed('dtcc-list')) {
+						enabled = true;
+					}
+				});
+			}
 
-			this.enable(enabled);
+			this.enable(glob || enabled);
 		});
 
 		this.enable(false);

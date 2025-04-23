@@ -68,6 +68,13 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
+This example demonstrates the use of the `-content search` content type being used in a second row of the table header to present an easy to access search input for the end user to build. It builds upon ColumnControl's [ability to insert controls in multiple locations](../initialisation/multipleRows.html) through the `-init columnControl.target` property, in this case dynamically creating the second row.
+
+The example also demonstrates ColumnControl's integration with DataTables [type detection](https://datatables.net/manual/data/types), presenting slightly different search options based on the data type in the column.
+
+In this example the first three columns are all text based, and the dropdown search option for each presents options for text based search. The _Extn._ and _Salary_ are numeric and have suitable options for such (e.g. less than, greater or equal to, etc), and the _Start date_ column is a date, where a date picker is shown in addition to the condition options.
+
+Ajax loaded data is used in this example to show it operating with the automatic data type detection.
 
 ]]></info>
 

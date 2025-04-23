@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" order="1" table-class="display nowrap">
+<dt-example table-type="html" order="5" table-class="display nowrap">
 
 <css lib="datatables columncontrol buttons datetime" />
 <js lib="jquery datatables columncontrol buttons datetime">
 <![CDATA[
 
 new DataTable('#example', {
-	columnControl: ['order', ['orderAsc', 'orderDesc', 'spacer', 'search', 'searchClear']],
+	columnControl: [
+		{
+			target: 0,
+			content: ['order']
+		},
+		{
+			target: 1,
+			content: ['search']
+		}
+	],
+	layout: {
+		topStart: ['pageLength', {buttons: ['ccSearchClear']}]
+	},
 	ordering: {
 		indicators: false,
 		handler: false
-	},
-	layout: {
-		topStart: ['pageLength', {buttons: ['ccSearchClear']}]
 	}
 });
 ]]>
@@ -22,13 +31,22 @@ new DataTable('#example', {
 <![CDATA[
 
 new DataTable('#example', {
-	columnControl: ['order', ['orderAsc', 'orderDesc', 'spacer', 'search', 'searchClear']],
+	columnControl: [
+		{
+			target: 0,
+			content: ['order']
+		},
+		{
+			target: 1,
+			content: ['search']
+		}
+	],
+	layout: {
+		topStart: {buttons: ['pageLength', 'ccSearchClear']}
+	},
 	ordering: {
 		indicators: false,
 		handler: false
-	},
-	layout: {
-		topStart: ['pageLength', {buttons: ['ccSearchClear']}]
 	}
 });
 ]]>
@@ -38,6 +56,9 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
+When presenting a table UI with search inputs, end users can quickly build up powerful and complex search operations. The downside of this is that they might create a complex search and then quickly want to clear it to start a new one. To address this ColumnControl provides a button for [DataTables' Buttons extension](https://datatables.net/extensions/buttons) that will clear all ColumnControl applied searches (and the global search) when triggered.
+
+This example shows `-button ccSearchClear` being used in Buttons (along with `-button pageLength`) through the `-init layout` option to tell DataTables where to place the buttons. To see it in action apply a search to the table and then click the "Clear search" button.
 
 ]]></info>
 

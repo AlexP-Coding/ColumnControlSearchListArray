@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html-no-footer" order="1">
+<dt-example table-type="html-no-footer" order="2">
 
 <css lib="datatables columncontrol" />
 <js lib="jquery datatables columncontrol">
@@ -24,10 +24,13 @@ new DataTable('#example', {
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Footer</title>
+<title lib="ColumnControl">Search in the table footer</title>
 
 <info><![CDATA[
 
+Just as the [previous example](./autoType.html) showed the use of `-init columnControl.target` to insert search boxes into a second row in the table header, this example shows the same property being used to insert the search boxes into the table footer.
+
+The only other change is that Ajax data loading is not used in this example, rather it shows the auto type detection working with the data read from a plain HTML table.
 
 ]]></info>
 

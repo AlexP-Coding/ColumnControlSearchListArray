@@ -1,45 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" order="1">
+<dt-example table-type="ajax" order="4" table-class="display nowrap">
 
-<css lib="datatables columncontrol" />
-<js lib="jquery datatables columncontrol">
+<css lib="datatables columncontrol datetime" />
+<js lib="jquery datatables columncontrol datetime">
 <![CDATA[
-$('#example').DataTable({
+
+new DataTable('#example', {
+	ajax: '../../../../examples/ajax/data/objects.txt',
+	columnControl: [
+		{
+			target: 0,
+			content: ['order']
+		},
+		{
+			target: 1,
+			content: ['search']
+		}
+	],
+    columns: [
+        { data: 'name' },
+        { data: 'position' },
+        { data: 'office' },
+        { data: 'extn' },
+        { data: 'start_date' },
+        { data: 'salary' }
+    ],
 	ordering: {
 		indicators: false,
 		handler: false
 	},
-	columnControl: {
-		target: 1,
-		content: [{
-			extend: 'searchText',
-			text: 'Search:',
-			placeholder: 'Search'
-		}]
-	},
-	stateSave: true,
-	titleRow: 0
+	stateSave: true
 });
 ]]>
 </js>
 
 <js-vanilla>
 <![CDATA[
+
 new DataTable('#example', {
+	ajax: '../../../../examples/ajax/data/objects.txt',
+	columnControl: [
+		{
+			target: 0,
+			content: ['order']
+		},
+		{
+			target: 1,
+			content: ['search']
+		}
+	],
+    columns: [
+        { data: 'name' },
+        { data: 'position' },
+        { data: 'office' },
+        { data: 'extn' },
+        { data: 'start_date' },
+        { data: 'salary' }
+    ],
 	ordering: {
 		indicators: false,
 		handler: false
 	},
-	columnControl: {
-		target: 1,
-		content: [{
-			extend: 'searchText',
-			text: 'Search:',
-			placeholder: 'Search *'
-		}]
-	},
-	stateSave: true,
-	titleRow: 0
+	stateSave: true
 });
 ]]>
 </js-vanilla>
@@ -48,6 +70,9 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
+Identical in setup to the [auto type detection](./autoType.html) (Ajax loading with search inputs in a second row in the table header), this example added state saving support through DataTables' `-init stateSave` option.
+
+To see the state saving in action, apply a search term to the table and then reload the page. Note also that the search logic applied is saved and restored as well as the search term.
 
 ]]></info>
 

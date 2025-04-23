@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="ajax" order="1" table-class="display nowrap">
+<dt-example table-type="ajax" order="6" table-class="display nowrap">
 
 <css lib="datatables columncontrol datetime" />
 <js lib="jquery datatables columncontrol datetime">
@@ -46,10 +46,13 @@ new DataTable('#example', {
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Dropdown - search icon</title>
+<title lib="ColumnControl">Dropdown: Search only</title>
 
 <info><![CDATA[
 
+For some table designs to might not want to have the search input always visible, as per the [previous examples](./autoType.html) in this section. Instead, a common pattern is to place the search input into a dropdown, which is readily done with the `-content searchDropdown` content type, as shown in this example.
+
+`-content searchDropdown` is simply a wrapper around `-content dropdown` with the icon set to be a magnifying glass. If you wish to mix search in the dropdown with other content, [see the next example](./dropdown-mixed.html).
 
 ]]></info>
 
