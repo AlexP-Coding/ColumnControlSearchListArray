@@ -5,7 +5,7 @@
 	--dtcc-button_border-radius: 3px;
 	--dtcc-button_opacity: 0.4;
 	--dtcc-button_padding: 3px;
-	--dtcc-button_disabled_opacity: 0.6;
+	--dtcc-button_disabled-opacity: 0.6;
 
 	--dtcc-button_hover-border: none;
 	--dtcc-button_hover-background: rgba(0,0,0,.03);
@@ -32,12 +32,12 @@
 	--dtcc-search-icon_opacity: 0.4;
 	--dtcc-search-icon_size: 16px;
 
-	--dtcc-search_border: 1px solid rgba(34,36,38,.15);
-	--dtcc-search_background-color: #fff;
-	--dtcc-searchText_background: #fff;
-	--dtcc-search_border-radius: .28571429rem;
-	--dtcc-searchText_padding: .67857143em 1em;
-	--dtcc-searchText_flexCalc: 28px;
+	--dtcc-search-input_border: 1px solid rgba(34,36,38,.15);
+	--dtcc-search-input_background-color: #fff;
+	--dtcc-search-input_background: #fff;
+	--dtcc-search-input_border-radius: .28571429rem;
+	--dtcc-search-input_padding: .67857143em 1em;
+	--dtcc-search-input_flexCalc: 28px;
 
 	--dtcc-search-clear_right: 15px;
 	--dtcc-search-clear_bottom: 5px;
@@ -45,7 +45,7 @@
 	--dtcc-search-input_padding-right: 32px;
 
 	--dtcc-list-buttons_max-height: 300px;
-	--dtcc-searchList-buttons_background: rgba(0,0,0,.03);
+	--dtcc-list-buttons_background: rgba(0,0,0,.03);
 
 	--dtcc-dropdown_background: #fff;
 	--dtcc-dropdown_border: 1px solid rgba(34,36,38,.15);

@@ -5,7 +5,7 @@
 	--dtcc-button_border-radius: 3px;
 	--dtcc-button_opacity: 0.4;
 	--dtcc-button_padding: 3px;
-	--dtcc-button_disabled_opacity: 0.6;
+	--dtcc-button_disabled-opacity: 0.6;
 
 	--dtcc-button_hover-border: none;
 	--dtcc-button_hover-background: var(--bulma-background);
@@ -32,12 +32,12 @@
 	--dtcc-search-icon_opacity: 0.4;
 	--dtcc-search-icon_size: 16px;
 
-	--dtcc-search_border: var(--bulma-control-border-width) solid hsl(var(--bulma-scheme-h),var(--bulma-scheme-s),calc(var(--bulma-border-l) + 0%));
-	--dtcc-search_background-color: hsl(var(--bulma-scheme-h),var(--bulma-scheme-s),calc(var(--bulma-scheme-main-l) + 0%));
-	--dtcc-search_border-radius:var(--bulma-radius);
-	--dtcc-searchText_background: hsl(var(--bulma-scheme-h),var(--bulma-scheme-s),calc(var(--bulma-scheme-main-l) + 0%));
-	--dtcc-searchText_padding: var(--bulma-control-padding-vertical) var(--bulma-control-padding-horizontal);
-	--dtcc-searchText_flexCalc: 28px;
+	--dtcc-search-input_border: var(--bulma-control-border-width) solid hsl(var(--bulma-scheme-h),var(--bulma-scheme-s),calc(var(--bulma-border-l) + 0%));
+	--dtcc-search-input_background-color: hsl(var(--bulma-scheme-h),var(--bulma-scheme-s),calc(var(--bulma-scheme-main-l) + 0%));
+	--dtcc-search-input_border-radius:var(--bulma-radius);
+	--dtcc-search-input_background: hsl(var(--bulma-scheme-h),var(--bulma-scheme-s),calc(var(--bulma-scheme-main-l) + 0%));
+	--dtcc-search-input_padding: var(--bulma-control-padding-vertical) var(--bulma-control-padding-horizontal);
+	--dtcc-search-input_flexCalc: 28px;
 
 	--dtcc-search-clear_right: 15px;
 	--dtcc-search-clear_bottom: 5px;
@@ -45,7 +45,7 @@
 	--dtcc-search-input_padding-right: 32px;
 
 	--dtcc-list-buttons_max-height: 300px;
-	--dtcc-searchList-buttons_background: var(--bulma-background);
+	--dtcc-list-buttons_background: var(--bulma-background);
 
 	.dropdown {
 		--dtcc-dropdown_background: transparent;

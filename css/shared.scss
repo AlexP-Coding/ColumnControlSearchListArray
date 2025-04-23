@@ -43,7 +43,7 @@ table.dataTable span.dtcc {
 
 		&.dtcc-button_disabled {
 			cursor: initial;
-			opacity: var(--dtcc-button_disabled_opacity);
+			opacity: var(--dtcc-button_disabled-opacity);
 		}
 
 		> span.dtcc-button-state {
@@ -171,10 +171,10 @@ table.dataTable span.dtcc {
 			}
 
 			input {
-				padding: var(--dtcc-searchText_padding);
-				border: var(--dtcc-search_border);
-				border-radius: var(--dtcc-search_border-radius);
-				background-color: var(--dtcc-searchText_background);
+				padding: var(--dtcc-search-input_padding);
+				border: var(--dtcc-search-input_border);
+				border-radius: var(--dtcc-search-input_border-radius);
+				background-color: var(--dtcc-search-input_background);
 				color: inherit;
 			}
 		}
@@ -252,7 +252,7 @@ div.dtcc-dropdown {
 
 		&.dtcc-button_disabled {
 			cursor: initial;
-			opacity: var(--dtcc-button_disabled_opacity);
+			opacity: var(--dtcc-button_disabled-opacity);
 		}
 
 		> span.dtcc-button-state {
@@ -344,13 +344,13 @@ div.dtcc-dropdown {
 			select,
 			input {
 				box-sizing: border-box;
-				flex: 1 1 calc(100% - var(--dtcc-searchText_flexCalc));
+				flex: 1 1 calc(100% - var(--dtcc-search-input_flexCalc));
 				width: 100%;
 				min-width: 0;
-				padding: var(--dtcc-searchText_padding);
-				border: var(--dtcc-search_border);
-				border-radius: var(--dtcc-search_border-radius);
-				background-color: var(--dtcc-search_background-color);
+				padding: var(--dtcc-search-input_padding);
+				border: var(--dtcc-search-input_border);
+				border-radius: var(--dtcc-search-input_border-radius);
+				background-color: var(--dtcc-search-input_background-color);
 			}
 
 			// Second row
@@ -423,17 +423,17 @@ div.dtcc-dropdown {
 				box-sizing: border-box;
 				grid-column: 1 / 3;
 				width: 100%;
-				padding: var(--dtcc-searchText_padding);
-				border: var(--dtcc-search_border);
-				border-radius: var(--dtcc-search_border-radius);
-				background-color: var(--dtcc-search_background-color);
+				padding: var(--dtcc-search-input_padding);
+				border: var(--dtcc-search-input_border);
+				border-radius: var(--dtcc-search-input_border-radius);
+				background-color: var(--dtcc-search-input_background-color);
 			}
 		}
 
 		div.dtcc-list-buttons {
 			max-height: var(--dtcc-list-buttons_max-height);
 			overflow: auto;
-			background: var(--dtcc-searchList-buttons_background);
+			background: var(--dtcc-list-buttons_background);
 		}
 
 		span.dtcc-button-icon:empty {

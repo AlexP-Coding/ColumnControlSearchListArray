@@ -4,7 +4,7 @@
 	--dtcc-button_border-radius: 3px;
 	--dtcc-button_opacity: 0.4;
 	--dtcc-button_padding: 3px;
-	--dtcc-button_disabled_opacity: 0.6;
+	--dtcc-button_disabled-opacity: 0.6;
 
 	--dtcc-button_hover-border: none;
 	--dtcc-button_hover-background: rgba(0, 0, 0, 0.1);
@@ -53,15 +53,15 @@
 	--dtcc-search-clear_bottom: 2px;
 	--dtcc-search-input_padding-right: 24px;
 
-	--dtcc-search_border: 1px solid #aaa;
-	--dtcc-search_background-color: transparent;
-	--dtcc-searchText_background: transparent;
-	--dtcc-search_border-radius: 3px;
-	--dtcc-searchText_padding: 5px;
-	--dtcc-searchText_flexCalc: 24px;
+	--dtcc-search-input_border: 1px solid #aaa;
+	--dtcc-search-input_background-color: transparent;
+	--dtcc-search-input_background: transparent;
+	--dtcc-search-input_border-radius: 3px;
+	--dtcc-search-input_padding: 5px;
+	--dtcc-search-input_flexCalc: 24px;
 
 	--dtcc-list-buttons_max-height: 300px;
-	--dtcc-searchList-buttons_background: rgba(0, 0, 0, 0.05);
+	--dtcc-list-buttons_background: rgba(0, 0, 0, 0.05);
 }
 
 :root.dark {
@@ -81,9 +81,9 @@
 	--dtcc-search-icon_color: white;
 	--dtcc-search-icon_hover-background: rgba(255, 255, 255, 0.1);
 
-	--dtcc-search_border: 1px solid rgba(255, 255, 255, 0.2);
+	--dtcc-search-input_border: 1px solid rgba(255, 255, 255, 0.2);
 
-	--dtcc-searchList-buttons_background: rgba(255, 255, 255, 0.05);
+	--dtcc-list-buttons_background: rgba(255, 255, 255, 0.05);
 }
 
 @import 'shared.scss';
