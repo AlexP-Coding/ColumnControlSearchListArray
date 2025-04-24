@@ -271,7 +271,6 @@ export default class SearchInput {
 		dt.on('cc-search-clear', (e, colIdx) => {
 			if (colIdx === this._idx) {
 				this.clear();
-				// TODO don't want to trigger a draw here - it would have once for every column!
 			}
 		});
 	}
