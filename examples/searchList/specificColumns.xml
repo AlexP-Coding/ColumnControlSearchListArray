@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="2" table-class="display nowrap">
+
+<css lib="datatables columncontrol" />
+<js lib="jquery datatables columncontrol">
+<![CDATA[
+
+new DataTable('#example', {
+	columnControl: ['order', ['search']],
+	columnDefs: [{
+		targets: [1, 2],
+		columnControl: ['order', ['searchList']]
+	}],
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+
+new DataTable('#example', {
+	columnControl: ['order', ['search']],
+	columnDefs: [{
+		targets: [1, 2],
+		columnControl: ['order', ['searchList']]
+	}],
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Specific columns</title>
+
+<info><![CDATA[
+
+We've seen in the [initialisation examples](../initialisation/columnSpecific.html) how it is possible to assign different content to different columns with ColumnControl through the `-init columns.columnControl` option. This can be particularly useful in tables where the data in some columns lends itself to a list search (e.g. a limited set of options), while other columns are more freeform and would benefit from a `-tag input` search.
+
+This example shows column indexes 1 and 2 (_Position_ and _Office_) assigned `-content searchList`, while the other columns make use of `-content search`.
+
+]]></info>
+
+</dt-example>

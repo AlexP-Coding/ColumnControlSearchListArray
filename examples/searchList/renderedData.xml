@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="3" table-class="display nowrap">
+
+<css lib="datatables columncontrol moment" />
+<js lib="jquery datatables columncontrol moment">
+<![CDATA[
+
+new DataTable('#example', {
+	columnControl: ['order', ['searchList']],
+	columnDefs: [{
+		target: 4,
+		render: DataTable.render.datetime('Do MMM YYYY')
+	}],
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+
+new DataTable('#example', {
+	columnControl: ['order', ['searchList']],
+	columnDefs: [{
+		target: 4,
+		render: DataTable.render.datetime('Do MMM YYYY')
+	}],
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Rendered data</title>
+
+<info><![CDATA[
+
+[Rendering functions](https://datatables.net/manual/data/renderers) are frequently used in DataTables to transform data into something which is more more relatable to the end user - in this example an ISO 8601 formatted date is converted to a human readable text string.
+
+With `-content searchList` we want the list to show the rendered data, but the search to happen on the underlying data. This example demonstrates that in action for the _Start date_ column which makes use of `DataTable.render.datetime()`.
+
+]]></info>
+
+</dt-example>

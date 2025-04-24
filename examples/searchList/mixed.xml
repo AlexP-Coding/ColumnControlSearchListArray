@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="ajax" order="7" table-class="display nowrap">
+
+<css lib="datatables columncontrol" />
+<js lib="jquery datatables columncontrol">
+<![CDATA[
+
+$('#example').DataTable({
+	ajax: '../data/options.json',
+	columnControl: ['order', 'searchDropdown'],
+	columns: [
+		{ data: 'name' },
+		{ data: 'position' },
+		{ data: 'office' },
+		{ data: 'extn' },
+		{ data: 'start_date' },
+		{ data: 'salary' }
+	],
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+
+new DataTable("#example", {
+	ajax: '../data/options.json',
+	columnControl: ['order', 'searchDropdown'],
+	columns: [
+		{ data: 'name' },
+		{ data: 'position' },
+		{ data: 'office' },
+		{ data: 'extn' },
+		{ data: 'start_date' },
+		{ data: 'salary' }
+	],
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Auto search type</title>
+
+<info><![CDATA[
+
+We've [seen in the search inputs examples](./search/autoType.html) that `-content search` can automatically determine what input type should be used based on the data type of the column. That is extended when the DataTable loads data via Ajax (`-init ajax`) to include the `-content searchList` content type.
+
+If a column has a list of options in the loaded JSON it will automatically use `-content searchList`. Otherwise it will fall through to using `-content searchText`, `-content searchDate` or `-content searchNumber` depending on the data type. Note that if you don't want this behaviour the `-content searchList` option can be disabled through the `allowSearchList` option of `-content search` / `-content searchDropdown`.
+
+In this example _Position_ and _Office_ have options defined in the loaded JSON data. The other columns do not and therefore will be have an `-tag input` based search input in the dropdown.
+
+]]></info>
+
+</dt-example>

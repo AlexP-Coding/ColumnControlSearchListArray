@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="4" table-class="display nowrap">
+
+<css lib="datatables columncontrol" />
+<js lib="jquery datatables columncontrol">
+<![CDATA[
+
+new DataTable('#example', {
+	columnControl: ['order', ['searchList']],
+	ordering: {
+		indicators: false,
+		handler: false
+	},
+	stateSave: true
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+
+new DataTable('#example', {
+	columnControl: ['order', ['searchList']],
+	ordering: {
+		indicators: false,
+		handler: false
+	},
+	stateSave: true
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">State saving</title>
+
+<info><![CDATA[
+
+Just as with the `-tag input` based search controls in ColumnControl, `-content searchList` will save and restore its state if the state saving feature is enabled in DataTables.
+
+To see this in action, select options from one or more of the list controls to filter the table, then reload the page. Note that your search options have been reapplied to the table.
+
+]]></info>
+
+</dt-example>
