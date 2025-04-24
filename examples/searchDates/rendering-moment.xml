@@ -1,42 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" order="4" table-class="display nowrap">
+<dt-example table-type="html" order="5" table-class="display nowrap">
 
 <css lib="datatables columncontrol datetime" />
 <js lib="jquery datatables columncontrol moment datetime">
 <![CDATA[
 
 new DataTable('#example', {
-	ordering: {
-		indicators: false,
-		handler: false
-	},
 	columnControl: [
 		{
 			target: 0,
-			content: ['order']
+			content: ['orderStatus']
 		},
 		{
 			target: 1,
-			content: ['searchText']
+			content: ['search']
 		}
 	],
 	columnDefs: [
 		{
-			targets: [3, 5],
-			columnControl: {
-				target: 1,
-				content: ['searchNumber']
-			}
-		},
-		{
 			targets: [4],
-			columnControl: {
-				target: 1,
-				content: ['searchDateTime']
-			},
 			render: DataTable.render.datetime('Do MMM YYYY')
 		}
-	]
+	],
+	ordering: {
+		indicators: false
+	}
 });
 ]]>
 </js>
@@ -45,37 +33,25 @@ new DataTable('#example', {
 <![CDATA[
 
 new DataTable('#example', {
-	ordering: {
-		indicators: false,
-		handler: false
-	},
 	columnControl: [
 		{
 			target: 0,
-			content: ['order']
+			content: ['orderStatus']
 		},
 		{
 			target: 1,
-			content: ['searchText']
+			content: ['search']
 		}
 	],
 	columnDefs: [
 		{
-			targets: [3, 5],
-			columnControl: {
-				target: 1,
-				content: ['searchNumber']
-			}
-		},
-		{
 			targets: [4],
-			columnControl: {
-				target: 1,
-				content: ['searchDateTime']
-			},
 			render: DataTable.render.datetime('Do MMM YYYY')
 		}
-	]
+	],
+	ordering: {
+		indicators: false
+	}
 });
 ]]>
 </js-vanilla>
@@ -84,6 +60,9 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
+This example matches the DataTables [Date rendering](https://datatables.net/examples/datetime/formatting-moment.html) example [using Moment.js for date formatting](https://momentjs.com/), with ColumnControl added for its ordering button and search input.
+
+In this case, note that the format displayed in the _Start date_ column is defined in Javascript, and the format used in the search input matches this.
 
 ]]></info>
 

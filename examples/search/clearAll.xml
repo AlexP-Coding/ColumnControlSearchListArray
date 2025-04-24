@@ -9,7 +9,7 @@ new DataTable('#example', {
 	columnControl: [
 		{
 			target: 0,
-			content: ['order']
+			content: ['orderStatus']
 		},
 		{
 			target: 1,
@@ -20,8 +20,7 @@ new DataTable('#example', {
 		topStart: ['pageLength', {buttons: ['ccSearchClear']}]
 	},
 	ordering: {
-		indicators: false,
-		handler: false
+		indicators: false
 	}
 });
 ]]>
@@ -34,7 +33,7 @@ new DataTable('#example', {
 	columnControl: [
 		{
 			target: 0,
-			content: ['order']
+			content: ['orderStatus']
 		},
 		{
 			target: 1,
@@ -45,8 +44,7 @@ new DataTable('#example', {
 		topStart: {buttons: ['pageLength', 'ccSearchClear']}
 	},
 	ordering: {
-		indicators: false,
-		handler: false
+		indicators: false
 	}
 });
 ]]>

@@ -13,6 +13,7 @@ import orderAsc, { IOrderAsc } from './orderAsc';
 import orderClear, { IOrderClear } from './orderClear';
 import orderDesc, { IOrderDesc } from './orderDesc';
 import orderRemove, { IOrderRemove } from './orderRemove';
+import orderStatus from './orderStatus';
 import search, { ISearch } from './search';
 import searchClear, { ISearchClear } from './searchClear';
 import searchDropdown, { ISearchDropdown } from './searchDropdown';
@@ -63,6 +64,7 @@ Object.assign(ccContent, {
 	orderClear,
 	orderDesc,
 	orderRemove,
+	orderStatus,
 	search,
 	searchClear,
 	searchDropdown,

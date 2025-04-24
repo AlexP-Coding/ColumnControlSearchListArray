@@ -6,36 +6,19 @@
 <![CDATA[
 
 new DataTable('#example', {
-	ordering: {
-		indicators: false,
-		handler: false
-	},
 	columnControl: [
 		{
 			target: 0,
-			content: ['order']
+			content: ['orderStatus']
 		},
 		{
 			target: 1,
-			content: ['searchText']
+			content: ['search']
 		}
 	],
-	columnDefs: [
-		{
-			targets: [3, 5],
-			columnControl: {
-				target: 1,
-				content: ['searchNumber']
-			}
-		},
-		{
-			targets: [4],
-			columnControl: {
-				target: 1,
-				content: ['searchDateTime']
-			}
-		}
-	]
+	ordering: {
+		indicators: false
+	}
 });
 ]]>
 </js>
@@ -44,36 +27,19 @@ new DataTable('#example', {
 <![CDATA[
 
 new DataTable('#example', {
-	ordering: {
-		indicators: false,
-		handler: false
-	},
 	columnControl: [
 		{
 			target: 0,
-			content: ['order']
+			content: ['orderStatus']
 		},
 		{
 			target: 1,
-			content: ['searchText']
+			content: ['search']
 		}
 	],
-	columnDefs: [
-		{
-			targets: [3, 5],
-			columnControl: {
-				target: 1,
-				content: ['searchNumber']
-			}
-		},
-		{
-			targets: [4],
-			columnControl: {
-				target: 1,
-				content: ['searchDateTime']
-			}
-		}
-	]
+	ordering: {
+		indicators: false
+	}
 });
 ]]>
 </js-vanilla>
@@ -82,6 +48,9 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
+This example mirrors the [DataTables ISO 8601 detection example](https://datatables.net/examples/datetime/iso8601.html), showing DataTables correctly ordering data in ISO 8601 format automatically.
+
+ColumnControl also works with this automatic type detection, presenting a search input that is specific to dates (see the _Start date_ column in the table below). Note that when clicking on the input a date picker is shown for ease of use. This is done automatically if [the DataTables DateTime library](https://datatables.net/extensions/datetime/) is included on the page.
 
 ]]></info>
 

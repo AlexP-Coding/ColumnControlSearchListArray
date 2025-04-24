@@ -1,42 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html-date-fmt" order="7" table-class="display nowrap">
+<dt-example table-type="html-date-fmt" order="8" table-class="display nowrap">
 
 <css lib="datatables columncontrol datetime" />
 <js lib="jquery datatables columncontrol luxon datetime">
 <![CDATA[
 
 new DataTable('#example', {
-	ordering: {
-		indicators: false,
-		handler: false
-	},
 	columnControl: [
 		{
 			target: 0,
-			content: ['order']
+			content: ['orderStatus']
 		},
 		{
 			target: 1,
-			content: ['searchText']
+			content: ['search']
 		}
 	],
 	columnDefs: [
 		{
-			targets: [3, 5],
-			columnControl: {
-				target: 1,
-				content: ['searchNumber']
-			}
-		},
-		{
 			targets: [4],
-			columnControl: {
-				target: 1,
-				content: ['searchDateTime']
-			},
 			render: DataTable.render.datetime('d MMM yyyy', 'MMM d, yy', 'en')
 		}
-	]
+	],
+	ordering: {
+		indicators: false
+	}
 });
 ]]>
 </js>
@@ -45,37 +33,25 @@ new DataTable('#example', {
 <![CDATA[
 
 new DataTable('#example', {
-	ordering: {
-		indicators: false,
-		handler: false
-	},
 	columnControl: [
 		{
 			target: 0,
-			content: ['order']
+			content: ['orderStatus']
 		},
 		{
 			target: 1,
-			content: ['searchText']
+			content: ['search']
 		}
 	],
 	columnDefs: [
 		{
-			targets: [3, 5],
-			columnControl: {
-				target: 1,
-				content: ['searchNumber']
-			}
-		},
-		{
 			targets: [4],
-			columnControl: {
-				target: 1,
-				content: ['searchDateTime']
-			},
 			render: DataTable.render.datetime('d MMM yyyy', 'MMM d, yy', 'en')
 		}
-	]
+	],
+	ordering: {
+		indicators: false
+	}
 });
 ]]>
 </js-vanilla>
@@ -84,6 +60,9 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
+This example matches the [previous](./transform-moment.html), and the DataTables [Format transform](https://datatables.net/examples/datetime/transform-luxon.html) example [using Luxon for date formatting](https://moment.github.io/luxon/), with ColumnControl added for its ordering button and search input.
+
+As before, the data source for the table has the date information in a non-ISO8601 format and we want to transform it into different format using a render. The _Start date_ search input matches the format of the display date data.
 
 ]]></info>
 

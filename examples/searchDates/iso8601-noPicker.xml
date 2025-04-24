@@ -6,36 +6,19 @@
 <![CDATA[
 
 new DataTable('#example', {
-	ordering: {
-		indicators: false,
-		handler: false
-	},
 	columnControl: [
 		{
 			target: 0,
-			content: ['order']
+			content: ['orderStatus']
 		},
 		{
 			target: 1,
-			content: ['searchText']
+			content: ['search']
 		}
 	],
-	columnDefs: [
-		{
-			targets: [3, 5],
-			columnControl: {
-				target: 1,
-				content: ['searchNumber']
-			}
-		},
-		{
-			targets: [4],
-			columnControl: {
-				target: 1,
-				content: ['searchDateTime']
-			}
-		}
-	]
+	ordering: {
+		indicators: false
+	}
 });
 ]]>
 </js>
@@ -44,36 +27,19 @@ new DataTable('#example', {
 <![CDATA[
 
 new DataTable('#example', {
-	ordering: {
-		indicators: false,
-		handler: false
-	},
 	columnControl: [
 		{
 			target: 0,
-			content: ['order']
+			content: ['orderStatus']
 		},
 		{
 			target: 1,
-			content: ['searchText']
+			content: ['search']
 		}
 	],
-	columnDefs: [
-		{
-			targets: [3, 5],
-			columnControl: {
-				target: 1,
-				content: ['searchNumber']
-			}
-		},
-		{
-			targets: [4],
-			columnControl: {
-				target: 1,
-				content: ['searchDateTime']
-			}
-		}
-	]
+	ordering: {
+		indicators: false
+	}
 });
 ]]>
 </js-vanilla>
@@ -82,6 +48,7 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
+[Identical to the previous example](./iso8601-picker.html), but without the [DataTables DateTime picker library](https://datatables.net/extensions/datetime/). Note that the search logic options are still relevant for a date, but in this case the end user must type the date in.
 
 ]]></info>
 

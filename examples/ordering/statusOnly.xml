@@ -8,7 +8,7 @@ $('#example').DataTable({
 	ordering: {
 		indicators: false
 	},
-	columnControl: [{ extend: 'order', statusOnly: true }]
+	columnControl: ['orderStatus']
 });
 ]]>
 </js>
@@ -19,7 +19,7 @@ new DataTable('#example', {
 	ordering: {
 		indicators: false
 	},
-	columnControl: [{ extend: 'order', statusOnly: true }]
+	columnControl: ['orderStatus']
 });
 ]]>
 </js-vanilla>
@@ -28,9 +28,9 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
-The [previous example](./combinedButton.html) showed the `-content order` content type which is both a combined status and activation button. This content type also has an option to act as a status display only through it's `statusOnly` option. This example shows that in use along with `-init ordering.handler` not specified (i.e. allowed to be enabled), resulting in the whole of the header cell active as a click listener through DataTables' default behaviour.
+The [previous example](./combinedButton.html) showed the `-content order` content type which is both a combined status and activation button. ColumnControl also has a `-content orderStatus` option which uses the same icon display, but doesn't take an action when clicked on. Instead, this content type is particularly useful when you want the whole header cell to be clickable to trigger ordering, which is done with `-init ordering.handler` not specified (i.e. allowed to be enabled).
 
-This is particularly useful if you wish to use ColumnControl to provide the ordering indication icons, but want to keep the whole of the header as clickable.
+This is particularly useful if you wish to use ColumnControl to provide the ordering indication icons (consistent styling when using other ColumnControl buttons), but want to keep the whole of the header as clickable.
 
 ]]></info>
 

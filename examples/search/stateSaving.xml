@@ -10,7 +10,7 @@ new DataTable('#example', {
 	columnControl: [
 		{
 			target: 0,
-			content: ['order']
+			content: ['orderStatus']
 		},
 		{
 			target: 1,
@@ -26,8 +26,7 @@ new DataTable('#example', {
         { data: 'salary' }
     ],
 	ordering: {
-		indicators: false,
-		handler: false
+		indicators: false
 	},
 	stateSave: true
 });
@@ -42,7 +41,7 @@ new DataTable('#example', {
 	columnControl: [
 		{
 			target: 0,
-			content: ['order']
+			content: ['orderStatus']
 		},
 		{
 			target: 1,
@@ -58,8 +57,7 @@ new DataTable('#example', {
         { data: 'salary' }
     ],
 	ordering: {
-		indicators: false,
-		handler: false
+		indicators: false
 	},
 	stateSave: true
 });
