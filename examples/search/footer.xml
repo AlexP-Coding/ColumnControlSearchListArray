@@ -30,7 +30,7 @@ new DataTable('#example', {
 
 Just as the [previous example](./autoType.html) showed the use of `-init columnControl.target` to insert search boxes into a second row in the table header, this example shows the same property being used to insert the search boxes into the table footer.
 
-The only other change is that Ajax data loading is not used in this example, rather it shows the auto type detection working with the data read from a plain HTML table.
+The only other change is that Ajax data loading is not used in this example, rather it shows the auto-type detection working with the data read from a plain HTML table.
 
 ]]></info>
 

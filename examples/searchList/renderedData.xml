@@ -40,7 +40,7 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
-[Rendering functions](https://datatables.net/manual/data/renderers) are frequently used in DataTables to transform data into something which is more more relatable to the end user - in this example an ISO 8601 formatted date is converted to a human readable text string.
+[Rendering functions](https://datatables.net/manual/data/renderers) are frequently used in DataTables to transform data into something which is more relatable to the end user - in this example, an ISO 8601 formatted date is converted to a human-readable text string.
 
 With `-content searchList` we want the list to show the rendered data, but the search to happen on the underlying data. This example demonstrates that in action for the _Start date_ column which makes use of `DataTable.render.datetime()`.
 

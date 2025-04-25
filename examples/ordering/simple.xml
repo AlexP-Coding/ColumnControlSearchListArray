@@ -30,9 +30,9 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
-Ordering a column's data is a core feature of DataTables and ColumnControl has a number of buttons built in for control of this ability. Two of the most simple buttons are `-content orderAsc` and `-content orderDesc`. When triggered each will cause the table to order the column's data and redraw to reflect the new status. Each will also highlight when the table's ordering matches the column and direction that button controls.
+Ordering a column's data is a core feature of DataTables and ColumnControl has a number of buttons built in for control of this ability. Two of the most simple buttons are `-content orderAsc` and `-content orderDesc`. When triggered each will cause the table to order the column's data and redraw to reflect the new status. Each will also highlight when the table's ordering matches the column and direction that the button controls.
 
-Note that we have the DataTables core `-init ordering.indicators` and `-init ordering.handler` options disabled in this example. That is something you will see in the majority of ColumnControl examples that handle column data ordering. The former option will remove the default DataTables sort icons (no need for them since we have our own with `-content orderAsc` and `-content orderDesc`!). The later option disables the action (click / return) listener that DataTables adds to the header cells - instead the ColumnControl buttons are used to activate ordering for the table.
+Note that we have the DataTables core `-init ordering.indicators` and `-init ordering.handler` options disabled in this example. That is something you will see in the majority of ColumnControl examples that handle column data ordering. The former option will remove the default DataTables sort icons (no need for them since we have our own with `-content orderAsc` and `-content orderDesc`!). The latter option disables the action (click/return) listener that DataTables adds to the header cells - instead the ColumnControl buttons are used to activate ordering for the table.
 
 ]]></info>
 

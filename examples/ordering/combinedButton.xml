@@ -30,7 +30,7 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
-In the [previous example](./simple.html) we saw ordering control with a button used for each direction. ColumnControl also has a `-content order` button which acts in exactly the same way as DataTables own action handler for column headers - a click on an already active column will move it on to the next state (controlled by `-init columns.orderSequence`). You can also shift-click to activate multi-column ordering.
+In the [previous example](./simple.html) we saw an ordering control with a button used for each direction. ColumnControl also has a `-content order` button which acts in exactly the same way as DataTables own action handler for column headers - a click on an already active column will move it on to the next state (controlled by `-init columns.orderSequence`). You can also shift-click to activate multi-column ordering.
 
 The advantage of `-content order` is that it provides lots of functionality in one small button, and space in a column header is often at a premium.
 

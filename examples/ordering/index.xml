@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example order="0">
+
+<title lib="ColumnControl">Ordering</title>
+
+<js lib="jquery" />
+<info><![CDATA[
+
+The examples in this section shows the various column ordering options for ColumnControl.
+
+]]></info>
+
+</dt-example>

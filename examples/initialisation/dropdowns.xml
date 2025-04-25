@@ -32,7 +32,7 @@ new DataTable('#example', {
 
 As mentioned in previous examples, with the array of options that ColumnControl gives you, it can be easy to overwhelm your UI with buttons and inputs. To address this ColumnControl makes it easy to define content in a dropdown.
 
-A dropdown is defined simply as an array inside the `-init columnControl` content array. In this example you can see that there are two top level buttons - the `-content order` button and a dropdown button. The dropdown button has extra ordering buttons in this case - other examples will make use of other content types (ColumnControl is all about giving you the ability to configure the UI that is most suitable for your use case)!
+A dropdown is defined simply as an array inside the `-init columnControl` content array. In this example, you can see that there are two top-level buttons - the `-content order` button and a dropdown button. The dropdown button has extra ordering buttons in this case - other examples will make use of other content types (ColumnControl is all about giving you the ability to configure the UI that is most suitable for your use case)!
 
 A dropdown is actually a content type itself - `-content dropdown`. The array syntax is a shorthand to define a default dropdown with the content specified by the array. If you wish to customise the dropdown icon, you might wish to use `-content dropdown` directly.
 

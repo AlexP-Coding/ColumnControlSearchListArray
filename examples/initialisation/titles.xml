@@ -24,7 +24,7 @@ new DataTable('#example', {
 
 This example, perhaps the simplest of the content types will commonly be used in a dropdown shows the `-content title` option. It shows the column title that the dropdown belongs to, allowing the end user to quality identify the association.
 
-This example brings the "Initialisation" set of examples for ColumnControl to an end. We've see how ColumnControl can be configured and content assigned for use. The examples in the other sections delve into the specifics of the content types that are built in to ColumnControl.
+This example brings the "Initialisation" set of examples for ColumnControl to an end. We've seen how ColumnControl can be configured and content assigned for use. The examples in the other sections delve into the specifics of the content types that are built in to ColumnControl.
 
 ]]></info>
 

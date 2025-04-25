@@ -30,7 +30,7 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
-The [ColReorder extension for DataTables](https://datatables.net/extensions/colreorder) allows the end user to click on a column, and then drag it to reorder the columns. The `-content reorder` content type for ColumnControl works with ColReorder to provide this same functionality, but limiting the mouse down listener for activation to just the button.
+The [ColReorder extension for DataTables](https://datatables.net/extensions/colreorder) allows the end user to click on a column, and then drag it to reorder the columns. The `-content reorder` content type for ColumnControl works with ColReorder to provide this same functionality, but limits the mouse down listener for activation to just the button.
 
 This example shows `-content reorder` being used to allow end user column reordering. `-content order` is also used to provide consistent styling for the data ordering icons.
 

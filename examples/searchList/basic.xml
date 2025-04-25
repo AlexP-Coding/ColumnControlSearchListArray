@@ -32,7 +32,7 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
-ColumnControl has as `-content searchList` content type built in - this is an alternative to the `-tag input` style of search offered by `-content searchText` and friends, in that it will display a list of options that the end user can select from, rather than allowing free form input. The options are derived from the data in the table, or as we'll see in later examples from options defined in JSON data loaded by the DataTable.
+ColumnControl has a `-content searchList` content type built in - this is an alternative to the `-tag input` style of search offered by `-content searchText` and friends, in that it will display a list of options that the end user can select from, rather than allowing free form input. The options are derived from the data in the table, or as we'll see in later examples from options defined in JSON data loaded by the DataTable.
 
 In addition to the basic toggle buttons for the search terms, `-content searchList` shows buttons to select all or deselect all items in the list, and an input to search its own list of options. In the example below `-content searchList` is applied to all columns, shown in a dropdown.
 

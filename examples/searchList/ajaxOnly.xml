@@ -52,7 +52,7 @@ new DataTable("#example", {
 
 When the data for the table is loaded via Ajax (`-init ajax`), the `-content searchList` content type will check for an array of options for the column(s) that it has been applied to and only show for columns where options are found. For this to work the JSON object must have a `columnControl` object which contains arrays of `label` / `value` objects. The keys for the `columnControl` object tell ColumnControl which column the options should apply to. This is done based on `-init columns.data`, `-init columns.name` or the column index.
 
-In the JSON loaded for this example there are `columnControl.position` and `columnControl.office` arrays. Note that they match the `-init columns.data` name for the _Position_ and _Office_ columns and therefore they have dropdown search lists. Note also that the other columns don't have search lists since they don't specify options in the Ajax loaded data.
+In the JSON loaded for this example, there are `columnControl.position` and `columnControl.office` arrays. Note that they match the `-init columns.data` name for the _Position_ and _Office_ columns and therefore they have dropdown search lists. Note also that the other columns don't have search lists since they don't specify options in the Ajax loaded data.
 
 ]]></info>
 

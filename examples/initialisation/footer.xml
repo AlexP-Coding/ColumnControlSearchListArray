@@ -28,7 +28,7 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
-So far all of the examples have inserted content into the table header, however, you may wish to use these controls in the table footer as well. This example demonstrates the use of `-init columnControl.target` to insert the content into the table's footer - in this case a search control, which is a common use case for footer targeting.
+So far all of the examples have inserted content into the table header, however, you may wish to use these controls in the table footer as well. This example demonstrates the use of `-init columnControl.target` to insert the content into the table's footer - in this case, a search control, which is a common use case for footer targeting.
 
 The [multi-row targeting example](./multipleRows.html) example demonstrated the use of ColumnControl on multiple rows in the header. The footer target for `-init columnControl.target` can be used with that initialisation as well, allowing ColumnControl content to be easily defined for both the table header and footer.
 

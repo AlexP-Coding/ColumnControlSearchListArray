@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example order="0">
+
+<title lib="ColumnControl">Search list</title>
+
+<js lib="jquery" />
+<info><![CDATA[
+
+The examples in this section demonstrate ColumnControl's `-content searchList` control, which is used to show a toggleable list of options to the end user.
+
+]]></info>
+
+</dt-example>

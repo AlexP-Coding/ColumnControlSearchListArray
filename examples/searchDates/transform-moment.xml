@@ -62,7 +62,7 @@ new DataTable('#example', {
 
 This example matches the DataTables [Format transform](https://datatables.net/examples/datetime/transform-moment.html) example [using Moment.js for date formatting](https://momentjs.com/), with ColumnControl added for its ordering button and search input.
 
-In this case, the data source for the table has the date information in a non-ISO8601 format and we want to transform it into different format using a render. The _Start date_ search input matches the format of the display date data.
+In this case, the data source for the table has the date information in a non-ISO8601 format and we want to transform it into a different format using a render. The _Start date_ search input matches the format of the display date data.
 
 ]]></info>
 

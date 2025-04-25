@@ -62,7 +62,7 @@ new DataTable('#example', {
 
 This example matches the [previous](./transform-moment.html), and the DataTables [Format transform](https://datatables.net/examples/datetime/transform-luxon.html) example [using Luxon for date formatting](https://moment.github.io/luxon/), with ColumnControl added for its ordering button and search input.
 
-As before, the data source for the table has the date information in a non-ISO8601 format and we want to transform it into different format using a render. The _Start date_ search input matches the format of the display date data.
+As before, the data source for the table has the date information in a non-ISO8601 format and we want to transform it into a different format using a render. The _Start date_ search input matches the format of the display date data.
 
 ]]></info>
 

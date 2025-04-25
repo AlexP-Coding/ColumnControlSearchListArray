@@ -36,7 +36,6 @@ ColumnControl has a `-content searchClear` content type which presents a button 
 
 This example demonstrates that with the search input and clear button next to each other in a dropdown.
 
-
 ]]></info>
 
 </dt-example>

@@ -70,9 +70,9 @@ This example demonstrates the use of the `-content search` content type being us
 
 The example also demonstrates ColumnControl's integration with DataTables [type detection](https://datatables.net/manual/data/types), presenting slightly different search options based on the data type in the column.
 
-In this example the first three columns are all text based, and the dropdown search option for each presents options for text based search. The _Extn._ and _Salary_ are numeric and have suitable options for such (e.g. less than, greater or equal to, etc), and the _Start date_ column is a date, where a date picker is shown in addition to the condition options.
+In this example, the first three columns are all text-based, and the dropdown search option for each presents options for text-based search. The _Extn._ and _Salary_ are numeric and have suitable options for such (e.g. less than, greater or equal to, etc), and the _Start date_ column is a date, where a date picker is shown in addition to the condition options.
 
-Ajax loaded data is used in this example to show it operating with the automatic data type detection.
+Ajax loaded data is used in this example to show it operating with automatic data type detection.
 
 ]]></info>
 

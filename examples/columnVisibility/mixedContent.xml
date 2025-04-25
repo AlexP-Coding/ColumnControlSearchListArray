@@ -48,8 +48,7 @@ new DataTable('#example', {
 
 We saw `-content colVisDropdown` in the [previous example](./dropdown.html) - in this example we see the underlying `-content colVis` content type. Of particular interest here you will see that this content type is inserted alongside other ColumnControl content types, rather than existing on its own in a dropdown.
 
-This demonstrates how powerful and configurable ColumnControl can be - content can be at the top level, in a dropdown, or nested in a second level dropdown. You can configure the software to present a UI that is right for the data and options you want to display to your end user. Obviously some content types lend themselves to use in a specific location - e.g. you are unlikely to wish to use `-content colVis` at the top level (outside of a dropdown), but there might be such a case, and ColumnControl doesn't limit that.
-
+This demonstrates how powerful and configurable ColumnControl can be - content can be at the top level, in a dropdown, or nested in a second-level dropdown. You can configure the software to present a UI that is right for the data and options you want to display to your end user. Obviously, some content types lend themselves to use in a specific location - e.g. you are unlikely to wish to use `-content colVis` at the top level (outside of a dropdown), but there might be such a case, and ColumnControl doesn't limit that.
 
 ]]></info>
 

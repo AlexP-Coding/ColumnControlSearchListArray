@@ -28,9 +28,9 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
-The [previous example](./combinedButton.html) showed the `-content order` content type which is both a combined status and activation button. ColumnControl also has a `-content orderStatus` option which uses the same icon display, but doesn't take an action when clicked on. Instead, this content type is particularly useful when you want the whole header cell to be clickable to trigger ordering, which is done with `-init ordering.handler` not specified (i.e. allowed to be enabled).
+The [previous example](./combinedButton.html) showed the `-content order` content type which is both a combined status and activation button. ColumnControl also has a `-content orderStatus` option which uses the same icon display but doesn't take an action when clicked on. Instead, this content type is particularly useful when you want the whole header cell to be clickable to trigger ordering, which is done with `-init ordering.handler` not specified (i.e. allowed to be enabled).
 
-This is particularly useful if you wish to use ColumnControl to provide the ordering indication icons (consistent styling when using other ColumnControl buttons), but want to keep the whole of the header as clickable.
+This is particularly useful if you wish to use ColumnControl to provide the ordering indication icons (consistent styling when using other ColumnControl buttons), but want to keep the whole of the header clickable.
 
 ]]></info>
 

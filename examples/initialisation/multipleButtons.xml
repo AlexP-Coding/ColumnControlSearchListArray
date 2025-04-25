@@ -30,11 +30,11 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
-You might have already realised that since `-init columnControl` is given as an array (as [shown in the previous example](./singleButton.html)) you can provide more that a single content type. You can in fact make use of as many as you want, although a few buttons is normally all you would want to show in the header, otherwise the interface becomes clumsy and busy (we'll cover `-content dropdown` content type to help with this later in this series).
+You might have already realised that since `-init columnControl` is given as an array (as [shown in the previous example](./singleButton.html)) you can provide more than a single content type. You can, in fact, make use of as many as you want, although a few buttons are normally all you would want to show in the header, otherwise, the interface becomes clumsy and busy (we'll cover `-content dropdown` content type to help with this later in this series).
 
 This example makes use of `-content order` and `-content searchDropdown` to show two different buttons. In this case we've added `-content order` in front of the search icon - note that the order given in the array is the order the buttons are displayed in.
 
-The `-content order` type provides a button that acts as a status icon for the current ordering applied to the table and column, and also a way to trigger ordering on a column. By default DataTables will show its own ordering status icon and add an event handler to the whole of the header cell to trigger ordering. To disable that behaviour we can use `-init ordering.indicators` and `-init ordering.handler`. Again this is to help prevent clutter and keep the UI simple for the end user. You'll see these two parameters used in a lot of ColumnControl examples!
+The `-content order` type provides a button that acts as a status icon for the current ordering applied to the table and column, and also a way to trigger ordering on a column. By default, DataTables will show its own ordering status icon and add an event handler to the whole of the header cell to trigger ordering. To disable that behaviour we can use `-init ordering.indicators` and `-init ordering.handler`. Again this is to help prevent clutter and keep the UI simple for the end user. You'll see these two parameters used in a lot of ColumnControl examples!
 
 Next: [Targeting different header rows](./targets.html).
 
