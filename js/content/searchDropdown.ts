@@ -30,10 +30,10 @@ export default {
 			text: dt.i18n('columnControl.searchDropdown', config.text),
 			content: [
 				Object.assign(
+					config,
 					{
 						extend: 'search'
-					},
-					config
+					}
 				)
 			]
 		};

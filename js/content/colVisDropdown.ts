@@ -22,10 +22,10 @@ export default {
 			text: dt.i18n('columnControl.colVisDropdown', config.text),
 			content: [
 				Object.assign(
+					config,
 					{
 						extend: 'colVis'
-					},
-					config
+					}
 				)
 			]
 		};
