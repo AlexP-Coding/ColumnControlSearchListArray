@@ -2,7 +2,7 @@ import DataTable from '../../../../types/types';
 
 import colVis, { IColVis } from './colVis';
 import colVisDropdown, { IColVisDropdown } from './colVisDropdown';
-import dropdown, { IDropdown } from './dropdown';
+import dropdown, { IDropdown as IDropdownConfig } from './dropdown';
 import reorder, { IReorder } from './reorder';
 import reorderLeft, { IReorderLeft } from './reorderLeft';
 import reorderRight, { IReorderRight } from './reorderRight';
@@ -26,29 +26,34 @@ import title, { ITitle } from './title';
 
 const ccContent = DataTable.ext.ccContent as any;
 
+export interface IDropdown extends IDropdownConfig {
+	extend: 'dropdown';
+}
+
 export type IContentConfig =
+	// | IColVis
+	// | IColVisDropdown
 	| IDropdown
-	| IColVis
-	| IColVisDropdown
-	| IReorder
-	| IReorderLeft
-	| IReorderRight
-	| IOrder
-	| IOrderAddAsc
-	| IOrderAddDesc
-	| IOrderAsc
-	| IOrderClear
-	| IOrderDesc
-	| IOrderRemove
-	| ISearch
-	| ISearchClear
-	| ISearchDropdown
-	| ISearchDateTime
-	| ISearchList
-	| ISearchNumber
-	| ISearchText
-	| ISpacer
-	| ITitle;
+	// | IReorder
+	// | IReorderLeft
+	// | IReorderRight
+	// | IOrder
+	// | IOrderAddAsc
+	// | IOrderAddDesc
+	// | IOrderAsc
+	// | IOrderClear
+	// | IOrderDesc
+	// | IOrderRemove
+	// | ISearch
+	// | ISearchClear
+	// | ISearchDropdown
+	// | ISearchDateTime
+	// | ISearchList
+	// | ISearchNumber
+	// | ISearchText
+	// | ISpacer
+	// | ITitle;
+;
 
 Object.assign(ccContent, {
 	colVis,

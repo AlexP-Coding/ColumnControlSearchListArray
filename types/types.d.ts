@@ -8,6 +8,7 @@
 /// <reference types="jquery" />
 
 import DataTables, {Api, ColumnSelector} from 'datatables.net';
+import {TContent} from '../js/ColumnControl';
 
 export default DataTables;
 
@@ -19,7 +20,7 @@ declare module 'datatables.net' {
 		/**
 		 * Common ColumnControl extension options to apply to all columns
 		 */
-		columnControl?: boolean | ConfigColumnControl;
+		columnControl?: TContent | ConfigColumnControl | ConfigColumnControl[];
 	}
 
 	interface ConfigColumns {
@@ -28,7 +29,7 @@ declare module 'datatables.net' {
 		 *
 		 * @returns Api for chaining with the additional ColumnControl methods
 		 */
-		columnControl?: boolean | ConfigColumnControl;
+		columnControl?: TContent | ConfigColumnControl | ConfigColumnControl[];
 	}
 
 	interface DataTablesStatic {
@@ -42,7 +43,7 @@ declare module 'datatables.net' {
 			new (
 				dt: Api<any>,
 				columnIdx: number,
-				config: boolean | ConfigColumnControl
+				config: ConfigColumnControl
 			): DataTablesStatic['ColumnControl'];
 
 			/**
@@ -61,8 +62,20 @@ declare module 'datatables.net' {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Options
  */
+type TTfootTarget = `tfoot:${number}`;
+type TTheadTarget = `thead:${number}`;
 
-interface ConfigColumnControl {}
+interface ConfigColumnControl {
+	/**
+	 * Designate the target header or footer row for where to insert the ColumnControl's content
+	 */
+	target: number | 'tfoot' | TTfootTarget | TTheadTarget;
+
+	/**
+	 * 
+	 */
+	content: TContent;
+}
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * API

@@ -6,9 +6,12 @@ import Button from './Button';
 import CheckList from './CheckList';
 import SearchInput from './SearchInput';
 
+export type TContentItem = IContentConfig | keyof typeof content | TContent;
+export type TContent = Array<TContentItem>;
+
 export interface IDefaults {
 	target: number | string;
-	content: Array<IContentConfig | keyof typeof content>;
+	content: TContent;
 }
 
 export interface IConfig extends Partial<IDefaults> {}
