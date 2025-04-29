@@ -164,8 +164,9 @@ export default class SearchInput {
 	 */
 	public title(text: string) {
 		if (text) {
-			// .replace('*', column.title()); TODO
-			this._dom.title.innerHTML = text;
+			let columnTitle = this._dt.column(this._idx).title();
+
+			this._dom.title.innerHTML = text.replace('*', columnTitle);
 		}
 
 		return this;
@@ -179,8 +180,9 @@ export default class SearchInput {
 	 */
 	public titleAttr(title: string) {
 		if (title) {
-			// .replace('*', column.title()); TODO
-			this._dom.input.title = title;
+			let columnTitle = this._dt.column(this._idx).title();
+
+			this._dom.input.title = title.replace('*', columnTitle);
 		}
 
 		return this;
