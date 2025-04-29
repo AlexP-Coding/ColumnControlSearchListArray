@@ -4,11 +4,22 @@ import { IContentPlugin, IContentConfig } from './content';
 
 declare var DataTable: any;
 
-export interface ISearchDateTime extends IContentConfig {
+export interface ISearchDateTimeConfig extends IContentConfig {
+	/** Allow the input clear icon to show, or not */
 	clear: boolean;
+
+	/** Placeholder text to apply to the `input` */
 	placeholder: string;
+
+	/** Title text to show above the search input */
 	title: string;
+
+	/** Text to apply to a `title` attribute for the search input */
 	titleAttr: string;
+}
+
+export interface ISearchDateTime extends Partial<ISearchDateTimeConfig> {
+	extend: 'searchDateTime'
 }
 
 export default {
@@ -114,7 +125,7 @@ export default {
 
 		return searchInput.element();
 	}
-} as IContentPlugin<ISearchDateTime>;
+} as IContentPlugin<ISearchDateTimeConfig>;
 
 /**
  * Determine the formatting string for the date time information in the colum

@@ -1,11 +1,22 @@
 import SearchInput from '../SearchInput';
 import { IContentPlugin, IContentConfig } from './content';
 
-export interface ISearchText extends IContentConfig {
+export interface ISearchTextConfig extends IContentConfig {
+	/** Allow the input clear icon to show, or not */
 	clear: boolean;
+
+	/** Placeholder text to apply to the `input` */
 	placeholder: string;
+
+	/** Title text to show above the search input */
 	title: string;
+
+	/** Text to apply to a `title` attribute for the search input */
 	titleAttr: string;
+}
+
+export interface ISearchText extends Partial<ISearchTextConfig> {
+	extend: 'searchText';
 }
 
 export default {
@@ -88,4 +99,4 @@ export default {
 
 		return searchInput.element();
 	}
-} as IContentPlugin<ISearchText>;
+} as IContentPlugin<ISearchTextConfig>;

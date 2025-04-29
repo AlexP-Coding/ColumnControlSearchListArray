@@ -1,10 +1,19 @@
 import Button from '../Button';
 import { IContentPlugin, IContentConfig } from './content';
 
-export interface ISearchClear extends IContentConfig {
+export interface ISearchClearConfig extends IContentConfig {
+	/** Button class name */
 	className: string;
+
+	/** Button icon */
 	icon: string;
+
+	/** Button text (shown in dropdown) */
 	text: string;
+}
+
+export interface ISearchClear extends Partial<ISearchClearConfig> {
+	extend: 'searchClear'
 }
 
 export default {
@@ -35,4 +44,4 @@ export default {
 
 		return btn.element();
 	}
-} as IContentPlugin<ISearchClear>;
+} as IContentPlugin<ISearchClearConfig>;

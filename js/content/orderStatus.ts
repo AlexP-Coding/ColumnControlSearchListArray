@@ -1,5 +1,9 @@
-import { IContentPlugin, IContentConfig } from './content';
-import { IOrder } from './order';
+import { IContentPlugin } from './content';
+import { IOrderConfig } from './order';
+
+export interface IOrderStatus extends Partial<IOrderConfig> {
+	extend: 'orderStatus'
+}
 
 export default {
 	defaults: {
@@ -14,4 +18,4 @@ export default {
 	extend(config) {
 		return Object.assign({extend: 'order'}, config);
 	}
-} as IContentPlugin<IOrder>;
+} as IContentPlugin<IOrderConfig>;

@@ -1,12 +1,25 @@
 import CheckList from '../CheckList';
 import { IContentPlugin, IContentConfig } from './content';
 
-export interface IColVis extends IContentConfig {
+export interface IColVisConfig extends IContentConfig {
+	/** Container class name */
 	className: string;
+
+	/** Column selector for what columns to have in the list */
 	columns: string | number | Array<string | number>;
+
+	/** Show the list search input, or not */
 	search: boolean;
+
+	/** Show the select all / none buttons, or not */
 	select: boolean;
+
+	/** Text shown above the column list */
 	title: string;
+}
+
+export interface IColVis extends Partial<IColVisConfig> {
+	extend: 'colVis'
 }
 
 export default {
@@ -61,4 +74,4 @@ export default {
 
 		return checkList.element();
 	}
-} as IContentPlugin<IColVis>;
+} as IContentPlugin<IColVisConfig>;

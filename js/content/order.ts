@@ -1,13 +1,28 @@
 import Button from '../Button';
 import { IContentPlugin, IContentConfig } from './content';
 
-export interface IOrder extends IContentConfig {
+export interface IOrderConfig extends IContentConfig {
+	/** Button class name */
 	className: string;
+
+	/** Icon to use for when there is ascending ordering applied to the column */
 	iconAsc: string;
+
+	/** Icon to use for when there is descending ordering applied to the column */
 	iconDesc: string;
+
+	/** Icon to use for when there is no ordering applied to the column */
 	iconNone: string;
+
+	/** Don't add the click listener if enabled */
 	statusOnly: boolean;
+
+	/** Button text (shown in dropdowns) */
 	text: string;
+}
+
+export interface IOrder extends Partial<IOrderConfig> {
+	extend: 'order'
 }
 
 export default {
@@ -58,4 +73,4 @@ export default {
 
 		return btn.element();
 	}
-} as IContentPlugin<IOrder>;
+} as IContentPlugin<IOrderConfig>;

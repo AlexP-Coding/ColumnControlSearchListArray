@@ -1,14 +1,28 @@
 import CheckList from '../CheckList';
 import { IContentPlugin, IContentConfig } from './content';
 
-export interface ISearchList extends IContentConfig {
+export interface ISearchListConfig extends IContentConfig {
+	/** Only use SearchList on columns where the options are defined by the Ajax data */
 	ajaxOnly: boolean;
+
+	/** Container class name */
 	className: string;
-	columns: string | number | Array<string | number>;
+
+	/** List of options. If not given here, will be derived from Ajax data, or the table's data */
 	options: Array<{ label: string; value: any }> | null;
+
+	/** Show the list search input, or not */
 	search: boolean;
+
+	/** Show the select all / none buttons, or not */
 	select: boolean;
+
+	/** Text shown above the search list */
 	title: string;
+}
+
+export interface ISearchList extends Partial<ISearchListConfig> {
+	extend: 'searchList'
 }
 
 /** Set the options to show in the list */
@@ -69,7 +83,6 @@ export default {
 	defaults: {
 		ajaxOnly: true,
 		className: 'searchList',
-		columns: '',
 		options: null,
 		search: true,
 		select: true,
@@ -203,4 +216,4 @@ export default {
 
 		return checkList.element();
 	}
-} as IContentPlugin<ISearchList>;
+} as IContentPlugin<ISearchListConfig>;

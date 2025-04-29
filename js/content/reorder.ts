@@ -3,10 +3,19 @@ import { IContentPlugin, IContentConfig } from './content';
 
 declare var DataTable: any;
 
-export interface IReorder extends IContentConfig {
+export interface IReorderConfig extends IContentConfig {
+	/** Button class name */
 	className: string;
+
+	/** Button icon */
 	icon: string;
+
+	/** Button text (shown in dropdown) */
 	text: string;
+}
+
+export interface IReorder extends Partial<IReorderConfig> {
+	extend: 'reorder'
 }
 
 export default {
@@ -45,4 +54,4 @@ export default {
 
 		return btn.element();
 	}
-} as IContentPlugin<IReorder>;
+} as IContentPlugin<IReorderConfig>;

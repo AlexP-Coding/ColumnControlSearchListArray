@@ -8,14 +8,25 @@ interface HTMLDropdown extends HTMLDivElement {
 	_close: () => void;
 }
 
-export interface IDropdown extends IContentConfig {
+export interface IDropdownConfig extends IContentConfig {
+	/** Button class name */
 	className: string;
+
+	/** Content to show in the dropdown */
 	content: IContentConfig[];
+
+	/** Icon name */
 	icon: string;
+
+	/** Button text (shown in an existing dropdown, not at the top level) */
 	text: string;
 }
 
-interface IClasses {
+export interface IDropdown extends Partial<IDropdownConfig> {
+	extend: 'dropdown'
+}
+
+export interface IClasses {
 	container: string | string[];
 	liner: string | string[];
 }
@@ -209,6 +220,6 @@ const dropdownContent = {
 
 		return btn.element();
 	}
-} as IContentPlugin<IDropdown, IClasses>;
+} as IContentPlugin<IDropdownConfig, IClasses>;
 
 export default dropdownContent;

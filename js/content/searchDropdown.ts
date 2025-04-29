@@ -1,8 +1,13 @@
-import { IContentPlugin, IContentConfig } from './content';
-import { ISearch } from './search';
+import { IContentPlugin } from './content';
+import { ISearchListConfig } from './searchList';
 
-export interface ISearchDropdown extends ISearch {
+export interface ISearchDropdownConfig extends ISearchListConfig {
+	/** Button config */
 	text: string;
+}
+
+export interface ISearchDropdown extends Partial<ISearchDropdownConfig> {
+	extend: 'searchDropdown'
 }
 
 export default {
@@ -38,4 +43,4 @@ export default {
 			]
 		};
 	}
-} as IContentPlugin<ISearchDropdown>;
+} as IContentPlugin<ISearchDropdownConfig>;

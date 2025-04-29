@@ -8,7 +8,8 @@
 /// <reference types="jquery" />
 
 import DataTables, {Api, ColumnSelector} from 'datatables.net';
-import {TContent} from '../js/ColumnControl';
+import {TContentItem} from '../js/ColumnControl';
+import {IContentPlugin} from '../js/content/content';
 
 export default DataTables;
 
@@ -20,7 +21,7 @@ declare module 'datatables.net' {
 		/**
 		 * Common ColumnControl extension options to apply to all columns
 		 */
-		columnControl?: TContent | ConfigColumnControl | ConfigColumnControl[];
+		columnControl?: ConfigColumnControl | Array<TContentItem | ConfigColumnControl>;
 	}
 
 	interface ConfigColumns {
@@ -29,7 +30,7 @@ declare module 'datatables.net' {
 		 *
 		 * @returns Api for chaining with the additional ColumnControl methods
 		 */
-		columnControl?: TContent | ConfigColumnControl | ConfigColumnControl[];
+		columnControl?: ConfigColumnControl | Array<TContentItem | ConfigColumnControl>;
 	}
 
 	interface DataTablesStatic {
@@ -74,7 +75,7 @@ interface ConfigColumnControl {
 	/**
 	 * 
 	 */
-	content: TContent;
+	content: TContentItem[];
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

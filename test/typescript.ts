@@ -10,7 +10,7 @@ new DataTable('#myTable', {
 });
 
 new DataTable('#myTable', {
-	columnControl: [{extend: 'dropdown', title: 'Test'}]
+	columnControl: [{extend: 'dropdown', text: 'Test'}]
 });
 
 new DataTable('#myTable', {
@@ -23,7 +23,7 @@ new DataTable('#myTable', {
 new DataTable('#myTable', {
 	columnControl: [
 		{
-			target: 'tfoot',
+			target: 'tfoot:1',
 			content: ['colVis']
 		},
 		{

@@ -1,16 +1,23 @@
 import { IContentPlugin, IContentConfig } from './content';
+import { IColVisConfig } from './colVis';
 
-export interface IColVisDropdown extends IContentConfig {
-	className: string;
-	columns: string | number | Array<string | number>;
+export interface IColVisDropdownConfig extends IColVisConfig {
+	/** Button config */
 	text: string;
+}
+
+export interface IColVisDropdown extends Partial<IColVisDropdownConfig> {
+	extend: 'colVisDropdown'
 }
 
 export default {
 	defaults: {
 		className: 'colVisDropdown',
 		columns: '',
-		text: 'Column visibility'
+		search: false,
+		select: false,
+		text: 'Column visibility',
+		title: ''
 	},
 
 	extend(config) {
@@ -30,4 +37,4 @@ export default {
 			]
 		};
 	}
-} as IContentPlugin<IColVisDropdown>;
+} as IContentPlugin<IColVisDropdownConfig>;

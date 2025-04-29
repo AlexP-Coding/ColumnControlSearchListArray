@@ -1,9 +1,16 @@
 import { createElement } from '../util';
 import { IContentPlugin, IContentConfig } from './content';
 
-export interface ITitle extends IContentConfig {
+export interface ITitleConfig extends IContentConfig {
+	/** Element class name */
 	className: string;
+
+	/** Element text (shown in dropdown). If null the column's class name is used. */
 	text: string | null;
+}
+
+export interface ITitle extends Partial<ITitleConfig> {
+	extend: 'title'
 }
 
 export default {
@@ -19,4 +26,4 @@ export default {
 
 		return el;
 	}
-} as IContentPlugin<ITitle>;
+} as IContentPlugin<ITitleConfig>;

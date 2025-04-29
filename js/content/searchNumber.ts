@@ -1,11 +1,22 @@
 import SearchInput from '../SearchInput';
 import { IContentPlugin, IContentConfig } from './content';
 
-export interface ISearchNumber extends IContentConfig {
+export interface ISearchNumberConfig extends IContentConfig {
+	/** Allow the input clear icon to show, or not */
 	clear: boolean;
+
+	/** Placeholder text to apply to the `input` */
 	placeholder: string;
+
+	/** Title text to show above the search input */
 	title: string;
+
+	/** Text to apply to a `title` attribute for the search input */
 	titleAttr: string;
+}
+
+export interface ISearchNumber extends Partial<ISearchNumberConfig> {
+	extend: 'searchNumber';
 }
 
 export default {
@@ -81,7 +92,7 @@ export default {
 
 		return searchInput.element();
 	}
-} as IContentPlugin<ISearchNumber>;
+} as IContentPlugin<ISearchNumberConfig>;
 
 var _re_html = /<([^>]*>)/g;
 var _re_formatted_numeric = /['\u00A0,$£€¥%\u2009\u202F\u20BD\u20a9\u20BArfkɃΞ]/gi;

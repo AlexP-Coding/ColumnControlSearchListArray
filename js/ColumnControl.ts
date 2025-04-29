@@ -1,17 +1,16 @@
 import { Api } from '../../../types/types';
-import content, { IContentConfig } from './content/index';
+import contentTypes, { IContentConfig } from './content/index';
 import { IContentPlugin } from './content/content';
 import icons from './icons';
 import Button from './Button';
 import CheckList from './CheckList';
 import SearchInput from './SearchInput';
 
-export type TContentItem = IContentConfig | keyof typeof content | TContent;
-export type TContent = Array<TContentItem>;
+export type TContentItem = IContentConfig | keyof typeof contentTypes | TContentItem[];
 
 export interface IDefaults {
 	target: number | string;
-	content: TContent;
+	content: TContentItem[];
 }
 
 export interface IConfig extends Partial<IDefaults> {}
@@ -200,7 +199,7 @@ export default class ColumnControl {
 	static SearchInput = SearchInput;
 
 	/** Content plugins */
-	static content: IContents = content;
+	static content: IContents = contentTypes;
 
 	/** Defaults for ColumnControl */
 	static defaults: IDefaults = {

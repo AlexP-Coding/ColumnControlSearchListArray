@@ -1,11 +1,16 @@
-import searchDate, { ISearchDateTime } from './searchDate';
-import searchList, { ISearchList, getJsonOptions } from './searchList';
-import searchNumber, { ISearchNumber } from './searchNumber';
-import searchText, { ISearchText } from './searchText';
+import searchDate, { ISearchDateTimeConfig } from './searchDate';
+import searchList, { ISearchListConfig, getJsonOptions } from './searchList';
+import searchNumber, { ISearchNumberConfig } from './searchNumber';
+import searchText, { ISearchTextConfig } from './searchText';
 import { IContentPlugin } from './content';
 
-export interface ISearch extends ISearchDateTime, ISearchNumber, ISearchText, ISearchList {
+export interface ISearchConfig extends ISearchDateTimeConfig, ISearchNumberConfig, ISearchTextConfig, ISearchListConfig {
+	/** Indicate if SearchList should be allowed or not (it is only used for Ajax loaded data) */
 	allowSearchList: boolean;
+}
+
+export interface ISearch extends Partial<ISearchConfig> {
+	extend: 'search'
 }
 
 export default {
@@ -57,4 +62,4 @@ export default {
 
 		return displayEl;
 	}
-} as IContentPlugin<ISearch>;
+} as IContentPlugin<ISearchConfig>;

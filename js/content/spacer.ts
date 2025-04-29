@@ -1,9 +1,16 @@
 import { createElement } from '../util';
 import { IContentPlugin, IContentConfig } from './content';
 
-export interface ISpacer extends IContentConfig {
+export interface ISpacerConfig extends IContentConfig {
+	/** Element class name */
 	className: string;
+
+	/** Element text (shown in dropdown) */
 	text: string;
+}
+
+export interface ISpacer extends Partial<ISpacerConfig> {
+	extend: 'spacer'
 }
 
 export default {
@@ -23,4 +30,4 @@ export default {
 
 		return spacer;
 	}
-} as IContentPlugin<ISpacer>;
+} as IContentPlugin<ISpacerConfig>;

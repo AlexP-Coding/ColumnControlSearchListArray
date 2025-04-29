@@ -1,10 +1,19 @@
 import Button from '../Button';
 import { IContentPlugin, IContentConfig } from './content';
 
-export interface IReorderLeft extends IContentConfig {
+export interface IReorderLeftConfig extends IContentConfig {
+	/** Button class name */
 	className: string;
+
+	/** Button icon */
 	icon: string;
+
+	/** Button text (shown in dropdown) */
 	text: string;
+}
+
+export interface IReorderLeft extends Partial<IReorderLeftConfig> {
+	extend: 'reorderLeft'
 }
 
 export default {
@@ -38,4 +47,4 @@ export default {
 
 		return btn.element();
 	}
-} as IContentPlugin<IReorderLeft>;
+} as IContentPlugin<IReorderLeftConfig>;
