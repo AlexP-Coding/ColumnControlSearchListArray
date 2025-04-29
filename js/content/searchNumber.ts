@@ -8,10 +8,13 @@ export interface ISearchNumberConfig extends IContentConfig {
 	/** Placeholder text to apply to the `input` */
 	placeholder: string;
 
-	/** Title text to show above the search input */
+	/** Title text to show above the search input. `[title]` will be replaced by the column title */
 	title: string;
 
-	/** Text to apply to a `title` attribute for the search input */
+	/**
+	 * Text to apply to a `title` attribute for the search input. `[title]` will be replaced by
+	 * the column title
+	 */
 	titleAttr: string;
 }
 

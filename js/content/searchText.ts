@@ -8,10 +8,13 @@ export interface ISearchTextConfig extends IContentConfig {
 	/** Placeholder text to apply to the `input` */
 	placeholder: string;
 
-	/** Title text to show above the search input */
+	/** Title text to show above the search input. `[title]` will be replaced by the column title */
 	title: string;
 
-	/** Text to apply to a `title` attribute for the search input */
+	/**
+	 * Text to apply to a `title` attribute for the search input. `[title]` will be replaced by
+	 * the column title
+	 */
 	titleAttr: string;
 }
 
@@ -52,34 +55,43 @@ export default {
 
 				if (searchType === 'empty') {
 					column.search.fixed('dtcc', (haystack) => !haystack);
-				} else if (searchType === 'notEmpty') {
+				}
+				else if (searchType === 'notEmpty') {
 					column.search.fixed('dtcc', (haystack) => !!haystack);
-				} else if (column.search.fixed('dtcc') === '' && searchTerm === '') {
+				}
+				else if (column.search.fixed('dtcc') === '' && searchTerm === '') {
 					// No change - don't do anything
 					return;
-				} else if (searchTerm === '') {
+				}
+				else if (searchTerm === '') {
 					// Clear search
 					column.search.fixed('dtcc', '');
-				} else if (searchType === 'equal') {
+				}
+				else if (searchType === 'equal') {
 					// Use a function for exact matching
 					column.search.fixed('dtcc', (haystack) => haystack.toLowerCase() == searchTerm);
-				} else if (searchType === 'notEqual') {
+				}
+				else if (searchType === 'notEqual') {
 					column.search.fixed('dtcc', (haystack) => haystack.toLowerCase() != searchTerm);
-				} else if (searchType === 'contains') {
+				}
+				else if (searchType === 'contains') {
 					// Use the built in smart search
 					column.search.fixed('dtcc', searchTerm);
-				} else if (searchType === 'notContains') {
+				}
+				else if (searchType === 'notContains') {
 					// Use the built in smart search
 					column.search.fixed(
 						'dtcc',
 						(haystack) => !haystack.toLowerCase().includes(searchTerm)
 					);
-				} else if (searchType === 'starts') {
+				}
+				else if (searchType === 'starts') {
 					// Use a function for startsWith case insensitive search
 					column.search.fixed('dtcc', (haystack) =>
 						haystack.toLowerCase().startsWith(searchTerm)
 					);
-				} else if (searchType === 'ends') {
+				}
+				else if (searchType === 'ends') {
 					column.search.fixed('dtcc', (haystack) =>
 						haystack.toLowerCase().endsWith(searchTerm)
 					);

@@ -17,7 +17,7 @@ export interface ISearchListConfig extends IContentConfig {
 	/** Show the select all / none buttons, or not */
 	select: boolean;
 
-	/** Text shown above the search list */
+	/** Text shown above the search list. `[title]` will be replaced by the column title. */
 	title: string;
 }
 
@@ -180,7 +180,11 @@ export default {
 			select: config.select
 		})
 			.searchListener(dt, this)
-			.title(dt.i18n('columnControl.searchList', config.title))
+			.title(
+				dt
+					.i18n('columnControl.searchList', config.title)
+					.replace('[title]', dt.column(this.idx()).title())
+			)
 			.handler((e, btn) => {
 				if (btn) {
 					btn.active(!btn.active());

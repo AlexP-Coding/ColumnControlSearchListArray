@@ -166,7 +166,7 @@ export default class SearchInput {
 		if (text) {
 			let columnTitle = this._dt.column(this._idx).title();
 
-			this._dom.title.innerHTML = text.replace('*', columnTitle);
+			this._dom.title.innerHTML = text.replace('[title]', columnTitle);
 		}
 
 		return this;
@@ -182,7 +182,7 @@ export default class SearchInput {
 		if (title) {
 			let columnTitle = this._dt.column(this._idx).title();
 
-			this._dom.input.title = title.replace('*', columnTitle);
+			this._dom.input.title = title.replace('[title]', columnTitle);
 		}
 
 		return this;
