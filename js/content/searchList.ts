@@ -27,6 +27,10 @@ export interface ISearchList extends Partial<ISearchListConfig> {
 
 /** Set the options to show in the list */
 function setOptions(checkList: CheckList, opts) {
+	let existing = checkList.values();
+
+	checkList.clear();
+
 	for (let i = 0; i < opts.length; i++) {
 		if (typeof opts[i] === 'object') {
 			checkList.add(
@@ -48,6 +52,10 @@ function setOptions(checkList: CheckList, opts) {
 			);
 		}
 	}
+
+	if (existing.length) {
+		checkList.values(existing);
+	}
 }
 
 /** Load a saved state */
@@ -59,6 +67,7 @@ function getState(columnIdx: number, state) {
 	}
 }
 
+/** Get the options for a column from a DT JSON object */
 export function getJsonOptions(dt, idx) {
 	let json = (dt.ajax.json() as any)?.columnControl;
 	let column = dt.column(idx);

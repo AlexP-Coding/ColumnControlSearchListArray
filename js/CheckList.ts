@@ -110,7 +110,12 @@ export default class CheckList {
 	 * @returns Self for chaining
 	 */
 	public clear() {
-		// TODO need to destroy the buttons
+		// Clean up the buttons
+		for (let i=0 ; i<this._s.buttons.length ; i++) {
+			this._s.buttons[i].destroy();
+		}
+
+		// Then empty them out
 		this._dom.buttons.replaceChildren();
 		this._s.buttons.length = 0;
 

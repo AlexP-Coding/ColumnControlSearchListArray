@@ -17,11 +17,15 @@ interface IDom {
 interface ISettings {
 	active: boolean;
 	activeList: { [key: number]: boolean };
+	buttonClick: EventListener;
 	dt: Api;
 	enabled: boolean;
 	label: string;
+	namespace: string;
 	value: string | number;
 }
+
+let _namespace = 0;
 
 export default class Button {
 	static classes = {
@@ -32,9 +36,11 @@ export default class Button {
 	private _s: ISettings = {
 		active: false,
 		activeList: [],
+		buttonClick: null,
 		dt: null,
 		enabled: true,
 		label: '',
+		namespace: '',
 		value: null
 	};
 
@@ -103,6 +109,31 @@ export default class Button {
 	}
 
 	/**
+	 * Set the class name for the button
+	 *
+	 * @param className Class name
+	 * @returns Button instance
+	 */
+	public className(className: string) {
+		this._dom.button.classList.add('dtcc-button_' + className);
+
+		return this;
+	}
+
+	/**
+	 * Destroy the button, cleaning up event listeners
+	 */
+	public destroy() {
+		if (this._s.buttonClick) {
+			this._dom.button.removeEventListener('click', this._s.buttonClick);
+		}
+
+		if (this._s.namespace) {
+			this._s.dt.off('destroy.' + this._s.namespace);
+		}
+	}
+
+	/**
 	 * Relevant for drop downs only. When a button in a dropdown is hidden, we might want to
 	 * hide the host button as well (if it has nothing else to show). For that we need to know
 	 * what the dropdown element is.
@@ -112,18 +143,6 @@ export default class Button {
 	 */
 	public dropdownDisplay(el: HTMLDivElement) {
 		this._dom.dropdownDisplay = el;
-
-		return this;
-	}
-
-	/**
-	 * Set the class name for the button
-	 *
-	 * @param className Class name
-	 * @returns Button instance
-	 */
-	public className(className: string) {
-		this._dom.button.classList.add('dtcc-button_' + className);
 
 		return this;
 	}
@@ -182,10 +201,13 @@ export default class Button {
 			}
 		};
 
+		this._s.buttonClick = buttonClick;
+		this._s.namespace = 'dtcc-' + _namespace++;
 		this._dom.button.addEventListener('click', buttonClick);
 
-		this._s.dt.on('destroy', () => {
-			this._dom.button.removeEventListener('click', buttonClick);
+		// Use a unique namespace to be able to easily remove per button
+		this._s.dt.on('destroy.' + this._s.namespace, () => {
+			this.destroy()
 		});
 
 		return this;
