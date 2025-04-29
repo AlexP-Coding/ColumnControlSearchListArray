@@ -12,4 +12,3 @@ DataTable.ColumnControl.content.dropdown.classes.liner = [
 	'dtcc-dropdown-liner',
 	'dropdown-content'
 ];
-

@@ -8,6 +8,10 @@ DataTable.ColumnControl.content.dropdown.classes.container = [
 	'show'
 ];
 
-DataTable.ColumnControl.CheckList.classes.input = ['dtcc-list-search', 'form-control', 'form-control-sm'];
+DataTable.ColumnControl.CheckList.classes.input = [
+	'dtcc-list-search',
+	'form-control',
+	'form-control-sm'
+];
 DataTable.ColumnControl.SearchInput.classes.input = ['form-control', 'form-control-sm'];
 DataTable.ColumnControl.SearchInput.classes.select = ['form-control', 'form-control-sm'];
