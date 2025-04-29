@@ -23,7 +23,7 @@ export interface IDropdownConfig extends IContentConfig {
 }
 
 export interface IDropdown extends Partial<IDropdownConfig> {
-	extend: 'dropdown'
+	extend: 'dropdown';
 }
 
 export interface IClasses {
@@ -65,7 +65,8 @@ function positionDropdown(dropdown: HTMLDropdown, dt: Api, btn: HTMLButtonElemen
 	if (headerStyle.flexDirection === 'row-reverse') {
 		// Icon is on the left of the header - align the left hand sides
 		left = position.left;
-	} else {
+	}
+	else {
 		// Icon is on the right of the header - align the right hand sides
 		left = position.left - dropdownWidth + btn.offsetWidth;
 	}
@@ -186,7 +187,8 @@ const dropdownContent = {
 
 				if (dropdown._shown) {
 					dropdown._close();
-				} else {
+				}
+				else {
 					attachDropdown(dropdown, dt, config._parents ? config._parents[0] : btn);
 				}
 			});

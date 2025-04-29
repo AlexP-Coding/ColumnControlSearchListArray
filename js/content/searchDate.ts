@@ -22,7 +22,7 @@ export interface ISearchDateTimeConfig extends IContentConfig {
 }
 
 export interface ISearchDateTime extends Partial<ISearchDateTimeConfig> {
-	extend: 'searchDateTime'
+	extend: 'searchDateTime';
 }
 
 export default {
@@ -64,19 +64,23 @@ export default {
 								displayFormat,
 								moment,
 								luxon
-							);
+						  );
 
 				if (searchType === 'empty') {
 					column.search.fixed('dtcc', (haystack) => !haystack);
-				} else if (searchType === 'notEmpty') {
+				}
+				else if (searchType === 'notEmpty') {
 					column.search.fixed('dtcc', (haystack) => !!haystack);
-				} else if (column.search.fixed('dtcc') === '' && search === '') {
+				}
+				else if (column.search.fixed('dtcc') === '' && search === '') {
 					// No change - don't do anything
 					return;
-				} else if (!search) {
+				}
+				else if (!search) {
 					// Clear search
 					column.search.fixed('dtcc', '');
-				} else if (searchType === 'equal') {
+				}
+				else if (searchType === 'equal') {
 					// Use a function for matching - weak typing
 					// Note that the haystack in the search function is the rendered date - it
 					// might need to be converted back to a date
@@ -84,17 +88,20 @@ export default {
 						'dtcc',
 						(haystack) => dateToNum(haystack, displayFormat, moment, luxon) == search
 					);
-				} else if (searchType === 'notEqual') {
+				}
+				else if (searchType === 'notEqual') {
 					column.search.fixed(
 						'dtcc',
 						(haystack) => dateToNum(haystack, displayFormat, moment, luxon) != search
 					);
-				} else if (searchType === 'greater') {
+				}
+				else if (searchType === 'greater') {
 					column.search.fixed(
 						'dtcc',
 						(haystack) => dateToNum(haystack, displayFormat, moment, luxon) > search
 					);
-				} else if (searchType === 'less') {
+				}
+				else if (searchType === 'less') {
 					column.search.fixed(
 						'dtcc',
 						(haystack) => dateToNum(haystack, displayFormat, moment, luxon) < search
@@ -143,7 +150,8 @@ function getFormat(dt: Api, column: number) {
 	if (!type) {
 		// Assume that it is ISO unless otherwise specified - that is all DataTables can do anyway
 		return 'YYYY-MM-DD';
-	} else if (type === 'datetime') {
+	}
+	else if (type === 'datetime') {
 		// If no format was specified in the DT type, then we need to use Moment / Luxon's default
 		// locale formatting.
 		let moment = DataTable.use('moment');
@@ -165,13 +173,16 @@ function getFormat(dt: Api, column: number) {
 				.replace('1999', 'yyyy')
 				.replace('99', 'yy');
 		}
-	} else if (type.includes('datetime-')) {
+	}
+	else if (type.includes('datetime-')) {
 		// Column was specified with a particular display format - we can extract that format from
 		// the type, as it is part of the type name.
 		return type.replace(/datetime-/g, '');
-	} else if (type.includes('moment')) {
+	}
+	else if (type.includes('moment')) {
 		return type.replace(/moment-/g, '');
-	} else if (type.includes('luxon')) {
+	}
+	else if (type.includes('luxon')) {
 		return type.replace(/luxon-/g, '');
 	}
 
@@ -190,9 +201,11 @@ function getFormat(dt: Api, column: number) {
 function dateToNum(input: Date | string, srcFormat: string, moment?: any, luxon?: any) {
 	if (input === '') {
 		return '';
-	} else if (input instanceof Date) {
+	}
+	else if (input instanceof Date) {
 		return input.getTime();
-	} else if (srcFormat !== 'YYYY-MM-DD' && (moment || luxon)) {
+	}
+	else if (srcFormat !== 'YYYY-MM-DD' && (moment || luxon)) {
 		return moment
 			? moment(input, srcFormat).unix() * 1000
 			: luxon.DateTime.fromFormat(input, srcFormat).toMillis();

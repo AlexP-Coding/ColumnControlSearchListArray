@@ -19,7 +19,7 @@ export interface IColVisConfig extends IContentConfig {
 }
 
 export interface IColVis extends Partial<IColVisConfig> {
-	extend: 'colVis'
+	extend: 'colVis';
 }
 
 export default {

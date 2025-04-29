@@ -40,7 +40,7 @@ export default class CheckList {
 	static classes = {
 		container: 'dtcc-list',
 		input: 'dtcc-list-search'
-	}
+	};
 
 	private _dom: IDom;
 	private _s: ISettings = {
@@ -111,7 +111,7 @@ export default class CheckList {
 	 */
 	public clear() {
 		// Clean up the buttons
-		for (let i=0 ; i<this._s.buttons.length ; i++) {
+		for (let i = 0; i < this._s.buttons.length; i++) {
 			this._s.buttons[i].destroy();
 		}
 
@@ -339,7 +339,13 @@ export default class CheckList {
 		for (let i = 0; i < buttons.length; i++) {
 			let btn = buttons[i];
 
-			if (!searchTerm || btn.text().toLowerCase().includes(searchTerm)) {
+			if (
+				!searchTerm ||
+				btn
+					.text()
+					.toLowerCase()
+					.includes(searchTerm)
+			) {
 				el.appendChild(btn.element());
 			}
 		}

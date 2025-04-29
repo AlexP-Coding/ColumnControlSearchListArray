@@ -13,7 +13,7 @@ export interface IOrderAddAscConfig extends IContentConfig {
 }
 
 export interface IOrderAddAsc extends Partial<IOrderAddAscConfig> {
-	extend: 'orderAddAsc'
+	extend: 'orderAddAsc';
 }
 
 export default {

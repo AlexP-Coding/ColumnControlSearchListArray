@@ -2,7 +2,7 @@ import { IContentPlugin } from './content';
 import { IOrderConfig } from './order';
 
 export interface IOrderStatus extends Partial<IOrderConfig> {
-	extend: 'orderStatus'
+	extend: 'orderStatus';
 }
 
 export default {
@@ -16,6 +16,6 @@ export default {
 	},
 
 	extend(config) {
-		return Object.assign({extend: 'order'}, config);
+		return Object.assign({ extend: 'order' }, config);
 	}
 } as IContentPlugin<IOrderConfig>;

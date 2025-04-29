@@ -93,7 +93,7 @@ export default class Button {
 		let visible = 0;
 		let children = this._dom.dropdownDisplay.childNodes as any;
 
-		for (let i=0 ; i<children.length ; i++) {
+		for (let i = 0; i < children.length; i++) {
 			// No need to getComputedStyle since if a button is hidden, it was done with JS writing
 			// to style.display, so we can check against that.
 			if (children[i].style.display !== 'none') {
@@ -207,7 +207,7 @@ export default class Button {
 
 		// Use a unique namespace to be able to easily remove per button
 		this._s.dt.on('destroy.' + this._s.namespace, () => {
-			this.destroy()
+			this.destroy();
 		});
 
 		return this;
@@ -300,7 +300,8 @@ export default class Button {
 		if (this._s.active === true || Object.values(this._s.activeList).includes(true)) {
 			this._dom.state.innerHTML = icons.tick;
 			this._dom.button.classList.add('dtcc-button_active');
-		} else {
+		}
+		else {
 			this._dom.state.innerHTML = '';
 			this._dom.button.classList.remove('dtcc-button_active');
 		}

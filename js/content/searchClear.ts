@@ -13,7 +13,7 @@ export interface ISearchClearConfig extends IContentConfig {
 }
 
 export interface ISearchClear extends Partial<ISearchClearConfig> {
-	extend: 'searchClear'
+	extend: 'searchClear';
 }
 
 export default {

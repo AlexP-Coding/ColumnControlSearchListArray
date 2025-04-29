@@ -7,7 +7,7 @@ export interface ISearchDropdownConfig extends ISearchListConfig {
 }
 
 export interface ISearchDropdown extends Partial<ISearchDropdownConfig> {
-	extend: 'searchDropdown'
+	extend: 'searchDropdown';
 }
 
 export default {
@@ -34,12 +34,9 @@ export default {
 			icon: 'search',
 			text: dt.i18n('columnControl.searchDropdown', config.text),
 			content: [
-				Object.assign(
-					config,
-					{
-						extend: 'search'
-					}
-				)
+				Object.assign(config, {
+					extend: 'search'
+				})
 			]
 		};
 	}

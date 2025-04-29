@@ -7,7 +7,7 @@ export interface IColVisDropdownConfig extends IColVisConfig {
 }
 
 export interface IColVisDropdown extends Partial<IColVisDropdownConfig> {
-	extend: 'colVisDropdown'
+	extend: 'colVisDropdown';
 }
 
 export default {
@@ -28,12 +28,9 @@ export default {
 			icon: 'columns',
 			text: dt.i18n('columnControl.colVisDropdown', config.text),
 			content: [
-				Object.assign(
-					config,
-					{
-						extend: 'colVis'
-					}
-				)
+				Object.assign(config, {
+					extend: 'colVis'
+				})
 			]
 		};
 	}

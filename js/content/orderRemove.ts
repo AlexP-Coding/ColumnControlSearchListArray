@@ -13,7 +13,7 @@ export interface IOrderRemoveConfig extends IContentConfig {
 }
 
 export interface IOrderRemove extends Partial<IOrderRemoveConfig> {
-	extend: 'orderRemove'
+	extend: 'orderRemove';
 }
 
 export default {

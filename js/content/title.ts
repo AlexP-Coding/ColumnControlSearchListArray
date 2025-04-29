@@ -10,7 +10,7 @@ export interface ITitleConfig extends IContentConfig {
 }
 
 export interface ITitle extends Partial<ITitleConfig> {
-	extend: 'title'
+	extend: 'title';
 }
 
 export default {

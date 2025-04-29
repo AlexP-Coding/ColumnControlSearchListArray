@@ -20,7 +20,7 @@ export default class SearchInput {
 		container: ['dtcc-content', 'dtcc-search'],
 		input: '',
 		select: ''
-	}
+	};
 
 	private _dom: IDom;
 	private _search: ISearch;

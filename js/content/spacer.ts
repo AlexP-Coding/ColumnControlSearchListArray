@@ -10,7 +10,7 @@ export interface ISpacerConfig extends IContentConfig {
 }
 
 export interface ISpacer extends Partial<ISpacerConfig> {
-	extend: 'spacer'
+	extend: 'spacer';
 }
 
 export default {

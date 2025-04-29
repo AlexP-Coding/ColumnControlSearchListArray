@@ -54,26 +54,35 @@ export default {
 
 				if (searchType === 'empty') {
 					column.search.fixed('dtcc', (haystack) => !haystack);
-				} else if (searchType === 'notEmpty') {
+				}
+				else if (searchType === 'notEmpty') {
 					column.search.fixed('dtcc', (haystack) => !!haystack);
-				} else if (column.search.fixed('dtcc') === '' && searchTerm === '') {
+				}
+				else if (column.search.fixed('dtcc') === '' && searchTerm === '') {
 					// No change - don't do anything
 					return;
-				} else if (searchTerm === '') {
+				}
+				else if (searchTerm === '') {
 					// Clear search
 					column.search.fixed('dtcc', '');
-				} else if (searchType === 'equal') {
+				}
+				else if (searchType === 'equal') {
 					// Use a function for matching - weak typing
 					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) == searchTerm);
-				} else if (searchType === 'notEqual') {
+				}
+				else if (searchType === 'notEqual') {
 					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) != searchTerm);
-				} else if (searchType === 'greater') {
+				}
+				else if (searchType === 'greater') {
 					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) > searchTerm);
-				} else if (searchType === 'greaterOrEqual') {
+				}
+				else if (searchType === 'greaterOrEqual') {
 					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) >= searchTerm);
-				} else if (searchType === 'less') {
+				}
+				else if (searchType === 'less') {
 					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) < searchTerm);
-				} else if (searchType === 'lessOrEqual') {
+				}
+				else if (searchType === 'lessOrEqual') {
 					column.search.fixed('dtcc', (haystack) => stringToNum(haystack) <= searchTerm);
 				}
 

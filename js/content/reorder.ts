@@ -15,7 +15,7 @@ export interface IReorderConfig extends IContentConfig {
 }
 
 export interface IReorder extends Partial<IReorderConfig> {
-	extend: 'reorder'
+	extend: 'reorder';
 }
 
 export default {

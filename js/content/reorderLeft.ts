@@ -13,7 +13,7 @@ export interface IReorderLeftConfig extends IContentConfig {
 }
 
 export interface IReorderLeft extends Partial<IReorderLeftConfig> {
-	extend: 'reorderLeft'
+	extend: 'reorderLeft';
 }
 
 export default {

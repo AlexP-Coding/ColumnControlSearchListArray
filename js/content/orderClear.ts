@@ -13,7 +13,7 @@ export interface IOrderClearConfig extends IContentConfig {
 }
 
 export interface IOrderClear extends Partial<IOrderClearConfig> {
-	extend: 'orderClear'
+	extend: 'orderClear';
 }
 
 export default {

@@ -4,13 +4,17 @@ import searchNumber, { ISearchNumberConfig } from './searchNumber';
 import searchText, { ISearchTextConfig } from './searchText';
 import { IContentPlugin } from './content';
 
-export interface ISearchConfig extends ISearchDateTimeConfig, ISearchNumberConfig, ISearchTextConfig, ISearchListConfig {
+export interface ISearchConfig
+	extends ISearchDateTimeConfig,
+		ISearchNumberConfig,
+		ISearchTextConfig,
+		ISearchListConfig {
 	/** Indicate if SearchList should be allowed or not (it is only used for Ajax loaded data) */
 	allowSearchList: boolean;
 }
 
 export interface ISearch extends Partial<ISearchConfig> {
-	extend: 'search'
+	extend: 'search';
 }
 
 export default {
@@ -31,13 +35,19 @@ export default {
 			if (config.allowSearchList && json) {
 				// We've got a list of JSON options, and are allowed to show the searchList
 				return searchList.init.call(this, Object.assign({}, searchList.defaults, config));
-			} else if (type === 'date' || type.startsWith('datetime')) {
+			}
+			else if (type === 'date' || type.startsWith('datetime')) {
 				// Date types
 				return searchDate.init.call(this, Object.assign({}, searchDate.defaults, config));
-			} else if (type.includes('num')) {
+			}
+			else if (type.includes('num')) {
 				// Number types
-				return searchNumber.init.call(this, Object.assign({}, searchNumber.defaults, config));
-			} else {
+				return searchNumber.init.call(
+					this,
+					Object.assign({}, searchNumber.defaults, config)
+				);
+			}
+			else {
 				// Everything else
 				return searchText.init.call(this, Object.assign({}, searchText.defaults, config));
 			}
@@ -48,7 +58,8 @@ export default {
 		// applied (if it is needed).
 		if (loadedState) {
 			displayEl = initType(loadedState.type);
-		} else {
+		}
+		else {
 			// Wait until we can get the data type for the column and the run the corresponding type
 			displayEl = document.createElement('div');
 

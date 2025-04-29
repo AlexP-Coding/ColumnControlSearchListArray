@@ -22,7 +22,7 @@ export interface IOrderConfig extends IContentConfig {
 }
 
 export interface IOrder extends Partial<IOrderConfig> {
-	extend: 'order'
+	extend: 'order';
 }
 
 export default {
@@ -50,7 +50,8 @@ export default {
 
 				if (!found) {
 					apply.push([this.idx(), 'asc']);
-				} else if (found[1] === 'asc') {
+				}
+				else if (found[1] === 'asc') {
 					apply.push([this.idx(), 'desc']);
 				}
 				// else - next stage is empty sort
@@ -64,9 +65,11 @@ export default {
 
 			if (!found) {
 				btn.active(false).icon(config.iconNone);
-			} else if (found.dir === 'asc') {
+			}
+			else if (found.dir === 'asc') {
 				btn.active(true).icon(config.iconAsc);
-			} else if (found.dir === 'desc') {
+			}
+			else if (found.dir === 'desc') {
 				btn.active(true).icon(config.iconDesc);
 			}
 		});

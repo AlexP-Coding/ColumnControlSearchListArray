@@ -22,7 +22,7 @@ export interface ISearchListConfig extends IContentConfig {
 }
 
 export interface ISearchList extends Partial<ISearchListConfig> {
-	extend: 'searchList'
+	extend: 'searchList';
 }
 
 /** Set the options to show in the list */
@@ -41,7 +41,8 @@ function setOptions(checkList: CheckList, opts) {
 				},
 				i === opts.length - 1
 			);
-		} else {
+		}
+		else {
 			checkList.add(
 				{
 					active: false,
@@ -77,17 +78,18 @@ export function getJsonOptions(dt, idx) {
 	if (json && json[name]) {
 		// Found options matching the column's name - top priority
 		return json[name];
-	} else if (json && typeof dataSrc === 'string' && json[dataSrc]) {
+	}
+	else if (json && typeof dataSrc === 'string' && json[dataSrc]) {
 		// Found options matching the column's data source string
 		return json[dataSrc];
-	} else if (json && json[idx]) {
+	}
+	else if (json && json[idx]) {
 		// Found options matching the column's data index
 		return json[idx];
 	}
 
 	return null;
 }
-
 
 function reloadOptions(dt, config, idx, checkList, loadedValues) {
 	// Was there options specified in the Ajax return?
@@ -97,7 +99,8 @@ function reloadOptions(dt, config, idx, checkList, loadedValues) {
 
 	if (jsonOptions) {
 		options = jsonOptions;
-	} else if (json && config.ajaxOnly) {
+	}
+	else if (json && config.ajaxOnly) {
 		// Ajax only options - need to hide the search list
 		checkList.element().style.display = 'none';
 
@@ -109,7 +112,8 @@ function reloadOptions(dt, config, idx, checkList, loadedValues) {
 
 		// No point in doing any further processing here
 		return;
-	} else {
+	}
+	else {
 		// Either no ajax object (i.e. not an Ajax table), or no matching ajax options
 		// for this column - get the values for the column, taking into account
 		// orthogonal rendering
@@ -159,10 +163,12 @@ export default {
 
 			if (!values) {
 				return;
-			} else if (values.length === 0) {
+			}
+			else if (values.length === 0) {
 				// Nothing selected - clear the filter
 				col.search.fixed('dtcc-list', '');
-			} else {
+			}
+			else {
 				// Find all matching options from the list of values
 				col.search.fixed('dtcc-list', (val) => {
 					return values.includes(val);
@@ -196,7 +202,8 @@ export default {
 
 		if (config.options) {
 			setOptions(checkList, config.options);
-		} else {
+		}
+		else {
 			dt.ready(() => {
 				reloadOptions(dt, config, this.idx(), checkList, loadedValues);
 			});
