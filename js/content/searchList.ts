@@ -79,6 +79,56 @@ export function getJsonOptions(dt, idx) {
 	return null;
 }
 
+
+function reloadOptions(dt, config, idx, checkList, loadedValues) {
+	// Was there options specified in the Ajax return?
+	let json = (dt.ajax.json() as any)?.columnControl;
+	let options = [];
+	let jsonOptions = getJsonOptions(dt, idx);
+
+	if (jsonOptions) {
+		options = jsonOptions;
+	} else if (json && config.ajaxOnly) {
+		// Ajax only options - need to hide the search list
+		checkList.element().style.display = 'none';
+
+		// Check if the parent buttons should be hidden as well (they will be if there
+		// is no visible content in them)
+		if (config._parents) {
+			config._parents.forEach((btn) => btn.checkDisplay());
+		}
+
+		// No point in doing any further processing here
+		return;
+	} else {
+		// Either no ajax object (i.e. not an Ajax table), or no matching ajax options
+		// for this column - get the values for the column, taking into account
+		// orthogonal rendering
+		let found = {};
+
+		dt.cells('*', idx, { order: idx }).every(function () {
+			let filter = this.render('filter');
+
+			if (!found[filter]) {
+				found[filter] = true;
+
+				options.push({
+					label: this.render('display'),
+					value: filter
+				});
+			}
+		});
+	}
+
+	setOptions(checkList, options);
+
+	// If there was a state loaded at start up, then we need to set the visual
+	// appearance to match
+	if (loadedValues) {
+		checkList.values(loadedValues);
+	}
+}
+
 export default {
 	defaults: {
 		ajaxOnly: true,
@@ -135,56 +185,14 @@ export default {
 			setOptions(checkList, config.options);
 		} else {
 			dt.ready(() => {
-				// Was there options specified in the Ajax return?
-				let json = (dt.ajax.json() as any)?.columnControl;
-				let options = [];
-				let jsonOptions = getJsonOptions(dt, this.idx());
-
-				if (jsonOptions) {
-					options = jsonOptions;
-				} else if (json && config.ajaxOnly) {
-					// Ajax only options - need to hide the search list
-					checkList.element().style.display = 'none';
-
-					// Check if the parent buttons should be hidden as well (they will be if there
-					// is no visible content in them)
-					if (config._parents) {
-						config._parents.forEach((btn) => btn.checkDisplay());
-					}
-
-					// No point in doing any further processing here
-					return;
-				} else {
-					// Either no ajax object (i.e. not an Ajax table), or no matching ajax options
-					// for this column - get the values for the column, taking into account
-					// orthogonal rendering
-					let found = {};
-
-					dt.cells('*', this.idx(), { order: this.idx() }).every(function () {
-						let filter = this.render('filter');
-
-						if (!found[filter]) {
-							found[filter] = true;
-
-							options.push({
-								label: this.render('display'),
-								value: filter
-							});
-						}
-					});
-				}
-
-				setOptions(checkList, options);
-
-				// If there was a state loaded at start up, then we need to set the visual
-				// appearance to match
-				if (loadedValues) {
-					checkList.values(loadedValues);
-				}
+				reloadOptions(dt, config, this.idx(), checkList, loadedValues);
 			});
 		}
 
-		// TODO xhr event listener for updates of options
+		// Xhr event listener for updates of options
+		dt.on('xhr', (e, s, json) => {
+			reloadOptions(dt, config, this.idx(), checkList, loadedValues);
+		});
 
 		// Unlike the SearchInput based search contents, CheckList does not handle state saving
 		// (since the mechanism for column visibility is different), so state saving is handled
