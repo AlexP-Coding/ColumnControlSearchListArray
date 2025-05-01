@@ -6,15 +6,7 @@ export function createElement<T = HTMLElement>(
 ): T {
 	let el = document.createElement(type);
 
-	if (!Array.isArray(classes)) {
-		classes = [classes];
-	}
-
-	classes.forEach((className) => {
-		if (className) {
-			el.classList.add(className);
-		}
-	});
+	addClass(el, classes);
 
 	if (text) {
 		el.innerHTML = text;
@@ -25,4 +17,20 @@ export function createElement<T = HTMLElement>(
 	});
 
 	return el as T;
+}
+
+export function addClass(el: HTMLElement, classes: string | string[]) {
+	if (! classes) {
+		return;
+	}
+
+	if (!Array.isArray(classes)) {
+		classes = [classes];
+	}
+
+	classes.forEach((className) => {
+		if (className) {
+			el.classList.add(className);
+		}
+	});
 }

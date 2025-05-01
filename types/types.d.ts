@@ -68,12 +68,18 @@ type TTheadTarget = `thead:${number}`;
 
 interface ConfigColumnControl {
 	/**
+	/**
 	 * Designate the target header or footer row for where to insert the ColumnControl's content
 	 */
 	target: number | 'tfoot' | TTfootTarget | TTheadTarget;
 
 	/**
-	 * 
+	 * Class(es) to assign to the target row.
+	 */
+	className: string | string[];
+
+	/**
+	 * Content to show in the cells.
 	 */
 	content: TContentItem[];
 }

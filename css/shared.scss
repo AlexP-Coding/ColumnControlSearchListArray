@@ -17,6 +17,14 @@ table.dataTable {
 			margin-left: 0;
 		}
 	}
+
+	> thead > tr.dtcc-no-border > * {
+		border-bottom: none !important;
+	}
+
+	> thead > tr.dtcc-no-tp > * {
+		padding-top: 0 !important;
+	}
 }
 
 table.dataTable span.dtcc {

@@ -298,7 +298,7 @@ function identifyTargets(targets: any[], input: IConfig | IConfig[]) {
  * @returns true if it is a config object
  */
 function isIConfig(item: any) {
-	return typeof item === 'object' && (item.targets !== undefined || item.content !== undefined)
+	return typeof item === 'object' && (item.target !== undefined || item.content !== undefined)
 		? true
 		: false;
 }

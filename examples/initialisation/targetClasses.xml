@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="5">
+
+<css lib="datatables columncontrol" />
+<js lib="jquery datatables columncontrol">
+<![CDATA[
+
+$('#example').DataTable({
+	columnControl: [
+		{
+			target: 0,
+			className: 'dtcc-no-border'
+		},
+		{
+			target: 1,
+			className: 'dtcc-no-tp',
+			content: ['search']
+		}
+	]
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+
+new DataTable('#example', {
+	columnControl: [
+		{
+			target: 0,
+			className: 'dtcc-no-border'
+		},
+		{
+			target: 1,
+			className: 'dtcc-no-tp',
+			content: ['search']
+		}
+	]
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Assigning class names to targets</title>
+
+<info><![CDATA[
+
+
+
+]]></info>
+
+</dt-example>

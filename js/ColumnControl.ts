@@ -5,10 +5,12 @@ import icons from './icons';
 import Button from './Button';
 import CheckList from './CheckList';
 import SearchInput from './SearchInput';
+import { addClass } from './util';
 
 export type TContentItem = IContentConfig | keyof typeof contentTypes | TContentItem[];
 
 export interface IDefaults {
+	className: string | string[];
 	target: number | string;
 	content: TContentItem[];
 }
@@ -146,6 +148,8 @@ export default class ColumnControl {
 
 		this._dom.target = this._target();
 		this._dom.target.appendChild(this._dom.wrapper);
+
+		addClass(this._dom.target.closest('tr'), opts.className);
 
 		// If column reordering can be done, we reassign the column index here, and before the
 		// plugins can add their own listeners.
