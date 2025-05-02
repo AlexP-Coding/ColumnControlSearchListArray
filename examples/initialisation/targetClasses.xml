@@ -9,11 +9,11 @@ $('#example').DataTable({
 	columnControl: [
 		{
 			target: 0,
-			className: 'dtcc-no-border'
+			className: 'dtcc-row_no-border'
 		},
 		{
 			target: 1,
-			className: 'dtcc-no-tp',
+			className: 'dtcc-row_no-top-padding',
 			content: ['search']
 		}
 	]
@@ -28,11 +28,11 @@ new DataTable('#example', {
 	columnControl: [
 		{
 			target: 0,
-			className: 'dtcc-no-border'
+			className: 'dtcc-row_no-border'
 		},
 		{
 			target: 1,
-			className: 'dtcc-no-tp',
+			className: 'dtcc-row_no-top-padding',
 			content: ['search']
 		}
 	]
@@ -44,7 +44,11 @@ new DataTable('#example', {
 
 <info><![CDATA[
 
+When using multiple rows, as [in the last example](./multipleRows.html) you may wish to add extra styling to cells in a row to tweak their visual appearance. This can help the end user to make connections - in this example the border is removed and padding reduced between the title cells and the `-content search` input elements.
 
+This is done through the `-init columnControl.className` option. The class name(s) given here are applied to the `-tag tr` element for the target row.
+
+Next: [Footer target](./footer.html).
 
 ]]></info>
 

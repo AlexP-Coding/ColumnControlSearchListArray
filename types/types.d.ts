@@ -9,7 +9,6 @@
 
 import DataTables, {Api, ColumnSelector} from 'datatables.net';
 import {TContentItem} from '../js/ColumnControl';
-import {IContentPlugin} from '../js/content/content';
 
 export default DataTables;
 

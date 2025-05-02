@@ -54,7 +54,7 @@ The [previous example](./targets.html) shows the use of `-init columnControl` as
 
 This example shows `-init columnControl` with an array of ColumnControl configuration objects (i.e. objects with `target` and `content` properties), each with its own target. In this case, the first row in the header has the `-content order` button added, and the second has `-content search` inserted. You can have as many entries as you need in this array.
 
-Next: [Footer target](./footer.html).
+Next: [Styling rows](./targetClasses.html).
 
 
 ]]></info>

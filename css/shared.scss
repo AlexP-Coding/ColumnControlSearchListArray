@@ -18,11 +18,11 @@ table.dataTable {
 		}
 	}
 
-	> thead > tr.dtcc-no-border > * {
+	> thead > tr.dtcc-row_no-border > * {
 		border-bottom: none !important;
 	}
 
-	> thead > tr.dtcc-no-tp > * {
+	> thead > tr.dtcc-row_no-top-padding > * {
 		padding-top: 0 !important;
 	}
 }
