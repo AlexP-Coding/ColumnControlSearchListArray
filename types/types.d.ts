@@ -7,7 +7,7 @@
 
 /// <reference types="jquery" />
 
-import DataTables, {Api, ColumnSelector} from 'datatables.net';
+import DataTables from 'datatables.net';
 import {TContentItem} from '../js/ColumnControl';
 
 export default DataTables;
