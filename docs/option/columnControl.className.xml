@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-option library="ColumnControl">
+	<name>columnControl.className</name>
+	<summary>Add a class name to a ColumnControl target row</summary>
+
+	<type type="string">
+		<description>
+			The class name to apply to the target row's `-tag tr` element.
+		</description>
+	</type>
+
+	<type type="array">
+		<description>
+			An array of class names to apply to the target row's `-tag tr` element.
+		</description>
+	</type>
+
+	<default value="">
+		Empty string - no extra class added.
+	</default>
+
+	<description>
+		When working with ColumnControl over multiple rows, you may find that you wish to style cells in the table's header / footer, a little differently from the default, based on the content that you want to put into the rows. A typical example is the `-tag input` for a column search should typically be reasonably close to the title text, and you might not wish to have a border separating them.
+
+		This configuration option makes that sort of styling possible by adding class names to the `-tag tr` for the ColumnControl target row (`-init columnControl.target`).
+
+		ColumnControl's CSS has two built in styles for this use case:
+
+		* `dtcc-row_no-bottom-border` - No border at the bottom of the row's cells
+		* `dtcc-row_no-top-padding` - no padding at the top of the row's cells.
+
+		The class name string that is assigned is freeform - you can add your own class names and styles in CSS as required for your table's look and feel.
+	</description>
+
+	<example title="Use class names to place the search input closer to the column title text."><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+        {
+            target: 0,
+            className: 'dtcc-row_no-bottom-border'
+        },
+        {
+            target: 1,
+            className: 'dtcc-row_no-top-padding',
+            content: ['search']
+        }
+    ]
+});
+]]></example>
+
+	<related>-init columnControl</related>
+	<related>-init columnControl.className</related>
+	<related>-init columnControl.content</related>
+	<related>-init columnControl.target</related>
+</dt-option>

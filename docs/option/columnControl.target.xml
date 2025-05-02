@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-option library="ColumnControl">
+	<name>columnControl.target</name>
+	<summary>Set which row in the header / footer the content should apply to</summary>
+
+	<type type="number">
+		<description>
+			As a number, this option will define which row in the table _header_ the ColumnControl should apply to.
+		</description>
+	</type>
+
+	<type type="string">
+		<description>
+			A string provides the options of targeting either the table header or footer. It can take the following formats:
+
+			* `-string thead:\d` - add the content to the table in header, the row index defined by a digit (`\d`) - e.g. `thead:0` for the first row in the header, `thead:2` for the third, etc.
+			* `-string tfoot:\d` - as above, but inserting content into the table footer.
+			* `-string tfoot` - add the content to the first row in the table footer (i.e. a shorthand for `tfoot:0`).
+
+			Any other format is considered to be invalid.
+		</description>
+	</type>
+
+	<default value="0">
+		The content will be inserted into the first row in the table header.
+	</default>
+
+	<description>
+		When working with ColumnControl, you might find it useful to add content to multiple rows in a table header, or into the footer, rather than trying to cram everything into a single row in the header. Each row can have its own content added to it though the ability to specify multiple ColumnControl configurations (an array) in `-init columnControl`. With that you need the ability to tell it which row you want your content to apply to. This option (`-init columnControl.target`) provides that ability.
+
+		ColumnControl can target content into any row of the header or the footer of a DataTable using this option.
+
+		It is important to note that if you specify a row which doesn't exist in the table's HTML, ColumnControl will create the row for you automatically, with the correct number of cells for the number of columns in the table (one per column).
+	</description>
+
+	<example title="Create a DataTable with a ColumnControl ordering icon (disabling the DataTables default)."><![CDATA[
+new DataTable('#myTable', {
+	columnControl: ['order'],
+	ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+
+	<example title="Add a search input into the table footer"><![CDATA[
+new DataTable('#example', {
+    columnControl: {
+		target: 'tfoot',
+		content: ['search']
+	}
+});
+]]></example>
+
+	<example title="Insert content into both the first and second rows in the table header"><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+        {
+            target: 0,
+            content: ['order']
+        },
+        {
+            target: 1,
+            content: ['search']
+        }
+    ],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+
+	<example title="Show an order indicator in the table header, and search input in the footer"><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+        {
+            target: 0,
+            content: ['order']
+        },
+        {
+            target: 'tfoot',
+            content: ['search']
+        }
+    ],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+
+	<related>-init columnControl</related>
+	<related>-init columnControl.className</related>
+	<related>-init columnControl.content</related>
+	<related>-init columnControl.target</related>
+</dt-option>

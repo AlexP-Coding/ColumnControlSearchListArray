@@ -9,7 +9,7 @@ $('#example').DataTable({
 	columnControl: [
 		{
 			target: 0,
-			className: 'dtcc-row_no-border'
+			className: 'dtcc-row_no-bottom-border'
 		},
 		{
 			target: 1,
@@ -28,7 +28,7 @@ new DataTable('#example', {
 	columnControl: [
 		{
 			target: 0,
-			className: 'dtcc-row_no-border'
+			className: 'dtcc-row_no-bottom-border'
 		},
 		{
 			target: 1,

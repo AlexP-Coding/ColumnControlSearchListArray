@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-option library="ColumnControl">
+	<name>columnControl</name>
+	<summary>Configure ColumnControl for DataTables</summary>
+
+	<type type="object">
+		<description>
+			A ColumnControl configuration object defines which rows in the table header or footer its controls will be added to. This is done with the `-init columnControl.target` option which is required to make it clear that this is a configuration object. You would typically also specify `-init columnControl.content` to tell it want controls to put into the targets, although this can optionally be left undefined and `-init columnControl.className` given.
+		</description>
+	</type>
+
+	<type type="array">
+		<description>
+			As an array this property can take two forms:
+
+			* It can be an array of configuration objects (per the above), which is used to insert ColumnControl content on multiple rows in the table header / footer.
+			* Or it can be a shorthand for `-init columnControl.content`. In this case it takes the default target and class name, applying the content given in the array to the target.
+		</description>
+	</type>
+
+	<default value="undefined">
+		ColumnControl will not be initialised and used by default in a DataTable. Defaults can be set using `DataTable.ColumnControl.defaults`.
+	</default>
+
+	<description>
+		ColumnControl is an extension for DataTables which adds interaction and status controls to columns (as with most of the DataTables software, the clue is in the name!). The _content types_ that ColumnControl can add vary from buttons that effect the table (e.g. triggering ordering of data), to user inputs such as search controls. There is a wide range of built in controls and more can be added if required. What content types are displayed, in what order, and where are completely configurable with ColumnControl's options.
+
+		If you are just starting out with ColumnControl, you might wish to read through the set of [initialisation examples](https://datatables.net/extensions/columncontrol/examples/initialisation/singleButton.html) to get a good overview of the options, content types and layouts available.
+
+		This option (`-init columnControl`) is the root of working with ColumnControl and DataTable - the options given here are applied to all columns (although it is possible to override on a per column basis use `-init columns.columnControl`). To keep your development process easy and code clean it can take multiple forms as described below.
+
+		The most simple form is an array of strings, where the strings represent the content types to display. An inner array can also be used to create a dropdown - e.g.:
+
+		```js
+		new DataTable('#myTable', {
+			columnControl: ['order', ['orderAsc', 'orderDesc', 'search']]
+		});
+		```
+
+		This form is simply a shorthand for:
+
+		```js
+		new DataTable('#myTable', {
+			columnControl: {
+				target: 0,
+				content: ['order', ['orderAsc', 'orderDesc', 'search']]
+			}
+		});
+		```
+
+		If the object has a `target` property it is taken to be a configuration object for ColumnControl (objects can also be used to configure options for individual content types).
+
+		Multiple configuration objects can also be given in array, which is used to insert ColumnControl content into multiple different rows in the table header or footer - e.g. the following will show an `-content order` button on the first row, and a `-content search` input on the second:
+
+		```js
+		new DataTable('#example', {
+			columnControl: [
+				{
+					target: 0,
+					content: ['order']
+				},
+				{
+					target: 1,
+					content: ['search']
+				}
+			]
+		});
+		```
+	</description>
+
+	<example title="Create a DataTable with a ColumnControl ordering icon (disabling the DataTables default)."><![CDATA[
+new DataTable('#myTable', {
+	columnControl: ['order'],
+	ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+
+	<example title="Add a search input to each column in the second row of the table's header."><![CDATA[
+new DataTable('#example', {
+    columnControl: {
+		target: 1,
+		content: ['search']
+	}
+});
+]]></example>
+
+	<example title="Show a ColumnControl ordering button on the first row of the table header, and a search input on the search row, per column."><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+        {
+            target: 0,
+            content: ['order']
+        },
+        {
+            target: 1,
+            content: ['search']
+        }
+    ],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+
+	<related>-init columnControl.className</related>
+	<related>-init columnControl.content</related>
+	<related>-init columnControl.target</related>
+</dt-option>
