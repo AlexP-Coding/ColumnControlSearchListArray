@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-option library="ColumnControl">
+	<name>columnControl.content</name>
+	<summary>Define which content types to show</summary>
+	<since>1.0</since>
+
+	<type type="array">
+		<description>
+			An array of content type identifiers. These are either:
+
+			* `string` - where the value matches the name of the content type
+			* `object` - with an `extend` property, the value of which is the name of the content type.
+			* `array` - a dropdown wrapper, which can contain any other content type.
+		</description>
+	</type>
+
+	<default value="">
+		Empty array - no content types shown by default. You must specify a content type if you want any to appear in the table's header / footer.
+	</default>
+
+	<description>
+		This option lets you define what buttons, inputs and any other content types the end user see in ColumnControl. In keeping with the rest of ColumnControl (and DataTables in general) it is extremely configurable, but also designed to be easy to use.
+
+		Each item in the `content` array defines a single content type that will be displayed. A content type can be a button, input, or something more complex. Please see [the content type reference page](https://datatables.net/reference/content) for a full list of the content types available. Note also that each content type might provide options that are specific to it for customisation.
+
+		The most simple form of content type identifier is a string - e.g.:
+
+		```js
+		new DataTable('#myTable', {
+			columnControl: ['orderAsc', 'orderDesc']
+		});
+		```
+
+		It is worth recalling here that `-init columnControl` when given as an array in this form is the same as `columnControl: { content: ['orderAsc', 'orderDesc'] }`. The shorthand of using an array is just a convenience for the most common use case.
+
+		In that same vain, using a string as a content type identifier is a shorthand itself. In this case the expanded form is an object with an `extend` property set to be the string value, e.g. `'orderAsc'` and `{extend: 'orderAsc'}` are functionally identical in ColumnControl.
+
+		The object form allows configuration properties to be set for the content type. For example you might wish to customise button text, or Ajax options for `-content searchList`.
+
+		Finally, you can specify an inner array to the `content` array. This will create a dropdown with the content types in the inner array used in the dropdown. For example:
+
+		```js
+		new DataTable('#myTable', {
+			columnControl: ['order', ['orderAsc', 'orderDesc']]
+		});
+		```
+
+		This will show an order icon and a dropdown icon in the header cell of each column. The dropdown will contain `-content orderAsc` and `-content orderDesc` buttons. This form makes use of `-content dropdown` and the inner array is functionality identical to using `-content dropdown` directly with its `content` property set to the inner array values. i.e. the above could be rewritten as:
+
+		```js
+		new DataTable('#myTable', {
+			columnControl: [
+				'order',
+				{
+					extend: 'dropdown',
+					content: ['orderAsc', 'orderDesc']
+				}
+			]
+		});
+		```
+	</description>
+
+	<example title="Specify a single content type in the header cell for each column - in this case an ordering button."><![CDATA[
+new DataTable('#myTable', {
+	columnControl: ['order']
+});
+]]></example>
+
+	<example title="Define multiple buttons using string identifiers."><![CDATA[
+new DataTable('#myTable', {
+	columnControl: ['order', 'searchDropdown']
+});
+]]></example>
+
+	<example title="Use the `searchList` content type, with a configuration property set."><![CDATA[
+new DataTable('#myTable', {
+	columnControl: [
+		{
+			extend: 'searchList',
+			ajaxOnly: true
+		}
+	]
+});
+]]></example>
+
+	<example title="Create a dropdown using an inner array"><![CDATA[
+new DataTable('#myTable', {
+	columnControl: ['order', ['orderAsc', 'orderDesc']]
+});
+]]></example>
+
+	<related>-init columnControl</related>
+	<related>-init columnControl.className</related>
+	<related>-init columnControl.content</related>
+	<related>-init columnControl.target</related>
+</dt-option>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-option library="ColumnControl">
+	<name>columns.columnControl</name>
+	<summary>Specific ColumnControl configurations for columns</summary>
+	<since>1.0</since>
+
+	<type type="object|array" />
+
+	<description>
+		This option can take exactly the same values as `-init columnControl`. However, while that option is applied globally to all columns, this option will be applied only to whatever columns are targeted (`-init columns` or `-init columnDefs`).
+
+		It is important to be aware that if you specify column and global options for ColumnControl, the column specific options will overwrite the global ones for matching columns. The options are not merged.
+	</description>
+
+	<example title="Use `-content searchDropdown` in all column headers, except the final column (`target: -1`)."><![CDATA[
+new DataTable('#myTable', {
+    columnControl: ['searchDropdown'],
+    columnDefs: [{
+        target: -1,
+        columnControl: []
+    }]
+});
+]]></example>
+
+	<example title="Create a search input in the second row of the header, but only for columns which have a class of `search`."><![CDATA[
+new DataTable('#myTable', {
+    columnDefs: [{
+        target: '.search',
+        columnControl: {
+			target: 1,
+			content: ['search']
+		}
+    }]
+});
+]]></example>
+</dt-option>

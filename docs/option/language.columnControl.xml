@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-option library="ColumnControl">
+	<name>language.columnControl</name>
+	<summary>Set the strings that are used by ColumnControl content types</summary>
+	<since>1.0</since>
+
+	<type type="object">
+		<description>
+			An object with key / value pairs which are used for ColumnControl's strings.
+		</description>
+	</type>
+
+	<description>
+		This object provides the ability to specify the language strings that are used by the content types ColumnControl has built in. Many of the string can be specify in the content type options, however, this object gives a common central location for the strings, and the [opportunity for them to be loaded via Ajax](https://datatables.net/examples/i18n/ajax.html).
+
+		The table below shows the translation keys (i.e. what to use in this object for the property name), the default values and which content types each option is used by. Further details for each is available in its relevant content type documentation.
+
+		| Object key | Content type | Default value |
+		| ---------- | ------------ | ------------- |
+		| `colVis`   | `-content colVis` | `-string Column visibility` |
+		| `colVisDropdown`   | `-content colVisDropdown` | '-string Column visibility` |
+		| `dropdown`   | `-content dropdown` | `-string More...` |
+		| `orderAddAsc` | `-content orderAddAsc` | `-string Add Sort Ascending` |
+		| `orderAddDesc` | `-content orderAddDesc` | `-string Add Sort Descending` |
+		| `orderAsc` | `-content orderAsc` | `-string Sort Ascending` |
+		| `orderClear` | `-content orderClear` | `-string Clear sort` |
+		| `orderDesc` | `-content orderDesc` | `-string Sort Descending` |
+		| `orderRemove` | `-content orderRemove` | `-string Remove from sort` |
+		| `reorder` | `-content reorder` | `-string Reorder columns` |
+		| `reorderLeft` | `-content reorderLeft` | `-string Move column left` |
+		| `reorderRight` | `-content reorderRight` | `-string Move column right` |
+		| `searchClear` | `-content searchClear` | `-string Clear search` |
+		| `searchDropdown` | `-content searchDropdown` | `-string Search` |
+		| `searchList` | `-content searchList` | _Empty string_ |
+		| `spacer` | `-content spacer` | _Empty string_ |
+		| `list.add` | `-content colVis`, `-content searchList` | `-string Select all` |
+		| `list.none` | `-content colVis`, `-content searchList` | `-string Deselect` |
+		| `list.search` | `-content colVis`, `-content searchList` | `-string Search...` |
+
+		Please note that the `list` parameter should be a nested object - e.g. `{list: {add: '...'}}`. It is shown in the table above as dotted Javascript notation for brevity.
+	</description>
+
+	<example title="Set the translation string for two buttons"><![CDATA[
+new DataTable('#myTable', {
+	columnControl: [['orderAsc', 'orderDesc'],
+	language: {
+		columnControl: {
+			orderAsc: 'Ordre croissant',
+			orderDesc: 'Ordre décroissant'
+		}
+	}
+});
+]]></example>
+
+	<related>-init columnControl</related>
+	<related>-init columnControl.content</related>
+</dt-option>
