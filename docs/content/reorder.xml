@@ -9,14 +9,12 @@
 
 		Please note that to operate this content type needs the [ColReorder extension for DataTables](https://datatables.net/extensions/colreorder). Additionally, you do not need to initialise ColReorder through the `-init colReorder` option, ColumnControl will do that for you, although it is possible to do if you which to customise the behaviour of ColReorder.
 
+		Examples showing the use of this content type [are available on the DataTables website](https://datatables.net/extensions/columncontrol/examples/colReorder/).
+
 		### Display
 
 		It is expected that this button should be used at the top level of the ColumnControl content, as clicking and dragging inside a dropdown makes little sense.
 	</description>
-
-	<option type="string" name="className" default="dtcc-button_reorder">
-		Class name applied to the trigger button. Please note that a custom class name provided here will always have `dtcc-button_` prefixed to it.
-	</option>
 
 	<option type="string" name="icon" default="move">
 		Button icon. Can take the name of any icon available in `DataTable.ColumnControl.icons` (which is a writeable object containing SVG icons).

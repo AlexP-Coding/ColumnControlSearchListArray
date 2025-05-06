@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>search</name>
+	<summary>Display a column search input, suitable for the column's data.</summary>
+	<since>1.0.0</since>
+
+	<description>
+		This content type adds a column search that is suitable for the column's [data type](https://datatables.net/manual/data/types) as detected by DataTables. This makes column search much easier to configure than needing to manually specify types, as you can simply use `-content search` and it will pick the best input type from the following (in this order):
+
+		* `-content searchList` - only used if `allowSearchList` is enabled and there are options for the column in the JSON response for the Ajax request.
+		* `-content searchDate` - if the column's data has been detected as date / time values.
+		* `-content searchNumber` - if the column's data is numeric.
+		* `-content searchText` - default if none of the conditions above match.
+		
+		Options for this content type are "passthrough". Any option set will be passed on to the underlying search input. Please refer to the documentation for each of the content types above for full details of the options available to them.
+
+		Examples showing the use of this content type [are available on the DataTables website](https://datatables.net/extensions/columncontrol/examples/search/).
+
+		### Display
+
+		It is expected that this content type will have a full cell to draw in if used at the top level, as the it benefits from having a large amount of space available (i.e. other buttons won't be used along with it at the top level for a specific set of cells).
+
+		In a dropdown this content type will display as part of the regular content list.
+	</description>
+
+	<option type="boolean" name="ajaxOnly" default="true">
+		Only relevant if `-content searchList` is selected for use. When enabled (`true`) and Ajax loaded data is used for the table (`-init ajax`) this option will cause the list of options to be shown only if the options are specified in the JSON response (i.e. the options will not be automatically determined from the data). If Ajax is not used for the table, this option has no effect.
+	</option>
+
+	<option type="boolean" name="allowSearchList" default="false">
+		If enabled, and data is loaded for the table via Ajax, and there are options for this column in the JSON response, then rather than using a text based input, a search list (`-content searchList`) will be shown for this column.
+	</option>
+
+	<option type="boolean" name="clear" default="true">
+		Indicate if a clear icon should be shown at the end of the search `-tag input` element. When enabled a cross icon will be shown when the input has a value and clicking on the icon will clear the search.
+	</option>
+
+	<option type="string" name="placeholder" default="">
+		Value to set the `placeholder` attribute of the `-tag input` element to.
+	</option>
+
+	<option type="boolean" name="search" default="false">
+		Only relevant if `-content searchList` is selected for use. The toggle list can show a search box which allows the list of column names to be searched. This can be useful if you have a large number of columns in the table.
+	</option>
+
+	<option type="boolean" name="select" default="false">
+		Only relevant if `-content searchList` is selected for use. This option will show "Select all" and "Select none" links at the top of the toggle list, allowing quick interaction for the end user.
+	</option>
+
+	<option type="string" name="title" default="">
+		Text shown above the input, which can be used to tell the end user information about what the search will do. The given string will have the substring `[title]` will be replaced with the column title.
+	</option>
+
+	<option type="string" name="titleAttr" default="">
+		Value to set the `title` attribute of the search `-tag input` element which can be used to help with accessability. The given string will have the substring `[title]` will be replaced with the column title.
+	</option>
+
+
+	<example title="Show search inputs in a second row in the table header."><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+        {
+            target: 0,
+            content: ['orderStatus']
+        },
+        {
+            target: 1,
+            content: ['search']
+        }
+    ],
+    ordering: {
+        indicators: false
+    }
+});
+]]></example>
+</dt-button>

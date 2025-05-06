@@ -14,10 +14,6 @@
 		The button added by this control will display as a simple icon button at the top level, or as a button with icon and text in a dropdown. It is generally expected that it will be used in a dropdown to avoid cluttering the UI.
 	</description>
 
-	<option type="string" name="className" default="dtcc-button_orderAddAsc">
-		Class name applied to the trigger button. Please note that a custom class name provided here will always have `dtcc-button_` prefixed to it.
-	</option>
-
 	<option type="string" name="icon" default="orderAddAsc">
 		Button icon. Can take the name of any icon available in `DataTable.ColumnControl.icons` (which is a writeable object containing SVG icons).
 	</option>

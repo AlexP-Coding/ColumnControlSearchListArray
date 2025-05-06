@@ -11,6 +11,8 @@
 
 		The toggle state of the buttons will reflect the initial visibility state of each column, as set by `-init columns.visible`. The text shown as the name for the button will be the same as that retrieved by `-api column().title()`, and the order of the buttons matches the order of the columns in the table. The order is updated if ColReorder is used to modify the order.
 
+		Examples showing the use of this content type [are available on the DataTables website](https://datatables.net/extensions/columncontrol/examples/columnVisibility/).
+
 
 		### Display
 
@@ -18,10 +20,6 @@
 
 		It is worth noting that if you are using a dropdown specifically for only this content type, you will be better served to use `-content colVisDropdown` as it sets a suitable icon and text for the dropdown button.
 	</description>
-
-	<option type="string" name="className" default="colVis">
-		Class name applied to the toggle list container.
-	</option>
 
 	<option type="column-selector" name="columns" default="">
 		Column selector to pick which columns should be shown in the list.

@@ -19,7 +19,7 @@
 		}
 		```
 
-		Note that this content type provides the same options as `-content colVis` - it simply passes them through, so you can still control which columns are selected, etc. It also adds `title` to be able to se the text shown for the button to trigger the dropdown (if used in a dropdown itself).
+		Note that this content type provides the same options as `-content colVis` - it simply passes them through, so you can still control which columns are selected, etc. For a full list of the options available, please refer to `-content colVis`. Only the dropdown specific options are shown on this page.
 
 
 		### Display
@@ -27,28 +27,12 @@
 		This content type can be used at any level in ColumnControl. At the top level it will create a dropdown icon. Inside a dropdown, it will create a nested dropdown.
 	</description>
 
-	<option type="string" name="className" default="colVis">
-		Class name applied to the toggle list container.
-	</option>
-
-	<option type="column-selector" name="columns" default="">
-		Column selector to pick which columns should be shown in the list.
-	</option>
-
-	<option type="boolean" name="search" default="false">
-		The toggle list can show a search box which allows the list of column names to be searched. This can be useful if you have a large number of columns in the table.
-	</option>
-
-	<option type="boolean" name="select" default="false">
-		This option will show "Select all" and "Select none" links at the top of the toggle list, allowing quick interaction for the end user.
+	<option type="string" name="icon" default="columns">
+		Button icon. Can take the name of any icon available in `DataTable.ColumnControl.icons` (which is a writeable object containing SVG icons).
 	</option>
 
 	<option type="string" name="text" default="Column visibility">
 		Text of the dropdown button - shown when it is in a dropdown itself. Can also be set by the `colVisDropdown` key of `-init language.columnControl`, which will take priority if set.
-	</option>
-
-	<option type="string" name="title" default="">
-		Text that is shown at the top of the toggle list. This can be information text to tell the end user what the list is for - e.g. "Change column visibility", etc.
 	</option>
 
 

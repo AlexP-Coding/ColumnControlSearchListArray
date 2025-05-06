@@ -11,14 +11,12 @@
 
 		When ordering is activated via the button, it follows the same direction application sequence as defined by `-init columns.orderSequence`.
 
+		Examples showing the use of this content type [are available on the DataTables website](https://datatables.net/extensions/columncontrol/examples/ordering/).
+
 		### Display
 
 		Generally this content type will be used at the top level of ColumnControl, thus showing a simple icon button to the end user as it is such a common interaction with the table, but it will also work in a dropdown without issue.
 	</description>
-
-	<option type="string" name="className" default="dtcc-button_order">
-		Class name applied to the trigger button. Please note that a custom class name provided here will always have `dtcc-button_` prefixed to it.
-	</option>
 
 	<option type="string" name="iconAsc" default="orderAsc">
 		Icon to show when ascending order is applied to the host column. Can take the name of any icon available in `DataTable.ColumnControl.icons` (which is a writeable object containing SVG icons).

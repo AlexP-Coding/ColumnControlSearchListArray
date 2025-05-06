@@ -18,10 +18,6 @@
 		The dropdown can be used at any level in ColumnControl. At the top level it is shown as a simple icon button. Inside a dropdown it is shown with the assigned text as well.
 	</description>
 
-	<option type="string" name="className" default="dtcc-button_dropdown">
-		Class name applied to the button that triggers the dropdown. Please note that a custom class name provided here will always have `dtcc-button_` prefixed to it.
-	</option>
-
 	<option type="array" name="content" default="[]">
 		Content to show in the dropdown. This matches the format of the options described in `-init columnControl.content`.
 	</option>

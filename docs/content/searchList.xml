@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>searchList</name>
+	<summary>Display a toggle list of search terms.</summary>
+	<since>1.0.0</since>
+
+	<description>
+		This content type shows a list of toggle buttons that, when activated, will filter the data in the host column. This type of search input can be very useful if the column's data has low uniqueness (i.e. repeats a lot, such as boolean values, or values from a joined table) as it provides a quick way for the end user to see what values are in the column.
+
+		Options for the list can be obtained in three different ways - in priority order:
+
+		1. Via the `options` property. If that option is given as an array, those options will be used.
+		2. From Ajax options. If loading data via `-init ajax` and a `columnControl` object is found with options for the host column, they will be used. The name of the property in the `columnControl` object in the JSON response will match if the property name is (in order):
+		  1. The column name (`-init columns.name`)
+		  2. The column data property (`-init columns.data`).
+		  3. The column index
+		3. Automatically from the data in the table. This will happen if the above two do not match - ColumnControl will automatically bin the data from the column to retrieve the unique options.
+
+		Please note that `-content searchList` can coexist alongside the other `-content search` types (e.g. `-content searchText`) on a single column. You can use both search types if you want to present both input options to your end user.
+
+		### Display
+
+		It is expected that this content type will have a full cell to draw in if used at the top level, as the it benefits from having a large amount of space available (i.e. other buttons won't be used along with it at the top level for a specific set of cells).
+
+		In a dropdown, this content type will display as part of the regular content list.
+	</description>
+
+	<option type="boolean" name="ajaxOnly" default="true">
+		When enabled (`true`) and Ajax loaded data is used for the table (`-init ajax`) this option will cause the list of options to be shown only if the options are specified in the JSON response (i.e. the options will not be automatically determined from the data). If Ajax is not used for the table, this option has no effect.
+	</option>
+
+	<option type="array|null" name="options" default="null">
+		You can specify a list of options that should be used for the toggle buttons using this option (rather than having the determined automatically, or from Ajax). It must be an array containing objects with `label` and `value` parameters.
+	</option>
+
+	<option type="boolean" name="search" default="false">
+		The toggle list can show a search box which allows the list of column names to be searched. This can be useful if you have a large number of columns in the table.
+	</option>
+
+	<option type="boolean" name="select" default="false">
+		This option will show "Select all" and "Select none" links at the top of the toggle list, allowing quick interaction for the end user.
+	</option>
+
+	<option type="string" name="title" default="">
+		Text shown above the toggle list, which can be used to tell the end user information about what the search will do. The given string will have the substring `[title]` will be replaced with the column title.
+	</option>
+
+
+	<example title="Show a toggle search list in a dropdown for all columns in the table in."><![CDATA[
+new DataTable('#example', {
+    columnControl: ['order', ['searchList']],
+    ordering: {
+        indicators: false
+    }
+});
+]]></example>
+
+	<example title="Search for all columns, but a list only for specified columns"><![CDATA[
+new DataTable('#example', {
+    columnControl: ['order', ['search']],
+    columnDefs: [{
+        targets: [1, 2],
+        columnControl: ['order', ['searchList']]
+    }],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+
+	<example title="Specifying options for a given column"><![CDATA[
+new DataTable('#example', {
+    columnDefs: [{
+        target: 1,
+        columnControl: [[{
+			extend: 'searchList',
+			options: [
+				{label: 'Yes', value: 1},
+				{label: 'No', value: 0}
+			]
+		}]]
+    }]
+});
+]]></example>
+
+	<example title="Options via both Ajax and locally when loading data via Ajax"><![CDATA[
+new DataTable("#example", {
+    ajax: '../data/options.json',
+    columnControl: ['order', [{ extend: 'searchList', ajaxOnly: false }]],
+    columns: [
+        { data: 'name' },
+        { data: 'position' },
+        { data: 'office' },
+        { data: 'extn' },
+        { data: 'start_date' },
+        { data: 'salary' }
+    ],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+</dt-button>

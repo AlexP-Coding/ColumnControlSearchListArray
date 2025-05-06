@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>searchDate</name>
+	<summary>Search for date based columns.</summary>
+	<since>1.0.0</since>
+
+	<description>
+        This content type adds a search input suitable for use with date based columns. An `-tag input` element is added to the ColumnControl content list and the list of logic options for how the search should perform its tests are also suitable for date based data.
+
+        If the [DataTables DateTime picker library](https://datatables.net/extensions/datetime/) is available on your page, focusing on the `-tag input` will cause a date picker to appear.
+
+        The format of the date input will match the format used in the column if [using the builder in `datetime` rendering function](https://datatables.net/manual/data/renderers#Date-and-time-helpers).
+
+		It should be noted that `-content search` should generally be used rather than this one directly, as `-content search` will select the most appropriate search input based on the column type.
+
+		Examples showing the use of this content type [are available on the DataTables website](https://datatables.net/extensions/columncontrol/examples/searchDates/).
+
+		### Display
+
+		It is expected that this content type will have a full cell to draw in if used at the top level, as the it benefits from having a large amount of space available (i.e. other buttons won't be used along with it at the top level for a specific set of cells).
+
+		In a dropdown this content type will display as part of the regular content list.
+	</description>
+
+	<option type="boolean" name="clear" default="true">
+		Indicate if a clear icon should be shown at the end of the search `-tag input` element. When enabled a cross icon will be shown when the input has a value and clicking on the icon will clear the search.
+	</option>
+
+	<option type="string" name="placeholder" default="">
+		Value to set the `placeholder` attribute of the `-tag input` element to.
+	</option>
+
+	<option type="string" name="title" default="">
+		Text shown above the input, which can be used to tell the end user information about what the search will do. The given string will have the substring `[title]` will be replaced with the column title.
+	</option>
+
+	<option type="string" name="titleAttr" default="">
+		Value to set the `title` attribute of the search `-tag input` element which can be used to help with accessability. The given string will have the substring `[title]` will be replaced with the column title.
+	</option>
+
+
+	<example title="Manual application of search types (use `-content search` to simplify!)"><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+        {
+            target: 0,
+            content: ['orderStatus']
+        },
+        {
+            target: 1,
+            content: ['searchText']
+        }
+    ],
+    columnDefs: [
+        {
+            targets: [3, 5],
+            columnControl: {
+                target: 1,
+                content: ['searchNumber']
+            }
+        },
+        {
+            targets: [4],
+            columnControl: {
+                target: 1,
+                content: ['searchDateTime']
+            }
+        }
+    ],
+    ordering: {
+        indicators: false
+    }
+});
+]]></example>
+</dt-button>

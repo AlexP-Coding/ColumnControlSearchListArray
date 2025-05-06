@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>searchDropdown</name>
+	<summary>A dropdown wrapper for the `search` content type.</summary>
+	<since>1.0.0</since>
+
+	<description>
+		This content type matches `-content search`, but places it inside a dropdown. It is provided for convenience and it is relatively common to have the search inputs in a dropdown, due to the amount of space they take. It is simply an alias of:
+
+		```js
+		{
+			extend: 'dropdown',
+			text: 'Search',
+			icon: 'search',
+			content: [{
+				extend: 'search'
+				// ... options from `search`
+			}]
+		}
+		```
+
+		Note that this content type provides the same options as `-content search` - it simply passes them through, so you can still control which columns are selected, etc. For a full list of the options available, please refer to `-content search`. Only the dropdown specific options are shown on this page.
+		
+		It also adds `icon` to be able to se the text shown for the button to trigger the dropdown (if used in a dropdown itself).
+
+		Examples showing the use of this content type [are available on the DataTables website](https://datatables.net/extensions/columncontrol/examples/searchList/).
+
+
+		### Display
+
+		This content type can be used at any level in ColumnControl. At the top level it will create a dropdown icon. Inside a dropdown, it will create a nested dropdown.
+	</description>
+
+	<option type="string" name="icon" default="search">
+		Button icon. Can take the name of any icon available in `DataTable.ColumnControl.icons` (which is a writeable object containing SVG icons).
+	</option>
+
+	<option type="string" name="text" default="Search">
+		Text of the dropdown button - shown when it is in a dropdown itself. Can also be set by the `searchDropdown` key of `-init language.columnControl`, which will take priority if set.
+	</option>
+
+
+	<example title="List search options in a dropdown"><![CDATA[
+new DataTable('#example', {
+    columnControl: ['searchDropdown']
+});
+]]></example>
+
+	<example title="Search dropdown and ordering icon"><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+        'order',
+        'searchDropdown'
+    ],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+
+
+	<example title="Nested dropdown"><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+        'order',
+        [
+           'orderAsc',
+		   'orderDesc',
+		   'searchDropdown'
+        ]
+    ]
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+</dt-button>
