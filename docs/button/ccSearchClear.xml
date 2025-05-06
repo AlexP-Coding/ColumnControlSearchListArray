@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>ccSearchClear</name>
+	<summary>A button to clear ColumnControl searches when triggered</summary>
+	<since>1.0.0</since>
+
+	<description>
+		This button type will, when triggered, cause all ColumnControl search inputs to be cleared. It will also clear any global search applied to the DataTable and then redraw the table. It can be useful for cases when you want to provide the end user with a way to quickly clear all searches that they might have applied to the table.
+
+		The search input types cleared are:
+
+		* `-content searchDate`
+		* `-content searchList`
+		* `-content searchNumber`
+		* `-content searchText`
+	</description>
+
+	<extend>columnVisibility</extend>
+
+	<option type="string" name="text" default="Clear search">
+		Text shown in the button.
+	</option>
+
+
+	<example title="ColumnControl search inputs with a clear button"><![CDATA[
+new DataTable('#example', {
+	columnControl: [
+		{
+			target: 0,
+			content: ['orderStatus']
+		},
+		{
+			target: 1,
+			content: ['search']
+		}
+	],
+	layout: {
+		topStart: {buttons: ['pageLength', 'ccSearchClear']}
+	},
+	ordering: {
+		indicators: false
+	}
+});
+]]></example>
+</dt-button>
