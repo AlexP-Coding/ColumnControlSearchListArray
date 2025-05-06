@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>orderAddAsc</name>
+	<summary>Add the column to multi-column ordering (ascending)</summary>
+	<since>1.0.0</since>
+
+	<description>
+		DataTables has the ability to order the table's data over multiple columns, which is particularly useful if the data in the primary column being ordered has a large amount of repetition - the second column in the order will take over the order sequence.
+
+		This button, along with similar content type buttons, provides the ability to access this multi-column ordering. In this case when the button is triggered it will add the host column to the already set ordering for the DataTable, ascending direction.
+
+		### Display
+
+		The button added by this control will display as a simple icon button at the top level, or as a button with icon and text in a dropdown. It is generally expected that it will be used in a dropdown to avoid cluttering the UI.
+	</description>
+
+	<option type="string" name="className" default="dtcc-button_orderAddAsc">
+		Class name applied to the trigger button. Please note that a custom class name provided here will always have `dtcc-button_` prefixed to it.
+	</option>
+
+	<option type="string" name="icon" default="orderAddAsc">
+		Button icon. Can take the name of any icon available in `DataTable.ColumnControl.icons` (which is a writeable object containing SVG icons).
+	</option>
+
+	<option type="string" name="text" default="Add Sort Ascending">
+		Trigger button text (shown when in a dropdown). Can also be set by the `orderAddAsc` key of `-init language.columnControl`, which will take priority if set.
+	</option>
+
+
+	<example title="Show ordering icon and multi-column ordering addition icons in a dropdown."><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+		'order',
+		[
+			'orderAddAsc',
+			'orderAddDesc'
+		]
+	],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+</dt-button>

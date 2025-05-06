@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>reorderLeft</name>
+	<summary>Move a column one position to the left.</summary>
+	<since>1.0.0</since>
+
+	<description>
+		This content type adds a button to the ColumnControl list which, when triggered, will result in the host column being moved one position to the left. To illustrate, consider a table with three columns (1,2,3), if this button was activated on the middle most column, it would be moved to be the first column in the table (i.e. the new order would be 2,1,3).
+
+		Please note that to operate this content type needs the [ColReorder extension for DataTables](https://datatables.net/extensions/colreorder).
+
+		### Display
+
+		The button added by this control will display as a simple icon button at the top level, or as a button with icon and text in a dropdown. It is generally expected that it will be used in a dropdown to avoid cluttering the UI.
+	</description>
+
+	<option type="string" name="className" default="dtcc-button_reorderLeft">
+		Class name applied to the trigger button. Please note that a custom class name provided here will always have `dtcc-button_` prefixed to it.
+	</option>
+
+	<option type="string" name="icon" default="moveLeft">
+		Button icon. Can take the name of any icon available in `DataTable.ColumnControl.icons` (which is a writeable object containing SVG icons).
+	</option>
+
+	<option type="string" name="text" default="Move column left">
+		Trigger button text (shown when in a dropdown). Can also be set by the `reorderLeft` key of `-init language.columnControl`, which will take priority if set.
+	</option>
+
+
+	<example title="Column reordering buttons in a dropdown."><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+		'order',
+		[
+			'reorderLeft',
+			'reorderRight'
+		]
+	],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+</dt-button>

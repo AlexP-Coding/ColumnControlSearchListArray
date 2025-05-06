@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>orderClear</name>
+	<summary>Remove all ordering from the table.</summary>
+	<since>1.0.0</since>
+
+	<description>
+		This content type will add a button that removes any ordering applied to the table (from any column, not just this host one), and then redraws the table. This will result in the table being drawn with the rows in the order that they were initially loaded.
+
+		### Display
+
+		The button added by this control will display as a simple icon button at the top level, or as a button with icon and text in a dropdown. It is generally expected that it will be used in a dropdown to avoid cluttering the UI.
+	</description>
+
+	<option type="string" name="className" default="dtcc-button_orderClear">
+		Class name applied to the trigger button. Please note that a custom class name provided here will always have `dtcc-button_` prefixed to it.
+	</option>
+
+	<option type="string" name="icon" default="orderClear">
+		Button icon. Can take the name of any icon available in `DataTable.ColumnControl.icons` (which is a writeable object containing SVG icons).
+	</option>
+
+	<option type="string" name="text" default="Clear sort">
+		Trigger button text (shown when in a dropdown). Can also be set by the `orderClear` key of `-init language.columnControl`, which will take priority if set.
+	</option>
+
+
+	<example title="Show the `orderClear` button in a dropdown."><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+		'order',
+		[
+			'orderClear'
+		]
+	],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+</dt-button>

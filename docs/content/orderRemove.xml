@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>orderRemove</name>
+	<summary>Remove the host column from multi-column ordering.</summary>
+	<since>1.0.0</since>
+
+	<description>
+		This content type adds a button which interacts with DataTable's multi-column ordering abilities. While `-content orderAddAsc` and `-content orderAddDesc` will add a column to the ordering of the table, this button will _remove_ the host column from the ordering, and then redraw the table.
+
+		As an example, if you have the table ordered by columns 1, 2 and 3 (any direction), then trigger this button for column 2, the resulting ordering for the table would be on columns 1 and 3.
+
+		### Display
+
+		The button added by this control will display as a simple icon button at the top level, or as a button with icon and text in a dropdown. It is generally expected that it will be used in a dropdown to avoid cluttering the UI.
+	</description>
+
+	<option type="string" name="className" default="dtcc-button_orderRemove">
+		Class name applied to the trigger button. Please note that a custom class name provided here will always have `dtcc-button_` prefixed to it.
+	</option>
+
+	<option type="string" name="icon" default="orderRemove">
+		Button icon. Can take the name of any icon available in `DataTable.ColumnControl.icons` (which is a writeable object containing SVG icons).
+	</option>
+
+	<option type="string" name="text" default="Remove from sort">
+		Trigger button text (shown when in a dropdown). Can also be set by the `orderRemove` key of `-init language.columnControl`, which will take priority if set.
+	</option>
+
+
+	<example title="Multi-column ordering buttons in a dropdown."><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+		'order',
+		[
+			'orderAddAsc',
+			'orderAddDesc',
+			'orderRemove'
+		]
+	],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+</dt-button>

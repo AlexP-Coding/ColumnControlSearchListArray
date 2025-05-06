@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>colVisDropdown</name>
+	<summary>A dropdown wrapper for the `colVis` content type.</summary>
+	<since>1.0.0</since>
+
+	<description>
+		This content type matches `-content colVis`, but places it inside a dropdown. It is provided for convenience and it is relatively common to have the column visibility toggle buttons in their own dropdown. It is simply an alias of:
+
+		```js
+		{
+			extend: 'dropdown',
+			text: 'Column visibility',
+			icon: 'columns',
+			content: [{
+				extend: 'colVis'
+				// ... options from `colVis`
+			}]
+		}
+		```
+
+		Note that this content type provides the same options as `-content colVis` - it simply passes them through, so you can still control which columns are selected, etc. It also adds `title` to be able to se the text shown for the button to trigger the dropdown (if used in a dropdown itself).
+
+
+		### Display
+
+		This content type can be used at any level in ColumnControl. At the top level it will create a dropdown icon. Inside a dropdown, it will create a nested dropdown.
+	</description>
+
+	<option type="string" name="className" default="colVis">
+		Class name applied to the toggle list container.
+	</option>
+
+	<option type="column-selector" name="columns" default="">
+		Column selector to pick which columns should be shown in the list.
+	</option>
+
+	<option type="boolean" name="search" default="false">
+		The toggle list can show a search box which allows the list of column names to be searched. This can be useful if you have a large number of columns in the table.
+	</option>
+
+	<option type="boolean" name="select" default="false">
+		This option will show "Select all" and "Select none" links at the top of the toggle list, allowing quick interaction for the end user.
+	</option>
+
+	<option type="string" name="text" default="Column visibility">
+		Text of the dropdown button - shown when it is in a dropdown itself. Can also be set by the `colVisDropdown` key of `-init language.columnControl`, which will take priority if set.
+	</option>
+
+	<option type="string" name="title" default="">
+		Text that is shown at the top of the toggle list. This can be information text to tell the end user what the list is for - e.g. "Change column visibility", etc.
+	</option>
+
+
+	<example title="List columns in a dropdown, allowing their visibility to be toggled"><![CDATA[
+new DataTable('#example', {
+    columnControl: ['colVisDropdown']
+});
+]]></example>
+
+	<example title="Column visibility dropdown and ordering icon"><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+        'order',
+        'colVisDropdown'
+    ],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+
+
+	<example title="Nested dropdown"><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+        'order',
+        [
+           'orderAsc',
+		   'orderDesc',
+		   'colVisDropdown'
+        ]
+    ]
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+</dt-button>

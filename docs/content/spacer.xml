@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>spacer</name>
+	<summary>Provide a visual separation between content types.</summary>
+	<since>1.0.0</since>
+
+	<description>
+		If you have a lot of options in ColumnControl it can be a good idea to provide visual separation between like types, grouping them together to make navigation easier for the end user. For example ordering options and search are distinct actions and can benefit from grouping. You will see this pattern uses a lot in desktop computer programs and operating systems.
+
+		This content type adds an element to the content list that is styled to provide that separation.
+
+		### Display
+
+		At the top level of ColumnControl, this content type will display as a vertical bar. Inside a dropdown it will display as a horizontal line spanning the width of the dropdown.
+	</description>
+
+	<option type="string" name="className" default="dtcc-spacer">
+		Class name applied to the display element.
+	</option>
+
+	<example title="Show an ordering icon and column click and drag icon in each header cell." url="initialisation/spacer.html"><![CDATA[
+new DataTable('#example', {
+    columnControl: ['order', 'spacer', ['orderAsc', 'orderDesc', 'spacer', 'search']],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+</dt-button>

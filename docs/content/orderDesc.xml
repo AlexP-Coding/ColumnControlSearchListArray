@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>orderDesc</name>
+	<summary>Set the table to order by this column, descending.</summary>
+	<since>1.0.0</since>
+
+	<description>
+		This content type will show a button which simply sets the table to order by the data in this column, descending, when triggered.
+
+		### Display
+
+		The button added by this control will display as a simple icon button at the top level, or as a button with icon and text in a dropdown. It is generally expected that it will be used in a dropdown to avoid cluttering the UI.
+	</description>
+
+	<option type="string" name="className" default="dtcc-button_orderDesc">
+		Class name applied to the trigger button. Please note that a custom class name provided here will always have `dtcc-button_` prefixed to it.
+	</option>
+
+	<option type="string" name="icon" default="orderDesc">
+		Button icon. Can take the name of any icon available in `DataTable.ColumnControl.icons` (which is a writeable object containing SVG icons).
+	</option>
+
+	<option type="string" name="text" default="Sort Descending">
+		Trigger button text (shown when in a dropdown). Can also be set by the `orderDesc` key of `-init language.columnControl`, which will take priority if set.
+	</option>
+
+
+	<example title="Show ordering icon and buttons to trigger ascending and descending ordering directly in a dropdown."><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+		'order',
+		[
+			'orderAsc',
+			'orderDesc'
+		]
+	],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+</dt-button>

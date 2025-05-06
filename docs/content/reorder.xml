@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>reorder</name>
+	<summary>Click and drag button to allow reordering of columns.</summary>
+	<since>1.0.0</since>
+
+	<description>
+		DataTables has a [ColReorder extension](https://datatables.net/extensions/colreorder) which allows reordering columns through click and drag of the column header. It isn't always desirable to have the whole header cell as the click zone, particularly when you have other content types (buttons, inputs, etc) for the end user to interact with. As a result, this content type is available to restrict the click zone to just the button in question.
+
+		Please note that to operate this content type needs the [ColReorder extension for DataTables](https://datatables.net/extensions/colreorder). Additionally, you do not need to initialise ColReorder through the `-init colReorder` option, ColumnControl will do that for you, although it is possible to do if you which to customise the behaviour of ColReorder.
+
+		### Display
+
+		It is expected that this button should be used at the top level of the ColumnControl content, as clicking and dragging inside a dropdown makes little sense.
+	</description>
+
+	<option type="string" name="className" default="dtcc-button_reorder">
+		Class name applied to the trigger button. Please note that a custom class name provided here will always have `dtcc-button_` prefixed to it.
+	</option>
+
+	<option type="string" name="icon" default="move">
+		Button icon. Can take the name of any icon available in `DataTable.ColumnControl.icons` (which is a writeable object containing SVG icons).
+	</option>
+
+	<option type="string" name="text" default="Reorder columns">
+		Trigger button text (shown when in a dropdown). Can also be set by the `reorder` key of `-init language.columnControl`, which will take priority if set.
+	</option>
+
+
+	<example title="Show an ordering icon and column click and drag icon in each header cell." url="colReorder/dragButton.html"><![CDATA[
+new DataTable('#example', {
+    columnControl: ['order', 'reorder'],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+
+	<example title="Click and drag on selected columns only" url="colReorder/options.html"><![CDATA[
+new DataTable('#example', {
+    colReorder: {
+        columns: ':not(:first-child, :last-child)'
+    },
+    columnControl: ['order', 'reorder'],
+    columnDefs: [{
+        targets: [0, -1],
+        columnControl: ['order']
+    }],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+</dt-button>

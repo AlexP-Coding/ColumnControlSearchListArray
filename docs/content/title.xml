@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>title</name>
+	<summary>Show title / information text.</summary>
+	<since>1.0.0</since>
+
+	<description>
+		You may wish to display a title or information text in a dropdown to help explain to your users what options they have and what the controls do. This content type provides that ability, inserting a non-interactive, read only, `-tag div` into the ColumnControl content list, with a string you define.
+
+		### Display
+
+		It is expected that this content type will be used in a dropdown, not at the top level.
+	</description>
+
+	<option type="string" name="className" default="dtcc-title">
+		Class name applied to the containing element.
+	</option>
+
+	<option type="string" name="text" default="">
+		Text to display in the display element. If no value is given, the column title is used. Note that you can use `[title]` in your string, which will be replaced by the column title.
+	</option>
+
+
+	<example title="Show the column title at the top of a dropdown" url="initialisation/titles.html"><![CDATA[
+new DataTable('#example', {
+    columnControl: [['title', 'orderAsc', 'orderDesc']]
+});
+]]></example>
+
+	<example title="Custom text with replacement of the column title"><![CDATA[
+new DataTable('#example', {
+    columnControl: [[
+		{
+			extend: 'title',
+			text: 'Controls for: [title]'
+		},
+		'orderAsc',
+		'orderDesc'
+	]]
+});
+]]></example>
+</dt-button>

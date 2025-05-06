@@ -12,7 +12,7 @@ export interface IColVisDropdown extends Partial<IColVisDropdownConfig> {
 
 export default {
 	defaults: {
-		className: 'colVisDropdown',
+		className: 'colVis',
 		columns: '',
 		search: false,
 		select: false,

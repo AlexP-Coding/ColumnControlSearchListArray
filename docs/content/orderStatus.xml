@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>orderStatus</name>
+	<summary>Order status display icon.</summary>
+	<since>1.0.0</since>
+
+	<description>
+		One of the most common customisations of `-content order` is to disable its click listener (`statusOnly` option), resulting in the button showing the status of the column's ordering only. Typically the DataTable event handler for the header cells is then allowed to apply the ordering instead, which results in the whole of the header acting as a trigger button.
+		
+		This content type is provided as a shorthand for that configuration. See the examples below to see the functionality equivalent code using this content type, and `-content order` with its `statusOnly` option set.
+
+		### Display
+
+		Generally this content type will be used at the top level of ColumnControl, thus showing a simple icon button to the end user as it is such a common interaction with the table, but it will also work in a dropdown without issue.
+	</description>
+
+	<option type="string" name="className" default="dtcc-button_order">
+		Class name applied to the trigger button. Please note that a custom class name provided here will always have `dtcc-button_` prefixed to it.
+	</option>
+
+	<option type="string" name="iconAsc" default="orderAsc">
+		Icon to show when ascending order is applied to the host column. Can take the name of any icon available in `DataTable.ColumnControl.icons` (which is a writeable object containing SVG icons).
+	</option>
+
+	<option type="string" name="iconDesc" default="orderDesc">
+		Icon to show when descending ordering is applied to the host column. Can take the name of any icon available in `DataTable.ColumnControl.icons`.
+	</option>
+
+	<option type="string" name="iconNone" default="orderNone">
+		Icon to show when there is no order applied to the host column. Can take the name of any icon available in `DataTable.ColumnControl.icons`.
+	</option>
+
+	<option type="string" name="text" default="Order status">
+		Trigger button text (shown when in a dropdown). Can also be set by the `order` key of `-init language.columnControl`, which will take priority if set. Note that the text does not change depending on status, only the icon does.
+	</option>
+
+
+	<example title="Show a button which doesn't react to clicks, but rather shows the current ordering status for the column. The click to order is handled by DataTables instead."><![CDATA[
+new DataTable('#example', {
+    columnControl: ['orderStatus'],
+    ordering: {
+        indicators: false
+    }
+});
+]]></example>
+
+	<example title="Identical in functionality to the above."><![CDATA[
+new DataTable('#example', {
+    columnControl: [{
+		extend: 'order',
+		statusOnly: true
+	}],
+    ordering: {
+        indicators: false
+    }
+});
+]]></example>
+</dt-button>

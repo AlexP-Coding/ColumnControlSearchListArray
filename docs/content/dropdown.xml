@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>dropdown</name>
+	<summary>Show ColumnControl content types in a dropdown / popover</summary>
+	<since>1.0.0</since>
+
+	<description>
+		Space is at a premium in table headers; while it is over desirable to give your end users extensive controls over the table, you also don't want to overwhelm them with icons and buttons. For this reason, ColumnControl as a dropdown content type (can also be terms a _popover_) which shows other content types in a floating layer that is placed so it looks like it visually belongs to the column that triggered it.
+
+		A dropdown can be nested allowing multiple layers of dropdowns.
+
+		The key for using `-content dropdown` is its `content` option, which defines what content types are to be shown in the floating layer (typically it is a list of options, similar to the menu system used by desktop operating systems and programs, although it is possible to style it differently if you require). The `content` option can take any of the same values as `-init columnControl.content`.
+
+		Note that in the content array an array can be used as a shorthand for a dropdown. See the first two examples below for the two forms which are functionally identical. This shorthand is useful if you want to use the dropdown with default options.
+
+		### Display
+
+		The dropdown can be used at any level in ColumnControl. At the top level it is shown as a simple icon button. Inside a dropdown it is shown with the assigned text as well.
+	</description>
+
+	<option type="string" name="className" default="dtcc-button_dropdown">
+		Class name applied to the button that triggers the dropdown. Please note that a custom class name provided here will always have `dtcc-button_` prefixed to it.
+	</option>
+
+	<option type="array" name="content" default="[]">
+		Content to show in the dropdown. This matches the format of the options described in `-init columnControl.content`.
+	</option>
+
+	<option type="string" name="icon" default="menu">
+		Name of the icon to show in the dropdown button. This can be the name of any icon available in `DataTable.ColumnControl.icons` (which is a writeable object containing SVG icons).
+	</option>
+
+	<option type="string" name="text" default="More...">
+		Trigger button text (shown when in a dropdown). Can also be set by the `dropdown` key of `-init language.columnControl`, which will take priority if set.
+	</option>
+
+
+	<example title="Dropdown with ordering and search content types"><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+        'order',
+        {
+			extend: 'dropdown',
+			content: [
+				'orderAsc',
+				'orderDesc',
+				'spacer',
+				'search'
+			]
+		}
+    ],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+
+	<example title="Dropdown specified by an array in `content`. This is functionally identical to the example above."><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+        'order',
+        [
+			'orderAsc',
+			'orderDesc',
+			'spacer',
+			'search'
+		]
+    ],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+
+	<example title="A nested dropdown, in this case shown a column visibility list (`-content colVisDropdown` could also be used for this)."><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+        'order',
+        [
+			'search',
+			'spacer',
+			{
+				extend: 'dropdown',
+				icon: 'columns',
+				text: 'Change columns',
+				content: ['colVis']
+			}
+		]
+    ],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+</dt-button>

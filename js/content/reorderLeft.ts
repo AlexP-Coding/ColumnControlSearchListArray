@@ -32,6 +32,7 @@ export default {
 			.handler(() => {
 				let idx = this.idx();
 
+				// TODO account for visibility
 				if (idx > 0) {
 					(dt as any).colReorder.move(idx, idx - 1);
 				}

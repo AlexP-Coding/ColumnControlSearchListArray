@@ -22,7 +22,8 @@ export default {
 	init(config) {
 		let dt = this.dt();
 		let title = dt.column(this.idx()).title();
-		let el = createElement('div', config.className, config.text === null ? title : config.text);
+		let text = config.text === null ? '[title]' : config.text;
+		let el = createElement('div', config.className, text.replace('[title]', title));
 
 		return el;
 	}
