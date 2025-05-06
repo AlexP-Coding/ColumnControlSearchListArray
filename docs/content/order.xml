@@ -5,9 +5,9 @@
 	<since>1.0.0</since>
 
 	<description>
-		This is perhaps the most common content type used in the examples as ordering is a fundamental part of DataTables. This button is used to both triggering ordering on its host column and also show the status of ordering applied to the column.
+		This is perhaps the most common content type used in the examples, as ordering is a fundamental part of DataTables. This button is used to both trigger ordering on its host column and also show the status of ordering applied to the column.
 
-		To a large degree it replaces the ordering icons and event handler that DataTables applies to column headers, so you will often use it in combination with `-init ordering.indicators` and `-init ordering.handler` to disable DataTable's default controls.
+		To a large degree, it replaces the ordering icons and event handler that DataTables applies to column headers, so you will often use it in combination with `-init ordering.indicators` and `-init ordering.handler` to disable DataTable's default controls.
 
 		When ordering is activated via the button, it follows the same direction application sequence as defined by `-init columns.orderSequence`.
 
@@ -15,7 +15,7 @@
 
 		### Display
 
-		Generally this content type will be used at the top level of ColumnControl, thus showing a simple icon button to the end user as it is such a common interaction with the table, but it will also work in a dropdown without issue.
+		Generally, this content type will be used at the top level of ColumnControl, thus showing a simple icon button to the end user as it is such a common interaction with the table, but it will also work in a dropdown without issue.
 	</description>
 
 	<option type="string" name="iconAsc" default="orderAsc">

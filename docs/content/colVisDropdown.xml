@@ -5,7 +5,7 @@
 	<since>1.0.0</since>
 
 	<description>
-		This content type matches `-content colVis`, but places it inside a dropdown. It is provided for convenience and it is relatively common to have the column visibility toggle buttons in their own dropdown. It is simply an alias of:
+		This content type matches `-content colVis`, but places it inside a dropdown. It is provided for convenience, and it is relatively common to have the column visibility toggle buttons in their own dropdown. It is simply an alias of:
 
 		```js
 		{
@@ -19,7 +19,7 @@
 		}
 		```
 
-		Note that this content type provides the same options as `-content colVis` - it simply passes them through, so you can still control which columns are selected, etc. For a full list of the options available, please refer to `-content colVis`. Only the dropdown specific options are shown on this page.
+		Note that this content type provides the same options as `-content colVis` - it simply passes them through, so you can still control which columns are selected, etc. For a full list of the options available, please refer to `-content colVis`. Only the dropdown-specific options are shown on this page.
 
 
 		### Display

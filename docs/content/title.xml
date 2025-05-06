@@ -5,7 +5,7 @@
 	<since>1.0.0</since>
 
 	<description>
-		You may wish to display a title or information text in a dropdown to help explain to your users what options they have and what the controls do. This content type provides that ability, inserting a non-interactive, read only, `-tag div` into the ColumnControl content list, with a string you define.
+		You may wish to display a title or information text in a dropdown to help explain to your users what options they have and what the controls do. This content type provides that ability, inserting a non-interactive, read-only, `-tag div` into the ColumnControl content list, with a string you define.
 
 		### Display
 

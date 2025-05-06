@@ -20,7 +20,7 @@
 
 		### Display
 
-		It is expected that this content type will have a full cell to draw in if used at the top level, as the it benefits from having a large amount of space available (i.e. other buttons won't be used along with it at the top level for a specific set of cells).
+		It is expected that this content type will have a full cell to draw in if used at the top level, as it benefits from having a large amount of space available (i.e. other buttons won't be used along with it at the top level for a specific set of cells).
 
 		In a dropdown, this content type will display as part of the regular content list.
 	</description>

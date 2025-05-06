@@ -7,7 +7,7 @@
 	<description>
 		DataTables has a [ColReorder extension](https://datatables.net/extensions/colreorder) which allows reordering columns through click and drag of the column header. It isn't always desirable to have the whole header cell as the click zone, particularly when you have other content types (buttons, inputs, etc) for the end user to interact with. As a result, this content type is available to restrict the click zone to just the button in question.
 
-		Please note that to operate this content type needs the [ColReorder extension for DataTables](https://datatables.net/extensions/colreorder). Additionally, you do not need to initialise ColReorder through the `-init colReorder` option, ColumnControl will do that for you, although it is possible to do if you which to customise the behaviour of ColReorder.
+		Please note that to operate this content type the [ColReorder extension for DataTables](https://datatables.net/extensions/colreorder) is required. Additionally, you do not need to initialise ColReorder through the `-init colReorder` option, ColumnControl will do that for you, although it is possible to do so if you wish to customise the behaviour of ColReorder.
 
 		Examples showing the use of this content type [are available on the DataTables website](https://datatables.net/extensions/columncontrol/examples/colReorder/).
 

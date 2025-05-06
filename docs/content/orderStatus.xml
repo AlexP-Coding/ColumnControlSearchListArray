@@ -5,13 +5,13 @@
 	<since>1.0.0</since>
 
 	<description>
-		One of the most common customisations of `-content order` is to disable its click listener (`statusOnly` option), resulting in the button showing the status of the column's ordering only. Typically the DataTable event handler for the header cells is then allowed to apply the ordering instead, which results in the whole of the header acting as a trigger button.
-		
+		One of the most common customisations of `-content order` is to disable its click listener (`statusOnly` option), resulting in the button showing the status of the column's ordering only. Typically, the DataTable event handler for the header cells is then allowed to apply the ordering instead, which results in the whole of the header acting as a trigger button.
+				
 		This content type is provided as a shorthand for that configuration. See the examples below to see the functionality equivalent code using this content type, and `-content order` with its `statusOnly` option set.
 
 		### Display
 
-		Generally this content type will be used at the top level of ColumnControl, thus showing a simple icon button to the end user as it is such a common interaction with the table, but it will also work in a dropdown without issue.
+		Generally, this content type will be used at the top level of ColumnControl, thus showing a simple icon button to the end user as it is such a common interaction with the table, but it will also work in a dropdown without issue.
 	</description>
 
 	<option type="string" name="iconAsc" default="orderAsc">

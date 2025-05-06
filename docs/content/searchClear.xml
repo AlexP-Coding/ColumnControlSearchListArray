@@ -7,7 +7,7 @@
 	<description>
 		This content type adds a button that, when triggered, will clear any search terms that have been applied to the host column by ColumnControl (e.g. `-content search`, `-content searchList`, etc).
 
-		Once the search terms have been cleared the table will automatically be redrawn.
+		Once the search terms have been cleared, the table will automatically be redrawn.
 
 		### Display
 

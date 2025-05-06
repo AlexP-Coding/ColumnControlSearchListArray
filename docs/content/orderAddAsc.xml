@@ -7,7 +7,7 @@
 	<description>
 		DataTables has the ability to order the table's data over multiple columns, which is particularly useful if the data in the primary column being ordered has a large amount of repetition - the second column in the order will take over the order sequence.
 
-		This button, along with similar content type buttons, provides the ability to access this multi-column ordering. In this case when the button is triggered it will add the host column to the already set ordering for the DataTable, ascending direction.
+		This button, along with similar content-type buttons, provides the ability to access this multi-column ordering. In this case, when the button is triggered, it will add the host column to the already set ordering for the DataTable, in ascending direction.
 
 		### Display
 
