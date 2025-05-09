@@ -12,7 +12,7 @@ export type TContentItem = IContentConfig | keyof typeof contentTypes | TContent
 export interface IDefaults {
 	className: string | string[];
 	target: number | string;
-	content: TContentItem[];
+	content: null | TContentItem[];
 }
 
 export interface IConfig extends Partial<IDefaults> {}
@@ -143,30 +143,34 @@ export default class ColumnControl {
 
 		Object.assign(this._c, ColumnControl.defaults, opts);
 
-		this._dom.wrapper = document.createElement('span');
-		this._dom.wrapper.classList.add('dtcc');
+		if (opts.className) {
+			addClass(this._dom.target.closest('tr'), opts.className);
+		}
 
-		this._dom.target = this._target();
-		this._dom.target.appendChild(this._dom.wrapper);
+		if (this._c.content) {
+			// If column reordering can be done, we reassign the column index here, and before the
+			// plugins can add their own listeners.
+			dt.on('columns-reordered', (e, details) => {
+				this._s.columnIdx = (dt as any).colReorder.transpose(originalIdx, 'fromOriginal');
+			});
 
-		addClass(this._dom.target.closest('tr'), opts.className);
+			this._dom.wrapper = document.createElement('span');
+			this._dom.wrapper.classList.add('dtcc');
 
-		// If column reordering can be done, we reassign the column index here, and before the
-		// plugins can add their own listeners.
-		dt.on('columns-reordered', (e, details) => {
-			this._s.columnIdx = (dt as any).colReorder.transpose(originalIdx, 'fromOriginal');
-		});
+			this._dom.target = this._target();
+			this._dom.target.appendChild(this._dom.wrapper);
 
-		this._c.content.forEach((content) => {
-			let { plugin, config } = this.resolve(content);
-			let el = plugin.init.call(this, config);
+			this._c.content.forEach((content) => {
+				let { plugin, config } = this.resolve(content);
+				let el = plugin.init.call(this, config);
 
-			this._dom.wrapper.appendChild(el);
-		});
+				this._dom.wrapper.appendChild(el);
+			});
 
-		dt.on('destroy', () => {
-			this._dom.wrapper.remove();
-		});
+			dt.on('destroy', () => {
+				this._dom.wrapper.remove();
+			});
+		}
 	}
 
 	/**
@@ -211,9 +215,11 @@ export default class ColumnControl {
 
 	/** Defaults for ColumnControl */
 	static defaults: IDefaults = {
-		target: 0,
+		className: '',
 
-		content: []
+		content: null,
+
+		target: 0,
 	};
 
 	/** SVG icons that can be used by the content plugins */
