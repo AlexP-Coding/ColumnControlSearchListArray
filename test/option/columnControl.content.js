@@ -1,27 +1,18 @@
-describe('columnControl', function () {
+describe('columnControl.content', function () {
 	dt.libs({
 		js: ['jquery', 'datatables', 'columncontrol'],
 		css: ['datatables', 'columncontrol']
 	});
 
-	describe('Start up', function () {
-		dt.html('basic');
-
-		it('No ColumnControl with default init', () => {
-			new DataTable('#example');
-
-			expect($('.dtcc').length).toBe(0);
-		});
-
-		it('Does not hide the DataTables sort icons', () => {
-			expect($('span.dt-column-order').filter(':visible').length).toBe(6);
-		});
-
+	describe('Functional tests', function () {
 		dt.html('basic');
 
 		it('Enabled with an empty array', () => {
 			new DataTable('#example', {
-				columnControl: []
+				columnControl: {
+					target: 0,
+					content: []
+				}
 			});
 
 			expect($('.dtcc').length).toBe(6);
@@ -34,22 +25,17 @@ describe('columnControl', function () {
 					.children().length
 			).toBe(0);
 		});
-
-		it('Still does not hide the DataTables sort icons', () => {
-			expect($('span.dt-column-order').filter(':visible').length).toBe(6);
-		});
-
-		it('Comes after the default sort order icon', () => {
-			expect($('span.dt-column-order + span.dtcc').length).toBe(6);
-		});
 	});
 
-	describe('Content type at the top level', function () {
+	describe('Specifying content', function () {
 		dt.html('basic');
 
 		it('Single string content type', () => {
 			new DataTable('#example', {
-				columnControl: ['order']
+				columnControl: {
+					target: 0,
+					content: ['order']
+				}
 			});
 
 			expect($('.dtcc').length).toBe(6);
@@ -64,7 +50,10 @@ describe('columnControl', function () {
 
 		it('Multiple string buttons', () => {
 			new DataTable('#example', {
-				columnControl: ['orderAsc', 'orderDesc']
+				columnControl: {
+					target: 0,
+					content: ['orderAsc', 'orderDesc']
+				}
 			});
 
 			expect($('.dtcc').length).toBe(6);
@@ -84,11 +73,14 @@ describe('columnControl', function () {
 
 		it('Single object based', () => {
 			new DataTable('#example', {
-				columnControl: [
-					{
-						extend: 'order'
-					}
-				]
+				columnControl: {
+					content: [
+						{
+							extend: 'order'
+						}
+					],
+					target: 0
+				}
 			});
 
 			expect($('.dtcc').length).toBe(6);
@@ -103,14 +95,17 @@ describe('columnControl', function () {
 
 		it('Two object based buttons', () => {
 			new DataTable('#example', {
-				columnControl: [
-					{
-						extend: 'orderDesc'
-					},
-					{
-						extend: 'orderAsc'
-					}
-				]
+				columnControl: {
+					target: 0,
+					content: [
+						{
+							extend: 'orderDesc'
+						},
+						{
+							extend: 'orderAsc'
+						}
+					]
+				}
 			});
 
 			expect($('.dtcc').length).toBe(6);
@@ -131,12 +126,15 @@ describe('columnControl', function () {
 
 		it('Mixed string and object', () => {
 			new DataTable('#example', {
-				columnControl: [
-					'orderAsc',
-					{
-						extend: 'orderDesc'
-					}
-				]
+				columnControl: {
+					target: 0,
+					content: [
+						'orderAsc',
+						{
+							extend: 'orderDesc'
+						}
+					]
+				}
 			});
 
 			expect($('.dtcc').length).toBe(6);
@@ -150,9 +148,12 @@ describe('columnControl', function () {
 
 		dt.html('basic');
 
-		it('Dropdown button init at the top level', () => {
+		it('Dropdown button array', () => {
 			new DataTable('#example', {
-				columnControl: ['order', ['orderAsc', 'orderDesc']]
+				columnControl: {
+					target: 0,
+					content: ['order', ['orderAsc', 'orderDesc']]
+				}
 			});
 
 			expect($('.dtcc').length).toBe(6);
@@ -165,27 +166,7 @@ describe('columnControl', function () {
 		});
 	});
 
-	describe('Config arrays', function () {
-		dt.html('basic');
-
-		it('Single target', () => {
-			new DataTable('#example', {
-				columnControl: [
-					{
-						target: 0,
-						content: ['order']
-					}
-				]
-			});
-
-			expect($('.dtcc').length).toBe(6);
-		});
-
-		it('Buttons are added', () => {
-			expect($('.dtcc-button').length).toBe(6);
-			expect($('.dtcc-button_order').length).toBe(6);
-		});
-
+	describe('Multiple targets', function () {
 		dt.html('basic');
 
 		it('Multiple targets, create a target', () => {
@@ -239,6 +220,4 @@ describe('columnControl', function () {
 			).toBe(6);
 		});
 	});
-
-	// For object based, see the individual test files
 });

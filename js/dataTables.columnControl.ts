@@ -37,7 +37,7 @@ $(document).on('i18n.dt', function (e, settings) {
 	api.columns().every(function (i) {
 		let columnInit: IConfig = (this.init() as any).columnControl;
 
-		identifyTargets(baseTargets.slice(), columnInit);
+		identifyTargets(baseTargets, columnInit);
 	});
 
 	for (let i = 0; i < baseTargets.length; i++) {
@@ -231,7 +231,7 @@ function getOptionsForTarget(target, input: any): IConfig | void {
 				if (target === defaultTarget) {
 					return {
 						target: defaultTarget,
-						content: [item]
+						content: input
 					};
 				}
 			}
@@ -298,7 +298,7 @@ function identifyTargets(targets: any[], input: IConfig | IConfig[]) {
  * @returns true if it is a config object
  */
 function isIConfig(item: any) {
-	return typeof item === 'object' && (item.target !== undefined || item.content !== undefined)
+	return typeof item === 'object' && item.target !== undefined
 		? true
 		: false;
 }

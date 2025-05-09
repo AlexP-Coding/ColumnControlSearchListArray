@@ -42,7 +42,7 @@
 
 	<example title="Set the translation string for two buttons"><![CDATA[
 new DataTable('#myTable', {
-	columnControl: [['orderAsc', 'orderDesc'],
+	columnControl: [['orderAsc', 'orderDesc']],
 	language: {
 		columnControl: {
 			orderAsc: 'Ordre croissant',

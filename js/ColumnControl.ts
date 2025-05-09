@@ -143,6 +143,8 @@ export default class ColumnControl {
 
 		Object.assign(this._c, ColumnControl.defaults, opts);
 
+		this._dom.target = this._target();
+
 		if (opts.className) {
 			addClass(this._dom.target.closest('tr'), opts.className);
 		}
@@ -156,8 +158,6 @@ export default class ColumnControl {
 
 			this._dom.wrapper = document.createElement('span');
 			this._dom.wrapper.classList.add('dtcc');
-
-			this._dom.target = this._target();
 			this._dom.target.appendChild(this._dom.wrapper);
 
 			this._c.content.forEach((content) => {
