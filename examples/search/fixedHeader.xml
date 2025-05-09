@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="ajax" order="6" table-class="display nowrap">
+
+<css lib="datatables columncontrol datetime fixedheader" />
+<js lib="jquery datatables columncontrol datetime fixedheader">
+<![CDATA[
+
+new DataTable('#example', {
+	ajax: '../../../../examples/ajax/data/objects.txt',
+	columnControl: [
+		{
+			target: 0,
+			content: ['orderStatus']
+		},
+		{
+			target: 1,
+			content: ['search']
+		}
+	],
+    columns: [
+        { data: 'name' },
+        { data: 'position' },
+        { data: 'office' },
+        { data: 'extn' },
+        { data: 'start_date' },
+        { data: 'salary' }
+    ],
+	fixedHeader: true,
+	ordering: {
+		indicators: false
+	}
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+
+new DataTable('#example', {
+	ajax: '../../../../examples/ajax/data/objects.txt',
+	columnControl: [
+		{
+			target: 0,
+			content: ['orderStatus']
+		},
+		{
+			target: 1,
+			content: ['search']
+		}
+	],
+    columns: [
+        { data: 'name' },
+        { data: 'position' },
+        { data: 'office' },
+        { data: 'extn' },
+        { data: 'start_date' },
+        { data: 'salary' }
+    ],
+	fixedHeader: true,
+	ordering: {
+		indicators: false
+	}
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">FixedHeader integration</title>
+
+<info><![CDATA[
+
+This example is the same as the [Automatic type detection](./autoType.html) one, but with [FixedHeader for DataTables](https://datatables.net/extensions/fixedheader) enabled. FixedHeader will float the table header at the top of the page while the scrolling of the window is through the table.
+
+As you will be able to see in the table below, FixedHeader means the search inputs are more immediately available to the end user while scrolling, which can be very handy with long tables. The search inputs remain active while the header is floating at the top of the window.
+
+]]></info>
+
+</dt-example>
