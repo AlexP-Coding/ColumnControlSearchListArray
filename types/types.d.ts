@@ -75,12 +75,12 @@ interface ConfigColumnControl {
 	/**
 	 * Class(es) to assign to the target row.
 	 */
-	className: string | string[];
+	className?: string | string[];
 
 	/**
 	 * Content to show in the cells.
 	 */
-	content: TContentItem[];
+	content?: TContentItem[];
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
