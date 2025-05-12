@@ -136,7 +136,7 @@ function relativePosition(parent: HTMLElement, origin: HTMLElement) {
 	let top = 0;
 	let left = 0;
 
-	while (origin !== parent && origin !== document.body) {
+	while (origin && origin !== parent && origin !== document.body) {
 		top += origin.offsetTop;
 		left += origin.offsetLeft;
 
