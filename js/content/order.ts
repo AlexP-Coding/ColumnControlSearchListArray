@@ -38,23 +38,30 @@ export default {
 	init(config) {
 		let dt = this.dt();
 		let btn = new Button(dt)
-			.text(dt.i18n('columnControl.orderAsc', config.text))
+			.text(dt.i18n('columnControl.order', config.text))
 			.icon('orderAsc')
 			.className(config.className);
 
 		if (!config.statusOnly) {
 			btn.handler(() => {
 				let order = dt.order();
+				let sequence = (dt.settings() as any)[0].aoColumns[this.idx()].asSorting;
 				let found = order.find((o) => o[0] === this.idx());
 				let apply: any = [];
 
 				if (!found) {
-					apply.push([this.idx(), 'asc']);
+					apply.push([this.idx(), sequence[0]]);
 				}
-				else if (found[1] === 'asc') {
-					apply.push([this.idx(), 'desc']);
+				else {
+					let currentIdx = sequence.indexOf(found[1]);
+
+					if (currentIdx+1 >= sequence.length) {
+						apply.push([this.idx(), sequence[0]]);
+					}
+					else {
+						apply.push([this.idx(), sequence[currentIdx + 1]]);
+					}
 				}
-				// else - next stage is empty sort
 
 				dt.order(apply).draw();
 			});

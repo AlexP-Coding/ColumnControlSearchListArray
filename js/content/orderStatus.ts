@@ -12,10 +12,10 @@ export default {
 		iconDesc: 'orderDesc',
 		iconNone: 'orderNone',
 		statusOnly: true,
-		text: 'Order status'
+		text: 'Sort status'
 	},
 
 	extend(config) {
-		return Object.assign({ extend: 'order' }, config);
+		return Object.assign(config, { extend: 'order' });
 	}
 } as IContentPlugin<IOrderConfig>;
