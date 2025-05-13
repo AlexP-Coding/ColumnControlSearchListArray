@@ -27,7 +27,7 @@ interface ISettings {
 	search: string;
 }
 
-export type IHandler = (e: Event, btn: Button) => void;
+export type IHandler = (e: Event, btn: Button, btns: Button[]) => void;
 
 export interface IOption {
 	active?: boolean;
@@ -66,7 +66,7 @@ export default class CheckList {
 			let btn = new Button(this._s.dt)
 				.active(option.active || false)
 				.handler((e) => {
-					this._s.handler(e, btn);
+					this._s.handler(e, btn, this._s.buttons);
 					this._updateCount();
 				})
 				.icon(option.icon || '')
@@ -154,7 +154,7 @@ export default class CheckList {
 			if (colIdx === parent.idx()) {
 				this.selectNone();
 
-				this._s.handler(e, null);
+				this._s.handler(e, null, this._s.buttons);
 				this._s.search = '';
 				this._dom.search.value = '';
 
@@ -287,13 +287,13 @@ export default class CheckList {
 
 		let selectAllClick = (e) => {
 			this.selectAll();
-			this._s.handler(e, null);
+			this._s.handler(e, null, this._s.buttons);
 			this._updateCount();
 		};
 
 		let selectNoneClick = (e) => {
 			this.selectNone();
-			this._s.handler(e, null);
+			this._s.handler(e, null, this._s.buttons);
 			this._updateCount();
 		};
 

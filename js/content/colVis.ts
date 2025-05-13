@@ -1,3 +1,4 @@
+import Button from '../Button';
 import CheckList from '../CheckList';
 import { IContentPlugin, IContentConfig } from './content';
 
@@ -38,12 +39,29 @@ export default {
 			select: config.select
 		})
 			.title(dt.i18n('columnControl.colVis', config.title))
-			.handler((e, btn) => {
+			.handler((e, btn, buttons) => {
+				if (btn) {
+					btn.active(!btn.active());
+				}
+
+				apply(buttons);
+			});
+
+		// Need to apply in a loop to allow for select all / select none
+		let apply = (buttons: Button[]) => {
+			for (let i=0 ; i<buttons.length ; i++) {
+				let btn = buttons[i];
 				let idx = btn.value();
 				let col = dt.column(idx);
 
-				col.visible(!col.visible());
-			});
+				if (btn.active() && !col.visible()) {
+					col.visible(true);
+				}
+				else if (! btn.active() && col.visible()) {
+					col.visible(false);
+				}
+			}
+		};
 
 		let rebuild = () => {
 			let columns = dt.columns(config.columns);

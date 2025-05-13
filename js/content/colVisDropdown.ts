@@ -17,7 +17,7 @@ export default {
 		search: false,
 		select: false,
 		text: 'Column visibility',
-		title: ''
+		title: 'Column visibility'
 	},
 
 	extend(config) {
