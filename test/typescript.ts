@@ -21,6 +21,21 @@ new DataTable('#myTable', {
 });
 
 new DataTable('#myTable', {
+	columnControl: {
+		target: 'tfoot:1',
+		className: 'test',
+		content: ['colVis']
+	}
+});
+
+new DataTable('#myTable', {
+	columnControl: {
+		target: 'thead:1',
+		className: 'test'
+	}
+});
+
+new DataTable('#myTable', {
 	columnControl: [
 		{
 			target: 'tfoot:1',
