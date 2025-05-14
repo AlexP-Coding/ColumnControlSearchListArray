@@ -115,7 +115,9 @@ export default class SearchInput {
 	 */
 	public placeholder(placeholder: string) {
 		if (placeholder) {
-			this._dom.input.placeholder = placeholder;
+			let columnTitle = this._dt.column(this._idx).title();
+
+			this._dom.input.placeholder = placeholder.replace('[title]', columnTitle);
 		}
 
 		return this;
@@ -282,8 +284,12 @@ export default class SearchInput {
 	 */
 	private _runSearch() {
 		let dom = this._dom;
+		let isActive =
+			dom.select.value === 'empty' ||
+			dom.select.value === 'notEmpty' ||
+			dom.input.value !== '';
 
-		dom.container.classList.toggle('dtcc-search_active', dom.input.value !== '');
+		dom.container.classList.toggle('dtcc-search_active', isActive);
 
 		if (
 			this._search &&

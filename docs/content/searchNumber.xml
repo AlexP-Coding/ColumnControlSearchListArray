@@ -26,7 +26,7 @@
 	</option>
 
 	<option type="string" name="placeholder" default="">
-		Value to set the `placeholder` attribute of the `-tag input` element to.
+		Value to set the `placeholder` attribute of the `-tag input` element to. The given string will have the substring `[title]` will be replaced with the column title.
 	</option>
 
 	<option type="string" name="title" default="">
