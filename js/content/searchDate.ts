@@ -34,6 +34,7 @@ export default {
 	},
 
 	init(config) {
+		let fromPicker = false;
 		let moment = DataTable.use('moment');
 		let luxon = DataTable.use('luxon');
 		let dt = this.dt();
@@ -60,7 +61,7 @@ export default {
 					searchTerm === ''
 						? ''
 						: dateToNum(
-								dateTime ? dateTime.val() : searchTerm,
+								dateTime && fromPicker ? dateTime.val() : searchTerm.trim(),
 								displayFormat,
 								moment,
 								luxon
@@ -128,7 +129,12 @@ export default {
 
 			if (DateTime) {
 				dateTime = new DateTime(searchInput.input(), {
-					format: displayFormat
+					format: displayFormat,
+					onChange: () => {
+						fromPicker = true;
+						searchInput.runSearch();
+						fromPicker = false;
+					}
 				});
 			}
 		});

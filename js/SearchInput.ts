@@ -124,6 +124,28 @@ export default class SearchInput {
 	}
 
 	/**
+	 * Run the search method
+	 */
+	public runSearch() {
+		let dom = this._dom;
+		let isActive =
+			dom.select.value === 'empty' ||
+			dom.select.value === 'notEmpty' ||
+			dom.input.value !== '';
+
+		dom.container.classList.toggle('dtcc-search_active', isActive);
+
+		if (
+			this._search &&
+			(this._lastValue !== dom.input.value || this._lastType !== dom.select.value)
+		) {
+			this._search(dom.select.value, dom.input.value, this._loadingState);
+			this._lastValue = dom.input.value;
+			this._lastType = dom.select.value;
+		}
+	}
+
+	/**
 	 * Set the function that will be run when a search operation is required. Note that this can
 	 * trigger the function to run if there is a saved state.
 	 *
@@ -153,7 +175,7 @@ export default class SearchInput {
 		dom.select.value = logic;
 		dom.typeIcon.innerHTML = icons[dom.select.value];
 
-		this._runSearch();
+		this.runSearch();
 
 		return this;
 	}
@@ -222,12 +244,12 @@ export default class SearchInput {
 
 		// Listeners
 		let inputInput = () => {
-			this._runSearch();
+			this.runSearch();
 		};
 
 		let selectInput = () => {
 			dom.typeIcon.innerHTML = icons[dom.select.value];
-			this._runSearch();
+			this.runSearch();
 		};
 
 		let clearClick = () => {
@@ -277,28 +299,6 @@ export default class SearchInput {
 				this.clear();
 			}
 		});
-	}
-
-	/**
-	 * Run the search method
-	 */
-	private _runSearch() {
-		let dom = this._dom;
-		let isActive =
-			dom.select.value === 'empty' ||
-			dom.select.value === 'notEmpty' ||
-			dom.input.value !== '';
-
-		dom.container.classList.toggle('dtcc-search_active', isActive);
-
-		if (
-			this._search &&
-			(this._lastValue !== dom.input.value || this._lastType !== dom.select.value)
-		) {
-			this._search(dom.select.value, dom.input.value, this._loadingState);
-			this._lastValue = dom.input.value;
-			this._lastType = dom.select.value;
-		}
 	}
 
 	/**

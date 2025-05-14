@@ -10,7 +10,7 @@ describe('columnControl - searchText', function () {
 		dt.html('basic');
 
 		it('Is present', () => {
-			expect(DataTable.ColumnControl.content.title).toBeDefined();
+			expect(DataTable.ColumnControl.content.searchText).toBeDefined();
 		});
 
 		it('Create CC with search', () => {

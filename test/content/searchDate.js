@@ -1,7 +1,7 @@
-describe('columnControl - searchNumber', function () {
+describe('columnControl - searchDateTime', function () {
 	dt.libs({
-		js: ['jquery', 'datatables', 'columncontrol'],
-		css: ['datatables', 'columncontrol']
+		js: ['jquery', 'datatables', 'columncontrol', 'datetime'],
+		css: ['datatables', 'columncontrol', 'datetime']
 	});
 
 	describe('Basic functionality', function () {
@@ -10,62 +10,51 @@ describe('columnControl - searchNumber', function () {
 		dt.html('basic');
 
 		it('Is present', () => {
-			expect(DataTable.ColumnControl.content.searchNumber).toBeDefined();
+			expect(DataTable.ColumnControl.content.searchDateTime).toBeDefined();
 		});
 
 		it('Create CC with search', () => {
 			table = new DataTable('#example', {
 				columnControl: {
 					target: 1,
-					content: ['searchNumber']
+					content: ['searchDateTime']
 				}
 			});
 
-			expect($('.dtcc-searchNumber').length).toBe(6);
+			expect($('.dtcc-searchDate').length).toBe(6);
 		});
 
 		it('There is an input element in each cell in the second header row', () => {
 			expect($('thead tr:eq(1) input').length).toBe(6);
-			expect($('thead tr:eq(1) td:eq(3) input').length).toBe(1);
+			expect($('thead tr:eq(1) td:eq(4) input').length).toBe(1);
 		});
 
 		it('There is no initial search value', () => {
-			expect($('thead tr:eq(1) td:eq(3) input').val()).toBe('');
+			expect($('thead tr:eq(1) td:eq(4) input').val()).toBe('');
 		});
 
 		it('Is shown as not active', () => {
 			expect(
-				$('thead tr:eq(1) td:eq(3) div.dtcc-search').hasClass('dtcc-search_active')
+				$('thead tr:eq(1) td:eq(4) div.dtcc-search').hasClass('dtcc-search_active')
 			).toBe(false);
 		});
 
 		it('Can apply a search', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('61')
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('2012-10-13')
 				.triggerNative('input');
 
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Brielle Williamson');
+			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Bradley Greer');
 		});
 
 		it('Search input is shown as active when there is a filter', () => {
 			expect(
-				$('thead tr:eq(1) td:eq(3) div.dtcc-search').hasClass('dtcc-search_active')
+				$('thead tr:eq(1) td:eq(4) div.dtcc-search').hasClass('dtcc-search_active')
 			).toBe(true);
 		});
 
-		it('Cumulative search over two columns', () => {
-			$('thead tr:eq(1) td:eq(5) input')
-				.val('98540')
-				.triggerNative('input');
-
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Thor Walton');
-		});
-
 		it('Remove search terms', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('')
-				.triggerNative('input');
-			$('thead tr:eq(1) td:eq(5) input')
+			$('thead tr:eq(1) td:eq(4) input')
 				.val('')
 				.triggerNative('input');
 
@@ -74,9 +63,21 @@ describe('columnControl - searchNumber', function () {
 
 		it('Back to not active', () => {
 			expect(
-				$('thead tr:eq(1) td:eq(3) div.dtcc-search').hasClass('dtcc-search_active')
+				$('thead tr:eq(1) td:eq(4) div.dtcc-search').hasClass('dtcc-search_active')
 			).toBe(false);
 		});
+
+		it('Date picker is shown when clicking on the input', () => {
+			$('thead tr:eq(1) td:eq(4) input').trigger('click');
+
+			expect($('div.dt-datetime').length).toBe(1);
+		});
+
+		// it('And clicking out hides it', () => {
+		// 	$('div:eq(0)').trigger('click');
+
+		// 	expect($('div.dt-datetime').length).toBe(0);
+		// });
 	});
 
 	describe('State saving', function () {
@@ -86,24 +87,20 @@ describe('columnControl - searchNumber', function () {
 			table = new DataTable('#example', {
 				columnControl: {
 					target: 1,
-					content: ['searchNumber']
+					content: ['searchDateTime']
 				},
 				stateSave: true
 			});
 
-			expect($('thead tr:eq(1) td:eq(3) input').val()).toBe('');
-			expect($('thead tr:eq(1) td:eq(5) input').val()).toBe('');
+			expect($('thead tr:eq(1) td:eq(4) input').val()).toBe('');
 		});
 
 		it('Can apply a search', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('61')
-				.triggerNative('input');
-			$('thead tr:eq(1) td:eq(5) input')
-				.val('372000')
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('2012-03-29')
 				.triggerNative('input');
 
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Brielle Williamson');
+			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Cedric Kelly');
 		});
 
 		dt.html('basic');
@@ -112,25 +109,21 @@ describe('columnControl - searchNumber', function () {
 			table = new DataTable('#example', {
 				columnControl: {
 					target: 1,
-					content: ['searchNumber']
+					content: ['searchDateTime']
 				},
 				stateSave: true
 			});
 
 			expect($('thead tr:eq(1) td:eq(0) input').val()).toBe('');
-			expect($('thead tr:eq(1) td:eq(3) input').val()).toBe('61');
-			expect($('thead tr:eq(1) td:eq(5) input').val()).toBe('372000');
+			expect($('thead tr:eq(1) td:eq(4) input').val()).toBe('2012-03-29');
 		});
 
 		it('And filter was applied', () => {
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Brielle Williamson');
+			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Cedric Kelly');
 		});
 
 		it('Remove search terms', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('')
-				.triggerNative('input');
-			$('thead tr:eq(1) td:eq(5) input')
+			$('thead tr:eq(1) td:eq(4) input')
 				.val('')
 				.triggerNative('input');
 
@@ -138,14 +131,14 @@ describe('columnControl - searchNumber', function () {
 		});
 
 		it('Search logic set', () => {
-			$('thead tr:eq(1) td:eq(3) select')
+			$('thead tr:eq(1) td:eq(4) select')
 				.val('less')
 				.triggerNative('input');
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('25')
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('2008-10-16')
 				.triggerNative('input');
 
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Caesar Vance');
+			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Jackson Bradshaw');
 		});
 
 		dt.html('basic');
@@ -154,22 +147,22 @@ describe('columnControl - searchNumber', function () {
 			table = new DataTable('#example', {
 				columnControl: {
 					target: 1,
-					content: ['searchNumber']
+					content: ['searchDateTime']
 				},
 				stateSave: true
 			});
 
-			expect($('thead tr:eq(1) td:eq(3) select').val()).toBe('less');
-			expect($('thead tr:eq(1) td:eq(3) input').val()).toBe('25');
+			expect($('thead tr:eq(1) td:eq(4) select').val()).toBe('less');
+			expect($('thead tr:eq(1) td:eq(4) input').val()).toBe('2008-10-16');
 
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Caesar Vance');
+			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Jackson Bradshaw');
 		});
 
 		it('Remove search terms', () => {
-			$('thead tr:eq(1) td:eq(3) select')
+			$('thead tr:eq(1) td:eq(4) select')
 				.val('equals')
 				.triggerNative('input');
-			$('thead tr:eq(1) td:eq(3) input')
+			$('thead tr:eq(1) td:eq(4) input')
 				.val('')
 				.triggerNative('input');
 
@@ -184,7 +177,7 @@ describe('columnControl - searchNumber', function () {
 			table = new DataTable('#example', {
 				columnControl: {
 					target: 1,
-					content: ['searchNumber']
+					content: ['searchDateTime']
 				}
 			});
 
@@ -192,178 +185,124 @@ describe('columnControl - searchNumber', function () {
 		});
 
 		it('Has a logic selector', () => {
-			expect($('thead tr:eq(1) td:eq(3) select').length).toBe(1);
+			expect($('thead tr:eq(1) td:eq(4) select').length).toBe(1);
 			expect($('thead tr:eq(1) td select').length).toBe(6);
 		});
 
 		it('Default value is `equal`', () => {
-			expect($('thead tr:eq(1) td:eq(3) select').val()).toBe('equal');
+			expect($('thead tr:eq(1) td:eq(4) select').val()).toBe('equal');
 		});
 
 		it('equal search - matches', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('22')
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('2012-12-02')
 				.triggerNative('input');
 
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Cedric Kelly');
+			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Brielle Williamson');
 		});
 
-		it('equal search - part - no match', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('4')
-				.triggerNative('input');
-
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('No matching records found');
-		});
-
-		it('equal search - no part - no match', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('482465')
+		it('equal search - no match', () => {
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('2025-12-02')
 				.triggerNative('input');
 
 			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('No matching records found');
 		});
 
 		it('notEqual search - matches', () => {
-			$('thead tr:eq(1) td:eq(3) select')
+			$('thead tr:eq(1) td:eq(4) select')
 				.val('notEqual')
 				.triggerNative('input');
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('33')
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('2008-11-28')
 				.triggerNative('input');
 
 			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Angelica Ramos');
 		});
 
-		it('notEqual search - part - no match', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('1')
+		it('notEqual search - no match', () => {
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('2025-01-01')
 				.triggerNative('input');
 
 			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Airi Satou');
 		});
 
-		it('notEqual search - no part - no match', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('482165')
-				.triggerNative('input');
-
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Airi Satou');
-		});
-
-		it('greater search - matches', () => {
-			$('thead tr:eq(1) td:eq(3) select')
+		it('greater (after) search - matches', () => {
+			$('thead tr:eq(1) td:eq(4) select')
 				.val('greater')
 				.triggerNative('input');
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('60')
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('2011-12-12')
 				.triggerNative('input');
 
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Ashton Cox');
+			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Bradley Greer');
 		});
 
-		it('greater search - matches - doesn\'t include equal', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('33')
-				.triggerNative('input');
-
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Angelica Ramos');
-		});
-
-		it('greater search - no match', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('100')
+		it("greater search - matches - doesn't include equal A", () => {
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('2013-08-11')
 				.triggerNative('input');
 
 			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('No matching records found');
 		});
 
-		it('greaterOrEqual search - matches', () => {
-			$('thead tr:eq(1) td:eq(3) select')
-				.val('greaterOrEqual')
-				.triggerNative('input');
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('60')
+		it("greater search - matches - doesn't include equal B", () => {
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('2013-08-10')
 				.triggerNative('input');
 
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Ashton Cox');
+			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Thor Walton');
 		});
 
-		it('greaterOrEqual search - matches - does include equal', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('33')
-				.triggerNative('input');
-
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Airi Satou');
-		});
-
-		it('greaterOrEqual search - no match', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('100')
+		it('greater search - no match', () => {
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('20215-01-01')
 				.triggerNative('input');
 
 			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('No matching records found');
 		});
 
 		it('less search - matches', () => {
-			$('thead tr:eq(1) td:eq(3) select')
+			$('thead tr:eq(1) td:eq(4) select')
 				.val('less')
 				.triggerNative('input');
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('20')
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('2008-11-28')
 				.triggerNative('input');
 
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Tatyana Fitzpatrick');
+			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Charde Marshall');
 		});
 
-		it('less search - matches - doesn\'t include equal', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('33')
+		it("less search - matches - doesn't include equal - A", () => {
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('2008-11-28')
 				.triggerNative('input');
 
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Brenden Wagner');
+			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Charde Marshall');
 		});
 
-		it('less search - no match', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('10')
-				.triggerNative('input');
-
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('No matching records found');
-		});
-
-		it('lessOrEqual search - matches', () => {
-			$('thead tr:eq(1) td:eq(3) select')
-				.val('lessOrEqual')
-				.triggerNative('input');
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('30')
-				.triggerNative('input');
-
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Brenden Wagner');
-		});
-
-		it('lessOrEqual search - matches - does include equal', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('33')
+		it("less search - matches - doesn't include equal - A", () => {
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('2008-11-29')
 				.triggerNative('input');
 
 			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Airi Satou');
 		});
 
-		it('lessOrEqual search - no match', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('11')
+		it('less search - no match', () => {
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('2001-01-01')
 				.triggerNative('input');
 
 			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('No matching records found');
 		});
 
 		it('clear values', () => {
-			$('thead tr:eq(1) td:eq(3) span.dtcc-search-clear').trigger('click');
+			$('thead tr:eq(1) td:eq(4) span.dtcc-search-clear').trigger('click');
 
-			expect($('thead tr:eq(1) td:eq(3) input').val()).toBe('');
-			expect($('thead tr:eq(1) td:eq(3) select').val()).toBe('equal');
+			expect($('thead tr:eq(1) td:eq(4) input').val()).toBe('');
+			expect($('thead tr:eq(1) td:eq(4) select').val()).toBe('equal');
 		});
 
 		it('Is shown as not active', () => {
@@ -374,31 +313,30 @@ describe('columnControl - searchNumber', function () {
 
 		it('set an empty value', () => {
 			table
-				.cell(0, 3)
+				.cell(0, 4)
 				.data('')
 				.draw();
 
 			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Airi Satou');
-			expect($('tbody tr:eq(0) td:eq(3)').text()).toBe('33');
 		});
 
 		it('empty search - matches', () => {
-			$('thead tr:eq(1) td:eq(3) select')
+			$('thead tr:eq(1) td:eq(4) select')
 				.val('empty')
 				.triggerNative('input');
 
 			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Tiger Nixon');
-			expect($('tbody tr:eq(0) td:eq(3)').text()).toBe('');
+			expect($('tbody tr:eq(0) td:eq(4)').text()).toBe('');
 		});
 
 		it('empty search - is active', () => {
 			expect(
-				$('thead tr:eq(1) td:eq(3) div.dtcc-search').hasClass('dtcc-search_active')
+				$('thead tr:eq(1) td:eq(4) div.dtcc-search').hasClass('dtcc-search_active')
 			).toBe(true);
 		});
 
 		it('notEmpty search - matches', () => {
-			$('thead tr:eq(1) td:eq(3) select')
+			$('thead tr:eq(1) td:eq(4) select')
 				.val('notEmpty')
 				.triggerNative('input');
 
@@ -407,7 +345,7 @@ describe('columnControl - searchNumber', function () {
 
 		it('notEmpty search - is active', () => {
 			expect(
-				$('thead tr:eq(1) td:eq(3) div.dtcc-search').hasClass('dtcc-search_active')
+				$('thead tr:eq(1) td:eq(4) div.dtcc-search').hasClass('dtcc-search_active')
 			).toBe(true);
 		});
 	});
@@ -419,7 +357,7 @@ describe('columnControl - searchNumber', function () {
 			table = new DataTable('#example', {
 				columnControl: {
 					target: 1,
-					content: ['searchNumber']
+					content: ['searchDateTime']
 				}
 			});
 
@@ -427,19 +365,19 @@ describe('columnControl - searchNumber', function () {
 		});
 
 		it('Clear button is not visible with no value', () => {
-			expect($('thead tr:eq(1) td:eq(3) span.dtcc-search-clear').is(':visible')).toBe(false);
+			expect($('thead tr:eq(1) td:eq(4) span.dtcc-search-clear').is(':visible')).toBe(false);
 		});
 
 		it('Apply a search', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('41')
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('2011-06-07')
 				.triggerNative('input');
 
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Bradley Greer');
+			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Brenden Wagner');
 		});
 
 		it('Clear button is now visible on this input', () => {
-			expect($('thead tr:eq(1) td:eq(3) span.dtcc-search-clear').is(':visible')).toBe(true);
+			expect($('thead tr:eq(1) td:eq(4) span.dtcc-search-clear').is(':visible')).toBe(true);
 		});
 
 		it('And only that one', () => {
@@ -447,31 +385,31 @@ describe('columnControl - searchNumber', function () {
 		});
 
 		it('Clearing makes it hidden again', () => {
-			$('thead tr:eq(1) td:eq(3) input')
+			$('thead tr:eq(1) td:eq(4) input')
 				.val('')
 				.triggerNative('input');
 
 			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Airi Satou');
-			expect($('thead tr:eq(1) td:eq(3) span.dtcc-search-clear').is(':visible')).toBe(false);
+			expect($('thead tr:eq(1) td:eq(4) span.dtcc-search-clear').is(':visible')).toBe(false);
 		});
 
 		it('Apply a search', () => {
-			$('thead tr:eq(1) td:eq(3) input')
-				.val('40')
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('2011-05-03')
 				.triggerNative('input');
 
-			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Yuri Berry');
+			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Bruno Nash');
 		});
 
 		it('Clicking the button will clear the input', () => {
-			$('thead tr:eq(1) td:eq(3) span.dtcc-search-clear').trigger('click');
+			$('thead tr:eq(1) td:eq(4) span.dtcc-search-clear').trigger('click');
 
-			expect($('thead tr:eq(1) td:eq(3) input').val()).toBe('');
+			expect($('thead tr:eq(1) td:eq(4) input').val()).toBe('');
 			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Airi Satou');
 		});
 
 		it('And it was hidden', () => {
-			expect($('thead tr:eq(1) td:eq(3) span.dtcc-search-clear').is(':visible')).toBe(false);
+			expect($('thead tr:eq(1) td:eq(4) span.dtcc-search-clear').is(':visible')).toBe(false);
 		});
 
 		dt.html('basic');
@@ -482,7 +420,7 @@ describe('columnControl - searchNumber', function () {
 					target: 1,
 					content: [
 						{
-							extend: 'searchNumber',
+							extend: 'searchDateTime',
 							clear: false
 						}
 					]
@@ -500,11 +438,11 @@ describe('columnControl - searchNumber', function () {
 			table = new DataTable('#example', {
 				columnControl: {
 					target: 1,
-					content: ['searchNumber']
+					content: ['searchDateTime']
 				}
 			});
 
-			expect($('thead tr:eq(1) td:eq(3) input').attr('placeholder')).toBeUndefined();
+			expect($('thead tr:eq(1) td:eq(4) input').attr('placeholder')).toBeUndefined();
 		});
 
 		dt.html('basic');
@@ -515,14 +453,14 @@ describe('columnControl - searchNumber', function () {
 					target: 1,
 					content: [
 						{
-							extend: 'searchNumber',
+							extend: 'searchDateTime',
 							placeholder: 'testA'
 						}
 					]
 				}
 			});
 
-			expect($('thead tr:eq(1) td:eq(3) input').attr('placeholder')).toBe('testA');
+			expect($('thead tr:eq(1) td:eq(4) input').attr('placeholder')).toBe('testA');
 		});
 
 		dt.html('basic');
@@ -533,14 +471,16 @@ describe('columnControl - searchNumber', function () {
 					target: 1,
 					content: [
 						{
-							extend: 'searchNumber',
+							extend: 'searchDateTime',
 							placeholder: 'testB [title] testC'
 						}
 					]
 				}
 			});
 
-			expect($('thead tr:eq(1) td:eq(3) input').attr('placeholder')).toBe('testB Age testC');
+			expect($('thead tr:eq(1) td:eq(4) input').attr('placeholder')).toBe(
+				'testB Start date testC'
+			);
 			expect($('thead tr:eq(1) td:eq(5) input').attr('placeholder')).toBe(
 				'testB Salary testC'
 			);
@@ -554,11 +494,11 @@ describe('columnControl - searchNumber', function () {
 			table = new DataTable('#example', {
 				columnControl: {
 					target: 1,
-					content: ['searchNumber']
+					content: ['searchDateTime']
 				}
 			});
 
-			expect($('thead tr:eq(1) td:eq(3) div.dtcc-search-title').text()).toBe('');
+			expect($('thead tr:eq(1) td:eq(4) div.dtcc-search-title').text()).toBe('');
 		});
 
 		dt.html('basic');
@@ -569,14 +509,14 @@ describe('columnControl - searchNumber', function () {
 					target: 1,
 					content: [
 						{
-							extend: 'searchNumber',
+							extend: 'searchDateTime',
 							title: 'testD'
 						}
 					]
 				}
 			});
 
-			expect($('thead tr:eq(1) td:eq(3) div.dtcc-search-title').text()).toBe('testD');
+			expect($('thead tr:eq(1) td:eq(4) div.dtcc-search-title').text()).toBe('testD');
 		});
 
 		dt.html('basic');
@@ -587,15 +527,15 @@ describe('columnControl - searchNumber', function () {
 					target: 1,
 					content: [
 						{
-							extend: 'searchNumber',
+							extend: 'searchDateTime',
 							title: 'testE [title] testF'
 						}
 					]
 				}
 			});
 
-			expect($('thead tr:eq(1) td:eq(3) div.dtcc-search-title').text()).toBe(
-				'testE Age testF'
+			expect($('thead tr:eq(1) td:eq(4) div.dtcc-search-title').text()).toBe(
+				'testE Start date testF'
 			);
 			expect($('thead tr:eq(1) td:eq(5) div.dtcc-search-title').text()).toBe(
 				'testE Salary testF'
@@ -610,11 +550,11 @@ describe('columnControl - searchNumber', function () {
 			table = new DataTable('#example', {
 				columnControl: {
 					target: 1,
-					content: ['searchNumber']
+					content: ['searchDateTime']
 				}
 			});
 
-			expect($('thead tr:eq(1) td:eq(3) input').attr('title')).toBeUndefined();
+			expect($('thead tr:eq(1) td:eq(4) input').attr('title')).toBeUndefined();
 		});
 
 		dt.html('basic');
@@ -625,14 +565,14 @@ describe('columnControl - searchNumber', function () {
 					target: 1,
 					content: [
 						{
-							extend: 'searchNumber',
+							extend: 'searchDateTime',
 							titleAttr: 'testG'
 						}
 					]
 				}
 			});
 
-			expect($('thead tr:eq(1) td:eq(3) input').attr('title')).toBe('testG');
+			expect($('thead tr:eq(1) td:eq(4) input').attr('title')).toBe('testG');
 		});
 
 		dt.html('basic');
@@ -643,14 +583,14 @@ describe('columnControl - searchNumber', function () {
 					target: 1,
 					content: [
 						{
-							extend: 'searchNumber',
+							extend: 'searchDateTime',
 							titleAttr: 'testH [title] testI'
 						}
 					]
 				}
 			});
 
-			expect($('thead tr:eq(1) td:eq(3) input').attr('title')).toBe('testH Age testI');
+			expect($('thead tr:eq(1) td:eq(4) input').attr('title')).toBe('testH Start date testI');
 			expect($('thead tr:eq(1) td:eq(5) input').attr('title')).toBe('testH Salary testI');
 		});
 	});
