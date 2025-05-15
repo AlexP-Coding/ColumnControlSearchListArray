@@ -321,7 +321,7 @@ describe('columnControl - colVis', function () {
 		});
 	});
 
-	describe('Option - search', function () {
+	describe('Option - select', function () {
 		dt.html('basic');
 
 		it('Create CC dropdown with colVis (default select)', () => {
@@ -340,13 +340,14 @@ describe('columnControl - colVis', function () {
 			expect($('.dtcc-dropdown').length).toBe(1);
 		});
 
-		it('No search input', () => {
+		it('No select buttons', () => {
 			expect($('.dtcc-dropdown .dtcc-list-selectAll').length).toBe(0);
+			expect($('.dtcc-dropdown .dtcc-list-selectNone').length).toBe(0);
 		});
 
 		dt.html('basic');
 
-		it('Create CC dropdown with colVis (enable search)', () => {
+		it('Create CC dropdown with colVis (enable select)', () => {
 			table = new DataTable('#example', {
 				columnControl: [
 					[

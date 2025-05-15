@@ -13,7 +13,7 @@ describe('columnControl - title', function () {
 			expect(DataTable.ColumnControl.content.title).toBeDefined();
 		});
 
-		it('Create CC with spacer', () => {
+		it('Create CC with title', () => {
 			table = new DataTable('#example', {
 				columnControl: ['title'],
 				ordering: {
