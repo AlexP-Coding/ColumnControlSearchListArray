@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="2" framework="bootstrap4">
+
+<css lib="datatables columncontrol"/>
+<js lib="jquery datatables columncontrol">
+<![CDATA[
+
+$('#example').DataTable({
+	columnControl: [
+		{
+			target: 0,
+			content: [
+				'order',
+				[
+					'orderAsc',
+					'orderDesc',
+					'spacer',
+					'orderAddAsc',
+					'orderAddDesc',
+					'spacer',
+					'orderRemove'
+				]
+			]
+		},
+		{
+			target: 1,
+			content: ['search']
+		}
+	],
+	ordering: {
+		handler: false,
+		indicators: false
+	}
+});
+
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+
+new DataTable('#example', {
+	columnControl: [
+		{
+			target: 0,
+			content: [
+				'order',
+				[
+					'orderAsc',
+					'orderDesc',
+					'spacer',
+					'orderAddAsc',
+					'orderAddDesc',
+					'spacer',
+					'orderRemove'
+				]
+			]
+		},
+		{
+			target: 1,
+			content: ['search']
+		}
+	],
+	ordering: {
+		handler: false,
+		indicators: false
+	}
+});
+
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Bootstrap 4</title>
+
+<info><![CDATA[
+
+This example shows DataTables and ColumnControl with Bootstrap 4 styling integration. Please note that all of the general examples for ColumnControl can be styled with Bootstrap or any of the other styling integration using the options at the top right of the window, however, this example is explicitly Bootstrap 4 styled.
+
+ColumnControl is setup in this example to show a range of content type with the Bootstrap styling. Specifically the `-content order` button is shown and followed by a dropdown with a list of various ordering control buttons. A second row in the header is used to display search inputs.
+
+]]></info>
+
+</dt-example>
+
