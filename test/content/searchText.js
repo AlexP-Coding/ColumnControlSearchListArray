@@ -94,6 +94,8 @@ describe('columnControl - searchText', function () {
 		dt.html('basic');
 
 		it('Setup with state restore - no initial value', () => {
+			localStorage.clear();
+
 			table = new DataTable('#example', {
 				columnControl: {
 					target: 1,
