@@ -20,7 +20,7 @@ export default {
 	defaults: {
 		className: 'searchClear',
 		icon: 'searchClear',
-		text: 'Clear search'
+		text: 'Clear Search'
 	},
 
 	init(config) {

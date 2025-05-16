@@ -87,6 +87,94 @@ describe('columnControl - search', function () {
 	});
 
 	describe('Option - allowSearchList', function () {
-		// TODO
+		// Just check the lists are created (or not) - search logic is checked in searchList.js
+		let table;
+
+		dt.html('empty');
+
+		it('Create Ajax table with CC search - default allowSearchList', (done) => {
+			table = new DataTable('#example', {
+				ajax: '/base/test/data/cc-options.txt',
+				columnControl: ['search'],
+				columns: [
+					{ data: 'name' },
+					{ data: 'position' },
+					{ data: 'office' },
+					{ data: 'extn' },
+					{ data: 'start_date' },
+					{ data: 'salary' }
+				],
+				ordering: {
+					indicators: false,
+					handler: false
+				}
+			});
+
+			table.ready(() => {
+				done();
+			});
+		});
+
+		it('Does not show any lists', () => {
+			expect($('.dtcc-search').length).toBe(6);
+			expect($('.dtcc-list').length).toBe(0);
+		});
+
+		dt.html('empty');
+
+		it('Create Ajax table with CC search - and enable allowSearchList', (done) => {
+			table = new DataTable('#example', {
+				ajax: '/base/test/data/cc-options.txt',
+				columnControl: [{
+					extend: 'search',
+					allowSearchList: true
+				}],
+				columns: [
+					{ data: 'name' },
+					{ data: 'position' },
+					{ data: 'office' },
+					{ data: 'extn' },
+					{ data: 'start_date' },
+					{ data: 'salary' }
+				],
+				ordering: {
+					indicators: false,
+					handler: false
+				}
+			});
+
+			table.ready(() => {
+				done();
+			});
+		});
+
+		it('Has two lists', () => {
+			expect($('.dtcc-search').length).toBe(4);
+			expect($('.dtcc-list').length).toBe(2);
+		});
+
+		dt.html('basic');
+
+		it('Create DOM table with CC search - and enable allowSearchList', (done) => {
+			table = new DataTable('#example', {
+				columnControl: [{
+					extend: 'search',
+					allowSearchList: true
+				}],
+				ordering: {
+					indicators: false,
+					handler: false
+				}
+			});
+
+			table.ready(() => {
+				done();
+			});
+		});
+
+		it('Has no lists - `search` only shows lists when provided by Ajax', () => {
+			expect($('.dtcc-search').length).toBe(6);
+			expect($('.dtcc-list').length).toBe(0);
+		});
 	});
 });
