@@ -192,10 +192,12 @@ table.dataTable span.dtcc {
 	div.dtcc-searchText > div {
 		div.dtcc-search-type-icon {
 			right: 0;
+			z-index: 1;
 		}
 
 		select {
 			right: 0;
+			z-index: 2;
 		}
 
 		span.dtcc-search-clear {
@@ -211,10 +213,12 @@ table.dataTable span.dtcc {
 	div.dtcc-searchDate > div {
 		div.dtcc-search-type-icon {
 			left: 0;
+			z-index: 1;
 		}
 
 		select {
 			left: 0;
+			z-index: 2;
 		}
 
 		span.dtcc-search-clear {
