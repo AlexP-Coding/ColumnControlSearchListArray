@@ -31,15 +31,25 @@ export interface IClasses {
 	liner: string | string[];
 }
 
+interface IEventDropdownClose extends Event {
+	_closed: HTMLElement[];
+}
+
 /**
  * Close all or only other dropdowns
  *
  * @param e Event or null to close all others
  */
-export function close(e: Event | null = null) {
+export function close(e: IEventDropdownClose | null = null) {
 	document.querySelectorAll<HTMLDropdown>('div.dtcc-dropdown').forEach((el) => {
 		if (e === null || !el.contains(e.target as Node)) {
 			el._close();
+
+			if (! e._closed) {
+				e._closed = [];
+			}
+
+			e._closed.push(el);
 		}
 	});
 }
@@ -182,15 +192,14 @@ const dropdownContent = {
 			.icon(config.icon)
 			.className(config.className)
 			.dropdownDisplay(liner)
-			.handler(() => {
-				close();
+			.handler((e: IEventDropdownClose) => {
+				// Do nothing if our dropdown was just closed as part of the event (i.e. allow
+				// the button to toggle it closed)
+				if (e._closed && e._closed.includes(dropdown)) {
+					return;
+				}
 
-				if (dropdown._shown) {
-					dropdown._close();
-				}
-				else {
-					attachDropdown(dropdown, dt, config._parents ? config._parents[0] : btn);
-				}
+				attachDropdown(dropdown, dt, config._parents ? config._parents[0] : btn);
 			});
 
 		// Add the content for the dropdown

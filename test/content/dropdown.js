@@ -60,6 +60,30 @@ describe('columnControl - dropdown', function () {
 			expect($('.dtcc-dropdown').length).toBe(0);
 		});
 
+		it('Show the dropdown again', () => {
+			$('.dtcc-button_dropdown')
+				.eq(1)
+				.trigger('click');
+
+			expect($('.dtcc-dropdown').length).toBe(1);
+		});
+
+		it('Click the button again while the dropdown is shown, hides it (toggle)', () => {
+			$('.dtcc-button_dropdown')
+				.eq(1)
+				.trigger('click');
+
+			expect($('.dtcc-dropdown').length).toBe(0);
+		});
+
+		it('And another click shows it', () => {
+			$('.dtcc-button_dropdown')
+				.eq(1)
+				.trigger('click');
+
+			expect($('.dtcc-dropdown').length).toBe(1);
+		});
+
 		it('Destroying the DataTable while the dropdown is open removes the dropdown', () => {
 			$('.dtcc-button_dropdown')
 				.eq(1)
