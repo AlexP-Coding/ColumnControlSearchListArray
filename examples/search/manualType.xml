@@ -82,7 +82,7 @@ new DataTable('#example', {
 
 This example is [similar to the auto type detection one](./autoType.html), but rather than allowing ColumnControl and DataTables to figure out the data type, the search type is assigned manually. The key piece of information here is to know that `-content search` is simply a wrapper around data type specific search types - it picks one of `-content searchText`, `-content searchNumber` or `-content searchDateTime` based on the [column's data type](https://datatables.net/manual/data/types).
 
-In this example, the search types are applied directly. This is done by using `-init columns.columnControl` option to assign a specific search type to given columns as [detailed in the "Column specific configuration" example](initialisation/columnSpecific.html).
+In this example, the search types are applied directly. This is done by using `-init columns.columnControl` option to assign a specific search type to given columns as [detailed in the "Column specific configuration" example](../initialisation/columnSpecific.html).
 
 ]]></info>
 
