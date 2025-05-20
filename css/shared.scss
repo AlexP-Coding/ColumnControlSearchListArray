@@ -161,6 +161,7 @@ table.dataTable span.dtcc {
 				height: 100%;
 				cursor: pointer;
 				opacity: 0;
+				background-color: var(--dtcc-search-input_background);
 			}
 
 			span.dtcc-search-clear {
@@ -359,6 +360,10 @@ div.dtcc-dropdown {
 				border: var(--dtcc-search-input_border);
 				border-radius: var(--dtcc-search-input_border-radius);
 				background-color: var(--dtcc-search-input_background-color);
+
+				option {
+					background-color: var(--dtcc-search-input_background-color);
+				}
 			}
 
 			// Second row

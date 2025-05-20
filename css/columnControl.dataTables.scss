@@ -55,8 +55,8 @@
 	--dtcc-search-input_padding-right: 24px;
 
 	--dtcc-search-input_border: 1px solid #aaa;
-	--dtcc-search-input_background-color: transparent;
-	--dtcc-search-input_background: transparent;
+	--dtcc-search-input_background-color: var(--dt-html-background);
+	--dtcc-search-input_background: var(--dt-html-background);
 	--dtcc-search-input_border-radius: 3px;
 	--dtcc-search-input_padding: 5px;
 	--dtcc-search-input_flexCalc: 24px;
