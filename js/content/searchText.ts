@@ -41,7 +41,7 @@ export default {
 			.options([
 				{ label: 'Contains', value: 'contains' },
 				{ label: 'Does not contain', value: 'notContains' },
-				{ label: 'Equal', value: 'equal' },
+				{ label: 'Equals', value: 'equal' },
 				{ label: 'Does not equal', value: 'notEqual' },
 				{ label: 'Starts', value: 'starts' },
 				{ label: 'Ends', value: 'ends' },
