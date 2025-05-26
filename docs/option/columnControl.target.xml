@@ -14,7 +14,7 @@
 		<description>
 			A string provides the options of targeting either the table header or footer. It can take the following formats:
 
-			* `-string thead:\d` - add the content to the table in header, the row index defined by a digit (`\d`) - e.g. `thead:0` for the first row in the header, `thead:2` for the third, etc.
+			* `-string thead:\d` - add the content to the table header, the row index defined by a digit (`\d`) - e.g. `thead:0` for the first row in the header, `thead:2` for the third, etc.
 			* `-string tfoot:\d` - as above, but inserting content into the table footer.
 			* `-string tfoot` - add the content to the first row in the table footer (i.e. a shorthand for `tfoot:0`).
 
