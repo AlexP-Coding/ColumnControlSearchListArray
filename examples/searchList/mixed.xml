@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-example table-type="ajax" order="7" table-class="display nowrap">
 
-<css lib="datatables columncontrol" />
-<js lib="jquery datatables columncontrol">
+<css lib="datatables columncontrol datetime" />
+<js lib="jquery datatables columncontrol datetime">
 <![CDATA[
 
 $('#example').DataTable({
