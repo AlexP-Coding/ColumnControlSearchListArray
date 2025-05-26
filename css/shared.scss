@@ -30,12 +30,11 @@ table.dataTable {
 table.dataTable span.dtcc {
 	font-weight: normal;
 	white-space: nowrap;
+	display: inline-flex;
+	align-items: center;
 
 	button.dtcc-button {
-		margin-top: calc(var(--dtcc-button_padding) * -1); // want padding around the top/bottom
-		margin-bottom: calc(
-			var(--dtcc-button_padding) * -1
-		); // of the buttons, but not extra height
+		display: inline-flex;
 		padding: var(--dtcc-button_padding);
 		border: var(--dtcc-button_border);
 		border-radius: var(--dtcc-button_border-radius);
@@ -77,6 +76,8 @@ table.dataTable span.dtcc {
 		box-sizing: content-box;
 		color: var(--dtcc-button-icon_color);
 		vertical-align: middle;
+		line-height: var(--dtcc-button-icon_size);
+		height: var(--dtcc-button-icon_size);
 
 		svg {
 			width: var(--dtcc-button-icon_size);
