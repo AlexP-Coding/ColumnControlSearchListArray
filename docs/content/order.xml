@@ -9,7 +9,7 @@
 
 		To a large degree, it replaces the ordering icons and event handler that DataTables applies to column headers, so you will often use it in combination with `-init ordering.indicators` and `-init ordering.handler` to disable DataTable's default controls.
 
-		When ordering is activated via the button, it follows the same direction application sequence as defined by `-init columns.orderSequence`.
+		When ordering is activated via the button, it follows the same direction application sequence as defined by `-init columns.orderSequence`. Shift click on the buttons will also add the target column to multi-column order. The button's behaviour is identical to DataTables built in listener as the button uses `-api order.listener()`.
 
 		Examples showing the use of this content type [are available on the DataTables website](https://datatables.net/extensions/columncontrol/examples/ordering/).
 

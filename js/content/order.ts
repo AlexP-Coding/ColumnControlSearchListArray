@@ -43,28 +43,7 @@ export default {
 			.className(config.className);
 
 		if (!config.statusOnly) {
-			btn.handler(() => {
-				let order = dt.order();
-				let sequence = (dt.settings() as any)[0].aoColumns[this.idx()].asSorting;
-				let found = order.find((o) => o[0] === this.idx());
-				let apply: any = [];
-
-				if (!found) {
-					apply.push([this.idx(), sequence[0]]);
-				}
-				else {
-					let currentIdx = sequence.indexOf(found[1]);
-
-					if (currentIdx+1 >= sequence.length) {
-						apply.push([this.idx(), sequence[0]]);
-					}
-					else {
-						apply.push([this.idx(), sequence[currentIdx + 1]]);
-					}
-				}
-
-				dt.order(apply).draw();
-			});
+			dt.order.listener(btn.element(), this.idx(), () => {});
 		}
 
 		dt.on('order', (e, s, order) => {

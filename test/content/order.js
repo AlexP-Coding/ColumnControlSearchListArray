@@ -37,8 +37,8 @@ describe('columnControl - order', function () {
 			expect($('thead th:gt(0)').find('.dtcc-button_active').length).toBe(0);
 		});
 
-		it('On click for first column it reverses the default sorting', () => {
-			$('thead th:eq(0) .dtcc-button').trigger('click');
+		it('On click for first column it reverses the default sorting', async () => {
+			await dt.clickCCButton(0, 0);
 
 			expect(
 				$('tbody td')
@@ -47,8 +47,8 @@ describe('columnControl - order', function () {
 			).toBe('Zorita Serrano');
 		});
 
-		it('Another click is zero sort', () => {
-			$('thead th:eq(0) .dtcc-button').trigger('click');
+		it('Another click is zero sort', async() => {
+			await dt.clickCCButton(0, 0);
 
 			expect(
 				$('tbody td')
@@ -57,8 +57,8 @@ describe('columnControl - order', function () {
 			).toBe('Tiger Nixon');
 		});
 
-		it('And the third click is back to sorting asc', () => {
-			$('thead th:eq(0) .dtcc-button').trigger('click');
+		it('And the third click is back to sorting asc', async () => {
+			await dt.clickCCButton(0, 0);
 
 			expect(
 				$('tbody td')
@@ -67,8 +67,8 @@ describe('columnControl - order', function () {
 			).toBe('Airi Satou');
 		});
 
-		it('Clicking to sort on another column', () => {
-			$('thead th:eq(1) .dtcc-button').trigger('click');
+		it('Clicking to sort on another column', async () => {
+			await dt.clickCCButton(0, 1);
 
 			expect(
 				$('tbody td')
@@ -109,8 +109,8 @@ describe('columnControl - order', function () {
 			expect($('.dtcc-button_order').length).toBe(6);
 		});
 
-		it('Click to desc sort', () => {
-			$('thead th:eq(0) .dtcc-button').trigger('click');
+		it('Click to desc sort', async () => {
+			await dt.clickCCButton(0, 0);
 
 			expect(
 				$('tbody td')
@@ -119,8 +119,8 @@ describe('columnControl - order', function () {
 			).toBe('Zorita Serrano');
 		});
 
-		it('Click to asc sort', () => {
-			$('thead th:eq(0) .dtcc-button').trigger('click');
+		it('Click to asc sort', async () => {
+			await dt.clickCCButton(0, 0);
 
 			expect(
 				$('tbody td')
@@ -202,6 +202,85 @@ describe('columnControl - order', function () {
 		});
 	});
 
+	describe('Functionality - multi-column ordering', function () {
+		let table;
+
+		dt.html('basic');
+
+		it('Create CC order button', () => {
+			table = new DataTable('#example', {
+				columnControl: ['order'],
+				ordering: {
+					handler: false
+				}
+			});
+
+			expect($('.dtcc').length).toBe(6);
+			expect($('.dtcc-button_order').length).toBe(6);
+		});
+
+		// Single column tests above, so just jump straight into multi-column
+		it('Shift click on second column - first two columns are active ordering', async () => {
+			await dt.clickCCButton(0, 1, {shift: true});
+
+			expect(
+				$('thead th')
+					.eq(0)
+					.find('.dtcc-button_active').length
+			).toBe(1);
+
+			expect(
+				$('thead th')
+					.eq(1)
+					.find('.dtcc-button_active').length
+			).toBe(1);
+		});
+
+		it('Ordering is multi-column', () => {
+			dt.checkOrder(table.order(), [[0, 'asc'], [1, 'asc']]);
+		});
+
+		it('Shift click on second column again', async () => {
+			await dt.clickCCButton(0, 1, {shift: true});
+
+			expect(
+				$('thead th')
+					.eq(0)
+					.find('.dtcc-button_active').length
+			).toBe(1);
+
+			expect(
+				$('thead th')
+					.eq(1)
+					.find('.dtcc-button_active').length
+			).toBe(1);
+		});
+
+		it('Ordering is multi-column', () => {
+			dt.checkOrder(table.order(), [[0, 'asc'], [1, 'desc']]);
+		});
+
+		it('Third click will remove the extra column', async () => {
+			await dt.clickCCButton(0, 1, {shift: true});
+
+			expect(
+				$('thead th')
+					.eq(0)
+					.find('.dtcc-button_active').length
+			).toBe(1);
+
+			expect(
+				$('thead th')
+					.eq(1)
+					.find('.dtcc-button_active').length
+			).toBe(0);
+		});
+
+		it('Ordering is multi-column', () => {
+			dt.checkOrder(table.order(), [[0, 'asc'], [1, '']]);
+		});
+	});
+
 	describe('Option - statusOnly', function () {
 		let table;
 
@@ -223,8 +302,8 @@ describe('columnControl - order', function () {
 			expect($('.dtcc-button_order').length).toBe(6);
 		});
 
-		it('On click for first column it reverses the default sorting', () => {
-			$('thead th:eq(0) .dtcc-button').trigger('click');
+		it('On click for first column it reverses the default sorting', async () => {
+			await dt.clickCCButton(0, 0);
 
 			expect(
 				$('tbody td')
@@ -252,8 +331,8 @@ describe('columnControl - order', function () {
 			expect($('.dtcc-button_order').length).toBe(6);
 		});
 
-		it('Nothing changes on click', () => {
-			$('thead th:eq(0) .dtcc-button').trigger('click');
+		it('Nothing changes on click', async () => {
+			await dt.clickCCButton(0, 0);
 
 			expect(
 				$('tbody td')
