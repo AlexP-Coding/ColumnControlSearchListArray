@@ -354,6 +354,47 @@ describe('columnControl - searchList', function () {
 			expect($('button.dtcc-list-selectNone span').text()).toBe('(2)');
 		});
 
+		dt.html('basic');
+
+		it('Reload again without changes', () => {
+			table = new DataTable('#example', {
+				columnControl: [['searchList']],
+				ordering: {
+					handler: false
+				},
+				stateSave: true
+			});
+
+			expect($('.dtcc-button_dropdown').length).toBe(6);
+		});
+
+		it('Filter is active after reload with no changes', () => {
+			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Airi Satou');
+			expect($('tbody tr:eq(9) td:eq(0)').text()).toBe('Michael Silva');
+		});
+
+		it('Show column filter', () => {
+			$('.dtcc-button_dropdown')
+				.eq(2)
+				.trigger('click');
+
+			expect($('.dtcc-dropdown').length).toBe(1);
+		});
+
+		it('Correct filter buttons are active', () => {
+			expect($('div.dtcc-list button.dtcc-button:eq(1)').hasClass('dtcc-button_active')).toBe(
+				true
+			);
+			expect($('div.dtcc-list button.dtcc-button:eq(6)').hasClass('dtcc-button_active')).toBe(
+				true
+			);
+			expect($('div.dtcc-list button.dtcc-button.dtcc-button_active').length).toBe(2);
+		});
+
+		it('Deselect count is still set', () => {
+			expect($('button.dtcc-list-selectNone span').text()).toBe('(2)');
+		});
+
 		it('Remove filter', () => {
 			$('div.dtcc-list button.dtcc-button:eq(1)').trigger('click');
 			$('div.dtcc-list button.dtcc-button:eq(6)').trigger('click');

@@ -236,7 +236,12 @@ export default {
 				data.columnControl[idx] = {};
 			}
 
-			data.columnControl[idx].searchList = checkList.values();
+			// If the table isn't yet ready, then the options for the list won't have been
+			// populated (above) and therefore there can't be an values. In such a case
+			// use the last saved values and this will refresh on the next draw.
+			data.columnControl[idx].searchList = dt.ready()
+				? checkList.values()
+				: loadedValues;
 		});
 
 		loadedValues = getState(this.idx(), dt.state.loaded());
