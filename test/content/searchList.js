@@ -238,6 +238,10 @@ describe('columnControl - searchList', function () {
 			expect($('.dtcc-dropdown').length).toBe(1);
 		});
 
+		it('Deselect count is empty', () => {
+			expect($('button.dtcc-list-selectNone span').text()).toBe('');
+		});
+
 		it('Select an option', () => {
 			$('div.dtcc-list button.dtcc-button:eq(1)').trigger('click');
 
@@ -248,6 +252,10 @@ describe('columnControl - searchList', function () {
 			expect($('button.dtcc-button_dropdown:eq(2)').hasClass('dtcc-button_active')).toBe(
 				true
 			);
+		});
+
+		it('Deselect count is set', () => {
+			expect($('button.dtcc-list-selectNone span').text()).toBe('(1)');
 		});
 
 		dt.html('basic');
@@ -287,6 +295,10 @@ describe('columnControl - searchList', function () {
 				true
 			);
 			expect($('div.dtcc-list button.dtcc-button.dtcc-button_active').length).toBe(1);
+		});
+
+		it('Deselect count is up to date', () => {
+			expect($('button.dtcc-list-selectNone span').text()).toBe('(1)');
 		});
 
 		it('Select another option', () => {
@@ -336,6 +348,10 @@ describe('columnControl - searchList', function () {
 				true
 			);
 			expect($('div.dtcc-list button.dtcc-button.dtcc-button_active').length).toBe(2);
+		});
+
+		it('Deselect count is still set', () => {
+			expect($('button.dtcc-list-selectNone span').text()).toBe('(2)');
 		});
 
 		it('Remove filter', () => {

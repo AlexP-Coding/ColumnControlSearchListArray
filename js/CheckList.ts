@@ -228,6 +228,8 @@ export default class CheckList {
 				}
 			}
 
+			this._updateCount();
+
 			return this;
 		}
 
