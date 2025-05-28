@@ -29,6 +29,9 @@ rsync -r css $OUT_DIR
 css_frameworks columnControl $OUT_DIR/css
 
 
+# Get the version from the file
+VERSION=$(grep "static version" js/ColumnControl.ts | perl -nle'print $& if m{\d+\.\d+\.\d+(\-\w*)?}')
+
 # JS - compile and then copy into place
 $DT_SRC/node_modules/typescript/bin/tsc
 
@@ -37,7 +40,7 @@ sed -i "s#import DataTable from '../../../types/types';##" js/dataTables.columnC
 sed -i "s#import DataTable from '../../../types/types';##" js/ColumnControl.js
 sed -i "s#import DataTable from '../../../../types/types';##" js/content/index.js
 
-HEADER="/*! ColumnControl
+HEADER="/*! ColumnControl $VERSION
  * Copyright (c) SpryMedia Ltd - datatables.net/license
  *
  * SVG icons: ISC License

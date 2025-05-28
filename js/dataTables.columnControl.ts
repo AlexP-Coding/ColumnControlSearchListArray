@@ -1,7 +1,3 @@
-/*! ColumnControl 0.9.0
- * © SpryMedia Ltd - datatables.net/license/mit
- */
-
 import DataTable, { Api } from '../../../types/types';
 import ColumnControl, { IConfig } from './ColumnControl';
 import { createElement } from './util';
