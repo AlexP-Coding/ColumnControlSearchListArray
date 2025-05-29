@@ -119,7 +119,7 @@ function reloadOptions(dt, config, idx, checkList, loadedValues) {
 		// orthogonal rendering
 		let found = {};
 
-		dt.cells('*', idx, { order: idx }).every(function () {
+		dt.cells(null, idx, { order: idx }).every(function () {
 			let filter = this.render('filter');
 
 			if (!found[filter]) {

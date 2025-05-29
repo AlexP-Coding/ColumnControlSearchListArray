@@ -528,6 +528,10 @@ describe('columnControl - searchList', function () {
 			expect($('div.dtcc-list button.dtcc-button:eq(0)').text()).toBe('Airi Satou');
 			expect($('div.dtcc-list button.dtcc-button:eq(1)').text()).toBe('Angelica Ramos');
 			expect($('div.dtcc-list button.dtcc-button:eq(2)').text()).toBe('Ashton Cox');
+		});
+
+		it('Client-side dropdown has the correct number of options', () => {
+			expect($('div.dtcc-list button.dtcc-button').length).toBe(57);
 
 			$('body').trigger('click');
 		});
@@ -544,6 +548,10 @@ describe('columnControl - searchList', function () {
 			expect($('div.dtcc-list button.dtcc-button:eq(2)').text()).toBe(
 				'Chief Financial Officer (CFO)'
 			);
+		});
+
+		it('Ajax dropdown has the correct number of options', () => {
+			expect($('div.dtcc-list button.dtcc-button').length).toBe(33);
 
 			$('body').trigger('click');
 		});
