@@ -118,19 +118,21 @@ function reloadOptions(dt, config, idx, checkList, loadedValues) {
 		// for this column - get the values for the column, taking into account
 		// orthogonal rendering
 		let found = {};
+		let rows = dt.rows({ order: idx }).indexes().toArray();
+		let settings = dt.settings()[0];
 
-		dt.cells(null, idx, { order: idx }).every(function () {
-			let filter = this.render('filter');
+		for (let i=0 ; i<rows.length ; i++) {
+			let filter = settings.fastData(rows[i], idx, 'filter');
 
 			if (!found[filter]) {
 				found[filter] = true;
 
 				options.push({
-					label: this.render('display'),
+					label: settings.fastData(rows[i], idx, 'display'),
 					value: filter
 				});
 			}
-		});
+		}
 	}
 
 	setOptions(checkList, options);
