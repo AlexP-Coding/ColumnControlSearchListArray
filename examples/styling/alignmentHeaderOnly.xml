@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="20">
+
+<css lib="datatables columncontrol"/>
+<js lib="jquery datatables columncontrol">
+<![CDATA[
+
+DataTable.type('num', 'className', 'dt-body-right');
+DataTable.type('num-fmt', 'className', 'dt-body-right');
+DataTable.type('date', 'className', 'dt-body-right');
+
+$('#example').DataTable({
+	columnControl: [
+		{
+			target: 0,
+			content: [
+				'order',
+				[
+					'orderAsc',
+					'orderDesc',
+					'spacer',
+					'orderAddAsc',
+					'orderAddDesc',
+					'spacer',
+					'orderRemove'
+				]
+			]
+		},
+		{
+			target: 1,
+			content: ['search']
+		}
+	],
+	ordering: {
+		handler: false,
+		indicators: false
+	}
+});
+
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+
+DataTable.type('num', 'className', 'dt-body-right');
+DataTable.type('num-fmt', 'className', 'dt-body-right');
+DataTable.type('date', 'className', 'dt-body-right');
+
+new DataTable('#example', {
+	columnControl: [
+		{
+			target: 0,
+			content: [
+				'order',
+				[
+					'orderAsc',
+					'orderDesc',
+					'spacer',
+					'orderAddAsc',
+					'orderAddDesc',
+					'spacer',
+					'orderRemove'
+				]
+			]
+		},
+		{
+			target: 1,
+			content: ['search']
+		}
+	],
+	ordering: {
+		handler: false,
+		indicators: false
+	}
+});
+
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Header Alignment: Header Left / Text Auto</title>
+
+<info><![CDATA[
+
+You might have noticed in the other ColumnControl examples, that DataTables will automatically change the alignment of the text in cells to match the data type - i.e. numeric and date information is right aligned, while plain text is left aligned. The header reflects this to visually tie the column name with the data.
+
+This has an impact on ColumnControl icons as they will fill the space on the opposite side of the text alignment (i.e. for dates they are on the left, while for strings they are on the right). You may wish to have the icons and header text aligned all in the same way. This can be done with [DataTables type control](https://datatables.net/manual/data/types) through the `-api DataTable.type()` method to set the class name to use for each detected type.
+
+In this case the `dt-body-right` class is used to right align the cells with `num` (numeric), `num-fmt` (formatted numeric) and `date` data types. This allows the header to default to its left alignment, while keeping the data right aligned.
+
+The [next example](./alignmentBothLeft.html) shows how to align both the header and body text to the left.
+
+]]></info>
+
+</dt-example>
+
