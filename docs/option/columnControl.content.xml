@@ -19,7 +19,7 @@
 	</default>
 
 	<description>
-		This option lets you define what buttons, inputs and any other content types the end user see in ColumnControl. In keeping with the rest of ColumnControl (and DataTables in general) it is extremely configurable, but also designed to be easy to use.
+		This option lets you define what buttons, inputs and any other content types the end user will see in ColumnControl. In keeping with the rest of ColumnControl (and DataTables in general) it is extremely configurable, but also designed to be easy to use.
 
 		Each item in the `content` array defines a single content type that will be displayed. A content type can be a button, input, or something more complex. Please see [the content type reference page](https://datatables.net/reference/content) for a full list of the content types available. Note also that each content type might provide options that are specific to it for customisation.
 
@@ -33,7 +33,7 @@
 
 		It is worth recalling here that `-init columnControl` when given as an array in this form is the same as `columnControl: { content: ['orderAsc', 'orderDesc'] }`. The shorthand of using an array is just a convenience for the most common use case.
 
-		In that same vain, using a string as a content type identifier is a shorthand itself. In this case the expanded form is an object with an `extend` property set to be the string value, e.g. `'orderAsc'` and `{extend: 'orderAsc'}` are functionally identical in ColumnControl.
+		In that same vein, using a string as a content type identifier is a shorthand itself. In this case the expanded form is an object with an `extend` property set to be the string value, e.g. `'orderAsc'` and `{extend: 'orderAsc'}` are functionally identical in ColumnControl.
 
 		The object form allows configuration properties to be set for the content type. For example you might wish to customise button text, or Ajax options for `-content searchList`.
 
