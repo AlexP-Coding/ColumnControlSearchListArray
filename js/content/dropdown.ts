@@ -150,6 +150,14 @@ function relativePosition(parent: HTMLElement, origin: HTMLElement) {
 		top += origin.offsetTop;
 		left += origin.offsetLeft;
 
+		if (origin.scrollTop) {
+			left -= origin.scrollTop;
+		}
+
+		if (origin.scrollLeft) {
+			left -= origin.scrollLeft;
+		}
+
 		origin = origin.offsetParent as HTMLElement;
 	}
 
