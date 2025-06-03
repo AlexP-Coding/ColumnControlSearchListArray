@@ -21,7 +21,7 @@ describe('columnControl - searchDateTime', function () {
 				}
 			});
 
-			expect($('.dtcc-searchDate').length).toBe(6);
+			expect($('.dtcc-searchDateTime').length).toBe(6);
 		});
 
 		it('There is an input element in each cell in the second header row', () => {

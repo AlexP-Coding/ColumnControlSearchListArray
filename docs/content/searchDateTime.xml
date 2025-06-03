@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-button library="ColumnControl">
-	<name>searchDate</name>
+	<name>searchDateTime</name>
 	<summary>Search for date based columns.</summary>
 	<since>1.0.0</since>
 

@@ -30,7 +30,7 @@ describe('columnControl - search', function () {
 			expect($('thead th:eq(1) .dtcc-searchText').length).toBe(1);
 			expect($('thead th:eq(2) .dtcc-searchText').length).toBe(1);
 			expect($('thead th:eq(3) .dtcc-searchNumber').length).toBe(1);
-			expect($('thead th:eq(4) .dtcc-searchDate').length).toBe(1);
+			expect($('thead th:eq(4) .dtcc-searchDateTime').length).toBe(1);
 			expect($('thead th:eq(5) .dtcc-searchNumber').length).toBe(1);
 		});
 	});
@@ -56,7 +56,7 @@ describe('columnControl - search', function () {
 			expect($('thead th:eq(1) .dtcc-searchText input').attr('placeholder')).toBeUndefined();
 			expect($('thead th:eq(2) .dtcc-searchText input').attr('placeholder')).toBeUndefined();
 			expect($('thead th:eq(3) .dtcc-searchNumber input').attr('placeholder')).toBeUndefined();
-			expect($('thead th:eq(4) .dtcc-searchDate input').attr('placeholder')).toBeUndefined();
+			expect($('thead th:eq(4) .dtcc-searchDateTime input').attr('placeholder')).toBeUndefined();
 			expect($('thead th:eq(5) .dtcc-searchNumber input').attr('placeholder')).toBeUndefined();
 		});
 
@@ -81,7 +81,7 @@ describe('columnControl - search', function () {
 			expect($('thead th:eq(1) .dtcc-searchText input').attr('placeholder')).toBe('TestA');
 			expect($('thead th:eq(2) .dtcc-searchText input').attr('placeholder')).toBe('TestA');
 			expect($('thead th:eq(3) .dtcc-searchNumber input').attr('placeholder')).toBe('TestA');
-			expect($('thead th:eq(4) .dtcc-searchDate input').attr('placeholder')).toBe('TestA');
+			expect($('thead th:eq(4) .dtcc-searchDateTime input').attr('placeholder')).toBe('TestA');
 			expect($('thead th:eq(5) .dtcc-searchNumber input').attr('placeholder')).toBe('TestA');
 		});
 	});

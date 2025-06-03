@@ -1,4 +1,4 @@
-import searchDate, { ISearchDateTimeConfig } from './searchDate';
+import searchDateTime, { ISearchDateTimeConfig } from './searchDateTime';
 import searchList, { ISearchListConfig, getJsonOptions } from './searchList';
 import searchNumber, { ISearchNumberConfig } from './searchNumber';
 import searchText, { ISearchTextConfig } from './searchText';
@@ -38,7 +38,10 @@ export default {
 			}
 			else if (type === 'date' || type.startsWith('datetime')) {
 				// Date types
-				return searchDate.init.call(this, Object.assign({}, searchDate.defaults, config));
+				return searchDateTime.init.call(
+					this,
+					Object.assign({}, searchDateTime.defaults, config)
+				);
 			}
 			else if (type.includes('num')) {
 				// Number types

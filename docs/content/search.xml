@@ -8,7 +8,7 @@
 		This content type adds a column search that is suitable for the column's [data type](https://datatables.net/manual/data/types) as detected by DataTables. This makes column search much easier to configure than needing to manually specify types, as you can simply use `-content search` and it will pick the best input type from the following (in this order):
 
 		* `-content searchList` - only used if `allowSearchList` is enabled and there are options for the column in the JSON response for the Ajax request.
-		* `-content searchDate` - if the column's data has been detected as date / time values.
+		* `-content searchDateTime` - if the column's data has been detected as date / time values.
 		* `-content searchNumber` - if the column's data is numeric.
 		* `-content searchText` - default if none of the conditions above match.
 		

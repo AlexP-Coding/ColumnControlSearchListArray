@@ -9,7 +9,7 @@
 
 		The search input types cleared are:
 
-		* `-content searchDate`
+		* `-content searchDateTime`
 		* `-content searchList`
 		* `-content searchNumber`
 		* `-content searchText`
