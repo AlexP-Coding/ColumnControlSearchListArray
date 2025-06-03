@@ -82,15 +82,14 @@ function positionDropdown(dropdown: HTMLDropdown, dt: Api, btn: HTMLButtonElemen
 	}
 
 	// Corrections - don't extend past the DataTable to the left and right
-	let containerOffsetLeft = dtContainer.offsetLeft;
 	let containerWidth = dtContainer.offsetWidth;
 
 	if (left + dropdownWidth > containerWidth) {
 		left -= left + dropdownWidth - containerWidth;
 	}
 
-	if (left < containerOffsetLeft) {
-		left = containerOffsetLeft;
+	if (left < 0) {
+		left = 0;
 	}
 
 	dropdown.style.top = top + 'px';
