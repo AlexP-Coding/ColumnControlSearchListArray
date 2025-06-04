@@ -199,10 +199,12 @@ table.dataTable span.dtcc {
 		select {
 			right: 0;
 			z-index: 2;
+			padding: 0;
 		}
 
 		span.dtcc-search-clear {
 			right: 28px;
+			z-index: 1;
 		}
 
 		input {
