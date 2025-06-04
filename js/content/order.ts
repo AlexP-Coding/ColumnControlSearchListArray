@@ -43,7 +43,7 @@ export default {
 			.className(config.className);
 
 		if (!config.statusOnly) {
-			dt.order.listener(btn.element(), this.idx(), () => {});
+			dt.order.listener(btn.element(), () => [this.idx()], () => {});
 		}
 
 		dt.on('order', (e, s, order) => {
