@@ -271,6 +271,11 @@ div.dtcc-dropdown {
 			opacity: var(--dtcc-button_disabled-opacity);
 		}
 
+		&.dtcc-button_empty span.dtcc-button-text {
+			opacity: var(--dtcc-button_empty-opacity);
+			font-style: italic;
+		}
+
 		> span.dtcc-button-state {
 			display: block;
 			width: var(--dtcc-button-icon_size);

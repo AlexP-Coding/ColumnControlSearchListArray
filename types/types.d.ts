@@ -57,6 +57,74 @@ declare module 'datatables.net' {
 			defaults: ConfigColumnControl;
 		};
 	}
+
+	interface ConfigLanguage {
+		/** Column Control language options */
+		columnControl: {
+			/** Column visibility title */
+			colVis?: string;
+
+			/** Column visibility button text */
+			colVisDropdown?: string;
+
+			/** Dropdown button text */
+			dropdown?: string;
+
+			/** Add to ordering (ascending) button text */
+			orderAddAsc?: string;
+
+			/** Add to ordering (descending) button text */
+			orderAddDesc?: string;
+
+			/** Set ordering (ascending) button text */
+			orderAsc?: string;
+
+			/** Clear all ordering button text */
+			orderClear?: string;
+
+			/** Set ordering (descending) button text */
+			orderDesc?: string;
+
+			/** Remove column from multi-ordering button text */
+			orderRemove?: string;
+
+			/** Column reorder button text */
+			reorder?: string;
+
+			/** Move column left button text */
+			reorderLeft?: string;
+
+			/** Move column right button text */
+			reorderRight?: string;
+
+			/** Clear search button text */
+			searchClear?: string;
+
+			/** Search dropdown button text */
+			searchDropdown?: string;
+
+			/** Search list dropdown button text */
+			searchList?: string;
+
+			/** Spacer text */
+			spacer?: string;
+
+			/** List strings, used for searchList and colVis */
+			list: {
+				/** Select all link text */
+				add?: string;
+
+				/** Label for when there is no label */
+				empty?: string;
+
+				/** Select none link text */
+				none?: string;
+
+				/** Search placeholder */
+				search?: string;
+			}
+		}
+	}
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

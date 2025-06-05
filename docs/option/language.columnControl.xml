@@ -34,6 +34,7 @@
 		| `searchList` | `-content searchList` | _Empty string_ |
 		| `spacer` | `-content spacer` | _Empty string_ |
 		| `list.add` | `-content colVis`, `-content searchList` | `-string Select all` |
+		| `list.empty` | `-content searchList` | `-string Empty` |
 		| `list.none` | `-content colVis`, `-content searchList` | `-string Deselect` |
 		| `list.search` | `-content colVis`, `-content searchList` | `-string Search...` |
 

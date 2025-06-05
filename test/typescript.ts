@@ -48,6 +48,19 @@ new DataTable('#myTable', {
 	]
 });
 
+new DataTable('#myTable', {
+	columnControl: ['colVis'],
+	language: {
+		columnControl: {
+			colVis: 'Columns',
+			spacer: 'Space',
+			list: {
+				empty: 'None'
+			}
+		}
+	}
+});
+
 
 //
 // The below should show errors

@@ -70,8 +70,15 @@ export default class CheckList {
 					this._updateCount();
 				})
 				.icon(option.icon || '')
-				.text(option.label)
+				.text(option.label !== ''
+					? option.label
+					: this._s.dt.i18n('columnControl.list.emptyOption', 'Empty')
+				)
 				.value(option.value);
+			
+			if (option.label === '') {
+				btn.className('empty');
+			}
 
 			this._s.buttons.push(btn);
 		}
