@@ -54,6 +54,10 @@ export function close(e: IEventDropdownClose | null = null) {
 	});
 }
 
+function getContainer(dt: Api, btn: HTMLButtonElement) {
+	return btn.closest<HTMLElement>('div.dtfh-floatingparent') || dt.table().container();
+}
+
 /**
  * Position the dropdown relative to the button that activated it, with possible corrections
  * to make sure it is visible on the page.
@@ -63,11 +67,11 @@ export function close(e: IEventDropdownClose | null = null) {
  * @param btn Button the dropdown emanates from
  */
 function positionDropdown(dropdown: HTMLDropdown, dt: Api, btn: HTMLButtonElement) {
-	let dtContainer = dt.table().container();
 	let header = btn.closest('div.dt-column-header');
+	let container = getContainer(dt, btn);
 	let headerStyle = getComputedStyle(header);
 	let dropdownWidth = dropdown.offsetWidth;
-	let position = relativePosition(dtContainer, btn);
+	let position = relativePosition(container, btn);
 	let left, top;
 
 	top = position.top + btn.offsetHeight;
@@ -82,7 +86,7 @@ function positionDropdown(dropdown: HTMLDropdown, dt: Api, btn: HTMLButtonElemen
 	}
 
 	// Corrections - don't extend past the DataTable to the left and right
-	let containerWidth = dtContainer.offsetWidth;
+	let containerWidth = container.offsetWidth;
 
 	if (left + dropdownWidth > containerWidth) {
 		left -= left + dropdownWidth - containerWidth;
@@ -105,7 +109,7 @@ function positionDropdown(dropdown: HTMLDropdown, dt: Api, btn: HTMLButtonElemen
  * @returns Function to call when the dropdown should be removed from the document
  */
 function attachDropdown(dropdown: HTMLDropdown, dt: Api, btn: Button) {
-	let dtContainer = dt.table().container();
+	let dtContainer = getContainer(dt, btn.element());
 
 	dropdown._shown = true;
 	dtContainer.append(dropdown);
@@ -190,6 +194,14 @@ const dropdownContent = {
 			dropdown.remove();
 			dropdown._shown = false;
 		};
+
+		// When FixedHeader is used, the transition between states messes up positioning, so if
+		// shown we just reattach the dropdown.
+		dt.on('fixedheader-mode', () => {
+			if (dropdown._shown) {
+				attachDropdown(dropdown, dt, config._parents ? config._parents[0] : btn);
+			}
+		});
 
 		// A liner element allows more styling options, so the contents go inside this
 		let liner = dropdown.childNodes[0] as HTMLDivElement;
