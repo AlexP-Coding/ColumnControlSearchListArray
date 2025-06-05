@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html-wide" order="9" table-class="display nowrap">
+
+<css lib="datatables columncontrol datetime fixedcolumns" />
+<js lib="jquery datatables columncontrol datetime fixedcolumns">
+<![CDATA[
+
+new DataTable('#example', {
+	columnControl: ['order', ['searchList']],
+	fixedColumns: true,
+	ordering: {
+		indicators: false,
+		handler: false
+	},
+	scrollX: true
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+
+new DataTable('#example', {
+	columnControl: ['order', ['searchList']],
+	fixedColumns: true,
+	ordering: {
+		indicators: false,
+		handler: false
+	},
+	scrollX: true
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">FixedColumns integration</title>
+
+<info><![CDATA[
+
+This example is the same as the [basic SearchList example](./basic.html) one, but with [FixedColumns for DataTables](https://datatables.net/extensions/fixedcolumns) and scrolling enabled.
+
+As you will see in the example below FixedColumns will make one or more columns "sticky" at the start or end of the table. This can be useful for very wide tables when you want certain columns to always be available for the end user.
+
+]]></info>
+
+</dt-example>
