@@ -107,6 +107,8 @@ table.dataTable span.dtcc {
 	}
 
 	div.dtcc-search {
+		flex-grow: 1;
+
 		div.dtcc-search-title {
 			margin-bottom: 0.25em;
 			text-align: left;
