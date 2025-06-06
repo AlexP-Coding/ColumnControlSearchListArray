@@ -38,6 +38,7 @@ export default {
 		let moment = DataTable.use('moment');
 		let luxon = DataTable.use('luxon');
 		let dt = this.dt();
+		let i18nBase = 'columnControl.search.datetime.';
 		let displayFormat = '';
 		let dateTime;
 		let searchInput = new SearchInput(dt, this.idx())
@@ -48,12 +49,12 @@ export default {
 			.title(config.title)
 			.titleAttr(config.titleAttr)
 			.options([
-				{ label: 'Equals', value: 'equal' },
-				{ label: 'Does not equal', value: 'notEqual' },
-				{ label: 'After', value: 'greater' },
-				{ label: 'Before', value: 'less' },
-				{ label: 'Empty', value: 'empty' },
-				{ label: 'Not empty', value: 'notEmpty' }
+				{ label: dt.i18n(i18nBase + 'equal', 'Equals'), value: 'equal' },
+				{ label: dt.i18n(i18nBase + 'notEqual', 'Does not equal'), value: 'notEqual' },
+				{ label: dt.i18n(i18nBase + 'greater', 'After'), value: 'greater' },
+				{ label: dt.i18n(i18nBase + 'less', 'Before'), value: 'less' },
+				{ label: dt.i18n(i18nBase + 'empty', 'Empty'), value: 'empty' },
+				{ label: dt.i18n(i18nBase + 'notEmpty', 'Not empty'), value: 'notEmpty' }
 			])
 			.search((searchType, searchTerm, loadingState) => {
 				let column = dt.column(this.idx());

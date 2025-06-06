@@ -13,32 +13,84 @@
 	<description>
 		This object provides the ability to specify the language strings that are used by the content types ColumnControl has built in. Many of the string can be specify in the content type options, however, this object gives a common central location for the strings, and the [opportunity for them to be loaded via Ajax](https://datatables.net/examples/i18n/ajax.html).
 
-		The table below shows the translation keys (i.e. what to use in this object for the property name), the default values and which content types each option is used by. Further details for each is available in its relevant content type documentation.
+		The table below shows the top level translation keys, the default values, and which content types each option is used by. Further details for each is available in its relevant content type documentation. These keys are available under `language.columnControl`:
 
 		| Object key | Content type | Default value |
 		| ---------- | ------------ | ------------- |
-		| `colVis`   | `-content colVis` | `-string Column visibility` |
-		| `colVisDropdown`   | `-content colVisDropdown` | '-string Column visibility` |
-		| `dropdown`   | `-content dropdown` | `-string More...` |
-		| `orderAddAsc` | `-content orderAddAsc` | `-string Add Sort Ascending` |
-		| `orderAddDesc` | `-content orderAddDesc` | `-string Add Sort Descending` |
-		| `orderAsc` | `-content orderAsc` | `-string Sort Ascending` |
-		| `orderClear` | `-content orderClear` | `-string Clear sort` |
-		| `orderDesc` | `-content orderDesc` | `-string Sort Descending` |
-		| `orderRemove` | `-content orderRemove` | `-string Remove from sort` |
-		| `reorder` | `-content reorder` | `-string Reorder columns` |
-		| `reorderLeft` | `-content reorderLeft` | `-string Move column left` |
-		| `reorderRight` | `-content reorderRight` | `-string Move column right` |
-		| `searchClear` | `-content searchClear` | `-string Clear search` |
-		| `searchDropdown` | `-content searchDropdown` | `-string Search` |
-		| `searchList` | `-content searchList` | _Empty string_ |
-		| `spacer` | `-content spacer` | _Empty string_ |
-		| `list.add` | `-content colVis`, `-content searchList` | `-string Select all` |
-		| `list.empty` | `-content searchList` | `-string Empty` |
-		| `list.none` | `-content colVis`, `-content searchList` | `-string Deselect` |
-		| `list.search` | `-content colVis`, `-content searchList` | `-string Search...` |
+		| `.colVis`   | `-content colVis` | `-string Column visibility` |
+		| `.colVisDropdown`   | `-content colVisDropdown` | `-string Column visibility` |
+		| `.dropdown`   | `-content dropdown` | `-string More...` |
+		| `.orderAddAsc` | `-content orderAddAsc` | `-string Add Sort Ascending` |
+		| `.orderAddDesc` | `-content orderAddDesc` | `-string Add Sort Descending` |
+		| `.orderAsc` | `-content orderAsc` | `-string Sort Ascending` |
+		| `.orderClear` | `-content orderClear` | `-string Clear sort` |
+		| `.orderDesc` | `-content orderDesc` | `-string Sort Descending` |
+		| `.orderRemove` | `-content orderRemove` | `-string Remove from sort` |
+		| `.reorder` | `-content reorder` | `-string Reorder columns` |
+		| `.reorderLeft` | `-content reorderLeft` | `-string Move column left` |
+		| `.reorderRight` | `-content reorderRight` | `-string Move column right` |
+		| `.searchClear` | `-content searchClear` | `-string Clear search` |
+		| `.searchDropdown` | `-content searchDropdown` | `-string Search` |
+		| `.searchList` | `-content searchList` | _Empty string_ |
+		| `.spacer` | `-content spacer` | _Empty string_ |
 
-		Please note that the `list` parameter should be a nested object - e.g. `{list: {add: '...'}}`. It is shown in the table above as dotted Javascript notation for brevity.
+
+		### Check list options
+
+		The following are keys under the `language.columnControl.list` object:
+
+		| Object key | Content type | Default value |
+		| ---------- | ------------ | ------------- |
+		| `.add` | `-content colVis`, `-content searchList` | `-string Select all` |
+		| `.empty` | `-content searchList` | `-string Empty` |
+		| `.none` | `-content colVis`, `-content searchList` | `-string Deselect` |
+		| `.search` | `-content colVis`, `-content searchList` | `-string Search...` |
+
+
+		### Search logic options
+
+		The input based search content types (`-content searchText`, `-content searchNumber` and `-content searchDateTime`) provide different options for the logic used for the search. These options are presented to the end user through a `-tag select` list. The labels used for the logic options can be translated using the options below.
+
+		#### DateTime
+
+		The following are keys under the `language.columnControl.search.datetime` object:
+
+		| Object key | Content type | Default value |
+		| ---------- | ------------ | ------------- |
+		| `.equal` | `-content searchDateTime` | `-string Equals` |
+		| `.notEqual` | `-content searchDateTime` | `-string Does not equal` |
+		| `.greater` | `-content searchDateTime` | `-string After` |
+		| `.less` | `-content searchDateTime` | `-string Before` |
+		| `.empty` | `-content searchDateTime` | `-string Empty` |
+		| `.notEmpty` | `-content searchDateTime` | `-string Not empty` |
+
+		#### Numbers
+
+		The following are keys under the `language.columnControl.search.number` object:
+
+		| Object key | Content type | Default value |
+		| ---------- | ------------ | ------------- |
+		| `.equal` | `-content searchNumber` | `-string Equals` |
+		| `.notEqual` | `-content searchNumber` | `-string Does not equal` |
+		| `.greater` | `-content searchNumber` | `-string Greater than` |
+		| `.greaterOrEqual` | `-content searchNumber` | `-string Greater or equal` |
+		| `.less` | `-content searchNumber` | `-string Less than` |
+		| `.lessOrEqual` | `-content searchNumber` | `-string Less or equal` |
+		| `.empty` | `-content searchNumber` | `-string Empty` |
+		| `.notEmpty` | `-content searchNumber` | `-string Not empty` |
+
+		#### Text
+
+		The following are keys under the `language.columnControl.search.text` object:
+
+		| Object key | Content type | Default value |
+		| ---------- | ------------ | ------------- |
+		| `.equal` | `-content searchText` | `-string Equals` |
+		| `.notEqual` | `-content searchText` | `-string Does not equal` |
+		| `.starts` | `-content searchText` | `-string Starts` |
+		| `.ends` | `-content searchText` | `-string Ends` |
+		| `.empty` | `-content searchText` | `-string Empty` |
+		| `.notEmpty` | `-content searchText` | `-string Not empty` |
 	</description>
 
 	<example title="Set the translation string for two buttons"><![CDATA[

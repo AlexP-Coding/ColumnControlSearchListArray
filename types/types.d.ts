@@ -110,7 +110,7 @@ declare module 'datatables.net' {
 			spacer?: string;
 
 			/** List strings, used for searchList and colVis */
-			list: {
+			list?: {
 				/** Select all link text */
 				add?: string;
 
@@ -122,6 +122,41 @@ declare module 'datatables.net' {
 
 				/** Search placeholder */
 				search?: string;
+			}
+
+			/** Strings used for the <select> available for choosing different search logic */
+			search?: {
+				/** searchText options */
+				text?: {
+					equal?: string;
+					notEqual?: string;
+					starts?: string;
+					ends?: string;
+					empty?: string;
+					notEmpty?: string;
+				},
+
+				/** searchDateTime options */
+				datetime?: {
+					equal?: string;
+					notEqual?: string;
+					greater?: string;
+					less?: string;
+					empty?: string;
+					notEmpty?: string;
+				},
+
+				/** searchNumber options */
+				number?: {
+					equal?: string;
+					notEqual?: string;
+					greater?: string;
+					greaterOrEqual?: string;
+					less?: string;
+					lessOrEqual?: string;
+					empty?: string;
+					notEmpty?: string;
+				}
 			}
 		}
 	}

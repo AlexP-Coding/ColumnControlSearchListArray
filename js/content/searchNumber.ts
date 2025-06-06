@@ -32,6 +32,7 @@ export default {
 
 	init(config) {
 		let dt = this.dt();
+		let i18nBase = 'columnControl.search.number.';
 		let searchInput = new SearchInput(dt, this.idx())
 			.type('num')
 			.addClass('dtcc-searchNumber')
@@ -40,14 +41,17 @@ export default {
 			.title(config.title)
 			.titleAttr(config.titleAttr)
 			.options([
-				{ label: 'Equals', value: 'equal' },
-				{ label: 'Does not equal', value: 'notEqual' },
-				{ label: 'Greater than', value: 'greater' },
-				{ label: 'Greater or equal', value: 'greaterOrEqual' },
-				{ label: 'Less than', value: 'less' },
-				{ label: 'Less or equal', value: 'lessOrEqual' },
-				{ label: 'Empty', value: 'empty' },
-				{ label: 'Not empty', value: 'notEmpty' }
+				{ label: dt.i18n(i18nBase + 'equal', 'Equals'), value: 'equal' },
+				{ label: dt.i18n(i18nBase + 'notEqual', 'Does not equal'), value: 'notEqual' },
+				{ label: dt.i18n(i18nBase + 'greater', 'Greater than'), value: 'greater' },
+				{
+					label: dt.i18n(i18nBase + 'greaterOrEqual', 'Greater or equal'),
+					value: 'greaterOrEqual'
+				},
+				{ label: dt.i18n(i18nBase + 'less', 'Less than'), value: 'less' },
+				{ label: dt.i18n(i18nBase + 'lessOrEqual', 'Less or equal'), value: 'lessOrEqual' },
+				{ label: dt.i18n(i18nBase + 'empty', 'Empty'), value: 'empty' },
+				{ label: dt.i18n(i18nBase + 'notEmpty', 'Not empty'), value: 'notEmpty' }
 			])
 			.search((searchType, searchTerm, loadingState) => {
 				let column = dt.column(this.idx());

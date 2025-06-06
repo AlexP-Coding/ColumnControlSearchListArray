@@ -32,6 +32,7 @@ export default {
 
 	init(config) {
 		let dt = this.dt();
+		let i18nBase = 'columnControl.search.text.';
 		let searchInput = new SearchInput(dt, this.idx())
 			.addClass('dtcc-searchText')
 			.clearable(config.clear)
@@ -39,14 +40,17 @@ export default {
 			.title(config.title)
 			.titleAttr(config.titleAttr)
 			.options([
-				{ label: 'Contains', value: 'contains' },
-				{ label: 'Does not contain', value: 'notContains' },
-				{ label: 'Equals', value: 'equal' },
-				{ label: 'Does not equal', value: 'notEqual' },
-				{ label: 'Starts', value: 'starts' },
-				{ label: 'Ends', value: 'ends' },
-				{ label: 'Empty', value: 'empty' },
-				{ label: 'Not empty', value: 'notEmpty' }
+				{ label: dt.i18n(i18nBase + 'contains', 'Contains'), value: 'contains' },
+				{
+					label: dt.i18n(i18nBase + 'notContains', 'Does not contain'),
+					value: 'notContains'
+				},
+				{ label: dt.i18n(i18nBase + 'equal', 'Equals'), value: 'equal' },
+				{ label: dt.i18n(i18nBase + 'notEqual', 'Does not equal'), value: 'notEqual' },
+				{ label: dt.i18n(i18nBase + 'starts', 'Starts'), value: 'starts' },
+				{ label: dt.i18n(i18nBase + 'ends', 'Ends'), value: 'ends' },
+				{ label: dt.i18n(i18nBase + 'empty', 'Empty'), value: 'empty' },
+				{ label: dt.i18n(i18nBase + 'notEmpty', 'Not empty'), value: 'notEmpty' }
 			])
 			.search((searchType, searchTerm, loadingState) => {
 				let column = dt.column(this.idx());
