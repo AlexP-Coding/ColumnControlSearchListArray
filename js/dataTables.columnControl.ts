@@ -93,6 +93,7 @@ DataTable.Api.registerPlural('columns().ccSearchClear()', 'column().ccSearchClea
 	let ctx = this;
 
 	return this.iterator('column', function (settings, idx) {
+		// Note that the listeners for this will not redraw the table.
 		ctx.trigger('cc-search-clear', [idx]);
 	});
 });
@@ -121,6 +122,7 @@ DataTable.Api.registerPlural('columns().ccSearchClear()', 'column().ccSearchClea
 	action: function (e, dt, node, config) {
 		dt.search('');
 		dt.columns().ccSearchClear();
+		dt.draw();
 	}
 };
 

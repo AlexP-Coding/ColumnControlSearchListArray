@@ -193,13 +193,16 @@ export default {
 					.i18n('columnControl.searchList', config.title)
 					.replace('[title]', dt.column(this.idx()).title())
 			)
-			.handler((e, btn) => {
+			.handler((e, btn, btns, redraw) => {
 				if (btn) {
 					btn.active(!btn.active());
 				}
 
 				applySearch(checkList.values());
-				dt.draw();
+
+				if (redraw) {
+					dt.draw();
+				}
 			});
 
 		if (config.options) {

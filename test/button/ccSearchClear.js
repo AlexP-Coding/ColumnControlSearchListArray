@@ -226,5 +226,64 @@ describe('columnControl - button - ccSearchClear', function () {
 
 			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Airi Satou');
 		});
+
+		dt.html('basic');
+
+		it('Create Buttons with searchClear', () => {
+			table = new DataTable('#example', {
+				layout: {
+					topStart: {
+						buttons: ['ccSearchClear']
+					}
+				},
+				columnControl: {
+					target: 1,
+					content: ['search']
+				}
+			});
+
+			expect($('.dt-button:eq(0)').length).toBe(1);
+		});
+
+		it('Apply a search to all columns', () => {
+			$('thead tr:eq(1) td:eq(0) input')
+				.val('1')
+				.triggerNative('input');
+
+			$('thead tr:eq(1) td:eq(1) input')
+				.val('2')
+				.triggerNative('input');
+
+			$('thead tr:eq(1) td:eq(2) input')
+				.val('3')
+				.triggerNative('input');
+
+			$('thead tr:eq(1) td:eq(3) input')
+				.val('4')
+				.triggerNative('input');
+
+			$('thead tr:eq(1) td:eq(4) input')
+				.val('5')
+				.triggerNative('input');
+
+			$('thead tr:eq(1) td:eq(5) input')
+				.val('6')
+				.triggerNative('input');
+
+			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('No matching records found');
+		});
+
+		it('Draw is only triggered once when button is pressed', () => {
+			let counter = 0;
+
+			table.on('draw', () => {
+				counter++;
+			});
+
+			$('.dt-button:eq(0)').trigger('click');
+
+			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Airi Satou');
+			expect(counter).toBe(1);
+		});
 	});
 });

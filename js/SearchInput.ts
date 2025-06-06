@@ -296,7 +296,12 @@ export default class SearchInput {
 		// Column control search clearing (column().ccSearchClear() method)
 		dt.on('cc-search-clear', (e, colIdx) => {
 			if (colIdx === this._idx) {
+				// Don't want an automatic redraw on this event
+				this._loadingState = true;
+
 				this.clear();
+
+				this._loadingState = false;
 			}
 		});
 	}
