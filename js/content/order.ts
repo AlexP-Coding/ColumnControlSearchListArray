@@ -1,6 +1,8 @@
 import Button from '../Button';
 import { IContentPlugin, IContentConfig } from './content';
 
+declare var DataTable: any;
+
 export interface IOrderConfig extends IContentConfig {
 	/** Button class name */
 	className: string;
@@ -43,7 +45,11 @@ export default {
 			.className(config.className);
 
 		if (!config.statusOnly) {
-			dt.order.listener(btn.element(), () => [this.idx()], () => {});
+			dt.order.listener(
+				btn.element(),
+				DataTable.versionCheck('2.3.2') ? () => [this.idx()] : this.idx(),
+				() => {}
+			);
 		}
 
 		dt.on('order', (e, s, order) => {
