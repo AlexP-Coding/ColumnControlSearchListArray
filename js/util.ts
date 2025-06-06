@@ -29,7 +29,7 @@ export function addClass(el: HTMLElement, classes: string | string[]) {
 	}
 
 	classes.forEach((className) => {
-		if (className) {
+		if (el && className) {
 			el.classList.add(className);
 		}
 	});
