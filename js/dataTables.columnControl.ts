@@ -99,7 +99,9 @@ DataTable.Api.registerPlural('columns().ccSearchClear()', 'column().ccSearchClea
 });
 
 (DataTable.ext.buttons as any).ccSearchClear = {
-	text: 'Clear search',
+	text: (dt) => {
+		return dt.i18n('columnControl.buttons.searchClear', 'Clear search');
+	},
 	init: function (dt, node, config) {
 		dt.on('draw', () => {
 			let enabled = false;

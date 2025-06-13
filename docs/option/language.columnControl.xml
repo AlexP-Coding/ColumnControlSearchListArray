@@ -91,6 +91,14 @@
 		| `.ends` | `-content searchText` | `-string Ends` |
 		| `.empty` | `-content searchText` | `-string Empty` |
 		| `.notEmpty` | `-content searchText` | `-string Not empty` |
+
+		### Buttons
+
+		ColumnControl adds a button to the [Buttons extension](/extensions/buttons), with the possibility of more being added in future. The following key is available in the `language.columnControl.buttons` object:
+
+		| Object key | Content type | Default value |
+		| ---------- | ------------ | ------------- |
+		| `.searchClear` | `-button ccSearchClear` | `-string Clear search` |
 	</description>
 
 	<example title="Set the translation string for two buttons"><![CDATA[
