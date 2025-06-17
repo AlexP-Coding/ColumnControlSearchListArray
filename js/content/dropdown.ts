@@ -45,7 +45,7 @@ export function close(e: IEventDropdownClose | null = null) {
 		if (e === null || !el.contains(e.target as Node)) {
 			el._close();
 
-			if (! e._closed) {
+			if (!e._closed) {
 				e._closed = [];
 			}
 
@@ -170,6 +170,58 @@ function relativePosition(parent: HTMLElement, origin: HTMLElement) {
 	};
 }
 
+/**
+ * Function that will provide the keyboard navigation for the dropdown
+ *
+ * @param dropdown Dropdown element in question
+ * @returns Function that can be bound to `keypress`
+ */
+function focusCapture(dropdown: HTMLDropdown, host: HTMLButtonElement) {
+	return function (e: KeyboardEvent) {
+		// Do nothing if not shown
+		if (!dropdown._shown) {
+			return;
+		}
+
+		// Focus trap for tab key
+		var elements: HTMLElement[] = Array.from(
+			dropdown.querySelectorAll('a, button, input, select')
+		);
+		var active = document.activeElement as HTMLElement;
+
+		// An escape key should close the dropdown
+		if (e.key === 'Escape') {
+			dropdown._close();
+			host.focus(); // Restore focus to the host
+
+			return;
+		}
+		else if (e.key !== 'Tab' || elements.length === 0) {
+			// Anything other than tab we aren't interested in from here
+			return;
+		}
+
+		if (!elements.includes(active)) {
+			// If new focus is not inside the popover we want to drag it back in
+			elements[0].focus();
+			e.preventDefault();
+		}
+		else if (e.shiftKey) {
+			// Reverse tabbing order when shift key is pressed
+			if (active === elements[0]) {
+				elements[elements.length - 1].focus();
+				e.preventDefault();
+			}
+		}
+		else {
+			if (active === elements[elements.length - 1]) {
+				elements[0].focus();
+				e.preventDefault();
+			}
+		}
+	};
+}
+
 const dropdownContent = {
 	classes: {
 		container: 'dtcc-dropdown',
@@ -194,6 +246,8 @@ const dropdownContent = {
 			dropdown.remove();
 			dropdown._shown = false;
 		};
+		dropdown.setAttribute('role', 'dialog');
+		dropdown.setAttribute('aria-label', dt.i18n('columnControl.dropdown', config.text));
 
 		// When FixedHeader is used, the transition between states messes up positioning, so if
 		// shown we just reattach the dropdown.
@@ -219,7 +273,17 @@ const dropdownContent = {
 				}
 
 				attachDropdown(dropdown, dt, config._parents ? config._parents[0] : btn);
+
+				// When activated using a key - auto focus on the first item in the popover
+				let focusable = dropdown.querySelector('input, a, button') as any;
+
+				console.log(e.type, e);
+				if (focusable && e.type === 'keypress') {
+					focusable.focus();
+				}
 			});
+
+		btn.element().setAttribute('aria-haspopup', 'dialog');
 
 		// Add the content for the dropdown
 		for (let i = 0; i < config.content.length; i++) {
@@ -246,6 +310,14 @@ const dropdownContent = {
 		// Reposition if needed
 		dt.on('columns-reordered', () => {
 			positionDropdown(dropdown, dt, btn.element());
+		});
+
+		// Focus capture events
+		let capture = focusCapture(dropdown, btn.element());
+		document.body.addEventListener('keydown', capture);
+
+		dt.on('destroy', () => {
+			document.body.removeEventListener('keydown', capture);
 		});
 
 		return btn.element();

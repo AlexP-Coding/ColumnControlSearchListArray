@@ -264,6 +264,10 @@ div.dtcc-dropdown {
 		text-align: left;
 		cursor: pointer;
 
+		&:focus {
+			outline-offset: -2px;
+		}
+
 		&:hover {
 			background: var(--dtcc-dropdown-button_hover-background);
 		}

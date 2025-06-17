@@ -126,6 +126,7 @@ export default class Button {
 	public destroy() {
 		if (this._s.buttonClick) {
 			this._dom.button.removeEventListener('click', this._s.buttonClick);
+			this._dom.button.removeEventListener('keypress', this._s.buttonClick);
 		}
 
 		if (this._s.namespace) {
@@ -204,6 +205,7 @@ export default class Button {
 		this._s.buttonClick = buttonClick;
 		this._s.namespace = 'dtcc-' + _namespace++;
 		this._dom.button.addEventListener('click', buttonClick);
+		this._dom.button.addEventListener('keypress', buttonClick);
 
 		// Use a unique namespace to be able to easily remove per button
 		this._s.dt.on('destroy.' + this._s.namespace, () => {

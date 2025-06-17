@@ -28,6 +28,8 @@ export default {
 			dt.i18n('columnControl.spacer', config.text)
 		);
 
+		spacer.setAttribute('role', 'separator');
+
 		return spacer;
 	}
 } as IContentPlugin<ISpacerConfig>;
