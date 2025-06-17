@@ -34,7 +34,7 @@ Thus far the examples have all focused on common ColumnControl functionality for
 
 This example puts `-content searchDropdown` in each column except for the last one. While that isn't useful with this demo data, you could imagine the final column in the table being an "Action" column [like in this Editor example](https://editor.datatables.net/examples/triggering-editing/inTableIcons.html).
 
-Next: [Dropdowns](./dropdowns.html)!
+Next: [Internationalisation](./i18n.html).
 
 ]]></info>
 
