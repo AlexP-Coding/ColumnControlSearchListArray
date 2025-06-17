@@ -246,6 +246,8 @@ export default class Button {
 		this._dom.text.innerHTML = text;
 		this._s.label = text; // for fast retrieval
 
+		this._dom.button.setAttribute('aria-label', text);
+
 		return this;
 	}
 
