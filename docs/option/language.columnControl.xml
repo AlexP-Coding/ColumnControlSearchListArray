@@ -41,7 +41,7 @@
 
 		| Object key | Content type | Default value |
 		| ---------- | ------------ | ------------- |
-		| `.add` | `-content colVis`, `-content searchList` | `-string Select all` |
+		| `.all` | `-content colVis`, `-content searchList` | `-string Select all` |
 		| `.empty` | `-content searchList` | `-string Empty` |
 		| `.none` | `-content colVis`, `-content searchList` | `-string Deselect` |
 		| `.search` | `-content colVis`, `-content searchList` | `-string Search...` |
@@ -85,6 +85,8 @@
 
 		| Object key | Content type | Default value |
 		| ---------- | ------------ | ------------- |
+		| `.contains` | `-content searchText` | `-string Contains` |
+		| `.notContains` | `-content searchText` | `-string Does not contain` |
 		| `.equal` | `-content searchText` | `-string Equals` |
 		| `.notEqual` | `-content searchText` | `-string Does not equal` |
 		| `.starts` | `-content searchText` | `-string Starts` |

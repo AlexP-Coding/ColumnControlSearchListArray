@@ -131,6 +131,7 @@ export default {
 			if (DateTime) {
 				dateTime = new DateTime(searchInput.input(), {
 					format: displayFormat,
+					i18n: dt.settings()[0].oLanguage.datetime, // could be undefined
 					onChange: () => {
 						fromPicker = true;
 						searchInput.runSearch();

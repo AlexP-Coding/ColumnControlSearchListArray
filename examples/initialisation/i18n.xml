@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="9">
+
+<css lib="datatables columncontrol datetime" />
+<js lib="jquery datatables columncontrol datetime">
+<![CDATA[
+
+$('#example').DataTable({
+	columnControl: [
+		'order',
+		['search', 'spacer', 'orderAsc', 'orderDesc', 'orderClear']
+	],
+	columnDefs: [
+		{
+			targets: [1, 2],
+			columnControl: [
+				'order',
+				['searchList', 'spacer', 'orderAsc', 'orderDesc', 'orderClear']
+			],
+		}
+	],
+	language: {
+		url: '../data/fr-FR.json'
+	},
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+
+new DataTable('#example', {
+	columnControl: [
+		'order',
+		['search', 'spacer', 'orderAsc', 'orderDesc', 'orderClear']
+	],
+	columnDefs: [
+		{
+			targets: [1, 2],
+			columnControl: [
+				'order',
+				['searchList', 'spacer', 'orderAsc', 'orderDesc', 'orderClear']
+			],
+		}
+	],
+	language: {
+		url: '../data/fr-FR.json'
+	},
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Internationalisation</title>
+
+<info><![CDATA[
+
+As with DataTables core and all of its other extensions, the text strings used by ColumnControl can be fully customised and translated so you can display a UI in the language of your end users. Translation is done through the `-init language.columnControl` options, which can be configured in the initialisation object, or through a JSON file (as is the case here).
+
+DataTables has a wide range of [community provided translations](https://datatables.net/plug-ins/i18n) that can be used. For more information on internationalisation with DataTables, please [refer to the DataTables manual](https://datatables.net/manual/i18n).
+
+Next: [Dropdowns](./dropdowns.html)!
+
+]]></info>
+
+</dt-example>
