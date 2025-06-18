@@ -286,6 +286,7 @@ export default class Button {
 			text: createElement<HTMLSpanElement>('span', 'dtcc-button-text')
 		};
 
+		this._dom.button.setAttribute('type', 'button');
 		this._dom.button.append(this._dom.icon);
 		this._dom.button.append(this._dom.text);
 		this._dom.button.append(this._dom.state);

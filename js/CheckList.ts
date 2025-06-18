@@ -286,6 +286,9 @@ export default class CheckList {
 			dom.controls.append(dom.selectNone);
 			dom.selectAll.append(dom.selectAllCount);
 			dom.selectNone.append(dom.selectNoneCount);
+
+			dom.selectAll.setAttribute('type', 'button');
+			dom.selectNone.setAttribute('type', 'button');
 		}
 
 		// Events
