@@ -216,7 +216,10 @@ export default {
 
 		// Xhr event listener for updates of options
 		dt.on('xhr', (e, s, json) => {
-			reloadOptions(dt, config, this.idx(), checkList, loadedValues);
+			// Need to wait for the draw to complete so the table has the latest data
+			dt.one('draw', () => {
+				reloadOptions(dt, config, this.idx(), checkList, loadedValues);
+			});
 		});
 
 		// Unlike the SearchInput based search contents, CheckList does not handle state saving

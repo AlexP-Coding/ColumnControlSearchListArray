@@ -277,7 +277,6 @@ const dropdownContent = {
 				// When activated using a key - auto focus on the first item in the popover
 				let focusable = dropdown.querySelector('input, a, button') as any;
 
-				console.log(e.type, e);
 				if (focusable && e.type === 'keypress') {
 					focusable.focus();
 				}
