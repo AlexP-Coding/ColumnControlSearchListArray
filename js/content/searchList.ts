@@ -129,7 +129,10 @@ function reloadOptions(dt, config, idx, checkList, loadedValues) {
 		let settings = dt.settings()[0];
 
 		for (let i=0 ; i<rows.length ; i++) {
-			let filter = settings.fastData(rows[i], idx, 'filter').toString();
+			let raw = settings.fastData(rows[i], idx, 'filter');
+			let filter = raw !== null && raw !== undefined
+				? raw.toString()
+				: '';
 
 			if (!found[filter]) {
 				found[filter] = true;
