@@ -903,4 +903,210 @@ describe('columnControl - searchList', function () {
 			expect($('.dtcc-dropdown .dtcc-list-title').text()).toBe('TestC Name TestD');
 		});
 	});
+
+	describe('Option - hidable', function () {
+		let table;
+
+		dt.html('empty');
+
+		it('Create Ajax table with CC searchList', (done) => {
+			$('#example thead th:gt(1)').remove();
+			$('#example tfoot th:gt(1)').remove();
+
+			var data1 = {
+				data: [
+					{ A: '1,1', B: '1,2' },
+					{ A: '2,1', B: '2,2' }
+				],
+				columnControl: {
+					A: ['1,1', '1,2', '1,3']
+				}
+			};
+
+			var data2 = {
+				data: [
+					{ A: '5,1', B: '5,2' },
+					{ A: '6,1', B: '6,2' },
+					{ A: '7,1', B: '7,2' },
+					{ A: '8,1', B: '8,2' }
+				],
+				columnControl: {}
+			};
+
+			var loaded1 = false;
+
+			table = new DataTable('#example', {
+				ajax: function (data, cb) {
+					if (loaded1) {
+						cb(data2);
+					}
+					else {
+						loaded1 = true;
+						cb(data1);
+					}
+				},
+				columnControl: [
+					[
+						{
+							extend: 'searchList',
+							ajaxOnly: true
+						}
+					]
+				],
+				columns: [{ data: 'A' }, { data: 'B' }],
+				initComplete: () => {
+					done();
+				}
+			});
+		});
+
+		it('Check that a list is present for first column', () => {
+			expect($('thead th:eq(0) .dtcc-button_dropdown:visible').length).toBe(1);
+		});
+
+		it('Shows dropdown when clicked', () => {
+			$('.dtcc-button_dropdown')
+				.eq(0)
+				.trigger('click');
+
+			expect($('.dtcc-dropdown').length).toBe(1);
+		});
+
+		it('Has a search list in it', () => {
+			expect($('div.dtcc-list').length).toBe(1);
+		});
+
+		it('There is a button for the defined search terms', () => {
+			expect($('div.dtcc-list button.dtcc-button').length).toBe(3);
+		});
+
+		it('Clicking on the body closes the dropdown', () => {
+			$('body').trigger('click');
+
+			expect($('.dtcc-dropdown').length).toBe(0);
+		});
+
+		it('Hides when reloaded and no options provided', (done) => {
+			table.ajax.reload(() => {
+				// Async update in CC
+				setTimeout(() => {
+					expect($('thead th:eq(0) .dtcc-button_dropdown:visible').length).toBe(0);
+					done();
+				}, 200);
+			});
+		});
+
+		// Same again, but with hidable option disabled
+		dt.html('empty');
+
+		it('Create Ajax table with CC searchList', (done) => {
+			$('#example thead th:gt(1)').remove();
+			$('#example tfoot th:gt(1)').remove();
+
+			var data1 = {
+				data: [
+					{ A: '1,1', B: '1,2' },
+					{ A: '2,1', B: '2,2' }
+				],
+				columnControl: {
+					A: ['1,1', '1,2', '1,3']
+				}
+			};
+
+			var data2 = {
+				data: [
+					{ A: '5,1', B: '5,2' },
+					{ A: '6,1', B: '6,2' },
+					{ A: '7,1', B: '7,2' },
+					{ A: '8,1', B: '8,2' }
+				],
+				columnControl: {}
+			};
+
+			var loaded1 = false;
+
+			table = new DataTable('#example', {
+				ajax: function (data, cb) {
+					if (loaded1) {
+						cb(data2);
+					}
+					else {
+						loaded1 = true;
+						cb(data1);
+					}
+				},
+				columnControl: [
+					[
+						{
+							extend: 'searchList',
+							ajaxOnly: true,
+							hidable: false
+						}
+					]
+				],
+				columns: [{ data: 'A' }, { data: 'B' }],
+				initComplete: () => {
+					done();
+				}
+			});
+		});
+
+		it('Check that a list is present for first column', () => {
+			expect($('thead th:eq(0) .dtcc-button_dropdown:visible').length).toBe(1);
+		});
+
+		it('Shows dropdown when clicked', () => {
+			$('.dtcc-button_dropdown')
+				.eq(0)
+				.trigger('click');
+
+			expect($('.dtcc-dropdown').length).toBe(1);
+		});
+
+		it('Has a search list in it', () => {
+			expect($('div.dtcc-list').length).toBe(1);
+		});
+
+		it('There is a button for the defined search terms', () => {
+			expect($('div.dtcc-list button.dtcc-button').length).toBe(3);
+		});
+
+		it('Clicking on the body closes the dropdown', () => {
+			$('body').trigger('click');
+
+			expect($('.dtcc-dropdown').length).toBe(0);
+		});
+
+		it('Does not hide when reloaded and no options provided', (done) => {
+			table.ajax.reload(() => {
+				// Async update in CC
+				setTimeout(() => {
+					expect($('thead th:eq(0) .dtcc-button_dropdown:visible').length).toBe(1);
+					done();
+				}, 200);
+			});
+		});
+
+		it('Shows dropdown when clicked', () => {
+			$('.dtcc-button_dropdown')
+				.eq(0)
+				.trigger('click');
+
+			expect($('.dtcc-dropdown').length).toBe(1);
+		});
+
+		it('Has a search list in it', () => {
+			expect($('div.dtcc-list').length).toBe(1);
+		});
+
+		it('There is a button for the defined search terms', () => {
+			expect($('div.dtcc-list button.dtcc-button').length).toBe(3);
+		});
+
+		it('Clicking on the body closes the dropdown', () => {
+			$('body').trigger('click');
+
+			expect($('.dtcc-dropdown').length).toBe(0);
+		});
+	});
 });

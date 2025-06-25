@@ -8,6 +8,11 @@ export interface ISearchListConfig extends IContentConfig {
 	/** Container class name */
 	className: string;
 
+	/** Define if a search list can be hidden if there is no data that comes back from the server
+	 * for it. Applies to Ajax options only (`ajaxOnly: true`).
+	 */
+	hidable: boolean;
+
 	/** List of options. If not given here, will be derived from Ajax data, or the table's data */
 	options: Array<{ label: string; value: any }> | null;
 
@@ -101,13 +106,15 @@ function reloadOptions(dt, config, idx, checkList, loadedValues) {
 		options = jsonOptions;
 	}
 	else if (json && config.ajaxOnly) {
-		// Ajax only options - need to hide the search list
-		checkList.element().style.display = 'none';
+		if (config.hidable) {
+			// Ajax only options - need to hide the search list
+			checkList.element().style.display = 'none';
 
-		// Check if the parent buttons should be hidden as well (they will be if there
-		// is no visible content in them)
-		if (config._parents) {
-			config._parents.forEach((btn) => btn.checkDisplay());
+			// Check if the parent buttons should be hidden as well (they will be if there
+			// is no visible content in them)
+			if (config._parents) {
+				config._parents.forEach((btn) => btn.checkDisplay());
+			}
 		}
 
 		// No point in doing any further processing here
@@ -148,6 +155,7 @@ export default {
 	defaults: {
 		ajaxOnly: true,
 		className: 'searchList',
+		hidable: true,
 		options: null,
 		search: true,
 		select: true,

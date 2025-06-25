@@ -29,6 +29,10 @@
 		When enabled (`true`) and Ajax loaded data is used for the table (`-init ajax`) this option will cause the list of options to be shown only if the options are specified in the JSON response (i.e. the options will not be automatically determined from the data). If Ajax is not used for the table, this option has no effect.
 	</option>
 
+	<option type="boolean" name="hidable" default="true" since="1.0.7">
+		When using Ajax data for the list of options and the `ajaxOnly` option is enabled, by default ColumnControl will hide the button if no data was returned. This option can disable that behaviour, and is useful in cases where the Ajax data for the table might be updated, but you wish to load the options only once. Please note that `columnControl` must be defined in the Ajax data object, even if it is an empty object, for this to work.
+	</option>
+
 	<option type="array|null" name="options" default="null">
 		You can specify a list of options that should be used for the toggle buttons using this option (rather than having the determined automatically, or from Ajax). It must be an array containing objects with `label` and `value` parameters.
 	</option>

@@ -17,6 +17,7 @@ export default {
 		className: 'searchDropdown',
 		clear: true,
 		columns: '',
+		hidable: true,
 		options: null,
 		placeholder: '',
 		search: true,
