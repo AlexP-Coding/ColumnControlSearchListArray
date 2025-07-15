@@ -32,7 +32,10 @@ $(document).on('i18n.dt', function (e, settings) {
 	}
 
 	identifyTargets(baseTargets, tableInit);
-	identifyTargets(baseTargets, defaultInit);
+
+	if (ColumnControl.defaults.content) {
+		identifyTargets(baseTargets, defaultInit);
+	}
 
 	api.columns().every(function (i) {
 		let columnInit: IConfig = (this.init() as any).columnControl;
@@ -58,7 +61,11 @@ $(document).on('preInit.dt', function (e, settings) {
 	let baseTargets = [];
 
 	identifyTargets(baseTargets, tableInit);
-	identifyTargets(baseTargets, defaultInit);
+
+	// Only add the default target if there is actually content for it
+	if (ColumnControl.defaults.content) {
+		identifyTargets(baseTargets, defaultInit);
+	}
 
 	api.columns().every(function (i) {
 		let columnInit: IConfig = (this.init() as any).columnControl;
@@ -278,14 +285,20 @@ function identifyTargets(targets: any[], input: IConfig | IConfig[]) {
 	}
 
 	if (Array.isArray(input)) {
-		// Array of options, or an array of content
-		input.forEach((item) => {
-			add(
-				typeof item === 'object' && item.target !== undefined
-					? item.target
-					: ColumnControl.defaults.target
-			);
-		});
+		if (input.length === 0) {
+			// Empty array - assume it is empty content
+			add(ColumnControl.defaults.target);
+		}
+		else {
+			// Array of options, or an array of content
+			input.forEach((item) => {
+				add(
+					typeof item === 'object' && item.target !== undefined
+						? item.target
+						: ColumnControl.defaults.target
+				);
+			});
+		}
 	}
 	else if (typeof input === 'object') {
 		// Full options defined: { target: x, content: [] }
