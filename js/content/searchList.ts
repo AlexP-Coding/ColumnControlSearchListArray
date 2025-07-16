@@ -16,6 +16,9 @@ export interface ISearchListConfig extends IContentConfig {
 	/** List of options. If not given here, will be derived from Ajax data, or the table's data */
 	options: Array<{ label: string; value: any }> | null;
 
+	/** The data type to request for the data shown in the list */
+	orthogonal: string;
+
 	/** Show the list search input, or not */
 	search: boolean;
 
@@ -96,7 +99,7 @@ export function getJsonOptions(dt, idx) {
 	return null;
 }
 
-function reloadOptions(dt, config, idx, checkList, loadedValues) {
+function reloadOptions(dt, config: ISearchListConfig, idx: number, checkList, loadedValues) {
 	// Was there options specified in the Ajax return?
 	let json = (dt.ajax.json() as any)?.columnControl;
 	let options = [];
@@ -138,7 +141,7 @@ function reloadOptions(dt, config, idx, checkList, loadedValues) {
 				found[filter] = true;
 
 				options.push({
-					label: settings.fastData(rows[i], idx, 'display'),
+					label: settings.fastData(rows[i], idx, config.orthogonal),
 					value: filter
 				});
 			}
@@ -160,6 +163,7 @@ export default {
 		className: 'searchList',
 		hidable: true,
 		options: null,
+		orthogonal: 'display',
 		search: true,
 		select: true,
 		title: ''

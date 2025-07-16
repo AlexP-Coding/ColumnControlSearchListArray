@@ -657,6 +657,57 @@ describe('columnControl - searchList', function () {
 		});
 	});
 
+	describe('Option - orthogonal', function () {
+		// Default of `display` is implicitly tested above, so this dives into the option being used
+		dt.html('basic');
+
+		it('Create CC with search', () => {
+			table = new DataTable('#example', {
+				columnControl: [
+					[
+						{
+							extend: 'searchList',
+							orthogonal: 'cc'
+						}
+					]
+				],
+				ordering: {
+					handler: false
+				},
+				columnDefs: [
+					{
+						target: 2,
+						render: function (data, type, row) {
+							if (type === 'cc') {
+								return data + '-A';
+							}
+
+							return data;
+						}
+					}
+				]
+			});
+
+			expect($('.dtcc-button_dropdown').length).toBe(6);
+		});
+
+		it('Displayed values are from the orthogonal return type', () => {
+			$('.dtcc-button_dropdown')
+				.eq(2)
+				.trigger('click');
+
+			expect($('div.dtcc-list button.dtcc-button:eq(0)').text()).toBe('Edinburgh-A');
+			expect($('div.dtcc-list button.dtcc-button:eq(1)').text()).toBe('London-A');
+			expect($('div.dtcc-list button.dtcc-button:eq(2)').text()).toBe('New York-A');
+		});
+
+		it('Clicking a button will still match', () => {
+			$('div.dtcc-list button.dtcc-button:eq(0)').trigger('click');
+
+			expect($('tbody tr:eq(0) td:eq(0)').text()).toBe('Cedric Kelly');
+		});
+	});
+
 	describe('Option - search', function () {
 		dt.html('basic');
 
