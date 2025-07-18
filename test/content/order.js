@@ -276,8 +276,8 @@ describe('columnControl - order', function () {
 			).toBe(0);
 		});
 
-		it('Ordering is multi-column', () => {
-			dt.checkOrder(table.order(), [[0, 'asc'], [1, '']]);
+		it('Ordering is single column again', () => {
+			dt.checkOrder(table.order(), [[0, 'asc']]);
 		});
 	});
 
