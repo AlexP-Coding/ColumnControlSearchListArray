@@ -129,6 +129,13 @@ function attachDropdown(dropdown: HTMLDropdown, dt: Api, btn: Button) {
 			return;
 		}
 
+		// If there is currently a datetime picker visible on the page, assume that it belongs to
+		// this dropdown. Don't want to close while operating on the picker.
+		let datetime = document.querySelector('div.dt-datetime');
+		if (datetime && (e.target === datetime || datetime.contains(e.target))) {
+			return;
+		}
+
 		dropdown._close();
 		document.body.removeEventListener('click', removeDropdown);
 	};
