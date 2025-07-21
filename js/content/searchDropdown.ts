@@ -19,7 +19,8 @@ export default {
 		columns: '',
 		hidable: true,
 		options: null,
-		placeholder: '',
+		orthogonal: 'display'
+,		placeholder: '',
 		search: true,
 		select: true,
 		text: 'Search',
