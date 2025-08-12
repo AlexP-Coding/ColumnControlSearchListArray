@@ -2,6 +2,7 @@ import { createElement } from './util';
 import icons from './icons';
 import { close as closeDropdowns } from './content/dropdown';
 import { Api } from '../../../types/types';
+import ColumnControl from './ColumnControl';
 
 type Icons = keyof typeof icons;
 
@@ -20,6 +21,7 @@ interface ISettings {
 	buttonClick: EventListener;
 	dt: Api;
 	enabled: boolean;
+	host: ColumnControl;
 	label: string;
 	namespace: string;
 	value: string | number;
@@ -39,6 +41,7 @@ export default class Button {
 		buttonClick: null,
 		dt: null,
 		enabled: true,
+		host: null,
 		label: '',
 		namespace: '',
 		value: null
@@ -129,9 +132,7 @@ export default class Button {
 			this._dom.button.removeEventListener('keypress', this._s.buttonClick);
 		}
 
-		if (this._s.namespace) {
-			this._s.dt.off('destroy.' + this._s.namespace);
-		}
+		this._s.host.destroyRemove(this);
 	}
 
 	/**
@@ -207,10 +208,7 @@ export default class Button {
 		this._dom.button.addEventListener('click', buttonClick);
 		this._dom.button.addEventListener('keypress', buttonClick);
 
-		// Use a unique namespace to be able to easily remove per button
-		this._s.dt.on('destroy.' + this._s.namespace, () => {
-			this.destroy();
-		});
+		this._s.host.destroyAdd(this);
 
 		return this;
 	}
@@ -275,8 +273,9 @@ export default class Button {
 	 * Create a new button for use in ColumnControl contents. Buttons created by this class can be
 	 * used at the top level in the header or in a dropdown.
 	 */
-	constructor(dt: Api) {
+	constructor(dt: Api, host: ColumnControl) {
 		this._s.dt = dt;
+		this._s.host = host;
 		this._dom = {
 			button: createElement<HTMLButtonElement>('button', Button.classes.container),
 			dropdownDisplay: null,

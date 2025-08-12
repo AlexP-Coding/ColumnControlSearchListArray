@@ -34,7 +34,7 @@ export default {
 
 	init(config) {
 		let dt = this.dt();
-		let checkList = new CheckList(dt, {
+		let checkList = new CheckList(dt, this, {
 			search: config.search,
 			select: config.select
 		})

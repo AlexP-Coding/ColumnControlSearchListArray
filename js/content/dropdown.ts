@@ -267,7 +267,7 @@ const dropdownContent = {
 		// A liner element allows more styling options, so the contents go inside this
 		let liner = dropdown.childNodes[0] as HTMLDivElement;
 
-		let btn = new Button(dt)
+		let btn = new Button(dt, this)
 			.text(dt.i18n('columnControl.dropdown', config.text))
 			.icon(config.icon)
 			.className(config.className)

@@ -198,11 +198,11 @@ export default {
 			}
 		};
 
-		let checkList = new CheckList(dt, {
+		let checkList = new CheckList(dt, this, {
 			search: config.search,
 			select: config.select
 		})
-			.searchListener(dt, this)
+			.searchListener(dt)
 			.title(
 				dt
 					.i18n('columnControl.searchList', config.title)

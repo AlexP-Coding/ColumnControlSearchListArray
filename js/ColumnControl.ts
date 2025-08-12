@@ -29,6 +29,7 @@ export interface IDom {
 interface ISettings {
 	columnIdx: number;
 	unique: number;
+	toDestroy: any[];
 }
 
 /**
@@ -46,8 +47,32 @@ export default class ColumnControl {
 
 	private _s: ISettings = {
 		columnIdx: null,
-		unique: null
+		unique: null,
+		toDestroy: []
 	};
+
+	/**
+	 * Add a component to the destroy list. This is so there is a single destroy event handler,
+	 * which is much better for performance.
+	 *
+	 * @param component Any instance with a `destroy` method
+	 */
+	public destroyAdd(component: any) {
+		this._s.toDestroy.push(component);
+	}
+
+	/**
+	 * Remove an instance from the destroy list (it has been destroyed itself)
+	 *
+	 * @param component Any instance with a `destroy` method
+	 */
+	public destroyRemove(component: any) {
+		let idx = this._s.toDestroy.indexOf(component);
+
+		if (idx !== -1) {
+			this._s.toDestroy.splice(idx, 1);
+		}
+	}
 
 	/**
 	 * Get the DataTables API instance that hosts this instance of ColumnControl
@@ -168,6 +193,11 @@ export default class ColumnControl {
 			});
 
 			dt.on('destroy', () => {
+				console.log('got ' + this._s.toDestroy.length + ' buttons to destroy');
+				this._s.toDestroy.slice().forEach(el => {
+					el.destroy();
+				});
+
 				this._dom.wrapper.remove();
 			});
 		}

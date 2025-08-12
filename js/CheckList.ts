@@ -24,6 +24,7 @@ interface ISettings {
 	buttons: Button[];
 	dt: Api;
 	handler: IHandler;
+	host: ColumnControl;
 	search: string;
 }
 
@@ -47,6 +48,7 @@ export default class CheckList {
 		buttons: [],
 		dt: null,
 		handler: () => {},
+		host: null,
 		search: ''
 	};
 
@@ -63,7 +65,7 @@ export default class CheckList {
 
 		for (let i = 0; i < options.length; i++) {
 			let option = options[i];
-			let btn = new Button(this._s.dt)
+			let btn = new Button(this._s.dt, this._s.host)
 				.active(option.active || false)
 				.handler((e) => {
 					this._s.handler(e, btn, this._s.buttons, true);
@@ -155,10 +157,10 @@ export default class CheckList {
 	 * @param dt DataTable instance
 	 * @param idx Column index
 	 */
-	public searchListener(dt, parent: ColumnControl) {
+	public searchListener(dt) {
 		// Column control search clearing (column().ccSearchClear() method)
 		dt.on('cc-search-clear', (e, colIdx) => {
-			if (colIdx === parent.idx()) {
+			if (colIdx === this._s.host.idx()) {
 				this.selectNone();
 
 				this._s.handler(e, null, this._s.buttons, false);
@@ -252,8 +254,9 @@ export default class CheckList {
 	/**
 	 * Container for a list of buttons
 	 */
-	constructor(dt: Api, opts: IOptions) {
+	constructor(dt: Api, host: ColumnControl, opts: IOptions) {
 		this._s.dt = dt;
+		this._s.host = host;
 		this._dom = {
 			buttons: createElement<HTMLDivElement>('div', 'dtcc-list-buttons'),
 			container: createElement<HTMLDivElement>('div', CheckList.classes.container),

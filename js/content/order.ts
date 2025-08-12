@@ -39,7 +39,7 @@ export default {
 
 	init(config) {
 		let dt = this.dt();
-		let btn = new Button(dt)
+		let btn = new Button(dt, this)
 			.text(dt.i18n('columnControl.order', config.text))
 			.icon('orderAsc')
 			.className(config.className);
