@@ -193,7 +193,6 @@ export default class ColumnControl {
 			});
 
 			dt.on('destroy', () => {
-				console.log('got ' + this._s.toDestroy.length + ' buttons to destroy');
 				this._s.toDestroy.slice().forEach(el => {
 					el.destroy();
 				});

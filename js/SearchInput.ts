@@ -273,11 +273,11 @@ export default class SearchInput {
 				data.columnControl = {};
 			}
 
-			if (!data.columnControl[idx]) {
-				data.columnControl[idx] = {};
+			if (!data.columnControl[this._idx]) {
+				data.columnControl[this._idx] = {};
 			}
 
-			data.columnControl[idx].searchInput = {
+			data.columnControl[this._idx].searchInput = {
 				logic: dom.select.value,
 				type: this._type,
 				value: dom.input.value
