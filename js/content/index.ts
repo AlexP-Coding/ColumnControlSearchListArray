@@ -12,6 +12,7 @@ import orderClear, { IOrderClear } from './orderClear';
 import orderDesc, { IOrderDesc } from './orderDesc';
 import orderRemove, { IOrderRemove } from './orderRemove';
 import orderStatus, { IOrderStatus } from './orderStatus';
+import rowGroup, {IRowGroup } from './rowGroup';
 import search, { ISearch } from './search';
 import searchClear, { ISearchClear } from './searchClear';
 import searchDropdown, { ISearchDropdown } from './searchDropdown';
@@ -37,6 +38,7 @@ export type IContentConfig =
 	| IOrderDesc
 	| IOrderRemove
 	| IOrderStatus
+	| IRowGroup
 	| ISearch
 	| ISearchClear
 	| ISearchDropdown
@@ -54,6 +56,7 @@ const contentTypes = {
 	reorder,
 	reorderLeft,
 	reorderRight,
+	rowGroup,
 	order,
 	orderAddAsc,
 	orderAddDesc,

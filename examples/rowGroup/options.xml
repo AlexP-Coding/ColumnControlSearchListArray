@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="1">
+
+<css lib="datatables columncontrol rowgroup" />
+<js lib="jquery datatables columncontrol rowgroup">
+<![CDATA[
+$('#example').DataTable({
+	columnControl: ['rowGroup', 'order'],
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+new DataTable('#example', {
+	columnControl: ['rowGroup', 'order'],
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Grouping data</title>
+
+<info><![CDATA[
+
+
+
+]]></info>
+
+</dt-example>

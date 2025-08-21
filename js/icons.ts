@@ -33,6 +33,18 @@ const icons = {
 	// Custom
 	greaterOrEqual: wrap('<path d="m9 16 6-6-6-6"/><path d="m9 21 6-6"/>'),
 
+	// Custom
+	groupAdd: wrap('<path d="M6 21v-7.5m-3.549 3.75H9.75"/><rect width="13.5" height="7.5" x="3" y="3" rx="1.5"/><rect width="7.5" height="7.5" x="13.5" y="13.5" fill="currentColor" rx="1.5"/>'),
+
+	// Custom
+	groupClear: wrap('<rect width="13.5" height="7.5" x="3" y="3" rx="1.5"/><rect width="7.5" height="7.5" x="13.5" y="13.5" rx="1.5"/>'),
+
+	// Custom
+	groupTop: wrap('<rect width="13.5" height="7.5" x="3" y="3" fill="currentColor" rx="1.5"/><rect width="7.5" height="7.5" x="13.5" y="13.5" rx="1.5"/>'),
+
+	// Custom
+	groupRemove: wrap('<path d="M2.451 17.25H9.75"/><rect width="13.5" height="7.5" x="3" y="3" rx="1.5"/><rect width="7.5" height="7.5" x="13.5" y="13.5" rx="1.5"/>'),
+
 	less: wrap('<path d="m15 18-6-6 6-6"/>'),
 
 	// Custom
