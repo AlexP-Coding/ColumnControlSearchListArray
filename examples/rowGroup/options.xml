@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" order="1">
+<dt-example table-type="html" order="2">
 
 <css lib="datatables columncontrol rowgroup" />
 <js lib="jquery datatables columncontrol rowgroup">
 <![CDATA[
 $('#example').DataTable({
-	columnControl: ['rowGroup', 'order'],
+	columnControl: [
+		{
+			extend: 'rowGroup',
+			order: false
+		},
+		'order'
+	],
 	ordering: {
 		indicators: false,
 		handler: false
@@ -17,20 +23,27 @@ $('#example').DataTable({
 <js-vanilla>
 <![CDATA[
 new DataTable('#example', {
-	columnControl: ['rowGroup', 'order'],
+	columnControl: [
+		{
+			extend: 'rowGroup',
+			order: false
+		},
+		'order'
+	],
 	ordering: {
 		indicators: false,
 		handler: false
 	}
 });
+
 ]]>
 </js-vanilla>
 
-<title lib="ColumnControl">Grouping data</title>
+<title lib="ColumnControl">Disable auto order</title>
 
 <info><![CDATA[
 
-
+This example shows the `order` option being used to disable the automatic ordering by the target column when using the `-content rowGroup` button.
 
 ]]></info>
 

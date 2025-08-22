@@ -19,6 +19,69 @@ export interface IOrderAsc extends Partial<IRowGroup> {
 	extend: 'rowGroup';
 }
 
+/**
+ * Add an item to the grouping structure
+ *
+ * @param dt DataTable API instance
+ * @param dataSrc Grouping data point to add
+ * @returns Grouping array
+ */
+export function rowGroupAdd(dt: any, dataSrc: any) {
+	let applied = rowGroupApplied(dt);
+	let idx = applied.indexOf(dataSrc);
+
+	if (idx === -1) {
+		applied.push(dataSrc);
+
+		(dt as any).rowGroup().dataSrc(applied);
+	}
+
+	return applied;
+}
+
+/**
+ * Always want an array return
+ *
+ * @param dt DataTable API instance
+ * @returns 
+ */
+export function rowGroupApplied(dt: any): any[] {
+	let applied = (dt as any).rowGroup().dataSrc();
+
+	return Array.isArray(applied)
+		? applied
+		: [applied];
+}
+
+/**
+ * Remove all grouping
+ *
+ * @param dt DataTable API instance
+ */
+export function rowGroupClear(dt: any) {
+	(dt as any).rowGroup().dataSrc([]);
+}
+
+/**
+ * Remove an item from the grouping structure
+ *
+ * @param dt DataTable API instance
+ * @param dataSrc Grouping data point to remove
+ * @returns Grouping array
+ */
+export function rowGroupRemove(dt: any, dataSrc: any) {
+	let applied = rowGroupApplied(dt);
+	let idx = applied.indexOf(dataSrc);
+
+	if (idx !== -1) {
+		applied.splice(idx, 1);
+
+		(dt as any).rowGroup().dataSrc(applied);
+	}
+
+	return applied;
+}
+
 export default {
 	defaults: {
 		className: 'rowGroup',
@@ -38,31 +101,15 @@ export default {
 
 				if (btn.active()) {
 					// Grouping is active - remove
-					let applied = (dt as any).rowGroup().dataSrc();
-					let set = [];
-
-					if (Array.isArray(applied)) {
-						// If it is in a nested level, remove
-						let idx = applied.indexOf(dataSrc);
-
-						if (idx !== 0) {
-							applied.slice().splice(idx, 1);
-						}
-					}
-
-					(dt as any).rowGroup().dataSrc(set);
+					rowGroupRemove(dt, dataSrc);
 				}
 				else {
 					// No grouping by this column yet, set it
-					(dt as any).rowGroup().dataSrc(dataSrc);
+					rowGroupClear(dt);
+					rowGroupAdd(dt, dataSrc);
 
-					if (config.order) {
-						dt.order([
-							{
-								idx: this.idx(),
-								dir: 'asc'
-							}
-						]);
+					if (config.order !== false) {
+						dt.order([this.idx(), 'asc']);
 					}
 				}
 
@@ -71,17 +118,10 @@ export default {
 
 		// Show as active when grouping is applied
 		dt.on('rowgroup-datasrc', () => {
-			let applied = (dt as any).rowGroup().dataSrc();
+			let applied = rowGroupApplied(dt);
 			let ours = dt.column(this.idx()).dataSrc();
 
-			if (Array.isArray(applied)) {
-				// Multi-level grouping
-				btn.active(applied.includes(ours));
-			}
-			else {
-				// Single level grouping only
-				btn.active(applied === ours);
-			}
+			btn.active(applied.includes(ours));
 		});
 
 		return btn.element();

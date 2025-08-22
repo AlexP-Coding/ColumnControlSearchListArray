@@ -159,12 +159,21 @@ export default class Button {
 	}
 
 	/**
+	 * Get the current enabled state for the button
+	 */
+	public enable(): boolean;
+	/**
 	 * Set if the button should be enabled or not.
 	 *
 	 * @param enable Toggle the enable state
 	 * @returns Button instance
 	 */
-	public enable(enable: boolean) {
+	public enable(enable: boolean): this;
+	public enable(enable?: boolean) {
+		if (enable === undefined) {
+			return this._s.enabled;
+		}
+
 		this._dom.button.classList.toggle('dtcc-button_disabled', !enable);
 		this._s.enabled = enable;
 
