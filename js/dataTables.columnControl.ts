@@ -110,7 +110,7 @@ DataTable.Api.registerPlural('columns().ccSearchClear()', 'column().ccSearchClea
 		return dt.i18n('columnControl.buttons.searchClear', 'Clear search');
 	},
 	init: function (dt, node, config) {
-		dt.on('draw', () => {
+		dt.on('draw.DT', () => {
 			let enabled = false;
 			let glob = !!dt.search();
 
