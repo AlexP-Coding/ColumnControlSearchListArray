@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="1">
+
+<css lib="datatables columncontrol rowgroup" />
+<js lib="jquery datatables columncontrol rowgroup">
+<![CDATA[
+$('#example').DataTable({
+	columnControl: ['rowGroup', 'order'],
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+new DataTable('#example', {
+	columnControl: ['rowGroup', 'order'],
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Grouping data</title>
+
+<info><![CDATA[
+
+DataTables has a [RowGroup extension](https://datatables.net/extensions/rowgroup/) which can be used to group identical data together. This can be really useful to help categorise data which naturally groups together (the _Office_ column in the table below is a good example).
+
+ColumnControl has a set of buttons which can be used to control the grouping of data via RowGroup, the primary one of which is the `-content rowGroup` content type, shown in this example. When clicked on the table will be grouped and ordered (configurable) by the data in the target column.
+
+]]></info>
+
+</dt-example>

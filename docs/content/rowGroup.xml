@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>rowGroup</name>
+	<summary>Apply row grouping to the DataTable</summary>
+	<since>1.1.0</since>
+
+	<description>
+		This content type adds a button which, when triggered, will group the data in the DataTable by the data in the target column. If the DataTable is already grouped by this column's data, triggering the button will ungroup the data (i.e. it is a toggle button). If the table has been grouped by a different column, that grouping will be removed and replaced by this column's data point.
+
+		The table will automatically redraw to show the row grouping when this button is triggered.
+
+		Please note that to operate this content type the [RowGroup extension for DataTables](https://datatables.net/extensions/rowgroup) is required.
+
+		### Display
+
+		The button added by this control will display as a simple icon button at the top level, or as a button with icon and text in a dropdown.
+	</description>
+
+	<option type="string" name="icon" default="groupTop">
+		Button icon. Can take the name of any icon available in `DataTable.ColumnControl.icons` (which is a writeable object containing SVG icons).
+	</option>
+
+	<option type="boolean" name="order" default="true">
+		When you order a table by a specific column's data point, you typically wish to have the table also ordered by that value, so there is a clear structure to the data (rather than groups being spaced all over!). This button will apply ordering by the target column automatically, although if you wish to disable that feature, this option provides that ability.
+	</option>
+
+	<option type="string" name="text" default="Group rows">
+		Trigger button text (shown when in a dropdown). Can also be set by the `rowGroup` key of `-init language.columnControl`, which will take priority if set.
+	</option>
+
+
+	<example title="Show row group and ordering button."><![CDATA[
+new DataTable('#example', {
+    columnControl: [
+		'rowGroup',
+		'order'
+	],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+</dt-button>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-button library="ColumnControl">
+	<name>rowGroupAdd</name>
+	<summary>Add an n-level grouping data point</summary>
+	<since>1.1.0</since>
+
+	<description>
+		The button added by this content type will modify the row grouping that has been applied to the table:
+
+		* If there is no grouping applied, it will add the data point for the target column as the top level grouping value
+		* If there is already grouping applied, it will add the data point for this target column as a nested grouping value. This will continue to _n_ levels.
+
+		The table will automatically redraw to reflect the updated row grouping when this button is triggered.
+
+		Please note that to operate this content type the [RowGroup extension for DataTables](https://datatables.net/extensions/rowgroup) is required.
+
+		### Display
+
+		The button added by this control will display as a simple icon button at the top level, or as a button with icon and text in a dropdown. It is generally expected that it will be used in a dropdown to avoid cluttering the UI.
+	</description>
+
+	<option type="string" name="icon" default="groupAdd">
+		Button icon. Can take the name of any icon available in `DataTable.ColumnControl.icons` (which is a writeable object containing SVG icons).
+	</option>
+
+	<option type="string" name="text" default="Add to grouping">
+		Trigger button text (shown when in a dropdown). Can also be set by the `rowGroupAdd` key of `-init language.columnControl`, which will take priority if set.
+	</option>
+
+
+	<example title="Show a dropdown with all row grouping control buttons."><![CDATA[
+new DataTable('#example', {
+	columnControl: ['order', ['rowGroup', 'rowGroupAdd', 'rowGroupRemove', 'rowGroupClear']],
+    ordering: {
+        indicators: false,
+        handler: false
+    }
+});
+]]></example>
+</dt-button>

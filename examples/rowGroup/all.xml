@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="3">
+
+<css lib="datatables columncontrol rowgroup" />
+<js lib="jquery datatables columncontrol rowgroup">
+<![CDATA[
+$('#example').DataTable({
+	columnControl: ['order', ['rowGroup', 'rowGroupAdd', 'rowGroupRemove', 'rowGroupClear']],
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+new DataTable('#example', {
+	columnControl: ['order', ['rowGroup', 'rowGroupAdd', 'rowGroupRemove', 'rowGroupClear']],
+	ordering: {
+		indicators: false,
+		handler: false
+	}
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Full grouping controls</title>
+
+<info><![CDATA[
+
+ColumnControl has a set of four different content type buttons built in to control the grouping of data in a DataTable. This example demonstrates all four in a dropdown:
+
+* `-content rowGroup` - toggle to enable row grouping on the specified column
+* `-content rowGroupAdd` - add a secondary (or n-level) column to the grouping of data
+* `-content rowGroupRemove` - remove a column from grouping
+* `-content rowGroupClear` - remove all columns from grouping.
+
+]]></info>
+
+</dt-example>
