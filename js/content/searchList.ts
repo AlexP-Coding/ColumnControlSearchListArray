@@ -176,6 +176,11 @@ export default {
 		// The search can be applied from a stored start at start up before the options are
 		// available. It can also be applied by user input, so it is generalised into this function.
 		let applySearch = (values) => {
+			// When SSP, don't do any client-side filtering
+			if (dt.page.info().serverSide) {
+				return;
+			}
+
 			let col = dt.column(this.idx());
 
 			if (!values) {
