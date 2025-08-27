@@ -123,7 +123,7 @@ function reloadOptions(dt, config: ISearchListConfig, idx: number, checkList, lo
 		// No point in doing any further processing here
 		return;
 	}
-	else {
+	else if (!dt.page.info().serverSide) {
 		// Either no ajax object (i.e. not an Ajax table), or no matching ajax options
 		// for this column - get the values for the column, taking into account
 		// orthogonal rendering
@@ -237,6 +237,16 @@ export default {
 			});
 		}
 
+		// Data for server-side processing
+		if (dt.page.info().serverSide) {
+			dt.on('preXhr.DT', (e, s, d) => {
+				if (! d.columns[this.idx()].columnControl) {
+					d.columns[this.idx()].columnControl = {};
+				}
+
+				d.columns[this.idx()].columnControl.list = checkList.values();
+			});
+		}
 
 		// Unlike the SearchInput based search contents, CheckList does not handle state saving
 		// (since the mechanism for column visibility is different), so state saving is handled

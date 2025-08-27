@@ -411,7 +411,8 @@ div.dtcc-dropdown {
 	}
 
 	div.dtcc-list {
-		div.dtcc-list-title {
+		div.dtcc-list-title,
+		div.dtcc-list-empty {
 			padding: var(--dtcc-dropdown-button_padding);
 			font-style: italic;
 

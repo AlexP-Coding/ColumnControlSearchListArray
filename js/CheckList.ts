@@ -12,6 +12,7 @@ interface IDom {
 	buttons: HTMLDivElement;
 	container: HTMLDivElement;
 	controls: HTMLDivElement;
+	empty: HTMLDivElement;
 	title: HTMLDivElement;
 	search: HTMLInputElement;
 	selectAll: HTMLButtonElement;
@@ -261,6 +262,11 @@ export default class CheckList {
 			buttons: createElement<HTMLDivElement>('div', 'dtcc-list-buttons'),
 			container: createElement<HTMLDivElement>('div', CheckList.classes.container),
 			controls: createElement<HTMLDivElement>('div', 'dtcc-list-controls'),
+			empty: createElement<HTMLDivElement>(
+				'div',
+				'dtcc-list-empty',
+				dt.i18n('columnControl.list.empty', 'No options')
+			),
 			title: createElement<HTMLDivElement>('div', 'dtcc-list-title'),
 			selectAll: createElement<HTMLButtonElement>(
 				'button',
@@ -282,6 +288,7 @@ export default class CheckList {
 		dom.search.setAttribute('type', 'text');
 		dom.container.append(dom.title);
 		dom.container.append(dom.controls);
+		dom.container.append(dom.empty);
 		dom.container.append(dom.buttons);
 
 		if (opts.select) {
@@ -364,5 +371,9 @@ export default class CheckList {
 				el.appendChild(btn.element());
 			}
 		}
+
+		console.log('buttons', buttons.length);
+		this._dom.empty.style.display = buttons.length === 0 ? 'block' : 'none';
+		el.style.display = buttons.length > 0 ? 'block' : 'none';
 	}
 }

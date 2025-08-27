@@ -30,6 +30,7 @@ export default class SearchInput {
 	private _lastType: string;
 	private _loadingState: boolean;
 	private _type: string = 'text';
+	private _sspTransform: (val: string) => string = null;
 
 	/**
 	 * Add a class to the container
@@ -181,6 +182,18 @@ export default class SearchInput {
 	}
 
 	/**
+	 * Set a function to transform the input value before SSP data submission
+	 *
+	 * @param fn Transform function
+	 * @returns Self for chaining
+	 */
+	public sspTransform(fn: (val: string) => string) {
+		this._sspTransform = fn;
+
+		return this;
+	}
+
+	/**
 	 * Set the text that will be shown as the title for the control
 	 *
 	 * @param text Set the title text
@@ -268,7 +281,7 @@ export default class SearchInput {
 
 		// State handling - all components that use this class have the same state saving structure
 		// so shared handling can be performed here.
-		dt.on('stateSaveParams', (e, s, data) => {
+		dt.on('stateSaveParams.DT', (e, s, data) => {
 			if (!data.columnControl) {
 				data.columnControl = {};
 			}
@@ -284,17 +297,17 @@ export default class SearchInput {
 			};
 		});
 
-		dt.on('stateLoaded', (e, s, state) => {
+		dt.on('stateLoaded.DT', (e, s, state) => {
 			this._stateLoad(state);
 		});
 
 		// Same as for ColumnControl - reassign a column index if needed.
-		dt.on('columns-reordered', (e, details) => {
+		dt.on('columns-reordered.DT', (e, details) => {
 			this._idx = (dt as any).colReorder.transpose(originalIdx, 'fromOriginal');
 		});
 
 		// Column control search clearing (column().ccSearchClear() method)
-		dt.on('cc-search-clear', (e, colIdx) => {
+		dt.on('cc-search-clear.DT', (e, colIdx) => {
 			if (colIdx === this._idx) {
 				// Don't want an automatic redraw on this event
 				this._loadingState = true;
@@ -304,6 +317,27 @@ export default class SearchInput {
 				this._loadingState = false;
 			}
 		});
+
+		// Data for server-side processing
+		if (dt.page.info().serverSide) {
+			dt.on('preXhr.DT', (e, s, d) => {
+				if (! d.columns[this._idx].columnControl) {
+					d.columns[this._idx].columnControl = {};
+				}
+
+				let val = this._dom.input.value;
+
+				if (this._sspTransform) {
+					val = this._sspTransform(val);
+				}
+
+				d.columns[this._idx].columnControl.search = {
+					value: val,
+					logic: this._dom.select.value,
+					type: this._type
+				};
+			});
+		}
 	}
 
 	/**

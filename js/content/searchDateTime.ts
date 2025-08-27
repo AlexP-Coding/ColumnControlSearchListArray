@@ -44,6 +44,7 @@ export default {
 		let searchInput = new SearchInput(dt, this.idx())
 			.type('date')
 			.addClass('dtcc-searchDateTime')
+			.sspTransform((val) => toISO(val, displayFormat, moment, luxon))
 			.clearable(config.clear)
 			.placeholder(config.placeholder)
 			.title(config.title)
@@ -224,4 +225,33 @@ function dateToNum(input: Date | string, srcFormat: string, moment?: any, luxon?
 	input = input.replace(/\//g, '-');
 
 	return new Date(input).getTime();
+}
+
+/**
+ * Convert an input string to an ISO formatted date
+ *
+ * @param input Input value
+ * @param srcFormat String format of the input
+ * @param moment Moment instance, if it is available
+ * @param luxon Luxon object, if it is available
+ * @returns Value in ISO
+ */
+function toISO(input: string, srcFormat: string, moment?: any, luxon?: any) {
+	if (input === '') {
+		return '';
+	}
+	else if (srcFormat !== 'YYYY-MM-DD' && moment) {
+		// TODO Does it have a time component?
+		return moment(input, srcFormat).toISOString();
+	}
+	else if (srcFormat !== 'YYYY-MM-DD' && luxon) {
+		// TODO Does it have a time component?
+		return luxon.DateTime.fromFormat(input, srcFormat).toISO();
+	}
+
+	// new Date() with `/` separators will treat the input as local time, but with `-` it will
+	// treat it as UTC. We want UTC so do a replacement
+	input = input.replace(/\//g, '-');
+
+	return input;
 }
