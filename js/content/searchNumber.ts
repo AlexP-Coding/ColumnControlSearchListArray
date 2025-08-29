@@ -56,6 +56,10 @@ export default {
 			.search((searchType, searchTerm, loadingState) => {
 				// When SSP, don't apply a filter here, SearchInput will add to the submit data
 				if (dt.page.info().serverSide) {
+					if (!loadingState) {
+						dt.draw();
+					}
+
 					return;
 				}
 

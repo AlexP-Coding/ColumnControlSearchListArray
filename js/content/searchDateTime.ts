@@ -8,6 +8,15 @@ export interface ISearchDateTimeConfig extends IContentConfig {
 	/** Allow the input clear icon to show, or not */
 	clear: boolean;
 
+	/** Date / time format to use for the input. Will be auto detected if not given. */
+	format: string;
+
+	/**
+	 * Date filtering mask. Format is "YYYY-MM-DD[T ]hh:mm:ss.sss". Remove a component to remove
+	 * it from the comparison (that unit will be set to 0)
+	 */
+	mask: string;
+
 	/** Placeholder text to apply to the `input` */
 	placeholder: string;
 
@@ -28,6 +37,8 @@ export interface ISearchDateTime extends Partial<ISearchDateTimeConfig> {
 export default {
 	defaults: {
 		clear: true,
+		format: '',
+		mask: '',
 		placeholder: '',
 		title: '',
 		titleAttr: ''
@@ -39,12 +50,13 @@ export default {
 		let luxon = DataTable.use('luxon');
 		let dt = this.dt();
 		let i18nBase = 'columnControl.search.datetime.';
-		let displayFormat = '';
+		let pickerFormat = '';
+		let dataSrcFormat = '';
 		let dateTime;
 		let searchInput = new SearchInput(dt, this.idx())
 			.type('date')
 			.addClass('dtcc-searchDateTime')
-			.sspTransform((val) => toISO(val, displayFormat, moment, luxon))
+			.sspTransform((val) => toISO(val, pickerFormat, moment, luxon))
 			.clearable(config.clear)
 			.placeholder(config.placeholder)
 			.title(config.title)
@@ -60,18 +72,24 @@ export default {
 			.search((searchType, searchTerm, loadingState) => {
 				// When SSP, don't apply a filter here, SearchInput will add to the submit data
 				if (dt.page.info().serverSide) {
+					if (!loadingState) {
+						dt.draw();
+					}
+
 					return;
 				}
 
+				let mask = config.mask;
 				let column = dt.column(this.idx());
 				let search =
 					searchTerm === ''
 						? ''
 						: dateToNum(
 								dateTime && fromPicker ? dateTime.val() : searchTerm.trim(),
-								displayFormat,
+								pickerFormat,
 								moment,
-								luxon
+								luxon,
+								mask
 						  );
 
 				if (searchType === 'empty') {
@@ -94,25 +112,29 @@ export default {
 					// might need to be converted back to a date
 					column.search.fixed(
 						'dtcc',
-						(haystack) => dateToNum(haystack, displayFormat, moment, luxon) == search
+						(haystack) =>
+							dateToNum(haystack, dataSrcFormat, moment, luxon, mask) == search
 					);
 				}
 				else if (searchType === 'notEqual') {
 					column.search.fixed(
 						'dtcc',
-						(haystack) => dateToNum(haystack, displayFormat, moment, luxon) != search
+						(haystack) =>
+							dateToNum(haystack, dataSrcFormat, moment, luxon, mask) != search
 					);
 				}
 				else if (searchType === 'greater') {
 					column.search.fixed(
 						'dtcc',
-						(haystack) => dateToNum(haystack, displayFormat, moment, luxon) > search
+						(haystack) =>
+							dateToNum(haystack, dataSrcFormat, moment, luxon, mask) > search
 					);
 				}
 				else if (searchType === 'less') {
 					column.search.fixed(
 						'dtcc',
-						(haystack) => dateToNum(haystack, displayFormat, moment, luxon) < search
+						(haystack) =>
+							dateToNum(haystack, dataSrcFormat, moment, luxon, mask) < search
 					);
 				}
 
@@ -132,11 +154,14 @@ export default {
 		dt.ready(() => {
 			let DateTime = DataTable.use('datetime');
 
-			displayFormat = getFormat(dt, this.idx());
+			dataSrcFormat = getFormat(dt, this.idx());
+			pickerFormat = config.format
+				? config.format
+				: dataSrcFormat;
 
 			if (DateTime) {
 				dateTime = new DateTime(searchInput.input(), {
-					format: displayFormat,
+					format: pickerFormat,
 					i18n: dt.settings()[0].oLanguage.datetime, // could be undefined
 					onChange: () => {
 						fromPicker = true;
@@ -166,20 +191,37 @@ function getFormat(dt: Api, column: number) {
 		return 'YYYY-MM-DD';
 	}
 	else if (type === 'datetime') {
-		// If no format was specified in the DT type, then we need to use Moment / Luxon's default
-		// locale formatting.
-		let moment = DataTable.use('moment');
-		let luxon = DataTable.use('luxon');
+		// If no format was specified in the DT type, a Javascript native toLocaleDateString
+		// was used. Need to work out what that format is in Moment or Luxon. We need to pass
+		// a known value though the renderer and work out the format
+		let renderer = dt.settings()[0].aoColumns[column].mRender;
+		let resultPm = renderer('1999-08-07T23:05:04Z', 'display');
+		let resultAm = renderer('1999-08-07T03:05:04Z', 'display');
+		let leadingZero = resultAm.includes('03');
 
-		if (moment) {
-			return moment().creationData().locale._longDateFormat.L;
+		// What formatter are we using?
+		if (DataTable.use('moment')) {
+			return resultPm
+				.replace('23', leadingZero ? 'HH' : 'H')
+				.replace('11', leadingZero ? 'hh' : 'h')
+				.replace('05', 'mm')
+				.replace('04', 'ss')
+				.replace('PM', 'A')
+				.replace('pm', 'a')
+				.replace('07', 'DD')
+				.replace('7', 'D')
+				.replace('08', 'MM')
+				.replace('8', 'M')
+				.replace('1999', 'YYYY')
+				.replace('99', 'YY');
 		}
-
-		if (luxon) {
-			// Luxon doesn't appear to provide a way to let us get the default locale formatting
-			// string, so we need to attempt to decode it.
-			return luxon.DateTime.fromISO('1999-08-07')
-				.toLocaleString()
+		else if (DataTable.use('luxon')) {
+			return resultPm
+				.replace('23', leadingZero ? 'HH' : 'H')
+				.replace('11', leadingZero ? 'hh' : 'h')
+				.replace('05', 'mm')
+				.replace('04', 'ss')
+				.replace('PM', 'a')
 				.replace('07', 'dd')
 				.replace('7', 'd')
 				.replace('08', 'MM')
@@ -187,6 +229,13 @@ function getFormat(dt: Api, column: number) {
 				.replace('1999', 'yyyy')
 				.replace('99', 'yy');
 		}
+		else if (resultPm.includes('23') && resultPm.includes('1999')) {
+			return 'YYYY-MM-DD hh:mm:ss';
+		}
+		else if (resultPm.includes('23')) {
+			return 'hh:mm:ss';
+		}
+		// fall through to final return
 	}
 	else if (type.includes('datetime-')) {
 		// Column was specified with a particular display format - we can extract that format from
@@ -212,24 +261,61 @@ function getFormat(dt: Api, column: number) {
  * @param luxon Luxon object, if it is available
  * @returns Time stamp - milliseconds
  */
-function dateToNum(input: Date | string, srcFormat: string, moment?: any, luxon?: any) {
+function dateToNum(input: Date | string, srcFormat: string, moment: any, luxon: any, mask: string) {
 	if (input === '') {
 		return '';
 	}
-	else if (input instanceof Date) {
-		return input.getTime();
-	}
-	else if (srcFormat !== 'YYYY-MM-DD' && (moment || luxon)) {
+	else if (!(input instanceof Date) && srcFormat !== 'YYYY-MM-DD' && (moment || luxon)) {
+		// TODO This needs to go through the MASK!
 		return moment
 			? moment(input, srcFormat).unix() * 1000
 			: luxon.DateTime.fromFormat(input, srcFormat).toMillis();
 	}
 
-	// new Date() with `/` separators will treat the input as local time, but with `-` it will
-	// treat it as UTC. We want UTC so do a replacement
-	input = input.replace(/\//g, '-');
 
-	return new Date(input).getTime();
+	let d: Date;
+	
+	if (input instanceof Date) {
+		d = input;
+	}
+	else {
+		// new Date() with `/` separators will treat the input as local time, but with `-` it will
+		// treat it as UTC. We want UTC so do a replacement
+		d = new Date(input.replace(/\//g, '-'));
+	}
+
+	if (mask) {
+		if (! mask.includes('YYYY')) {
+			d.setFullYear(1970);
+		}
+
+		if (! mask.includes('MM')) {
+			d.setUTCMonth(0);
+		}
+
+		if (! mask.includes('DD')) {
+			d.setUTCDate(1);
+		}
+
+		if (! mask.includes('hh')) {
+			d.setUTCHours(0);
+		}
+
+		if (! mask.includes('mm')) {
+			d.setUTCMinutes(0);
+		}
+
+		if (! mask.includes('ss')) {
+			// This will match milliseconds as well, but that's fine, you won't match mS but not S
+			d.setUTCSeconds(0);
+		}
+
+		if (! mask.includes('sss')) {
+			d.setUTCMilliseconds(0);
+		}
+	}
+
+	return d.getTime();
 }
 
 /**
@@ -247,7 +333,7 @@ function toISO(input: string, srcFormat: string, moment?: any, luxon?: any) {
 	}
 	else if (srcFormat !== 'YYYY-MM-DD' && moment) {
 		// TODO Does it have a time component?
-		return moment(input, srcFormat).toISOString();
+		return moment.utc(input, srcFormat).toISOString();
 	}
 	else if (srcFormat !== 'YYYY-MM-DD' && luxon) {
 		// TODO Does it have a time component?

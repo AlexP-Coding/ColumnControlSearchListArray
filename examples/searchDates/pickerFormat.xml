@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" order="21" table-class="display nowrap">
+
+<css lib="datatables columncontrol datetime" />
+<js lib="jquery datatables columncontrol moment datetime">
+<![CDATA[
+
+new DataTable('#example', {
+	columnControl: [
+		{
+			target: 0,
+			content: ['orderStatus']
+		},
+		{
+			target: 1,
+			content: ['search']
+		}
+	],
+	columnDefs: [
+		{
+			targets: [4],
+			render: DataTable.render.date()
+		}
+	],
+	ordering: {
+		indicators: false
+	}
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+
+new DataTable('#example', {
+	columnControl: [
+		{
+			target: 0,
+			content: ['orderStatus']
+		},
+		{
+			target: 1,
+			content: [{
+				extend: 'search',
+				format: 'YYYY-MM-DD'
+			}]
+		}
+	],
+	columnDefs: [
+		{
+			targets: [4],
+			render: DataTable.render.date()
+		}
+	],
+	ordering: {
+		indicators: false
+	}
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Custom picker format</title>
+
+<info><![CDATA[
+
+ColumnControl will attempt to use the same format for the date picker as the data in the source column. However, sometimes you might wish to specify your own format - this can be done using the `format` option for `-content searchDateTime` (and proxies by `-content search`).
+
+This example shows the DataTable showing the date information in the table in a locale specific format, while the date picker uses an ISO8601 date format.
+
+]]></info>
+
+</dt-example>

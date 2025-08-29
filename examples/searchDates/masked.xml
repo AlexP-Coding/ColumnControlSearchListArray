@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="ajax" order="20" table-class="display nowrap">
+
+<css lib="datatables columncontrol datetime" />
+<js lib="jquery datatables columncontrol moment datetime">
+<![CDATA[
+
+new DataTable('#example', {
+	ajax: '../data/datetime.json',
+	columnControl: [
+		{
+			target: 0,
+			content: ['orderStatus']
+		},
+		{
+			target: 1,
+			content: [
+				{
+					extend: 'search',
+					mask: 'YYYY-MM-DD'
+				}
+			]
+		}
+	],
+	columns: [
+		{data: 'name'},
+		{data: 'position'},
+		{data: 'office'},
+		{data: 'extn'},
+		{data: 'start_date', render: DataTable.render.datetime()},
+		{data: 'salary'}
+	],
+	ordering: {
+		indicators: false
+	}
+});
+]]>
+</js>
+
+<js-vanilla>
+<![CDATA[
+
+new DataTable('#example', {
+	ajax: '../data/datetime.json',
+	columnControl: [
+		{
+			target: 0,
+			content: ['orderStatus']
+		},
+		{
+			target: 1,
+			content: [
+				{
+					extend: 'search',
+					mask: 'YYYY-MM-DD'
+				}
+			]
+		}
+	],
+	columns: [
+		{data: 'name'},
+		{data: 'position'},
+		{data: 'office'},
+		{data: 'extn'},
+		{data: 'start_date', render: DataTable.render.datetime()},
+		{data: 'salary'}
+	],
+	ordering: {
+		indicators: false
+	}
+});
+]]>
+</js-vanilla>
+
+<title lib="ColumnControl">Date only search on date+time data</title>
+
+<info><![CDATA[
+
+When working with date and time data, it is often useful to be able to filter on only part of the data. For example you might want to allow filtering by date only and not include the time component. This is possible in ColumnControl using the `mask` option for `-content searchDateTime` (also proxied through `-content search`).
+
+This example demonstrates this ability - the source data is ISO8601 which is displayed in a locale format through the [`datetime` renderer](https://datatables.net/manual/data/renderers#Date-and-time-helpers). We use the `mask` option of the search input to have it operate on only the date part.
+
+]]></info>
+
+</dt-example>
