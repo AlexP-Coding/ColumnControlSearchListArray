@@ -57,6 +57,7 @@ export default {
 			.type('date')
 			.addClass('dtcc-searchDateTime')
 			.sspTransform((val) => toISO(val, pickerFormat, moment, luxon))
+			.sspData({mask: config.mask})
 			.clearable(config.clear)
 			.placeholder(config.placeholder)
 			.title(config.title)

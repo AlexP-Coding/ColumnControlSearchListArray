@@ -13,6 +13,10 @@ interface IDom {
 	typeIcon: HTMLDivElement;
 }
 
+interface ISSPData {
+	[key: string]: string;
+}
+
 type ISearch = (type: string, term: string, loadingState: boolean) => void;
 
 export default class SearchInput {
@@ -31,6 +35,7 @@ export default class SearchInput {
 	private _loadingState: boolean;
 	private _type: string = 'text';
 	private _sspTransform: (val: string) => string = null;
+	private _sspData: ISSPData = {};
 
 	/**
 	 * Add a class to the container
@@ -194,6 +199,18 @@ export default class SearchInput {
 	}
 
 	/**
+	 * Set extra information to be send to the server for server-side processing
+	 *
+	 * @param data Data object
+	 * @returns Self for chaining
+	 */
+	public sspData(data: ISSPData) {
+		this._sspData = data;
+
+		return this;
+	}
+
+	/**
 	 * Set the text that will be shown as the title for the control
 	 *
 	 * @param text Set the title text
@@ -331,11 +348,11 @@ export default class SearchInput {
 					val = this._sspTransform(val);
 				}
 
-				d.columns[this._idx].columnControl.search = {
+				d.columns[this._idx].columnControl.search = Object.assign({
 					value: val,
 					logic: this._dom.select.value,
 					type: this._type
-				};
+				}, this._sspData);
 			});
 		}
 	}
