@@ -262,21 +262,20 @@ function getFormat(dt: Api, column: number) {
  * @returns Time stamp - milliseconds
  */
 function dateToNum(input: Date | string, srcFormat: string, moment: any, luxon: any, mask: string) {
+	let d: Date;
+
 	if (input === '') {
 		return '';
 	}
-	else if (!(input instanceof Date) && srcFormat !== 'YYYY-MM-DD' && (moment || luxon)) {
-		// TODO This needs to go through the MASK!
-		return moment
-			? moment(input, srcFormat).unix() * 1000
-			: luxon.DateTime.fromFormat(input, srcFormat).toMillis();
-	}
 
-
-	let d: Date;
-	
 	if (input instanceof Date) {
 		d = input;
+	}
+	else if (srcFormat !== 'YYYY-MM-DD' && (moment || luxon)) {
+		d = new Date(moment
+			? moment(input, srcFormat).unix() * 1000
+			: luxon.DateTime.fromFormat(input, srcFormat).toMillis()
+		);
 	}
 	else {
 		// new Date() with `/` separators will treat the input as local time, but with `-` it will

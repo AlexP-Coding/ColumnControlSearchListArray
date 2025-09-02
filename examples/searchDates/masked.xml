@@ -17,7 +17,8 @@ new DataTable('#example', {
 			content: [
 				{
 					extend: 'search',
-					mask: 'YYYY-MM-DD'
+					mask: 'YYYY-MM-DD',
+					format: 'D MMM YYYY'
 				}
 			]
 		}
@@ -52,7 +53,8 @@ new DataTable('#example', {
 			content: [
 				{
 					extend: 'search',
-					mask: 'YYYY-MM-DD'
+					mask: 'YYYY-MM-DD',
+					format: 'D MMM YYYY'
 				}
 			]
 		}

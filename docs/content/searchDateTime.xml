@@ -26,6 +26,20 @@
 		Indicate if a clear icon should be shown at the end of the search `-tag input` element. When enabled a cross icon will be shown when the input has a value and clicking on the icon will clear the search.
 	</option>
 
+    <option type="string" name="format" default="" since="1.1.0">
+        This option gives the ability to use a different format for the search input, than that used in the DataTable for the column in question. ColumnControl will attempt to use the same format as the DataTable column automatically, but you may wish to override this, particularly if using the `mask` option.
+    </option>
+
+    <option type="string" name="mask" default="" since="1.1.0">
+        Date filtering mask. This option is used to remove components from the date / time data used for filtering and is applied to both the search input and the data in the table. A "component" in this sense is the year, month, day, hours, minutes or seconds.
+
+        This can be useful for cases where you might wish to offer the user the ability to search a date / time value by just the date part, simplifying the search, as for a full date / time exact matching would require second precision.
+        
+        The format for this value is "YYYY-MM-DD[T ]hh:mm:ss.sss". Remove a component to remove it from the comparison (that unit will be set to 0). E.g. `format: 'YYYY-MM-DD'` will search only on the date part.
+
+        The format of this field does not change based on the `format` parameter, it is always in the format described above, but you will likely wish to set `format` if you also use this one.
+    </option>
+
 	<option type="string" name="placeholder" default="">
 		Value to set the `placeholder` attribute of the `-tag input` element to. The given string will have the substring `[title]` will be replaced with the column title.
 	</option>

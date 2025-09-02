@@ -35,6 +35,14 @@
 		Indicate if a clear icon should be shown at the end of the search `-tag input` element. When enabled a cross icon will be shown when the input has a value and clicking on the icon will clear the search.
 	</option>
 
+    <option type="string" name="format" default="" since="1.1.0">
+        Proxied to `-content searchDateTime` if that content type is used. Please refer to the documentation for that content type for details.
+    </option>
+
+    <option type="string" name="mask" default="" since="1.1.0">
+        Proxied to `-content searchDateTime` if that content type is used. Please refer to the documentation for that content type for details.
+    </option>
+
 	<option type="string" name="placeholder" default="">
 		Value to set the `placeholder` attribute of the `-tag input` element to.
 	</option>
