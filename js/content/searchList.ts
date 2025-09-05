@@ -249,7 +249,8 @@ export default {
 					d.columns[this.idx()].columnControl = {};
 				}
 
-				d.columns[this.idx()].columnControl.list = checkList.values();
+				// We need the indexes in the HTTP parameter names (for .NET), so use an object.
+				d.columns[this.idx()].columnControl.list = Object.assign({}, checkList.values());
 			});
 		}
 
