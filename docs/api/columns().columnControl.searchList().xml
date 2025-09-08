@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-api library="ColumnControl">
+	<name>columns().columnControl.searchList()</name>
+	<summary>Load new options for the search list</summary>
+	<since>1.1.0</since>
+
+	<type type="function">
+		<signature>columns().columnControl.searchList( options )</signature>
+		<returns type="DataTables.Api">
+			API instance that contains a reference to the selected columns.
+		</returns>
+		<parameter type="string|array" name="options">
+			This parameter can take one of three forms:
+
+			* A `-type string` of value `-string refresh`, which will cause ColumnControl to re-read the options from the DataTable.
+			* An array of string values, which will be used for both the search and display values.
+			* An array of objects which contain `label` and `value` properties, used for display and search values, respectively.
+		</parameter>
+		<description>
+			Rebuild the search list with new options, either read from the column, or provided.
+		</description>
+	</type>
+
+	<description>
+		This method provides the same functionality as `-api column().columnControl.searchList()` but for multiple columns. As a result, it is expected that you would typically use the `-string refresh` option with this method call, rather than providing an array of options, which would then the applied to all columns.
+	</description>
+
+	<example title="Re-read the table control and rebuild all `searchList` controls"><![CDATA[
+let table = new DataTable('#myTable', {
+	columnControl: ['order', ['searchList']]
+});
+
+document.querySelector('#reloadOptions').addEventListener('click', () => {
+	table.columns().columnControl.searchList('refresh');
+});
+]]></example>
+
+	<related>-api column().columnControl.searchList()</related>
+</dt-api>

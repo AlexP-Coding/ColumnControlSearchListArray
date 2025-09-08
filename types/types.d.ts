@@ -8,7 +8,7 @@
 /// <reference types="jquery" />
 
 import DataTables from 'datatables.net';
-import {TContentItem} from '../js/ColumnControl';
+import { TContentItem } from '../js/ColumnControl';
 
 export default DataTables;
 
@@ -122,7 +122,7 @@ declare module 'datatables.net' {
 
 				/** Search placeholder */
 				search?: string;
-			}
+			};
 
 			/** Strings used for the <select> available for choosing different search logic */
 			search?: {
@@ -134,7 +134,7 @@ declare module 'datatables.net' {
 					ends?: string;
 					empty?: string;
 					notEmpty?: string;
-				},
+				};
 
 				/** searchDateTime options */
 				datetime?: {
@@ -144,7 +144,7 @@ declare module 'datatables.net' {
 					less?: string;
 					empty?: string;
 					notEmpty?: string;
-				},
+				};
 
 				/** searchNumber options */
 				number?: {
@@ -156,9 +156,48 @@ declare module 'datatables.net' {
 					lessOrEqual?: string;
 					empty?: string;
 					notEmpty?: string;
-				}
-			}
-		}
+				};
+			};
+		};
+	}
+
+	interface ApiColumnMethods<T> {
+		/** Methods for ColumnControl */
+		columnControl: {
+			/**
+			 * Clear any ColumnControl search that is applied to the selected column (both
+			 * `searchList` and the input search types will be cleared).
+			 */
+			searchClear(): ApiColumnMethods<T>;
+
+			/**
+			 * Reload the options for the `searchList` content type, or provide new options.
+			 *
+			 * @param options Options to load in, or use `'refresh'` to read from the table.
+			 */
+			searchList(
+				options: 'refresh' | string[] | Array<{ label: string; value: any }>
+			): ApiColumnMethods<T>;
+		};
+	}
+
+	interface ApiColumnsMethods<T> {
+		columnControl: {
+			/**
+			 * Clear any ColumnControl search that is applied to the selected columns (both
+			 * `searchList` and the input search types will be cleared).
+			 */
+			searchClear(): ApiColumnMethods<T>;
+
+			/**
+			 * Reload the options for the `searchList` content type, or provide new options.
+			 *
+			 * @param options Options to load in, or use `'refresh'` to read from the table.
+			 */
+			searchList(
+				options: 'refresh' | string[] | Array<{ label: string; value: any }>
+			): ApiColumnMethods<T>;
+		};
 	}
 }
 
@@ -185,7 +224,3 @@ interface ConfigColumnControl {
 	 */
 	content?: TContentItem[];
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * API
- */

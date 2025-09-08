@@ -285,6 +285,15 @@ export default {
 				: loadedValues;
 		});
 
+		dt.settings()[0].aoColumns[this.idx()].columnControlSearchList = (options) => {
+			if (options === 'refresh') {
+				reloadOptions(dt, config, this.idx(), checkList, null);
+			}
+			else {
+				setOptions(checkList, options);
+			}
+		};
+
 		loadedValues = getState(this.idx(), dt.state.loaded());
 		applySearch(loadedValues);
 

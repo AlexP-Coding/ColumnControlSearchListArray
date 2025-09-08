@@ -96,14 +96,35 @@ $(document).on('preInit.dt', function (e, settings) {
 	});
 });
 
-DataTable.Api.registerPlural('columns().ccSearchClear()', 'column().ccSearchClear()', function () {
+function searchClear() {
 	let ctx = this;
 
 	return this.iterator('column', function (settings, idx) {
 		// Note that the listeners for this will not redraw the table.
 		ctx.trigger('cc-search-clear', [idx]);
 	});
-});
+}
+
+DataTable.Api.registerPlural(
+	'columns().columnControl.searchClear()',
+	'column().columnControl.searchClear()',
+	searchClear
+);
+
+// Legacy (1.0.x)) - was never documented, but was mentioned in the forum
+DataTable.Api.registerPlural('columns().ccSearchClear()', 'column().ccSearchClear()', searchClear);
+
+DataTable.Api.registerPlural(
+	'columns().columnControl.searchList()',
+	'column().columnControl.searchList()',
+	function (options) {
+		let ctx = this;
+
+		return this.iterator('column', function (settings, idx) {
+			settings.aoColumns[idx].columnControlSearchList(options);
+		});
+	}
+);
 
 (DataTable.ext.buttons as any).ccSearchClear = {
 	text: (dt) => {
@@ -130,7 +151,7 @@ DataTable.Api.registerPlural('columns().ccSearchClear()', 'column().ccSearchClea
 	},
 	action: function (e, dt, node, config) {
 		dt.search('');
-		dt.columns().ccSearchClear();
+		dt.columns().columnControl.searchClear();
 		dt.draw();
 	}
 };
@@ -315,9 +336,7 @@ function identifyTargets(targets: any[], input: IConfig | IConfig[]) {
  * @returns true if it is a config object
  */
 function isIConfig(item: any) {
-	return typeof item === 'object' && item.target !== undefined
-		? true
-		: false;
+	return typeof item === 'object' && item.target !== undefined ? true : false;
 }
 
 /**

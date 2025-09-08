@@ -159,7 +159,7 @@ export default class CheckList {
 	 * @param idx Column index
 	 */
 	public searchListener(dt) {
-		// Column control search clearing (column().ccSearchClear() method)
+		// Column control search clearing (column().columnControl.searchClear() method)
 		dt.on('cc-search-clear', (e, colIdx) => {
 			if (colIdx === this._s.host.idx()) {
 				this.selectNone();

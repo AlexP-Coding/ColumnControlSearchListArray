@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-api library="ColumnControl">
+	<name>column().columnControl.searchClear()</name>
+	<summary>Remove any ColumnControl applied search from the selected column</summary>
+	<since>1.1.0</since>
+
+	<type type="function">
+		<signature>column().columnControl.searchClear()</signature>
+		<returns type="DataTables.Api">
+			API instance that contains a reference to the selected column.
+		</returns>
+		<description>
+			Remove any search that was applied to the column via ColumnControl inputs.
+		</description>
+	</type>
+
+	<description>
+		ColumnControl's search controls have UI elements that allow the end user to quickly clear a search term, but you might also wish to do this using external controls. This method provides a programmatic way to clear a search term that was added by ColumnControl to a selected column. `-content searchList` and input based search content types (e.g. `-content searchText`) will all be cleared by this method.
+
+		Note that the table will not be automatically redrawn when this method has been called. You need to call `-api draw()` to display the changes as a result of the updated search.
+	</description>
+
+	<example title="Remove ColumnControl applied search terms from column index 0"><![CDATA[
+let table = new DataTable('#myTable', {
+	columnControl: ['order', 'searchDropdown']
+});
+
+document.querySelector('#clearColumn0').addEventListener('click', () => {
+	table.column(0).columnControl.searchClear();
+});
+]]></example>
+
+	<related>-api columns().columnControl.searchClear()</related>
+	<related>-button ccSearchClear</related>
+</dt-api>

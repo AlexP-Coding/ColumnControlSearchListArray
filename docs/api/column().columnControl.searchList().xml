@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-api library="ColumnControl">
+	<name>column().columnControl.searchList()</name>
+	<summary>Load new options for the search list</summary>
+	<since>1.1.0</since>
+
+	<type type="function">
+		<signature>column().columnControl.searchList( options )</signature>
+		<returns type="DataTables.Api">
+			API instance that contains a reference to the selected column.
+		</returns>
+		<parameter type="string|array" name="options">
+			This parameter can take one of three forms:
+
+			* A `-type string` of value `-string refresh`, which will cause ColumnControl to re-read the options from the DataTable.
+			* An array of string values, which will be used for both the search and display values.
+			* An array of objects which contain `label` and `value` properties, used for display and search values, respectively.
+		</parameter>
+		<description>
+			Rebuild the search list with new options, either read from the column, or provided.
+		</description>
+	</type>
+
+	<description>
+		You might find that if the content of the data in your DataTable changes, then you need a way to have the list of options shown by `-content searchList` be updated. This method provides exactly that ability. You can instruct it either to get the options from the table, or provide a list of options yourself.
+	</description>
+
+	<example title="Re-read the content of column index 0 and rebuild the search list"><![CDATA[
+let table = new DataTable('#myTable', {
+	columnControl: ['order', ['searchList']]
+});
+
+document.querySelector('#reloadOptions0').addEventListener('click', () => {
+	table.column(0).columnControl.searchList('refresh');
+});
+]]></example>
+
+	<related>-api columns().columnControl.searchList()</related>
+</dt-api>

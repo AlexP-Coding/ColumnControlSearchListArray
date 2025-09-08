@@ -48,7 +48,7 @@ new DataTable('#myTable', {
 	]
 });
 
-new DataTable('#myTable', {
+let dt = new DataTable('#myTable', {
 	columnControl: ['colVis'],
 	language: {
 		columnControl: {
@@ -60,6 +60,18 @@ new DataTable('#myTable', {
 		}
 	}
 });
+
+dt.column(0).columnControl.searchList('refresh');
+dt.column(0).columnControl.searchList([
+	'test1',
+	'test2'
+]);
+dt.column(0).columnControl.searchList([
+	{label: 'A', value: 'a'},
+	{label: 'B', value: 'b'}
+]);
+dt.column(0).columnControl.searchClear();
+dt.columns().columnControl.searchClear();
 
 
 //

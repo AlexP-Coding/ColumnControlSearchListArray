@@ -323,7 +323,7 @@ export default class SearchInput {
 			this._idx = (dt as any).colReorder.transpose(originalIdx, 'fromOriginal');
 		});
 
-		// Column control search clearing (column().ccSearchClear() method)
+		// Column control search clearing (column().columnControl.searchClear() method)
 		dt.on('cc-search-clear.DT', (e, colIdx) => {
 			if (colIdx === this._idx) {
 				// Don't want an automatic redraw on this event

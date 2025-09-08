@@ -30,7 +30,7 @@ export default {
 			.icon(config.icon)
 			.className(config.className)
 			.handler(() => {
-				(dt.column(this.idx()) as any).ccSearchClear().draw();
+				(dt.column(this.idx()) as any).columnControl.searchClear().draw();
 			})
 			.enable(false);
 
