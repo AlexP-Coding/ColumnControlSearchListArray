@@ -75,7 +75,7 @@ export default class CheckList {
 				.icon(option.icon || '')
 				.text(option.label !== ''
 					? option.label
-					: this._s.dt.i18n('columnControl.list.emptyOption', 'Empty')
+					: this._s.dt.i18n('columnControl.list.empty', 'Empty')
 				)
 				.value(option.value);
 			
