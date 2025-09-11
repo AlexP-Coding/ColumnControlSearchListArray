@@ -121,7 +121,11 @@ DataTable.Api.registerPlural(
 		let ctx = this;
 
 		return this.iterator('column', function (settings, idx) {
-			settings.aoColumns[idx].columnControlSearchList(options);
+			let fn = settings.aoColumns[idx].columnControlSearchList;
+
+			if (fn) {
+				fn(options);
+			}
 		});
 	}
 );
