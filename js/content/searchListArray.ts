@@ -1,36 +1,12 @@
 import CheckList from '../CheckList';
 import { IContentPlugin, IContentConfig } from './content';
+import { ISearchListConfig } from './searchList';
 
-export interface ISearchListConfig extends IContentConfig {
-	/** Only use SearchList on columns where the options are defined by the Ajax data */
-	ajaxOnly: boolean;
-
-	/** Container class name */
-	className: string;
-
-	/** Define if a search list can be hidden if there is no data that comes back from the server
-	 * for it. Applies to Ajax options only (`ajaxOnly: true`).
-	 */
-	hidable: boolean;
-
-	/** List of options. If not given here, will be derived from Ajax data, or the table's data */
-	options: Array<{ label: string; value: any }> | null;
-
-	/** The data type to request for the data shown in the list */
-	orthogonal: string;
-
-	/** Show the list search input, or not */
-	search: boolean;
-
-	/** Show the select all / none buttons, or not */
-	select: boolean;
-
-	/** Text shown above the search list. `[title]` will be replaced by the column title. */
-	title: string;
+export interface ISearchListArrayConfig extends ISearchListConfig {
 }
 
-export interface ISearchList extends Partial<ISearchListConfig> {
-	extend: 'searchList';
+export interface ISearchListArray extends Partial<ISearchListArrayConfig> {
+	extend: 'searchListArray';
 }
 
 /** Set the options to show in the list */
@@ -69,7 +45,7 @@ function setOptions(checkList: CheckList, opts) {
 
 /** Load a saved state */
 function getState(columnIdx: number, state) {
-	let loadedState = state?.columnControl?.[columnIdx]?.searchList;
+	let loadedState = state?.columnControl?.[columnIdx]?.searchListArray;
 
 	if (loadedState) {
 		return loadedState;
@@ -99,7 +75,7 @@ export function getJsonOptions(dt, idx) {
 	return null;
 }
 
-function reloadOptions(dt, config: ISearchListConfig, idx: number, checkList, loadedValues) {
+function reloadOptions(dt, config: ISearchListArrayConfig, idx: number, checkList, loadedValues) {
 	// Was there options specified in the Ajax return?
 	let json = (dt.ajax.json() as any)?.columnControl;
 	let options = [];
@@ -160,7 +136,7 @@ function reloadOptions(dt, config: ISearchListConfig, idx: number, checkList, lo
 export default {
 	defaults: {
 		ajaxOnly: true,
-		className: 'searchList',
+		className: 'searchListArray',
 		hidable: true,
 		options: null,
 		orthogonal: 'display',
@@ -210,7 +186,7 @@ export default {
 			.searchListener(dt)
 			.title(
 				dt
-					.i18n('columnControl.searchList', config.title)
+					.i18n('columnControl.searchListArray', config.title)
 					.replace('[title]', dt.column(this.idx()).title())
 			)
 			.handler((e, btn, btns, redraw) => {
@@ -280,12 +256,12 @@ export default {
 			// If the table isn't yet ready, then the options for the list won't have been
 			// populated (above) and therefore there can't be an values. In such a case
 			// use the last saved values and this will refresh on the next draw.
-			data.columnControl[idx].searchList = dt.ready()
+			data.columnControl[idx].searchListArray = dt.ready()
 				? checkList.values()
 				: loadedValues;
 		});
 
-		dt.settings()[0].aoColumns[this.idx()].columnControlSearchList = (options) => {
+		dt.settings()[0].aoColumns[this.idx()].columnControlSearchListArray = (options) => {
 			if (options === 'refresh') {
 				reloadOptions(dt, config, this.idx(), checkList, null);
 			}
@@ -299,4 +275,4 @@ export default {
 
 		return checkList.element();
 	}
-} as IContentPlugin<ISearchListConfig>;
+} as IContentPlugin<ISearchListArrayConfig>;
