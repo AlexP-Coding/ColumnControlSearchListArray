@@ -338,6 +338,11 @@ export default class SearchInput {
 		// Data for server-side processing
 		if (dt.page.info().serverSide) {
 			dt.on('preXhr.DT', (e, s, d) => {
+				// The column has been removed from the submit data - can't do anything
+				if (! d.columns || ! d.columns[this._idx]) {
+					return;
+				}
+
 				if (! d.columns[this._idx].columnControl) {
 					d.columns[this._idx].columnControl = {};
 				}
