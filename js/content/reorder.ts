@@ -30,14 +30,10 @@ export default {
 		let btn = new Button(dt, this)
 			.text(dt.i18n('columnControl.reorder', config.text))
 			.icon(config.icon)
-			.className(config.className)
-			.handler(() => {
-				let idx = this.idx();
+			.className(config.className);
 
-				if (idx > 0) {
-					(dt as any).colReorder.move(idx, idx - 1);
-				}
-			});
+		// The event handling for this is done in ColReorder._addListener - no event
+		// handler needed here for click / drag
 
 		if (this.idx() === 0) {
 			btn.enable(false);
