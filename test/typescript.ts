@@ -74,6 +74,20 @@ dt.column(0).columnControl.searchClear();
 dt.columns().columnControl.searchClear();
 
 
+dt.column(0).columnControl.searchListArray('refresh');
+dt.column(0).columnControl.searchListArray([
+	['test1A', 'test1B'],
+	['test2'],
+	['test3']
+]);
+dt.column(0).columnControl.searchListArray([
+	[{label: 'A1', value: 'a1'}, {label: 'A2', value: 'a2'}],
+	{label: 'B', value: 'b'}
+]);
+dt.column(0).columnControl.searchClear();
+dt.columns().columnControl.searchClear();
+
+
 //
 // The below should show errors
 //
