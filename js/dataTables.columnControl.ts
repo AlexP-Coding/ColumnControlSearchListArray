@@ -130,6 +130,22 @@ DataTable.Api.registerPlural(
 	}
 );
 
+DataTable.Api.registerPlural(
+	'columns().columnControl.searchListArray()',
+	'column().columnControl.searchListArray()',
+	function (options) {
+		let ctx = this;
+
+		return this.iterator('column', function (settings, idx) {
+			let fn = settings.aoColumns[idx].columnControlSearchListArray;
+
+			if (fn) {
+				fn(options);
+			}
+		});
+	}
+);
+
 (DataTable.ext.buttons as any).ccSearchClear = {
 	text: (dt) => {
 		return dt.i18n('columnControl.buttons.searchClear', 'Clear search');

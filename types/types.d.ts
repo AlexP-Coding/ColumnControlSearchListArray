@@ -178,6 +178,15 @@ declare module 'datatables.net' {
 			searchList(
 				options: 'refresh' | string[] | Array<{ label: string; value: any }>
 			): ApiColumnMethods<T>;
+
+			/**
+			 * Reload the options for the `searchListArray` content type, or provide new options.
+			 *
+			 * @param options Options to load in, or use `'refresh'` to read from the table.
+			 */
+			searchListArray(
+				options: 'refresh' | string[] | Array<{ label: string; value: any }>
+			): ApiColumnMethods<T>;
 		};
 	}
 
@@ -195,6 +204,15 @@ declare module 'datatables.net' {
 			 * @param options Options to load in, or use `'refresh'` to read from the table.
 			 */
 			searchList(
+				options: 'refresh' | string[] | Array<{ label: string; value: any }>
+			): ApiColumnMethods<T>;
+
+			/**
+			 * Reload the options for the `searchListArray` content type, or provide new options.
+			 *
+			 * @param options Options to load in, or use `'refresh'` to read from the table.
+			 */
+			searchListArray(
 				options: 'refresh' | string[] | Array<{ label: string; value: any }>
 			): ApiColumnMethods<T>;
 		};
