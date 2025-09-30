@@ -1,5 +1,6 @@
 import searchDateTime, { ISearchDateTimeConfig } from './searchDateTime';
 import searchList, { ISearchListConfig, getJsonOptions } from './searchList';
+import searchListArray, { ISearchListArrayConfig} from './searchListArray';
 import searchNumber, { ISearchNumberConfig } from './searchNumber';
 import searchText, { ISearchTextConfig } from './searchText';
 import { IContentPlugin } from './content';
@@ -8,9 +9,18 @@ export interface ISearchConfig
 	extends ISearchDateTimeConfig,
 		ISearchNumberConfig,
 		ISearchTextConfig,
-		ISearchListConfig {
-	/** Indicate if SearchList should be allowed or not (it is only used for Ajax loaded data) */
+		ISearchListConfig,
+		ISearchListArrayConfig {
+	/** Indicate if SearchList or SearchListArray should be allowed or not (it is only used for Ajax loaded data) */
 	allowSearchList: boolean;
+
+	/** Specify which search list type should be used (ignored if searchList is not allowed) */
+	searchListType: string;
+}
+
+export enum SearchListType {
+	List = "list",
+	ListArray = "list-array",
 }
 
 export interface ISearch extends Partial<ISearchConfig> {
@@ -19,7 +29,8 @@ export interface ISearch extends Partial<ISearchConfig> {
 
 export default {
 	defaults: {
-		allowSearchList: false
+		allowSearchList: false,
+		searchListType: SearchListType.List
 	},
 
 	init(config) {
@@ -32,9 +43,17 @@ export default {
 			let json = getJsonOptions(dt, idx);
 
 			// Attempt to match what type of search should be shown
+
+			// We've got a list of JSON options, and are allowed to show a searchList
 			if (config.allowSearchList && json) {
-				// We've got a list of JSON options, and are allowed to show the searchList
-				return searchList.init.call(this, Object.assign({}, searchList.defaults, config));
+				switch(config.searchListType) {
+					case SearchListType.List:
+						return searchList.init.call(this, Object.assign({}, searchList.defaults, config));
+					case SearchListType.ListArray:
+						return searchListArray.init.call(this, Object.assign({}, searchListArray.defaults, config));
+					default:
+						return searchList.init.call(this, Object.assign({}, searchList.defaults, config));
+				}
 			}
 			else if (type === 'date' || type.startsWith('datetime')) {
 				// Date types

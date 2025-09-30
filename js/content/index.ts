@@ -21,6 +21,7 @@ import searchClear, { ISearchClear } from './searchClear';
 import searchDropdown, { ISearchDropdown } from './searchDropdown';
 import searchDateTime, { ISearchDateTime } from './searchDateTime';
 import searchList, { ISearchList } from './searchList';
+import searchListArray, { ISearchListArray } from './searchListArray';
 import searchNumber, { ISearchNumber } from './searchNumber';
 import searchText, { ISearchText } from './searchText';
 import spacer, { ISpacer } from './spacer';
@@ -50,6 +51,7 @@ export type IContentConfig =
 	| ISearchDropdown
 	| ISearchDateTime
 	| ISearchList
+	| ISearchListArray
 	| ISearchNumber
 	| ISearchText
 	| ISpacer
@@ -79,6 +81,7 @@ const contentTypes = {
 	searchDropdown,
 	searchDateTime,
 	searchList,
+	searchListArray,
 	searchNumber,
 	searchText,
 	spacer,
