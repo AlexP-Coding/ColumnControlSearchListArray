@@ -1,6 +1,6 @@
 import CheckList from '../CheckList';
 import { IContentPlugin, IContentConfig } from './content';
-import { ISearchListConfig } from './searchList';
+import { ISearchListConfig, getJsonOptions } from './searchList';
 
 export interface ISearchListArrayConfig extends ISearchListConfig {
 }
@@ -52,7 +52,6 @@ function getState(columnIdx: number, state) {
 	}
 }
 
-/** Get the options for a column from a DT JSON object */
 export function getJsonOptions(dt, idx) {
 	let json = (dt.ajax.json() as any)?.columnControl;
 	let column = dt.column(idx);
@@ -109,17 +108,21 @@ function reloadOptions(dt, config: ISearchListArrayConfig, idx: number, checkLis
 
 		for (let i=0 ; i<rows.length ; i++) {
 			let raw = settings.fastData(rows[i], idx, 'filter');
-			let filter = raw !== null && raw !== undefined
-				? raw.toString()
-				: '';
+			let filterArray = raw !== null && raw !== undefined
+				? [raw].flat(1)
+				: [];
 
-			if (!found[filter]) {
-				found[filter] = true;
+			for (let j = 0; j < filterArray.length; j++) {
+				let filter = filterArray[j];
 
-				options.push({
-					label: settings.fastData(rows[i], idx, config.orthogonal),
-					value: filter
-				});
+				if (!found[filter]) {
+					found[filter] = true;
+	
+					options.push({
+						label: settings.fastData(rows[i], idx, config.orthogonal),
+						value: filter
+					});
+				}
 			}
 		}
 	}
