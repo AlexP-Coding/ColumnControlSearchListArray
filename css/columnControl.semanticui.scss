@@ -1,3 +1,4 @@
+@use "sass:meta";
 
 :root {
 	--dtcc-button_background: transparent;
@@ -67,7 +68,7 @@
 	--dtcc-dropdown-search_padding: 0.5em 1em;
 }
 
-@import 'shared.scss';
+@include meta.load-css('shared.scss');
 
 div.dtcc-dropdown div.dtcc-search > div input,
 div.dtcc-dropdown div.dtcc-search > div div.dtcc-search-icon {

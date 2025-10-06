@@ -1,3 +1,4 @@
+@use "sass:meta";
 :root {
 	--dtcc-button_background: transparent;
 	--dtcc-button_border: none;
@@ -88,4 +89,4 @@
 	--dtcc-list-buttons_background: rgba(255, 255, 255, 0.05);
 }
 
-@import 'shared.scss';
+@include meta.load-css('shared.scss');
