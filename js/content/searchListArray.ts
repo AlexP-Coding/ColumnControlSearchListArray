@@ -1,6 +1,6 @@
 import CheckList from '../CheckList';
 import { IContentPlugin, IContentConfig } from './content';
-import { ISearchListConfig, getJsonOptions } from './searchList';
+import { ISearchListConfig, getJsonOptions as getSearchListJsonOptions } from './searchList';
 
 export interface ISearchListArrayConfig extends ISearchListConfig {
 }
@@ -53,25 +53,7 @@ function getState(columnIdx: number, state) {
 }
 
 export function getJsonOptions(dt, idx) {
-	let json = (dt.ajax.json() as any)?.columnControl;
-	let column = dt.column(idx);
-	let name = column.name();
-	let dataSrc = column.dataSrc();
-
-	if (json && json[name]) {
-		// Found options matching the column's name - top priority
-		return json[name];
-	}
-	else if (json && typeof dataSrc === 'string' && json[dataSrc]) {
-		// Found options matching the column's data source string
-		return json[dataSrc];
-	}
-	else if (json && json[idx]) {
-		// Found options matching the column's data index
-		return json[idx];
-	}
-
-	return null;
+	return getSearchListJsonOptions(dt, idx);
 }
 
 function reloadOptions(dt, config: ISearchListArrayConfig, idx: number, checkList, loadedValues) {
