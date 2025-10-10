@@ -6,7 +6,8 @@
         "allowUnreachableCode": true,
         "allowSyntheticDefaultImports": true,
         "pretty": true,
-        "declaration": true
+        "declaration": true,
+        "types": []
     },
     "files": [
         "js/dataTables.columnControl.ts"

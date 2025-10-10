@@ -255,5 +255,5 @@ export default class ColumnControl {
 	static icons = icons;
 
 	/** Version */
-	static version = '1.1.0';
+	static version = '1.1.1';
 }
