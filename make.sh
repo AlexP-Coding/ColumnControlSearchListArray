@@ -33,7 +33,7 @@ css_frameworks columnControl $OUT_DIR/css
 VERSION=$(grep "static version" js/ColumnControl.ts | perl -nle'print $& if m{\d+\.\d+\.\d+(\-\w*)?}')
 
 # JS - compile and then copy into place
-$DT_SRC/node_modules/typescript/bin/tsc
+$DT_SRC/node_modules/typescript/bin/tsc -p ./tsconfig.json
 
 ## Remove the import - our wrapper does it for UMD as well as ESM
 sed -i "s#import DataTable from '../../../types/types';##" js/dataTables.columnControl.js
